@@ -1,0 +1,22 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.sortJSON": false
+    // "source.organizeImports": true
+  },
+  "evenBetterToml.formatter.alignComments": true,
+  // "rust-analyzer.checkOnSave": false,
+  // "editor.formatOnSave": false
+  "files.exclude": {
+    "**/node_modules": true, // optional
+    ".swc": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true,
+    "**/target/**": true
+  },
+  "rust-analyzer.check.command": "clippy"
+}

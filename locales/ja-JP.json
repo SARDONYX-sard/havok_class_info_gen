@@ -1,0 +1,12 @@
+{
+  "all-clear-btn": "全入力をクリア",
+  "execute-btn": "実行",
+  "executing-btn": "実行中...",
+  "log-level-list-label": "ログレベル",
+  "num1": "数字1",
+  "num1-helper": "0~10の数字を入力してください",
+  "num2": "数字2",
+  "num2-helper": "0~10の数字を入力してください",
+  "open-log-btn": "ログを開く",
+  "select-btn": "選択"
+}

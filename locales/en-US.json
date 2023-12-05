@@ -1,0 +1,12 @@
+{
+  "all-clear-btn": "All Clear",
+  "execute-btn": "Execute",
+  "executing-btn": "Executing...",
+  "log-level-list-label": "Log Level",
+  "num1": "Number1",
+  "num1-helper": "Please input number 0~10",
+  "num2": "Number2",
+  "num2-helper": "Please input number 0~10",
+  "open-log-btn": "Open Log",
+  "select-btn": "Select"
+}

@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+.swc
+out/
+
+# production
+build
+
+# misc
+.DS_Store
+*.pem
+test/
+*.log
+
+# Rust build cache
+**/target
