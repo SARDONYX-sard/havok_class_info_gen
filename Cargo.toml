@@ -6,7 +6,7 @@ description = ""
 repository = "https://github.com/SARDONYX-sard/tauri-nextjs-template" # Without it, the CLI CI build will error
 
 [workspace]
-members = ["app_core", "app_cli", "src-tauri"]
+members = ["app_core", "app_cli", "src-tauri", "crates/hkx-serde"]
 default-members = ["app_cli"]
 resolver = "2"
 

@@ -26,6 +26,6 @@ mod tests {
 
     #[test]
     fn should_err() {
-        assert!(add(11, 1).is_err());
+        assert_eq!(add(11, 1), Err(CoreError::UnexpectedNumber(11)));
     }
 }
