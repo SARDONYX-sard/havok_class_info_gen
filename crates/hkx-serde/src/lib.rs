@@ -30,7 +30,7 @@ pub fn generate_classes() {
     #[cfg(test)]
     let mut test_index = 0;
     #[cfg(test)]
-    let test_max = 5;
+    let test_max = 60;
     for entry in entries.into_iter() {
         #[cfg(test)]
         {
@@ -66,7 +66,7 @@ pub fn generate_classes() {
             .last()
             .unwrap()
             .to_case(Case::Snake);
-        mod_indexes.push(format!("mod {};\nuse {}::*;", file_stem, file_stem));
+        mod_indexes.push(format!("mod {};\nuse {}::*;\n", file_stem, file_stem));
 
         let content = std::fs::read_to_string(path).unwrap();
         let (remain, class) = parse_class(&content).unwrap();
@@ -87,7 +87,7 @@ mod tests {
     use crate::generators::rust::cpp_type_parser::generate_all_mapping_types;
 
     #[test]
-    pub fn should_deserialize_class_all() {
+    pub fn should_generate_classes() {
         generate_classes()
     }
 

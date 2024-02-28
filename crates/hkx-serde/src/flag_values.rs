@@ -32,7 +32,7 @@ impl fmt::Debug for FlagValues {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut debug_struct = f.debug_struct("FlagValues");
 
-        if self.is_empty() {
+        if self.contains(FlagValues::FLAGS_NONE) {
             debug_struct.field("FLAGS_NONE", &true);
         }
         if self.contains(FlagValues::ALIGN8) {
@@ -55,5 +55,33 @@ impl fmt::Debug for FlagValues {
 impl fmt::Display for FlagValues {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.bits())
+    }
+}
+
+impl FlagValues {
+    /// Use a string format that is easy for humans to read.
+    ///
+    /// Like this.
+    /// `"FLAGS_NONE | SERIALIZE_IGNORED"`
+    pub fn human_readable(&self) -> String {
+        let mut flags = Vec::new();
+
+        if self.contains(FlagValues::FLAGS_NONE) {
+            flags.push("FLAGS_NONE");
+        }
+        if self.contains(FlagValues::ALIGN8) {
+            flags.push("ALIGN8");
+        }
+        if self.contains(FlagValues::ALIGN16) {
+            flags.push("ALIGN16");
+        }
+        if self.contains(FlagValues::NOT_OWNED) {
+            flags.push("NOT_OWNED");
+        }
+        if self.contains(FlagValues::SERIALIZE_IGNORED) {
+            flags.push("SERIALIZE_IGNORED");
+        }
+
+        flags.join(" | ")
     }
 }

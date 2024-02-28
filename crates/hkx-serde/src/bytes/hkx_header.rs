@@ -4,6 +4,8 @@
 //! HKX files are binary files commonly used in video game development for storing animation and physics data.
 //! The header contains essential information about the structure and properties of the HKX file.
 //!
+//! Size: 64bytes
+//!
 //! | Field Name                     | Description                                                    | Size (bytes) | Offset (bytes) |
 //! | ------------------------------ | -------------------------------------------------------------- | ------------ | -------------- |
 //! | Magic0                         | First magic number (`0x57E0E057`)                              | 4            | 0              |
@@ -27,24 +29,26 @@
 //! ## Unknowns
 //! | Field Name                     | Description                                                    | Size (bytes) | Offset (bytes) |
 //! | ------------------------------ | -------------------------------------------------------------- | ------------ | -------------- |
-//! | Unk40                          | Unknown field                                                  | 2            | 64             |
-//! | Unk42                          | Unknown field                                                  | 2            | 66             |
-//! | Unk44                          | Unknown field                                                  | 4            | 68             |
-//! | Unk48                          | Unknown field                                                  | 4            | 72             |
-//! | Unk4C                          | Unknown field                                                  | 4            | 76             |
+//! | Unk40                          | Unknown field (Hex offset: 40)                                 | 2            | 64             |
+//! | Unk42                          | Unknown field (Hex offset: 42)                                 | 2            | 66             |
+//! | Unk44                          | Unknown field (Hex offset: 44)                                 | 4            | 68             |
+//! | Unk48                          | Unknown field (Hex offset: 48)                                 | 4            | 72             |
+//! | Unk4C                          | Unknown field (Hex offset: 4C)                                 | 4            | 76             |
 
 use super::fix_str_io::{read_fix_str, write_fix_str};
-use byteorder::{ByteOrder, ReadBytesExt as _, WriteBytesExt as _};
-use std::io::{Read, Write};
+use byteorder::{BigEndian, ByteOrder, LittleEndian, ReadBytesExt as _, WriteBytesExt as _};
+use std::io::{Cursor, Read, Seek as _, Write};
 
-/// Structure representing a HkxHeader of size 64bytes
-#[repr(C)]
+/// No need #[repr(C)]
 #[derive(Debug, Clone, Default, PartialEq)]
 /// The HKX header contains metadata information about the HKX file.
 ///
-/// # Information
+/// # NOTE
 /// The size of the binary header itself is 64bytes.
 /// (i.e., different from the size of this structure).
+///
+/// # Why not `#[repr(C)]`?
+/// Since read/write methods determine the order in which headers are read and written, `#[repr(C)]` is unnecessary.
 pub struct HkxHeader {
     /// It will always be this 4 bytes.
     ///
@@ -60,7 +64,7 @@ pub struct HkxHeader {
     pub file_version: i32,
     /// Size of pointers in bytes.
     pub pointer_size: u8,
-    /// Endianness of the file (0 for little-endian, 1 for big-endian).
+    /// Endianness of the file (0 for big-endian, 1 for little-endian).
     pub endian: u8,
     /// Padding option used in the file.
     pub padding_option: u8,
@@ -99,11 +103,6 @@ pub struct HkxHeader {
 }
 
 impl HkxHeader {
-    /// Constructs a new [`HkxHeader`] with default values.
-    pub fn new() -> Self {
-        Self::default()
-    }
-
     pub fn skyrim_se() -> Self {
         HkxHeader {
             magic0: 0x57E0E057,
@@ -127,8 +126,10 @@ impl HkxHeader {
     ///
     /// # Errors
     ///
-    /// This method will return an error if reading fails for any reason.
-    pub fn read<B: ByteOrder>(mut br: impl Read) -> std::io::Result<Self> {
+    /// If this function encounters an error of the kind
+    /// [`ErrorKind::Interrupted`] then the error is ignored and the operation
+    /// will continue.
+    pub fn read<B: ByteOrder>(mut br: impl Read + std::io::Seek) -> std::io::Result<Self> {
         let magic0 = br.read_u32::<B>()?;
         let magic1 = br.read_u32::<B>()?;
         let user_tag = br.read_i32::<B>()?;
@@ -188,7 +189,8 @@ impl HkxHeader {
     ///
     /// # Errors
     ///
-    /// This method will return an error if writing fails for any reason.
+    /// This function will return the first error of
+    /// non-[`ErrorKind::Interrupted`] kind that [`write`] returns.
     pub fn write<B: ByteOrder>(&self, mut bw: impl Write) -> std::io::Result<()> {
         bw.write_u32::<B>(self.magic0)?;
         bw.write_u32::<B>(self.magic1)?;
@@ -218,14 +220,41 @@ impl HkxHeader {
 
         Ok(())
     }
+
+    /// Creates a new [`HkxHeader`] from bytes.
+    ///
+    /// # Errors
+    /// Fails for invalid bytes format as [`HkxHeader`].
+    pub fn from_bytes(bytes: &[u8]) -> std::io::Result<Self> {
+        let mut br = Cursor::new(bytes);
+        br.seek(std::io::SeekFrom::Start(17))?;
+        let endian = br.read_u8()?;
+        br.seek(std::io::SeekFrom::Start(0))?;
+
+        match endian == 1 {
+            true => Self::read::<LittleEndian>(br),
+            false => Self::read::<BigEndian>(br),
+        }
+    }
+
+    /// Serialize HKX header as a byte vector.
+    ///
+    /// # Errors
+    /// Failed to write to a byte vector.
+    pub fn to_vec(&self) -> std::io::Result<Vec<u8>> {
+        let mut hkx_file = Vec::new();
+        match self.endian == 1 {
+            true => self.write::<LittleEndian>(Cursor::new(&mut hkx_file))?,
+            false => self.write::<BigEndian>(Cursor::new(&mut hkx_file))?,
+        }
+        Ok(hkx_file)
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use byteorder::NativeEndian;
     use pretty_assertions::assert_eq;
-    use std::io::Cursor;
 
     const SKYRIM_SE_ROW_HEADER: [u8; 64] = [
         0x57, 0xE0, 0xE0, 0x57, // magic0
@@ -250,19 +279,13 @@ mod tests {
 
     #[test]
     fn should_read_hkx_file() {
-        let actual = HkxHeader::read::<NativeEndian>(Cursor::new(SKYRIM_SE_ROW_HEADER))
-            .expect("Failed to read HKXHeader");
-
+        let actual = HkxHeader::from_bytes(&SKYRIM_SE_ROW_HEADER).unwrap();
         assert_eq!(actual, HkxHeader::skyrim_se());
     }
 
     #[test]
     fn should_write_hkx_file() {
-        let mut hkx_file = Vec::new();
-        HkxHeader::skyrim_se()
-            .write::<NativeEndian>(Cursor::new(&mut hkx_file))
-            .expect("Failed to read HKXHeader");
-
-        assert_eq!(hkx_file.as_slice(), SKYRIM_SE_ROW_HEADER.as_slice());
+        let actual = HkxHeader::skyrim_se().to_vec().unwrap();
+        assert_eq!(actual, &SKYRIM_SE_ROW_HEADER);
     }
 }

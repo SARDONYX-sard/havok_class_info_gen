@@ -17,7 +17,7 @@ crc = "3.0.1"
 jwalk = "0.8.1"
 ordered-float = { version = "4.2.0", features = ["serde"] }
 parse_int = { version = "0.6" }
-quick-xml = { version = "0.31.0", features = ["serialize"] }
+quick-xml = { version = "0.31", features = ["serialize", "serde-types"] }
 rust-ini = { version = "0.20.0" }
 serde = { version = "1.0", features = ["derive"] } # Implement (De)Serializer
 serde_json = "1.0" # Json converter

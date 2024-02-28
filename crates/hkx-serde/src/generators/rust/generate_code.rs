@@ -4,102 +4,88 @@ use crate::{
     parse_rpt::{ClassInfo, MemberInfo},
 };
 use convert_case::{Case, Casing};
-use std::collections::HashMap;
+use indexmap::IndexMap;
 
 pub fn generate_code(class: &ClassInfo) -> String {
     let mut rust_code = String::new();
     let ClassInfo {
         name: class_name,
         signature,
+        size,
+        vtable,
+        parent,
+        version,
         ..
     } = &class;
     let rust_struct_name = class_name.to_case(Case::Pascal);
 
+    // Parent class information
+    let parent_default = ("None".into(), 0);
+    let (parent_name, parent_signature) = (parent.as_ref()).unwrap_or(&parent_default);
+
+    // As long as everything is exported when mod.rs is automatically generated,
+    // each structure and enum must be given a unique name.
+    let hkparam_name = format!("{rust_struct_name}HkParam");
+
     // Struct definition
     rust_code.push_str(&format!(
-        r#"use super::*;
+        r#"//! A Rust structure that implements a serializer/deserializer corresponding to `{class_name}`, a class defined in C++
+//!
+//! # NOTE
+//! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
+use super::*;
+use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{{Deserialize, Serialize}};
 use std::borrow::Cow;
 
+/// In XML, it is enclosed in a `hkobject` tag
+/// and the `class` attribute contains the C++ class nam
+///
+/// # Information on the original C++ class
+/// -    size: {size}
+/// -  vtable: {vtable}
+/// -  parent: {parent_name}/`{parent_signature:x}`(Non prefix hex signature)
+/// - version: {version}
 #[derive(Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(rename = "hkobject")]
 pub struct {rust_struct_name}<'a> {{
-    #[serde(borrow)]
-    #[serde(rename = "@name")]
-    /// #0106, others
+    /// e.g. `#0106`
+    ///
+    /// These names are referenced (in C++ implementations) by vectors that store pointers to a structure and a class.
+    #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
-    #[serde(borrow)]
+
+    /// `"{class_name}"`: Name of this class.
     #[serde(default = "{rust_struct_name}::class_name")]
-    #[serde(rename = "@class")]
-    /// "{class_name}"
+    #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
-    #[serde(borrow)]
+
+    /// `0x{signature:x}`: Unique value of this class.
     #[serde(default = "{rust_struct_name}::signature")]
-    #[serde(rename = "@signature")]
-    /// Fixed value unique to each class: `{signature}`
+    #[serde(rename = "@signature", borrow)]
     pub signature: Cow<'a, str>,
 
+    /// The `"hkparam"` tag (C++ field) vector
+    #[serde(bound(deserialize = "Vec<{hkparam_name}<'a>>: Deserialize<'de>"))]
+    #[serde(rename = "hkparam")]
+    pub hkparams: Vec<{hkparam_name}<'a>>
+}}
 "#,
     ));
 
-    let mut field = HashMap::new();
-    // Member definitions
-    for member in &class.members {
-        if member.flags.contains(FlagValues::SERIALIZE_IGNORED) {
-            continue;
-        }
-        let MemberInfo {
-            name: member_name,
-            type_name,
-            offset,
-            ..
-        } = &member;
-        let (_, rust_type) = parse_cpp_type(type_name).unwrap();
-        field.insert(type_name, (member_name, rust_type));
-
-        rust_code.push_str(
-            r#"}}
-
-#[derive(Debug, Default, PartialEq, Serialize, Deserialize)]
-#[serde(rename = "hkparam")]
-pub struct HkParam<'a> {{
-    #[serde(rename = "@name")]
-    /// class fields
-    pub name: Field,
-    #[serde(rename = "@numelements")]
-    /// `self.hkcstrings.len()`
-    pub numelements: usize,
-    #[serde(borrow)]
-    #[serde(default)]
-    #[serde(rename = "hkcstring")]
-    pub hkcstrings: Vec<Cow<'a, str>>,
-}}
-"#,
-        );
-
-        let tag_name = member_name.to_case(Case::Pascal);
-        rust_code.push_str(&format!(
-            r#"
-
-
-                /// # C++ Info
-    /// - field name:`"{member_name}"`
-    /// -     offset: {offset}`
-    #[serde(rename = "{member_name}")]
-    {tag_name},
-"#
-        ));
-    }
-
     rust_code.push_str(&format!(
-        r#"}}
-
+        r#"
 impl {rust_struct_name}<'_> {{
+    /// Return `"{class_name}"`, which is the name of this class.
+    ///
+    /// # NOTE
+    /// It is the name of the Rust structure, not the original class name in C++.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {{
         "{rust_struct_name}".into()
     }}
 
+    /// Return `"0x{signature:x}"`, which is the signature of this class.
     #[inline]
     pub fn signature() -> Cow<'static, str> {{
         "0x{signature:x}".into()
@@ -108,7 +94,67 @@ impl {rust_struct_name}<'_> {{
 "#
     ));
 
-    // Enum definitions
+    rust_code.push_str(&format!(
+        r#"
+/// In XML, the value of the `name` attribute of the `hkparam` tag.
+///
+/// In C++, it represents the name of one field in the class.
+#[derive(Debug, PartialEq, Serialize)]
+#[serde(tag = "@name")]
+pub enum {hkparam_name}<'a> {{
+"#
+    ));
+
+    let mut field = IndexMap::new();
+    // Member definitions
+    for member in &class.members {
+        let mut skip_serializing_attr = String::new();
+        if member.flags.contains(FlagValues::SERIALIZE_IGNORED) {
+            skip_serializing_attr.push_str(", skip_serializing")
+        }
+        let flags = member.flags.human_readable();
+
+        let MemberInfo {
+            name: member_name,
+            type_name,
+            offset,
+            ..
+        } = &member;
+        let (_, rust_type) = parse_cpp_type(type_name).unwrap();
+
+        // Enum tag name
+        let tag_name = member_name.to_case(Case::Pascal);
+        rust_code.push_str(&format!(
+            r#"    /// # Information on fields in the original C++ class
+    /// -   name:`"{member_name}"`
+    /// -   type: `{type_name}`
+    /// - offset: {offset}
+    /// -  flags: `{flags}`
+    #[serde(rename = "{member_name}"{skip_serializing_attr})]
+    {tag_name}({rust_type}),
+"#
+        ));
+        field.insert(member_name, (tag_name, rust_type));
+    }
+
+    rust_code.push_str(&format!(
+        r#"}}
+
+// Implementing a deserializer for enum manually with macros is necessary
+// because the type needs to change depending on the value of the `"name"` attribute in the XML.
+impl_deserialize_for_internally_tagged_enum! {{
+    {hkparam_name}<'de>, "@name",
+"#
+    )); // Env C++ field enum
+    for (member_name, (tag_name, rust_type)) in field {
+        rust_code.push_str(&format!(
+            r#"    ("{member_name}" => {tag_name}({rust_type})),
+"#
+        ));
+    }
+    rust_code.push_str("}\n");
+
+    // field Type Enum definitions(If exists)
     for (enum_name, enum_info) in &class.enums {
         rust_code.push_str(&format!(
             r#"
