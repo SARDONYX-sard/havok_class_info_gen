@@ -125,7 +125,7 @@ pub enum {hkparam_name}<'a> {{
         // Enum tag name
         let tag_name = member_name.to_case(Case::Pascal);
         rust_code.push_str(&format!(
-            r#"    /// # Information on fields in the original C++ class
+            r#"    /// # Field information in the original C++ class
     /// -   name:`"{member_name}"`
     /// -   type: `{type_name}`
     /// - offset: {offset}

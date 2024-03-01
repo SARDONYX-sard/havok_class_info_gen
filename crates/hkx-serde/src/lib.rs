@@ -30,7 +30,7 @@ pub fn generate_classes() {
     #[cfg(test)]
     let mut test_index = 0;
     #[cfg(test)]
-    let test_max = 60;
+    let test_max = 1000;
     for entry in entries.into_iter() {
         #[cfg(test)]
         {

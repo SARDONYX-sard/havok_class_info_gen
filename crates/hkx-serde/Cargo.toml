@@ -15,6 +15,7 @@ bitflags = "2.4"
 byteorder = "1.5"
 cgmath = { version = "0.18", features = ["serde"] }
 convert_case = "0.6"
+erased-serde = "0.4"
 indexmap = "2.2"
 jwalk = { version = "0.8" }
 nom = "7.1.3"
