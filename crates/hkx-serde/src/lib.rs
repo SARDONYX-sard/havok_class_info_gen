@@ -1,9 +1,9 @@
 mod bytes;
 mod classes;
-mod de;
 mod error;
 mod flag_values;
 pub mod generators;
+pub mod havok_types;
 mod hk_types;
 mod parse_rpt;
 #[cfg(test)]

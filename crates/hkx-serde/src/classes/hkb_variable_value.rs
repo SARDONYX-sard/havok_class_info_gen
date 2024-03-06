@@ -2,7 +2,6 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
-use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
 
@@ -58,8 +57,8 @@ impl HkbVariableValue<'_> {
 /// In XML, the value of the `name` attribute of the `hkparam` tag.
 ///
 /// In C++, it represents the name of one field in the class.
-#[derive(Debug, PartialEq, Serialize)]
-#[serde(tag = "@name")]
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "@name", content = "$value")]
 pub enum HkbVariableValueHkParam {
     /// # Information on fields in the original C++ class
     /// -   name:`"value"`
@@ -67,32 +66,13 @@ pub enum HkbVariableValueHkParam {
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "value")]
-    Value(HkInt32),
+    Value(i32),
 }
 
 impl Default for HkbVariableValueHkParam {
     fn default() -> Self {
-        Self::Value(0.into())
+        Self::Value(0)
     }
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct HkInt32 {
-    #[serde(rename = "$value")]
-    pub value: i32,
-}
-
-impl From<i32> for HkInt32 {
-    fn from(value: i32) -> Self {
-        Self { value }
-    }
-}
-
-// Implementing a deserializer for enum manually with macros is necessary
-// because the type needs to change depending on the value of the `"name"` attribute in the XML.
-impl_deserialize_for_internally_tagged_enum! {
-    HkbVariableValueHkParam, "@name",
-    ("value" => Value(HkInt32)),
 }
 
 #[cfg(test)]
@@ -106,7 +86,7 @@ mod tests {
             name: "#0060".into(),
             class: "hkbVariableValue".into(),
             signature: "0x27812d8d".into(),
-            hkparams: HkbVariableValueHkParam::Value(1045220557.into()),
+            hkparams: HkbVariableValueHkParam::Value(1045220557),
         };
 
         let result = quick_xml::se::to_string(&class).unwrap();
@@ -122,18 +102,17 @@ mod tests {
 
     #[test]
     fn should_deserialize() {
-        let xml = r#"
-<hkobject name="\#0060" class="hkbVariableValue" signature="0x27812d8d">
-          <hkparam name="value">1045220557</hkparam>
-</hkobject>
-"#;
+        let xml = "\
+<hkobject name=\"#0060\" class=\"hkbVariableValue\" signature=\"0x27812d8d\">\
+    <hkparam name=\"value\">1045220557</hkparam>\
+</hkobject>";
 
         let result: HkbVariableValue = quick_xml::de::from_str(xml).unwrap();
         let expected = HkbVariableValue {
             name: "#0060".into(),
             class: "hkbVariableValue".into(),
             signature: "0x27812d8d".into(),
-            hkparams: HkbVariableValueHkParam::Value(1045220557.into()),
+            hkparams: HkbVariableValueHkParam::Value(1045220557),
         };
         assert_eq!(result, expected);
     }
