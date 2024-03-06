@@ -22,7 +22,7 @@ pub struct HkbVariableValue<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbVariableValue"`: Name of this class.
+    /// `"hkbVariableValue"`: Name of C++ class.
     #[serde(default = "HkbVariableValue::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -38,13 +38,13 @@ pub struct HkbVariableValue<'a> {
 }
 
 impl HkbVariableValue<'_> {
-    /// Return `"hkbVariableValue"`, which is the name of this class.
+    /// Return `"hkbVariableValue"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbVariableValue".into()
+        "hkbVariableValue".into()
     }
 
     /// Return `"0xb99bd6a"`, which is the signature of this class.

@@ -55,7 +55,7 @@ pub struct {rust_struct_name}<'a> {{
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"{class_name}"`: Name of this class.
+    /// `"{class_name}"`: The original C++ class name.
     #[serde(default = "{rust_struct_name}::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -76,13 +76,13 @@ pub struct {rust_struct_name}<'a> {{
     rust_code.push_str(&format!(
         r#"
 impl {rust_struct_name}<'_> {{
-    /// Return `"{class_name}"`, which is the name of this class.
+    /// Return `"{class_name}"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {{
-        "{rust_struct_name}".into()
+        "{class_name}".into()
     }}
 
     /// Return `"0x{signature:x}"`, which is the signature of this class.
@@ -225,10 +225,8 @@ mod tests {
             ..Default::default()
         };
 
-        // Generate Rust code
         let generated_code = generate_code(&class);
 
-        // Expected Rust code
         let expected_code = r#"use super::*;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -293,7 +291,6 @@ pub struct HkParam<'a> {
 }
 "#;
 
-        // Assert equality
         assert_eq!(generated_code, expected_code);
     }
 }

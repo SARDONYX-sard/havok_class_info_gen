@@ -28,7 +28,7 @@ pub struct HkbVariableValueSet<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbVariableValueSet"`: Name of this class.
+    /// `"hkbVariableValueSet"`: Name of this C++ class.
     #[serde(default = "HkbVariableValueSet::class_name")]
     #[serde(rename = "@class", borrow, skip_deserializing)]
     pub class: Cow<'a, str>,
@@ -55,13 +55,13 @@ impl Default for HkbVariableValueSet<'_> {
 }
 
 impl HkbVariableValueSet<'_> {
-    /// Return `"hkbVariableValueSet"`, which is the name of this class.
+    /// Return `"hkbVariableValueSet"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbVariableValueSet".into()
+        "hkbVariableValueSet".into()
     }
 
     /// Return `"0x27812d8d"`, which is the signature of this class.
@@ -181,7 +181,7 @@ mod tests {
             result,
             HkbVariableValueSet {
                 name: "#0064".into(),
-                class: "HkbVariableValueSet".into(),
+                class: "hkbVariableValueSet".into(),
                 signature: "0x27812d8d".into(),
                 hkparams: vec![
                     HkbVariableValueSetHkParam::Word(HkArrayClass {
