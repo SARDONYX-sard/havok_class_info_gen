@@ -1,13 +1,15 @@
-use crate::havok_types::array::normalize;
 use crate::havok_types::float::rust_to_cpp_float_str;
+use crate::havok_types::hk_array::normalize;
 use core::{fmt, str::FromStr};
 use ordered_float::{FloatCore, OrderedFloat};
 use serde::{Deserialize, Serialize, Serializer};
 
-/// havok's Vector4 is actually represented using parentheses, like a Rust tuple.
+/// Vector4 with (De)serialization for havok.
+///
+/// In XML, it is like a tuple enclosed in parentheses, such as (-1.#IND00 0.000000 -1.#INF00 0.000000)`.
 ///
 /// # NOTE
-/// It seems that w is always 0.
+/// It seems that `Self::w` is always 0.
 #[repr(C)]
 #[derive(Debug, PartialEq, Default, Eq, Copy, Clone, Hash)]
 pub struct Vector4<S: FloatCore> {
@@ -19,6 +21,18 @@ pub struct Vector4<S: FloatCore> {
     pub z: OrderedFloat<S>,
     /// The w component of the vector.
     pub w: OrderedFloat<S>,
+}
+
+impl<S: FloatCore> Vector4<S> {
+    /// Creates a new vector4
+    pub fn new(x: S, y: S, z: S, w: S) -> Self {
+        Self {
+            x: x.into(),
+            y: y.into(),
+            z: z.into(),
+            w: w.into(),
+        }
+    }
 }
 
 impl<S: FloatCore> From<(S, S, S, S)> for Vector4<S> {

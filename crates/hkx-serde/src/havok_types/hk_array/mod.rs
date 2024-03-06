@@ -1,9 +1,11 @@
-// mod hk_array;
-mod vector4;
-
-pub use vector4::Vector4;
+mod hk_array_class;
+mod hk_array_ref;
+mod hk_array_vector;
 
 use crate::havok_types::float::cpp_to_rust_float_str;
+pub use hk_array_class::{HkArrayClass, HkArrayClassParam};
+pub use hk_array_ref::HkArrayRef;
+pub use hk_array_vector::HkArrayVector;
 use std::borrow::Cow;
 
 /// Separate vectors classified by `()`, `,` space, etc.

@@ -2,11 +2,13 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
-use self::hkb_variable_value::HkbVariableValueHkParam;
-use super::*;
-use crate::havok_types::array::Vector4;
+use super::hkb_variable_value::HkbVariableValueHkParam;
+use crate::havok_types::{
+    hk_array::{HkArrayClass, HkArrayRef, HkArrayVector},
+    Vector4,
+};
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
-use serde::{de::IntoDeserializer, Deserialize, Serialize};
+use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
 
 /// In XML, it is enclosed in a `hkobject` tag
@@ -88,7 +90,7 @@ pub enum HkbVariableValueSetHkParam {
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "quadVariableValues")]
-    Quad(HkArrayValue<Vector4<f32>>),
+    Quad(HkArrayVector<Vector4<f32>>),
     /// # Information on fields in the original C++ class
     /// -   name:`"variantVariableValues"`
     /// -   type: `hkArray&lt;hkReferencedObject*&gt;`
@@ -98,124 +100,19 @@ pub enum HkbVariableValueSetHkParam {
     Variant(HkArrayRef<String>),
 }
 
-#[derive(Debug, Default, PartialEq, Serialize, Deserialize)]
-pub struct HkArrayClass<T> {
-    /// Length of the class
-    #[serde(rename = "@numelements")]
-    pub numelements: usize,
-    #[serde(rename = "hkobject")]
-    classes: Vec<Class<T>>,
-}
-
-/// One class of `HkArray`
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-struct Class<T> {
-    #[serde(rename = "hkparam")]
-    hkparam: T,
-}
-
-#[derive(Debug, Default, PartialEq, Serialize, Deserialize)]
-pub struct HkArrayRef<T> {
-    #[serde(rename = "@numelements")]
-    pub numelements: usize,
-    #[serde(rename = "$text")]
-    value: Vec<T>,
-}
-
-#[derive(Debug, Default, PartialEq, Serialize)]
-pub struct HkArrayValue<T> {
-    #[serde(rename = "@numelements")]
-    pub numelements: usize,
-    #[serde(rename = "$value")]
-    value: Vec<T>,
-}
-
-impl<'de, T> Deserialize<'de> for HkArrayValue<T>
-where
-    T: Deserialize<'de>,
-{
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        struct HkArrayValueVisitor<T> {
-            marker: std::marker::PhantomData<T>,
-        }
-
-        impl<'de, T> serde::de::Visitor<'de> for HkArrayValueVisitor<T>
-        where
-            T: Deserialize<'de>,
-        {
-            type Value = HkArrayValue<T>;
-
-            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-                formatter.write_str("struct HkArrayValue")
-            }
-
-            fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
-            where
-                A: serde::de::MapAccess<'de>,
-            {
-                use serde::de::Error;
-                let mut numelements = None;
-                let mut value = None;
-
-                while let Some(key) = map.next_key::<Cow<'_, str>>()? {
-                    match key.as_bytes() {
-                        b"@numelements" => {
-                            if numelements.is_some() {
-                                return Err(Error::duplicate_field("@numelements"));
-                            }
-                            numelements = Some(map.next_value()?);
-                        }
-                        b"$text" => {
-                            let text: Cow<'_, str> = map.next_value()?;
-                            dbg!(&text);
-                            let mut value_inner = Vec::new();
-
-                            for line in text.split(['(']).filter(|line| !line.is_empty()) {
-                                value_inner.push(T::deserialize(line.into_deserializer())?);
-                            }
-                            value = Some(value_inner);
-                        }
-                        unknown => {
-                            let content: Cow<'_, str> = map.next_value()?;
-                            dbg!("Got unknown field. key: {}, value: {}", unknown, content);
-                        }
-                    }
-                }
-
-                let mut numelements =
-                    numelements.ok_or_else(|| Error::missing_field("@numelements"))?;
-                let value = value.unwrap_or_default();
-
-                let vec_len = value.len();
-                if numelements != vec_len {
-                    tracing::warn!("XML value ({numelements}) & array length ({vec_len}) in XML do not match. Automatically correct to the length of the array.");
-                    numelements = value.len();
-                };
-
-                Ok(HkArrayValue { numelements, value })
-            }
-        }
-
-        deserializer.deserialize_map(HkArrayValueVisitor {
-            marker: std::marker::PhantomData,
-        })
-    }
-}
-
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbVariableValueSetHkParam, "@name",
     ("wordVariableValues" => Word(HkArrayClass<HkbVariableValueHkParam>)),
-    ("quadVariableValues" => Quad(HkArrayValue<Vector4<f32>>)),
+    ("quadVariableValues" => Quad(HkArrayVector<Vector4<f32>>)),
     ("variantVariableValues" => Variant(HkArrayRef<String>)),
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::havok_types::hk_array::HkArrayClassParam;
+
     use super::*;
     use pretty_assertions::assert_eq;
 
@@ -229,18 +126,14 @@ mod tests {
                 HkbVariableValueSetHkParam::Word(HkArrayClass {
                     numelements: 3,
                     classes: vec![
-                        Class {
-                            hkparam: HkbVariableValueHkParam::Value(1045220557),
+                        HkArrayClassParam {
+                            hkparam: 1045220557.into(),
                         },
-                        Class {
-                            hkparam: HkbVariableValueHkParam::Value(0),
-                        },
-                        Class {
-                            hkparam: HkbVariableValueHkParam::Value(0),
-                        },
+                        HkArrayClassParam { hkparam: 0.into() },
+                        HkArrayClassParam { hkparam: 0.into() },
                     ],
                 }),
-                HkbVariableValueSetHkParam::Quad(HkArrayValue {
+                HkbVariableValueSetHkParam::Quad(HkArrayVector {
                     numelements: 2,
                     value: vec![
                         (63.0, 64.0, 65.0, 66.0).into(),
@@ -256,22 +149,21 @@ mod tests {
         .unwrap();
 
         dbg!(&result);
-        std::fs::write("./result.xml", result).unwrap();
     }
 
     #[test]
     fn should_deserialize() {
         let xml = r###"
 <hkobject name="#0064" class="hkbVariableValueSet" signature="0x27812d8d">
-      <hkparam name="wordVariableValues" numelements="3">
+    <hkparam name="wordVariableValues" numelements="3">
         <hkobject>
-          <hkparam name="value">1045220557</hkparam>
+            <hkparam name="value">1045220557</hkparam>
         </hkobject>
         <hkobject>
-          <hkparam name="value">0</hkparam>
+            <hkparam name="value">0</hkparam>
         </hkobject>
         <hkobject>
-          <hkparam name="value">0</hkparam>
+            <hkparam name="value">0</hkparam>
         </hkobject>
     </hkparam>
     <hkparam name="quadVariableValues" numelements="2">
@@ -295,18 +187,14 @@ mod tests {
                     HkbVariableValueSetHkParam::Word(HkArrayClass {
                         numelements: 3,
                         classes: vec![
-                            Class {
-                                hkparam: HkbVariableValueHkParam::Value(1045220557),
+                            HkArrayClassParam {
+                                hkparam: 1045220557.into(),
                             },
-                            Class {
-                                hkparam: HkbVariableValueHkParam::Value(0)
-                            },
-                            Class {
-                                hkparam: HkbVariableValueHkParam::Value(0)
-                            },
-                        ],
+                            HkArrayClassParam { hkparam: 0.into() },
+                            HkArrayClassParam { hkparam: 0.into() },
+                        ]
                     },),
-                    HkbVariableValueSetHkParam::Quad(HkArrayValue {
+                    HkbVariableValueSetHkParam::Quad(HkArrayVector {
                         numelements: 2,
                         value: vec![
                             (0.000000, 1.000000, 0.000000, 0.000000).into(),

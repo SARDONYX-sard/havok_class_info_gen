@@ -75,6 +75,12 @@ impl Default for HkbVariableValueHkParam {
     }
 }
 
+impl From<i32> for HkbVariableValueHkParam {
+    fn from(value: i32) -> Self {
+        Self::Value(value)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
