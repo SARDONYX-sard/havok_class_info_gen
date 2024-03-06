@@ -27,6 +27,6 @@ mod tests {
     #[test]
     fn should_normalize() {
         let input = "1.0 (2.0, 3.0) -1.#IND00";
-        assert_eq!(normalize(input), vec!["1.0", "2.0", "3.0", "0.0"]);
+        assert_eq!(normalize(input), vec!["1.0", "2.0", "3.0", "nan"]);
     }
 }
