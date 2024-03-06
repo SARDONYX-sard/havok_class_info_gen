@@ -2,7 +2,7 @@ use crate::havok_types::array::normalize;
 use crate::havok_types::float::rust_to_cpp_float_str;
 use core::{fmt, str::FromStr};
 use ordered_float::{FloatCore, OrderedFloat};
-use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use serde::{Deserialize, Serialize, Serializer};
 
 /// havok's Vector4 is actually represented using parentheses, like a Rust tuple.
 ///
@@ -61,23 +61,43 @@ where
 {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
-        D: Deserializer<'de>,
+        D: serde::Deserializer<'de>,
     {
-        let parts = normalize(Deserialize::deserialize(deserializer)?);
-        if parts.len() != 4 {
-            let err_msg = format!("Vector4 is expected 4 values. But got {:?}", parts);
-            return Err(serde::de::Error::custom(err_msg));
+        struct Vector4Visitor<T>(std::marker::PhantomData<T>);
+
+        impl<'de, T> serde::de::Visitor<'de> for Vector4Visitor<T>
+        where
+            T: FloatCore + FromStr + Copy,
+        {
+            type Value = Vector4<T>;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                formatter.write_str("a string representing a Vector4")
+            }
+
+            fn visit_str<E>(self, s: &str) -> Result<Self::Value, E>
+            where
+                E: serde::de::Error,
+            {
+                let parts = normalize(s);
+                if parts.len() != 4 {
+                    let err_msg = format!("Vector4 is expected 4 values. But got {:?}", parts);
+                    return Err(serde::de::Error::custom(err_msg));
+                }
+                let values: Result<Vec<T>, _> = parts.iter().map(|p| p.parse()).collect();
+                match values {
+                    Ok(v) => Ok(Vector4 {
+                        x: v[0].into(),
+                        y: v[1].into(),
+                        z: v[2].into(),
+                        w: v[3].into(),
+                    }),
+                    Err(_) => Err(serde::de::Error::custom("Failed to parse values")),
+                }
+            }
         }
-        let values: Result<Vec<T>, _> = parts.iter().map(|p| p.parse()).collect();
-        match values {
-            Ok(v) => Ok(Vector4 {
-                x: v[0].into(),
-                y: v[1].into(),
-                z: v[2].into(),
-                w: v[3].into(),
-            }),
-            Err(_) => Err(serde::de::Error::custom("Failed to parse values")),
-        }
+
+        deserializer.deserialize_str(Vector4Visitor(std::marker::PhantomData))
     }
 }
 
@@ -119,7 +139,10 @@ mod tests {
         #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
         struct Root(Vector4<f32>);
 
-        let xml = "<Root>(-1.#IND00 0.000000 -1.#INF00 0.000000)</Root>";
+        let xml = "
+        <Root>\
+          (-1.#IND00 0.000000 -1.#INF00 0.000000)\
+        </Root>";
         let deserialized: Root = quick_xml::de::from_str(xml).unwrap();
 
         let vector4 = Vector4::from([f32::NAN, 0.000000, f32::NEG_INFINITY, 0.000000]);

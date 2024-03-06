@@ -126,7 +126,7 @@ pub struct HkArrayRef<T> {
 pub struct HkArrayValue<T> {
     #[serde(rename = "@numelements")]
     pub numelements: usize,
-    #[serde(rename = "$text")]
+    #[serde(rename = "$value")]
     value: Vec<T>,
 }
 
@@ -173,7 +173,7 @@ where
                             dbg!(&text);
                             let mut value_inner = Vec::new();
 
-                            for line in text.split(['(']).filter(|t| !t.is_empty()) {
+                            for line in text.split(['(']).filter(|line| !line.is_empty()) {
                                 value_inner.push(T::deserialize(line.into_deserializer())?);
                             }
                             value = Some(value_inner);
@@ -185,9 +185,15 @@ where
                     }
                 }
 
-                let numelements =
+                let mut numelements =
                     numelements.ok_or_else(|| Error::missing_field("@numelements"))?;
                 let value = value.unwrap_or_default();
+
+                let vec_len = value.len();
+                if numelements != vec_len {
+                    tracing::warn!("XML value ({numelements}) & array length ({vec_len}) in XML do not match. Automatically correct to the length of the array.");
+                    numelements = value.len();
+                };
 
                 Ok(HkArrayValue { numelements, value })
             }
@@ -249,7 +255,8 @@ mod tests {
         })
         .unwrap();
 
-        dbg!(result);
+        dbg!(&result);
+        std::fs::write("./result.xml", result).unwrap();
     }
 
     #[test]
@@ -268,8 +275,8 @@ mod tests {
         </hkobject>
     </hkparam>
     <hkparam name="quadVariableValues" numelements="2">
-        (0.000000 0.000000 0.000000 0.000000)
-        (0.000000 0.000000 0.000000 0.000000)
+        (0.000000 1.000000 0.000000 0.000000)
+        (0.000000 0.000000 -1.000000 0.000000)
     </hkparam>
     <hkparam name="variantVariableValues" numelements="2">
         #0063 #0064
@@ -289,21 +296,21 @@ mod tests {
                         numelements: 3,
                         classes: vec![
                             Class {
-                                hkparam: HkbVariableValueHkParam::Value(1045220557,),
+                                hkparam: HkbVariableValueHkParam::Value(1045220557),
                             },
                             Class {
-                                hkparam: HkbVariableValueHkParam::Value(0,)
+                                hkparam: HkbVariableValueHkParam::Value(0)
                             },
                             Class {
-                                hkparam: HkbVariableValueHkParam::Value(0,)
+                                hkparam: HkbVariableValueHkParam::Value(0)
                             },
                         ],
                     },),
                     HkbVariableValueSetHkParam::Quad(HkArrayValue {
                         numelements: 2,
                         value: vec![
-                            (0.000000, 0.000000, 0.000000, 0.000000).into(),
-                            (0.000000, 0.000000, 0.000000, 0.000000).into()
+                            (0.000000, 1.000000, 0.000000, 0.000000).into(),
+                            (0.000000, 0.000000, -1.000000, 0.000000).into()
                         ],
                     },),
                     HkbVariableValueSetHkParam::Variant(HkArrayRef {
