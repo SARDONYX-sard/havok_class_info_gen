@@ -25,12 +25,12 @@ pub struct Vector4<S: FloatCore> {
 
 impl<S: FloatCore> Vector4<S> {
     /// Creates a new vector4
-    pub fn new(x: S, y: S, z: S, w: S) -> Self {
+    pub const fn new(x: S, y: S, z: S, w: S) -> Self {
         Self {
-            x: x.into(),
-            y: y.into(),
-            z: z.into(),
-            w: w.into(),
+            x: OrderedFloat(x),
+            y: OrderedFloat(y),
+            z: OrderedFloat(z),
+            w: OrderedFloat(w),
         }
     }
 }
@@ -54,6 +54,18 @@ impl<S: FloatCore> From<[S; 4]> for Vector4<S> {
             z: value[2].into(),
             w: value[3].into(),
         }
+    }
+}
+
+//# Attention
+// Since [`Serialize`] of [`Vector4`] is implemented manually and [`to_string`] is called inside it, the format of [`Display`]trait is reflected in the string format of [`Serialize`].
+impl<T: fmt::Display + FloatCore> fmt::Display for Vector4<T> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let x = rust_to_cpp_float_str(self.x);
+        let y = rust_to_cpp_float_str(self.y);
+        let z = rust_to_cpp_float_str(self.z);
+        let w = rust_to_cpp_float_str(self.w);
+        write!(f, "({x} {y} {z} {w})",)
     }
 }
 
@@ -115,32 +127,18 @@ where
     }
 }
 
-impl<T: fmt::Display + FloatCore> fmt::Display for Vector4<T> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let x = rust_to_cpp_float_str(self.x);
-        let y = rust_to_cpp_float_str(self.y);
-        let z = rust_to_cpp_float_str(self.z);
-        let w = rust_to_cpp_float_str(self.w);
-        write!(f, "({x} {y} {z} {w})",)
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
     use pretty_assertions::assert_eq;
 
-    #[test]
-    fn should_serialize_vector4() {
-        #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
-        struct Root {
-            vector4: Vector4<f32>,
-        }
+    #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+    struct Root(Vector4<f32>);
 
-        let serialized = quick_xml::se::to_string(&Root {
-            vector4: Vector4::from([f32::NAN, -0.000000, f32::INFINITY, 0.000000]),
-        })
-        .unwrap();
+    #[test]
+    fn should_serialize() {
+        let vector4 = Vector4::from([f32::NAN, -0.000000, f32::INFINITY, 0.000000]);
+        let serialized = quick_xml::se::to_string(&Root(vector4)).unwrap();
 
         assert_eq!(
             serialized,
@@ -149,10 +147,7 @@ mod tests {
     }
 
     #[test]
-    fn should_deserialize_vector4() {
-        #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-        struct Root(Vector4<f32>);
-
+    fn should_deserialize() {
         let xml = "
         <Root>\
           (-1.#IND00 0.000000 -1.#INF00 0.000000)\

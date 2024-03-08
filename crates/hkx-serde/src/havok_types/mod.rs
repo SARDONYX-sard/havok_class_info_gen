@@ -1,7 +1,9 @@
 pub mod float;
 pub mod hk_array;
+pub mod matrix4;
 pub mod vector4;
 
+pub use matrix4::Matrix4;
 pub use vector4::Vector4;
 
 pub fn string(text: &str) -> Option<&str> {

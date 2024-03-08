@@ -39,8 +39,9 @@ pub struct HkbVariableValueSet<'a> {
     pub signature: Cow<'a, str>,
 
     /// The `"hkparam"` tag (C++ field) vector
+    #[serde(bound(deserialize = "Vec<HkbVariableValueSetHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<HkbVariableValueSetHkParam>,
+    pub hkparams: Vec<HkbVariableValueSetHkParam<'a>>,
 }
 
 impl Default for HkbVariableValueSet<'_> {
@@ -76,7 +77,7 @@ impl HkbVariableValueSet<'_> {
 /// In C++, it represents the name of one field in the class.
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
-pub enum HkbVariableValueSetHkParam {
+pub enum HkbVariableValueSetHkParam<'a> {
     /// # Information on fields in the original C++ class
     /// -   name:`"wordVariableValues"`
     /// -   type: `hkArray&lt;struct hkbVariableValue&gt;`
@@ -97,16 +98,16 @@ pub enum HkbVariableValueSetHkParam {
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variantVariableValues")]
-    Variant(HkArrayRef<String>),
+    Variant(HkArrayRef<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
-    HkbVariableValueSetHkParam, "@name",
+    HkbVariableValueSetHkParam<'de>, "@name",
     ("wordVariableValues" => Word(HkArrayClass<HkbVariableValueHkParam>)),
     ("quadVariableValues" => Quad(HkArrayVector<Vector4<f32>>)),
-    ("variantVariableValues" => Variant(HkArrayRef<String>)),
+    ("variantVariableValues" => Variant(HkArrayRef<Cow<'_, str>>)),
 }
 
 #[cfg(test)]

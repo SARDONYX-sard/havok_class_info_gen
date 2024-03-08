@@ -13,6 +13,15 @@ pub struct HkArrayVector<T> {
     pub value: Vec<T>,
 }
 
+impl<T> From<Vec<T>> for HkArrayVector<T> {
+    fn from(value: Vec<T>) -> Self {
+        Self {
+            numelements: value.len(),
+            value,
+        }
+    }
+}
+
 //Vec using quick_xml's default special behaviors such as $value and $text does not support arbitrary deserialization with `()`.
 // Therefore, manual implementation is required.
 impl<'de, T> Deserialize<'de> for HkArrayVector<T>
@@ -54,10 +63,14 @@ where
                             numelements = Some(map.next_value()?);
                         }
                         b"$text" => {
-                            let text: Cow<'_, str> = map.next_value()?;
+                            if value.is_some() {
+                                return Err(Error::duplicate_field("$text"));
+                            }
 
                             let mut value_inner = Vec::new();
-                            for line in text.split(['(']).filter(|line| !line.is_empty()) {
+
+                            let text: Cow<'_, str> = map.next_value()?;
+                            for line in text.split(['(']).filter(|vec4_str| !vec4_str.is_empty()) {
                                 value_inner.push(T::deserialize(line.into_deserializer())?);
                             }
 
@@ -88,15 +101,6 @@ where
         deserializer.deserialize_map(HkArrayValueVisitor {
             marker: std::marker::PhantomData,
         })
-    }
-}
-
-impl<T> From<Vec<T>> for HkArrayVector<T> {
-    fn from(value: Vec<T>) -> Self {
-        Self {
-            numelements: value.len(),
-            value,
-        }
     }
 }
 

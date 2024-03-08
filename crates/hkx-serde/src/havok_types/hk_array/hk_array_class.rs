@@ -46,7 +46,6 @@ mod tests {
             HkArrayClassParam { hkparam: 0 },
         ]
         .into();
-        dbg!(&data);
         let serialized = quick_xml::se::to_string(&data).unwrap();
 
         let expected_xml = "\
