@@ -129,7 +129,7 @@ where
             type Value = Matrix3<T>;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-                formatter.write_str("a string representing a Matrix4")
+                formatter.write_str("a string representing a Matrix3")
             }
 
             fn visit_str<E>(self, s: &str) -> Result<Self::Value, E>
@@ -140,7 +140,7 @@ where
                 let parts: Vec<_> = s.split(')').filter(|s| !s.is_empty()).collect();
                 let parts_len = parts.len();
                 if parts_len != 3 {
-                    let err_msg = format!("Matrix4 is expected 4 Vector4 str. But got len: {parts_len} & content: {parts:?}");
+                    let err_msg = format!("Matrix 3 is expected 3 Vector3 str. But got len: {parts_len} & content: {parts:?}");
                     return Err(serde::de::Error::custom(err_msg));
                 }
 

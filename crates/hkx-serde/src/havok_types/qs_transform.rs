@@ -3,7 +3,7 @@ use core::{fmt, str::FromStr};
 use ordered_float::FloatCore;
 use serde::{de::IntoDeserializer, Deserialize, Serialize, Serializer};
 
-/// `QsTransform` with (De)serialization for havok.
+/// A `Transform` type that use `Quaternion`(`rotation`) with (De)serialization for havok.
 ///
 /// In XML, it would be as follows.
 /// ```xml
@@ -102,7 +102,7 @@ where
             type Value = QsTransform<T>;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-                formatter.write_str("a string representing a Matrix4")
+                formatter.write_str("a string representing a QsTransform")
             }
 
             fn visit_str<E>(self, s: &str) -> Result<Self::Value, E>
@@ -113,7 +113,7 @@ where
                 let parts: Vec<_> = s.split(')').filter(|s| !s.is_empty()).collect();
                 let parts_len = parts.len();
                 if parts_len < 3 {
-                    let err_msg = format!("QsTransform is expected 3 Vector str. But got len: {parts_len} & content: {parts:?}");
+                    let err_msg = format!("QsTransform is expected 3(Vector3, Quaternion, Vector3) str. But got len: {parts_len} & content: {parts:?}");
                     return Err(serde::de::Error::custom(err_msg));
                 }
 
@@ -162,7 +162,7 @@ mod tests {
             quick_xml::se::to_string(&root).unwrap(),
             "\
             <TestRoot>\
-                (0.000000 0.000000 0.000000)(-0.000000 0.000000 -0.000000 1.000000)(1.000000 1.000000 1.000000)\
+                (0.000000 0.000000 -1.#INF00)(-1.#IND00 0.000000 -1.#INF00 0.000000)(-1.#IND00 0.000000 -1.#INF00)\
             </TestRoot>"
         );
     }

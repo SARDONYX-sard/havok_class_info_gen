@@ -25,20 +25,20 @@ pub fn parse_cpp_type(input: &str) -> IResult<&str, Cow<'_, str>> {
 fn parse_primitive_type(input: &str) -> IResult<&str, Cow<'_, str>> {
     map(
         alt((
-            map(tag("char*"), |_| "String"),
+            map(tag("char*"), |_| "Cow<'a, str>"),
             map(tag("hkBool"), |_| "bool"),
             map(tag("hkChar"), |_| "char"),
-            map(tag("hkHalf"), |_| "f32"),
+            map(tag("hkHalf"), |_| "f32"), // f16
             map(tag("hkInt16"), |_| "i16"),
             map(tag("hkInt32"), |_| "i32"),
             map(tag("hkInt8"), |_| "i8"),
-            map(tag("hkReal"), |_| "f64"),
+            map(tag("hkReal"), |_| "f32"), // C++ float
             map(tag("hkUint16"), |_| "u16"),
             map(tag("hkUint32"), |_| "u32"),
             map(tag("hkUint64"), |_| "u64"),
             map(tag("hkUint8"), |_| "u8"),
             map(tag("hkUlong"), |_| "u64"),
-            map(tag("hkStringPtr"), |_| "String"),
+            map(tag("hkStringPtr"), |_| "Cow<'a, str>"),
             map(tag("hkVariant"), |_| "u64"), // Fill in appropriate type for Variant
             map(tag("void"), |_| "()"),
         )),
@@ -50,13 +50,12 @@ fn parse_vector(input: &str) -> IResult<&str, Cow<'_, str>> {
     map(
         alt((
             map(tag("hkMatrix3"), |_| "Matrix3<f32>"),
-            map(tag("hkVector4"), |_| "Vector4<f32>"),
             map(tag("hkMatrix4"), |_| "Matrix4<f32>"),
             map(tag("hkQsTransform"), |_| "QsTransform<f32>"),
             map(tag("hkQuaternion"), |_| "Quaternion<f32>"),
-            map(alt((tag("hkRotation"), tag("hkTransform"))), |_| {
-                "Matrix3<f32>"
-            }),
+            map(tag("hkRotation"), |_| "Rotation<f32>"),
+            map(tag("hkTransform"), |_| "Transform<f32>"),
+            map(tag("hkVector4"), |_| "Vector4<f32>"),
         )),
         Cow::from,
     )(input)
