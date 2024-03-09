@@ -2,8 +2,10 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
+use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
+use crate::havok_types::Primitive;
 
 /// In XML, it is enclosed in a `hkobject` tag
 /// and the `class` attribute contains the C++ class nam
@@ -57,8 +59,8 @@ impl HkbVariableValue<'_> {
 /// In XML, the value of the `name` attribute of the `hkparam` tag.
 ///
 /// In C++, it represents the name of one field in the class.
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "@name", content = "$value")]
+#[derive(Debug, PartialEq, Serialize)]
+#[serde(tag = "@name")]
 pub enum HkbVariableValueHkParam {
     /// # Information on fields in the original C++ class
     /// -   name:`"value"`
@@ -66,19 +68,24 @@ pub enum HkbVariableValueHkParam {
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "value")]
-    Value(i32),
+    Value(Primitive<i32>),
 }
 
 impl Default for HkbVariableValueHkParam {
     fn default() -> Self {
-        Self::Value(0)
+        Self::Value(0.into())
     }
 }
 
 impl From<i32> for HkbVariableValueHkParam {
     fn from(value: i32) -> Self {
-        Self::Value(value)
+        Self::Value(value.into())
     }
+}
+
+impl_deserialize_for_internally_tagged_enum! {
+    HkbVariableValueHkParam, "@name",
+    ("value"=> Value(Primitive<i32>))
 }
 
 #[cfg(test)]
@@ -92,7 +99,7 @@ mod tests {
             name: "#0060".into(),
             class: "hkbVariableValue".into(),
             signature: "0x27812d8d".into(),
-            hkparams: HkbVariableValueHkParam::Value(1045220557),
+            hkparams: HkbVariableValueHkParam::Value(1045220557.into()),
         };
 
         let result = quick_xml::se::to_string(&class).unwrap();
@@ -118,7 +125,7 @@ mod tests {
             name: "#0060".into(),
             class: "hkbVariableValue".into(),
             signature: "0x27812d8d".into(),
-            hkparams: HkbVariableValueHkParam::Value(1045220557),
+            hkparams: HkbVariableValueHkParam::Value(1045220557.into()),
         };
         assert_eq!(result, expected);
     }

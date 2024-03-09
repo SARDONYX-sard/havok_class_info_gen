@@ -194,12 +194,12 @@ mod tests {
 
     #[test]
     fn should_serialize() {
-        let root = TestRoot(Matrix4::from([
+        let root = TestRoot(Matrix4::from_cols(
             Vector4::from([0.000000, 0.000000, f32::NEG_INFINITY, 0.000000]),
             Vector4::from([f32::NAN, 0.000000, f32::NEG_INFINITY, 0.000000]),
             Vector4::from([f32::NAN, 0.000000, f32::NEG_INFINITY, 0.000000]),
             Vector4::from([f32::NAN, 0.000000, f32::NEG_INFINITY, 0.000000]),
-        ]));
+        ));
 
         assert_eq!(
             quick_xml::se::to_string(&root).unwrap(),
@@ -218,12 +218,12 @@ mod tests {
         </Root>";
         let deserialized: TestRoot<Matrix4<f32>> = quick_xml::de::from_str(xml).unwrap();
 
-        let expected_matrix4 = Matrix4::from([
+        let expected_matrix4 = Matrix4::from_cols(
             [0.0, 0.0, 0.0, 0.0].into(),
             [-0.0, 0.0, -0.0, 1.0].into(),
             [1.0, 1.0, 1.0, 0.0].into(),
             [1.0, 1.0, 1.0, 0.0].into(),
-        ]);
+        );
         assert_eq!(deserialized, TestRoot(expected_matrix4));
     }
 }

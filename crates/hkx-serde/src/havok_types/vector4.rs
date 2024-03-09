@@ -1,6 +1,6 @@
 use super::Vector3;
-use crate::havok_types::float::rust_to_cpp_float_str;
 use crate::havok_types::hk_array::normalize;
+use crate::helpers::float::rust_to_cpp_float_str;
 use core::{fmt, str::FromStr};
 use ordered_float::{FloatCore, OrderedFloat};
 use serde::{Deserialize, Serialize, Serializer};

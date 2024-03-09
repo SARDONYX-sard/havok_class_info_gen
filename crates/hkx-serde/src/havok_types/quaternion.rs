@@ -17,9 +17,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::havok_types::{float::rust_to_cpp_float_str, hk_array::normalize};
-
 use super::{Vector3, Vector4};
+use crate::{havok_types::hk_array::normalize, helpers::float::rust_to_cpp_float_str};
 use core::{fmt, str::FromStr};
 use ordered_float::FloatCore;
 use serde::{Deserialize, Serialize, Serializer};

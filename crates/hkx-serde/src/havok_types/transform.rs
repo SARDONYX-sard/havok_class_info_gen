@@ -1,5 +1,5 @@
 use super::{Matrix3, Vector3, Vector4};
-use crate::havok_types::str::SplitExt as _;
+use crate::helpers::str_ext::SplitExt as _;
 use core::{fmt, str::FromStr};
 use ordered_float::FloatCore;
 use serde::{de::IntoDeserializer, Deserialize, Serialize, Serializer};

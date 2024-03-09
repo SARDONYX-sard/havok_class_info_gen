@@ -4,10 +4,9 @@ mod error;
 mod flag_values;
 pub mod generators;
 pub mod havok_types;
+mod helpers;
 mod hk_types;
 mod parse_rpt;
-#[cfg(test)]
-mod test_helper;
 
 use crate::{generators::rust::generate_code, parse_rpt::parse_class};
 use convert_case::{Case, Casing};
@@ -83,6 +82,7 @@ pub fn generate_classes() {
 
 #[cfg(test)]
 mod tests {
+    use self::helpers::tracing::init_tracing;
     use super::*;
     use crate::generators::rust::cpp_type_parser::generate_all_mapping_types;
 
@@ -93,7 +93,7 @@ mod tests {
 
     #[test]
     fn should_generate_all_mapping_types() {
-        let _guard = crate::test_helper::init_tracing(None, tracing::Level::DEBUG);
+        let _guard = init_tracing(None, tracing::Level::DEBUG);
 
         let rpt_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
             .join("assets")
