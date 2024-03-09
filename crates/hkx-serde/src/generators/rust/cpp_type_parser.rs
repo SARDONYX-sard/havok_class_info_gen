@@ -18,6 +18,7 @@ pub fn parse_cpp_type(input: &str) -> IResult<&str, Cow<'_, str>> {
         parse_hk_array_type,
         parse_array_type,
         parse_primitive_type,
+        parse_vector,
     ))(input)
 }
 
@@ -40,19 +41,22 @@ fn parse_primitive_type(input: &str) -> IResult<&str, Cow<'_, str>> {
             map(tag("hkStringPtr"), |_| "String"),
             map(tag("hkVariant"), |_| "u64"), // Fill in appropriate type for Variant
             map(tag("void"), |_| "()"),
-            // External libraries
-            map(tag("hkMatrix3"), |_| "cgmath::Matrix3<f32>"),
-            map(tag("hkVector4"), |_| "cgmath::Vector4<f32>"),
-            map(
-                alt((
-                    tag("hkMatrix4"),
-                    tag("hkQsTransform"),
-                    tag("hkRotation"),
-                    tag("hkTransform"),
-                )),
-                |_| "cgmath::Matrix4<f32>",
-            ),
-            map(tag("hkQuaternion"), |_| "cgmath::Quaternion<f32>"),
+        )),
+        Cow::from,
+    )(input)
+}
+
+fn parse_vector(input: &str) -> IResult<&str, Cow<'_, str>> {
+    map(
+        alt((
+            map(tag("hkMatrix3"), |_| "Matrix3<f32>"),
+            map(tag("hkVector4"), |_| "Vector4<f32>"),
+            map(tag("hkMatrix4"), |_| "Matrix4<f32>"),
+            map(tag("hkQsTransform"), |_| "QsTransform<f32>"),
+            map(tag("hkQuaternion"), |_| "Quaternion<f32>"),
+            map(alt((tag("hkRotation"), tag("hkTransform"))), |_| {
+                "Matrix3<f32>"
+            }),
         )),
         Cow::from,
     )(input)

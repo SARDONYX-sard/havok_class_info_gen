@@ -1,9 +1,18 @@
-pub mod float;
-pub mod hk_array;
-pub mod matrix4;
-pub mod vector4;
+mod float;
+mod hk_array;
+mod matrix3;
+mod matrix4;
+mod qs_transform;
+mod quaternion;
+mod vector3;
+mod vector4;
 
+pub use hk_array::{HkArrayClass, HkArrayClassParam, HkArrayRef, HkArrayVector};
+pub use matrix3::Matrix3;
 pub use matrix4::Matrix4;
+pub use qs_transform::QsTransform;
+pub use quaternion::Quaternion;
+pub use vector3::Vector3;
 pub use vector4::Vector4;
 
 pub fn string(text: &str) -> Option<&str> {

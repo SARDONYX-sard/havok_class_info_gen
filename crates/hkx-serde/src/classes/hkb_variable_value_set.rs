@@ -3,10 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::hkb_variable_value::HkbVariableValueHkParam;
-use crate::havok_types::{
-    hk_array::{HkArrayClass, HkArrayRef, HkArrayVector},
-    Vector4,
-};
+use crate::havok_types::{HkArrayClass, HkArrayRef, HkArrayVector, Vector4};
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -112,9 +109,8 @@ impl_deserialize_for_internally_tagged_enum! {
 
 #[cfg(test)]
 mod tests {
-    use crate::havok_types::hk_array::HkArrayClassParam;
-
     use super::*;
+    use crate::havok_types::HkArrayClassParam;
     use pretty_assertions::assert_eq;
 
     #[test]

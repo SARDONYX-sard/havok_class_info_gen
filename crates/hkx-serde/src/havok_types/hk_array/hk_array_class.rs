@@ -2,7 +2,17 @@ use serde::{Deserialize, Serialize};
 
 /// A type to hold another class of `hkparam` as an array within `hkparam` in XML.
 ///
-/// e.g. `wordVariableValues` of `hkbVariableValueSet`
+/// e.g. `wordVariableValues` field of `hkbVariableValueSet` class
+///
+/// ```xml
+/// <hkparam name="variantVariableValues" numelements="2">
+///     <hkobject>
+///         <hkparam name="class_field">#0063</hkparam>
+///     </hkobject>
+///     <hkobject>
+///         <hkparam name="another_class_field">#0064</hkparam>
+///     </hkobject>
+/// </hkparam>
 #[derive(Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(rename = "hkparam")]
 pub struct HkArrayClass<T> {
@@ -26,6 +36,12 @@ impl<T> From<Vec<HkArrayClassParam<T>>> for HkArrayClass<T> {
 }
 
 /// One class of `HkArray`
+///
+/// ```xml
+/// <hkobject>
+///     <hkparam>#0063</hkparam>
+/// </hkobject>
+/// ````
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct HkArrayClassParam<T> {
     #[serde(rename = "hkparam")]

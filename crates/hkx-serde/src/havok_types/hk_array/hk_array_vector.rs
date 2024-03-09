@@ -70,7 +70,7 @@ where
                             let mut value_inner = Vec::new();
 
                             let text: Cow<'_, str> = map.next_value()?;
-                            for line in text.split(['(']).filter(|vec4_str| !vec4_str.is_empty()) {
+                            for line in text.split(['(']).filter(|s| !s.is_empty()) {
                                 value_inner.push(T::deserialize(line.into_deserializer())?);
                             }
 
