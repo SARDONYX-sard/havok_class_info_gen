@@ -141,6 +141,8 @@ impl<'de> Deserialize<'de> for Class<'de> {
                                         )))
                                     }
                                 })?);
+                            } else {
+                                return Err(de::Error::custom("Processing an array of `hkparam` requires identification by `signature` first, but the `signature` attribute did not exist"));
                             }
                         }
                         _ => {
