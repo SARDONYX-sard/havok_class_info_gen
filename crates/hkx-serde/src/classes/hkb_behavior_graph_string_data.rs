@@ -25,9 +25,9 @@ pub struct HkbBehaviorGraphStringData<'a> {
     pub signature: Cow<'a, str>,
 
     /// The `"hkparam"` tag (C++ field) vector
-    #[serde(bound(deserialize = "Vec<Hkparam<'a>>: Deserialize<'de>"))]
+    #[serde(bound(deserialize = "Vec<HkbBehaviorGraphStringDataHkparam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<Hkparam<'a>>,
+    pub hkparams: Vec<HkbBehaviorGraphStringDataHkparam<'a>>,
 }
 
 impl HkbBehaviorGraphStringData<'_> {
@@ -49,7 +49,7 @@ impl HkbBehaviorGraphStringData<'_> {
 /// In C++, it represents the name of one field in the class.
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
-pub enum Hkparam<'a> {
+pub enum HkbBehaviorGraphStringDataHkparam<'a> {
     /// `"eventNames"`
     #[serde(rename = "eventNames")]
     Event(HkArray<'a>),
@@ -65,7 +65,7 @@ pub enum Hkparam<'a> {
 }
 
 impl_deserialize_for_internally_tagged_enum! {
-    Hkparam<'de>, "@name",
+    HkbBehaviorGraphStringDataHkparam<'de>, "@name",
     ("eventNames"    => Event(HkArray)),
     ("attributeNames" => Attribute(HkArray)),
     ("variableNames"  => Variable(HkArray)),
@@ -130,7 +130,7 @@ mod tests {
             class: "hkbBehaviorGraphStringData".into(),
             signature: "0xc713064e".into(),
             hkparams: vec![
-                Hkparam::Event(HkArray {
+                HkbBehaviorGraphStringDataHkparam::Event(HkArray {
                     numelements: 4,
                     hkcstrings: vec![
                         "cannedTurnRight90Flee".into(),
@@ -139,11 +139,11 @@ mod tests {
                         "cannedTurnLeft180Flee".into(),
                     ],
                 }),
-                Hkparam::Attribute(HkArray {
+                HkbBehaviorGraphStringDataHkparam::Attribute(HkArray {
                     numelements: 0,
                     hkcstrings: vec![],
                 }),
-                Hkparam::Variable(HkArray {
+                HkbBehaviorGraphStringDataHkparam::Variable(HkArray {
                     numelements: 6,
                     hkcstrings: vec![
                         "blendDefault".into(),
@@ -154,7 +154,7 @@ mod tests {
                         "Speed".into(),
                     ],
                 }),
-                Hkparam::CharacterProperty(HkArray {
+                HkbBehaviorGraphStringDataHkparam::CharacterProperty(HkArray {
                     numelements: 0,
                     hkcstrings: vec![],
                 }),

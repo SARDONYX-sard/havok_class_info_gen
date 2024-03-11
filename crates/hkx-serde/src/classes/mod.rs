@@ -7,28 +7,51 @@ mod root;
 pub mod hkx_vertex_description;
 pub mod hkx_vertex_description_element_decl;
 
-use self::hkb_behavior_graph_string_data::HkbBehaviorGraphStringData;
-use self::hkb_variable_value::HkbVariableValue;
-use self::hkb_variable_value_set::HkbVariableValueSet;
+use std::borrow::Cow;
+
+use self::hkb_behavior_graph_string_data::HkbBehaviorGraphStringDataHkparam;
+use self::hkb_variable_value::HkbVariableValueHkParam;
+use self::hkb_variable_value_set::HkbVariableValueSetHkParam;
 use crate::impl_deserialize_for_internally_tagged_enum;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[serde(rename = "hkobject")]
+pub struct Class<'a> {
+    /// e.g. `#0106`
+    ///
+    /// These names are referenced (in C++ implementations) by vectors that store pointers to a structure and a class.
+    #[serde(rename = "@name", borrow)]
+    #[serde(default)]
+    pub name: Cow<'a, str>,
+
+    /// `"hkbVariableValueSet"`: Name of this C++ class.
+    #[serde(rename = "@class", borrow, skip_deserializing)]
+    pub class: Cow<'a, str>,
+
+    /// `0x27812d8d`: Unique value of this class.
+    #[serde(rename = "@signature", borrow, skip_deserializing)]
+    pub signature: Cow<'a, str>,
+
+    /// The `"hkparam"` tag (C++ field) vector
+    #[serde(bound(deserialize = "Vec<ClassParams<'a>>: Deserialize<'de>"))]
+    #[serde(rename = "hkparam")]
+    pub hkparams: Vec<ClassParams<'a>>,
+}
 
 #[allow(clippy::enum_variant_names)]
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@signature")]
-enum AllClass<'a> {
-    #[serde(bound(deserialize = "HkbVariableValueSet<'a>: Deserialize<'de>"))]
-    HkbVariableValueSet(HkbVariableValueSet<'a>),
+pub enum ClassParams<'a> {
+    HkbVariableValueSet(HkbVariableValueSetHkParam<'a>),
     #[serde(rename = "decls")]
-    #[serde(bound(deserialize = "HkbVariableValue<'a>: Deserialize<'de>"))]
-    HkbVariableValue(HkbVariableValue<'a>),
-    #[serde(bound(deserialize = "HkbBehaviorGraphStringData<'a>: Deserialize<'de>"))]
-    HkbBehaviorGraphStringData(HkbBehaviorGraphStringData<'a>),
+    HkbVariableValue(HkbVariableValueHkParam),
+    HkbBehaviorGraphStringData(HkbBehaviorGraphStringDataHkparam<'a>),
 }
 
 impl_deserialize_for_internally_tagged_enum! {
-    AllClass<'de>, "@signature",
-    ("0x27812d8d" => HkbVariableValueSet(HkbVariableValueSet<'de>)),
-    ("0xb99bd6a" => HkbVariableValue(HkbVariableValue<'de>)),
-    ("0xc713064e" => HkbBehaviorGraphStringData(HkbBehaviorGraphStringData<'de>)),
+    ClassParams<'de>, "@signature",
+    ("0x27812d8d" => HkbVariableValueSet(HkbVariableValueSetHkParam<'de>)),
+    ("0xb99bd6a" => HkbVariableValue(HkbVariableValueHkParam)),
+    ("0xc713064e" => HkbBehaviorGraphStringData(HkbBehaviorGraphStringDataHkparam<'de>)),
 }

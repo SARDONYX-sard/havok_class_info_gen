@@ -1,4 +1,4 @@
-use super::AllClass;
+use super::{Class, ClassParams};
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
 
@@ -24,9 +24,9 @@ pub struct HkSection<'a> {
     #[serde(default = "default_section_root")]
     pub name: Cow<'a, str>,
 
-    #[serde(bound(deserialize = "Vec<AllClass<'a>>: Deserialize<'de>"))]
+    #[serde(bound(deserialize = "Vec<ClassParams<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkobject", borrow)]
-    pub classes: Vec<AllClass<'a>>,
+    pub classes: Vec<Class<'a>>,
 }
 
 fn default_section_root() -> Cow<'static, str> {
@@ -36,7 +36,9 @@ fn default_section_root() -> Cow<'static, str> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::classes::hkb_behavior_graph_string_data::HkbBehaviorGraphStringData;
+    use crate::classes::hkb_behavior_graph_string_data::{
+        HkArray, HkbBehaviorGraphStringDataHkparam,
+    };
     use pretty_assertions::assert_eq;
 
     #[test]
@@ -47,14 +49,17 @@ mod tests {
             top_level_object: "#0056".into(),
             hk_section: HkSection {
                 name: "__data__".into(),
-                classes: vec![AllClass::HkbBehaviorGraphStringData(
-                    HkbBehaviorGraphStringData {
-                        name: "#0057".into(),
-                        class: "hkbBehaviorGraphStringData".into(),
-                        signature: "0xc713064e".into(),
-                        hkparams: vec![],
-                    },
-                )],
+                classes: vec![Class {
+                    name: "#0085".into(),
+                    class: "hkbBehaviorGraphStringData".into(),
+                    signature: "0xc713064e".into(),
+                    hkparams: vec![ClassParams::HkbBehaviorGraphStringData(
+                        HkbBehaviorGraphStringDataHkparam::CharacterProperty(HkArray {
+                            numelements: 0,
+                            hkcstrings: vec![],
+                        }),
+                    )],
+                }],
             },
         };
         let result = quick_xml::se::to_string(&class).unwrap();
@@ -62,7 +67,9 @@ mod tests {
         let expected_xml = "\
 <hkpackfile classversion=\"8\" contentsversion=\"hk_2010.2.0-r1\" toplevelobject=\"#0056\">\
     <hksection name=\"__data__\">\
-        <hkobject name=\"#0057\" signature=\"HkbBehaviorGraphStringData\" name=\"\" class=\"\" signature=\"\"/>\
+        <hkobject name=\"#0057\" class=\"hkbBehaviorGraphStringData\" signature=\"0xc713064e\">\
+            <hkparam name=\"characterPropertyNames\" numelements=\"0\"/>\
+        </hkobject>\
     </hksection>\
 </hkpackfile>";
 
