@@ -42,7 +42,7 @@ mod tests {
             hkb_variable_value_set::HkbVariableValueSetHkParam,
             ClassParams,
         },
-        havok_types::HkArrayRef,
+        havok_types::HkArrayClassParam,
     };
     use pretty_assertions::assert_eq;
 
@@ -58,12 +58,12 @@ mod tests {
                     name: "#0057".into(),
                     class: "hkbBehaviorGraphStringData".into(),
                     signature: "0xc713064e".into(),
-                    hkparam: ClassParams::HkbBehaviorGraphStringData(
+                    hkparams: ClassParams::HkbBehaviorGraphStringData(vec![
                         HkbBehaviorGraphStringDataHkparam::CharacterProperty(HkArray {
                             numelements: 0,
                             hkcstrings: vec![],
                         }),
-                    ),
+                    ]),
                 }],
             },
         };
@@ -103,28 +103,110 @@ mod tests {
                         name: "#0057".into(),
                         class: "hkbBehaviorGraphStringData".into(),
                         signature: "0xc713064e".into(),
-                        hkparam: ClassParams::HkbBehaviorGraphStringData(
+                        hkparams: ClassParams::HkbBehaviorGraphStringData(vec![
+                            HkbBehaviorGraphStringDataHkparam::Event(HkArray {
+                                numelements: 30,
+                                hkcstrings: [
+                                    "staggerStop",
+                                    "syncPoint",
+                                    "WeapEquip_OutMoving",
+                                    "WeapEquip_Out",
+                                    "PitchOverrideEnd",
+                                    "PitchOverrideStart",
+                                    "moveStart",
+                                    "moveStop",
+                                    "SprintStop",
+                                    "SprintStart",
+                                    "FootLeft",
+                                    "FootRight",
+                                    "staggerStart",
+                                    "BeginWeaponDraw",
+                                    "FootScuffRight",
+                                    "weaponDraw",
+                                    "FootScuffLeft",
+                                    "SoundPlay.WPNBlade1HandSmallDraw",
+                                    "SoundPlay.WPNAxe1HandDraw",
+                                    "SoundPlay.WPNMace1HandDraw",
+                                    "SoundPlay.WPNStaffHandDraw",
+                                    "MagicWeap_ForceEquip",
+                                    "SneakStart",
+                                    "SneakStop",
+                                    "StreamingTest",
+                                    "SoundPlay.WPNUnarmedDraw",
+                                    "tailSneakIdle",
+                                    "tailCombatIdle",
+                                    "SoundPlay.WPNLeftHandDraw",
+                                    "arrowAttach",
+                                ]
+                                .map(Cow::from)
+                                .into(),
+                            }),
+                            HkbBehaviorGraphStringDataHkparam::Attribute(HkArray {
+                                numelements: 0,
+                                hkcstrings: [].into(),
+                            }),
+                            HkbBehaviorGraphStringDataHkparam::Variable(HkArray {
+                                numelements: 16,
+                                hkcstrings: [
+                                    "blendDefault",
+                                    "IsEquipping",
+                                    "TurnDelta",
+                                    "Direction",
+                                    "SpeedSampled",
+                                    "i1stPerson",
+                                    "iSyncSprintState",
+                                    "iSyncIdleLocomotion",
+                                    "staggerMagnitude",
+                                    "IsStaggering",
+                                    "PitchManualOverride",
+                                    "bEquipUnequip",
+                                    "iRightHandType",
+                                    "iLeftHandType",
+                                    "iIsInSneak",
+                                    "IsSneaking",
+                                ]
+                                .map(Cow::from)
+                                .into(),
+                            }),
                             HkbBehaviorGraphStringDataHkparam::CharacterProperty(HkArray {
                                 numelements: 3,
-                                hkcstrings: [
-                                    "LeftArm".into(),
-                                    "UpperBody".into(),
-                                    "RightArm".into(),
-                                ]
-                                .to_vec(),
+                                hkcstrings: ["LeftArm", "UpperBody", "RightArm"]
+                                    .map(Cow::from)
+                                    .into(),
                             }),
-                        ),
+                        ]),
                     },
                     Class {
                         name: "#0058".into(),
                         class: "hkbVariableValueSet".into(),
                         signature: "0x27812d8d".into(),
-                        hkparam: ClassParams::HkbVariableValueSet(
-                            HkbVariableValueSetHkParam::Variant(HkArrayRef {
-                                numelements: 0,
-                                value: vec![],
-                            }),
-                        ),
+                        hkparams: ClassParams::HkbVariableValueSet(vec![
+                            HkbVariableValueSetHkParam::Word(
+                                vec![
+                                    HkArrayClassParam {
+                                        hkparam: 1045220557.into(),
+                                    },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                    HkArrayClassParam { hkparam: 0.into() },
+                                ]
+                                .into(),
+                            ),
+                            HkbVariableValueSetHkParam::Quad(vec![].into()),
+                            HkbVariableValueSetHkParam::Variant(vec![].into()),
+                        ]),
                     },
                 ],
             },

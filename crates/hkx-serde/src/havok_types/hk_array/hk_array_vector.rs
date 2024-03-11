@@ -2,7 +2,7 @@ use serde::{de::IntoDeserializer, Deserialize, Serialize};
 use std::borrow::Cow;
 
 /// A structure for storing special arrays enclosed in `()`, such as Vector4, and for performing normal (De)serialization.
-#[derive(Debug, Default, PartialEq, Serialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize)]
 #[serde(rename = "hkparam")]
 pub struct HkArrayVector<T> {
     /// Length of [`Vec`] stored in its own structure.

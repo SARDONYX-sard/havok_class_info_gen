@@ -27,8 +27,8 @@ pub struct Class<'a> {
     /// Unique value of each class.
     pub signature: Cow<'a, str>,
 
-    /// The `"hkparam"` tag (C++ field) vector
-    pub hkparam: ClassParams<'a>,
+    /// The `"hkparam"` tag (C++ fields) vector
+    pub hkparams: ClassParams<'a>,
 }
 
 #[allow(clippy::enum_variant_names)]
@@ -36,11 +36,11 @@ pub struct Class<'a> {
 #[serde(tag = "@signature")]
 pub enum ClassParams<'a> {
     #[serde(rename = "0x27812d8d")]
-    HkbVariableValueSet(HkbVariableValueSetHkParam<'a>),
+    HkbVariableValueSet(Vec<HkbVariableValueSetHkParam<'a>>),
     #[serde(rename = "0xc713064e")]
-    HkbVariableValue(HkbVariableValueHkParam),
+    HkbVariableValue(Vec<HkbVariableValueHkParam>),
     #[serde(rename = "0xb99bd6a")]
-    HkbBehaviorGraphStringData(HkbBehaviorGraphStringDataHkparam<'a>),
+    HkbBehaviorGraphStringData(Vec<HkbBehaviorGraphStringDataHkparam<'a>>),
 }
 
 impl<'a> Serialize for Class<'a> {
@@ -58,18 +58,18 @@ impl<'a> Serialize for Class<'a> {
         // Serialize hkparam based on signature
         match self.signature.as_ref() {
             "0x27812d8d" => {
-                if let ClassParams::HkbVariableValueSet(ref param) = self.hkparam {
-                    state.serialize_field("hkparam", param)?;
+                if let ClassParams::HkbVariableValueSet(ref params) = self.hkparams {
+                    state.serialize_field("hkparam", params)?;
                 }
             }
             "0xb99bd6a" => {
-                if let ClassParams::HkbVariableValue(ref param) = self.hkparam {
-                    state.serialize_field("hkparam", param)?;
+                if let ClassParams::HkbVariableValue(ref params) = self.hkparams {
+                    state.serialize_field("hkparam", params)?;
                 }
             }
             "0xc713064e" => {
-                if let ClassParams::HkbBehaviorGraphStringData(ref param) = self.hkparam {
-                    state.serialize_field("hkparam", param)?;
+                if let ClassParams::HkbBehaviorGraphStringData(ref params) = self.hkparams {
+                    state.serialize_field("hkparam", params)?;
                 }
             }
             _ => {}
@@ -160,7 +160,7 @@ impl<'de> Deserialize<'de> for Class<'de> {
                     name,
                     class,
                     signature,
-                    hkparam,
+                    hkparams: hkparam,
                 })
             }
         }

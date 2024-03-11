@@ -17,7 +17,7 @@ use serde::{Deserialize, Serialize};
 ///         <hkparam name="another_class_field">#0064</hkparam>
 ///     </hkobject>
 /// </hkparam>
-#[derive(Debug, Default, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 #[serde(rename = "hkparam")]
 pub struct HkArrayClass<T> {
     /// Length of the class
@@ -46,10 +46,16 @@ impl<T> From<Vec<HkArrayClassParam<T>>> for HkArrayClass<T> {
 ///     <hkparam>#0063</hkparam>
 /// </hkobject>
 /// ````
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct HkArrayClassParam<T> {
     #[serde(rename = "hkparam")]
     pub hkparam: T,
+}
+
+impl<T> From<T> for HkArrayClassParam<T> {
+    fn from(value: T) -> Self {
+        Self { hkparam: value }
+    }
 }
 
 #[cfg(test)]

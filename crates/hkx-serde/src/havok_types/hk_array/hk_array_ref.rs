@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 /// A structure for parsing XML that takes a pointer to a C++ structure.
 ///
 /// In XML, it is just an array of space-delimited class name strings.
-#[derive(Debug, Default, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 #[serde(rename = "hkparam")]
 pub struct HkArrayRef<T> {
     /// Length of the pointer array stored in its own structure.
@@ -14,6 +14,15 @@ pub struct HkArrayRef<T> {
     /// In XML, it is just an array of space-delimited class name strings.
     #[serde(rename = "$text", default)]
     pub value: Vec<T>,
+}
+
+impl<T> From<Vec<T>> for HkArrayRef<T> {
+    fn from(value: Vec<T>) -> Self {
+        Self {
+            numelements: value.len(),
+            value,
+        }
+    }
 }
 
 #[cfg(test)]
