@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaQuantizedAnimation<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaQuantizedAnimation"`: Name of this class.
+    /// `"hkaQuantizedAnimation"`: The original C++ class name.
     #[serde(default = "HkaQuantizedAnimation::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaQuantizedAnimation<'a> {
 }
 
 impl HkaQuantizedAnimation<'_> {
-    /// Return `"hkaQuantizedAnimation"`, which is the name of this class.
+    /// Return `"hkaQuantizedAnimation"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaQuantizedAnimation".into()
+        "hkaQuantizedAnimation".into()
     }
 
     /// Return `"0x3920f053"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl HkaQuantizedAnimation<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaQuantizedAnimationHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    Data(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"endian"`
     /// -   type: `hkUint32`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endian")]
-    Endian(u32),
-    /// # Information on fields in the original C++ class
+    Endian(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"skeleton"`
     /// -   type: `void*`
     /// - offset: 56
@@ -90,7 +91,7 @@ pub enum HkaQuantizedAnimationHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaQuantizedAnimationHkParam<'de>, "@name",
-    ("data" => Data(Vec<u8>)),
-    ("endian" => Endian(u32)),
+    ("data" => Data(Vec<Primitive<u8>>)),
+    ("endian" => Endian(Primitive<u32>)),
     ("skeleton" => Skeleton(())),
 }

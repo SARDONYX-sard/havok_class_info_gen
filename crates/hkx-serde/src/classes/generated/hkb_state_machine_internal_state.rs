@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbStateMachineInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbStateMachineInternalState"`: Name of this class.
+    /// `"hkbStateMachineInternalState"`: The original C++ class name.
     #[serde(default = "HkbStateMachineInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbStateMachineInternalState<'a> {
 }
 
 impl HkbStateMachineInternalState<'_> {
-    /// Return `"hkbStateMachineInternalState"`, which is the name of this class.
+    /// Return `"hkbStateMachineInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbStateMachineInternalState".into()
+        "hkbStateMachineInternalState".into()
     }
 
     /// Return `"0xbd1a7502"`, which is the signature of this class.
@@ -63,83 +64,83 @@ impl HkbStateMachineInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbStateMachineInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"activeTransitions"`
     /// -   type: `hkArray&lt;struct hkbStateMachineActiveTransitionInfo&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "activeTransitions")]
     ActiveTransitions(Vec<HkbStateMachineActiveTransitionInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transitionFlags"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transitionFlags")]
-    TransitionFlags(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    TransitionFlags(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"wildcardTransitionFlags"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wildcardTransitionFlags")]
-    WildcardTransitionFlags(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    WildcardTransitionFlags(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"delayedTransitions"`
     /// -   type: `hkArray&lt;struct hkbStateMachineDelayedTransitionInfo&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "delayedTransitions")]
     DelayedTransitions(Vec<HkbStateMachineDelayedTransitionInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"timeInState"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timeInState")]
-    TimeInState(f64),
-    /// # Information on fields in the original C++ class
+    TimeInState(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"lastLocalTime"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lastLocalTime")]
-    LastLocalTime(f64),
-    /// # Information on fields in the original C++ class
+    LastLocalTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"currentStateId"`
     /// -   type: `hkInt32`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "currentStateId")]
-    CurrentStateId(i32),
-    /// # Information on fields in the original C++ class
+    CurrentStateId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"previousStateId"`
     /// -   type: `hkInt32`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "previousStateId")]
-    PreviousStateId(i32),
-    /// # Information on fields in the original C++ class
+    PreviousStateId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"nextStartStateIndexOverride"`
     /// -   type: `hkInt32`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nextStartStateIndexOverride")]
-    NextStartStateIndexOverride(i32),
-    /// # Information on fields in the original C++ class
+    NextStartStateIndexOverride(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"stateOrTransitionChanged"`
     /// -   type: `hkBool`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stateOrTransitionChanged")]
-    StateOrTransitionChanged(bool),
-    /// # Information on fields in the original C++ class
+    StateOrTransitionChanged(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"echoNextUpdate"`
     /// -   type: `hkBool`
     /// - offset: 77
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "echoNextUpdate")]
-    EchoNextUpdate(bool),
+    EchoNextUpdate(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -147,14 +148,14 @@ pub enum HkbStateMachineInternalStateHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbStateMachineInternalStateHkParam<'de>, "@name",
     ("activeTransitions" => ActiveTransitions(Vec<HkbStateMachineActiveTransitionInfo>)),
-    ("transitionFlags" => TransitionFlags(Vec<u8>)),
-    ("wildcardTransitionFlags" => WildcardTransitionFlags(Vec<u8>)),
+    ("transitionFlags" => TransitionFlags(Vec<Primitive<u8>>)),
+    ("wildcardTransitionFlags" => WildcardTransitionFlags(Vec<Primitive<u8>>)),
     ("delayedTransitions" => DelayedTransitions(Vec<HkbStateMachineDelayedTransitionInfo>)),
-    ("timeInState" => TimeInState(f64)),
-    ("lastLocalTime" => LastLocalTime(f64)),
-    ("currentStateId" => CurrentStateId(i32)),
-    ("previousStateId" => PreviousStateId(i32)),
-    ("nextStartStateIndexOverride" => NextStartStateIndexOverride(i32)),
-    ("stateOrTransitionChanged" => StateOrTransitionChanged(bool)),
-    ("echoNextUpdate" => EchoNextUpdate(bool)),
+    ("timeInState" => TimeInState(Primitive<f32>)),
+    ("lastLocalTime" => LastLocalTime(Primitive<f32>)),
+    ("currentStateId" => CurrentStateId(Primitive<i32>)),
+    ("previousStateId" => PreviousStateId(Primitive<i32>)),
+    ("nextStartStateIndexOverride" => NextStartStateIndexOverride(Primitive<i32>)),
+    ("stateOrTransitionChanged" => StateOrTransitionChanged(Primitive<bool>)),
+    ("echoNextUpdate" => EchoNextUpdate(Primitive<bool>)),
 }

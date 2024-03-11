@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaWaveletCompressedAnimationCompressionParams<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaWaveletCompressedAnimationCompressionParams"`: Name of this class.
+    /// `"hkaWaveletCompressedAnimationCompressionParams"`: The original C++ class name.
     #[serde(default = "HkaWaveletCompressedAnimationCompressionParams::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaWaveletCompressedAnimationCompressionParams<'a> {
 }
 
 impl HkaWaveletCompressedAnimationCompressionParams<'_> {
-    /// Return `"hkaWaveletCompressedAnimationCompressionParams"`, which is the name of this class.
+    /// Return `"hkaWaveletCompressedAnimationCompressionParams"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaWaveletCompressedAnimationCompressionParams".into()
+        "hkaWaveletCompressedAnimationCompressionParams".into()
     }
 
     /// Return `"0x27c6cafa"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkaWaveletCompressedAnimationCompressionParams<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaWaveletCompressedAnimationCompressionParamsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"quantizationBits"`
     /// -   type: `hkUint16`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "quantizationBits")]
-    QuantizationBits(u16),
-    /// # Information on fields in the original C++ class
+    QuantizationBits(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"blockSize"`
     /// -   type: `hkUint16`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "blockSize")]
-    BlockSize(u16),
-    /// # Information on fields in the original C++ class
+    BlockSize(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"preserve"`
     /// -   type: `hkUint16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "preserve")]
-    Preserve(u16),
-    /// # Information on fields in the original C++ class
+    Preserve(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"truncProp"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "truncProp")]
-    TruncProp(f64),
-    /// # Information on fields in the original C++ class
+    TruncProp(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"useOldStyleTruncation"`
     /// -   type: `hkBool`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "useOldStyleTruncation")]
-    UseOldStyleTruncation(bool),
-    /// # Information on fields in the original C++ class
+    UseOldStyleTruncation(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"absolutePositionTolerance"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "absolutePositionTolerance")]
-    AbsolutePositionTolerance(f64),
-    /// # Information on fields in the original C++ class
+    AbsolutePositionTolerance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"relativePositionTolerance"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "relativePositionTolerance")]
-    RelativePositionTolerance(f64),
-    /// # Information on fields in the original C++ class
+    RelativePositionTolerance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotationTolerance"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotationTolerance")]
-    RotationTolerance(f64),
-    /// # Information on fields in the original C++ class
+    RotationTolerance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"scaleTolerance"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "scaleTolerance")]
-    ScaleTolerance(f64),
-    /// # Information on fields in the original C++ class
+    ScaleTolerance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"absoluteFloatTolerance"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "absoluteFloatTolerance")]
-    AbsoluteFloatTolerance(f64),
+    AbsoluteFloatTolerance(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaWaveletCompressedAnimationCompressionParamsHkParam<'de>, "@name",
-    ("quantizationBits" => QuantizationBits(u16)),
-    ("blockSize" => BlockSize(u16)),
-    ("preserve" => Preserve(u16)),
-    ("truncProp" => TruncProp(f64)),
-    ("useOldStyleTruncation" => UseOldStyleTruncation(bool)),
-    ("absolutePositionTolerance" => AbsolutePositionTolerance(f64)),
-    ("relativePositionTolerance" => RelativePositionTolerance(f64)),
-    ("rotationTolerance" => RotationTolerance(f64)),
-    ("scaleTolerance" => ScaleTolerance(f64)),
-    ("absoluteFloatTolerance" => AbsoluteFloatTolerance(f64)),
+    ("quantizationBits" => QuantizationBits(Primitive<u16>)),
+    ("blockSize" => BlockSize(Primitive<u16>)),
+    ("preserve" => Preserve(Primitive<u16>)),
+    ("truncProp" => TruncProp(Primitive<f32>)),
+    ("useOldStyleTruncation" => UseOldStyleTruncation(Primitive<bool>)),
+    ("absolutePositionTolerance" => AbsolutePositionTolerance(Primitive<f32>)),
+    ("relativePositionTolerance" => RelativePositionTolerance(Primitive<f32>)),
+    ("rotationTolerance" => RotationTolerance(Primitive<f32>)),
+    ("scaleTolerance" => ScaleTolerance(Primitive<f32>)),
+    ("absoluteFloatTolerance" => AbsoluteFloatTolerance(Primitive<f32>)),
 }

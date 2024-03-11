@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkContactPointMaterial<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkContactPointMaterial"`: Name of this class.
+    /// `"hkContactPointMaterial"`: The original C++ class name.
     #[serde(default = "HkContactPointMaterial::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkContactPointMaterial<'a> {
 }
 
 impl HkContactPointMaterial<'_> {
-    /// Return `"hkContactPointMaterial"`, which is the name of this class.
+    /// Return `"hkContactPointMaterial"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkContactPointMaterial".into()
+        "hkContactPointMaterial".into()
     }
 
     /// Return `"0x4e32287c"`, which is the signature of this class.
@@ -63,52 +64,52 @@ impl HkContactPointMaterial<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkContactPointMaterialHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"userData"`
     /// -   type: `hkUlong`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData")]
-    UserData(u64),
-    /// # Information on fields in the original C++ class
+    UserData(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"friction"`
     /// -   type: `hkUint8`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "friction")]
-    Friction(u8),
-    /// # Information on fields in the original C++ class
+    Friction(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"restitution"`
     /// -   type: `hkUint8`
     /// - offset: 5
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "restitution")]
-    Restitution(u8),
-    /// # Information on fields in the original C++ class
+    Restitution(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxImpulse"`
     /// -   type: `hkUint8`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxImpulse")]
-    MaxImpulse(u8),
-    /// # Information on fields in the original C++ class
+    MaxImpulse(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"flags"`
     /// -   type: `hkUint8`
     /// - offset: 7
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "flags")]
-    Flags(u8),
+    Flags(Primitive<u8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkContactPointMaterialHkParam<'de>, "@name",
-    ("userData" => UserData(u64)),
-    ("friction" => Friction(u8)),
-    ("restitution" => Restitution(u8)),
-    ("maxImpulse" => MaxImpulse(u8)),
-    ("flags" => Flags(u8)),
+    ("userData" => UserData(Primitive<u64>)),
+    ("friction" => Friction(Primitive<u8>)),
+    ("restitution" => Restitution(Primitive<u8>)),
+    ("maxImpulse" => MaxImpulse(Primitive<u8>)),
+    ("flags" => Flags(Primitive<u8>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

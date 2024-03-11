@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPairCollisionFilter<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPairCollisionFilter"`: Name of this class.
+    /// `"hkpPairCollisionFilter"`: The original C++ class name.
     #[serde(default = "HkpPairCollisionFilter::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPairCollisionFilter<'a> {
 }
 
 impl HkpPairCollisionFilter<'_> {
-    /// Return `"hkpPairCollisionFilter"`, which is the name of this class.
+    /// Return `"hkpPairCollisionFilter"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPairCollisionFilter".into()
+        "hkpPairCollisionFilter".into()
     }
 
     /// Return `"0x4abc140e"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkpPairCollisionFilter<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPairCollisionFilterHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"disabledPairs"`
     /// -   type: `struct hkpPairCollisionFilterMapPairFilterKeyOverrideType`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "disabledPairs", skip_serializing)]
     DisabledPairs(HkpPairCollisionFilterMapPairFilterKeyOverrideType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childFilter"`
     /// -   type: `struct hkpCollisionFilter*`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childFilter")]
-    ChildFilter(Box<HkpCollisionFilter>),
+    ChildFilter(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkpPairCollisionFilterHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpPairCollisionFilterHkParam<'de>, "@name",
     ("disabledPairs" => DisabledPairs(HkpPairCollisionFilterMapPairFilterKeyOverrideType)),
-    ("childFilter" => ChildFilter(Box<HkpCollisionFilter>)),
+    ("childFilter" => ChildFilter(Cow<'a, str>)),
 }

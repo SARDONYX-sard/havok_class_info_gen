@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSimpleMeshShapeTriangle<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSimpleMeshShapeTriangle"`: Name of this class.
+    /// `"hkpSimpleMeshShapeTriangle"`: The original C++ class name.
     #[serde(default = "HkpSimpleMeshShapeTriangle::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSimpleMeshShapeTriangle<'a> {
 }
 
 impl HkpSimpleMeshShapeTriangle<'_> {
-    /// Return `"hkpSimpleMeshShapeTriangle"`, which is the name of this class.
+    /// Return `"hkpSimpleMeshShapeTriangle"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSimpleMeshShapeTriangle".into()
+        "hkpSimpleMeshShapeTriangle".into()
     }
 
     /// Return `"0xd38738c1"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpSimpleMeshShapeTriangle<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSimpleMeshShapeTriangleHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"a"`
     /// -   type: `hkInt32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "a")]
-    A(i32),
-    /// # Information on fields in the original C++ class
+    A(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"b"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "b")]
-    B(i32),
-    /// # Information on fields in the original C++ class
+    B(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"c"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "c")]
-    C(i32),
-    /// # Information on fields in the original C++ class
+    C(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"weldingInfo"`
     /// -   type: `hkUint16`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingInfo")]
-    WeldingInfo(u16),
+    WeldingInfo(Primitive<u16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSimpleMeshShapeTriangleHkParam<'de>, "@name",
-    ("a" => A(i32)),
-    ("b" => B(i32)),
-    ("c" => C(i32)),
-    ("weldingInfo" => WeldingInfo(u16)),
+    ("a" => A(Primitive<i32>)),
+    ("b" => B(Primitive<i32>)),
+    ("c" => C(Primitive<i32>)),
+    ("weldingInfo" => WeldingInfo(Primitive<u16>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbDetectCloseToGroundModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbDetectCloseToGroundModifier"`: Name of this class.
+    /// `"hkbDetectCloseToGroundModifier"`: The original C++ class name.
     #[serde(default = "HkbDetectCloseToGroundModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbDetectCloseToGroundModifier<'a> {
 }
 
 impl HkbDetectCloseToGroundModifier<'_> {
-    /// Return `"hkbDetectCloseToGroundModifier"`, which is the name of this class.
+    /// Return `"hkbDetectCloseToGroundModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbDetectCloseToGroundModifier".into()
+        "hkbDetectCloseToGroundModifier".into()
     }
 
     /// Return `"0x981687b2"`, which is the signature of this class.
@@ -63,55 +64,55 @@ impl HkbDetectCloseToGroundModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbDetectCloseToGroundModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"closeToGroundEvent"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "closeToGroundEvent")]
     CloseToGroundEvent(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"closeToGroundHeight"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "closeToGroundHeight")]
-    CloseToGroundHeight(f64),
-    /// # Information on fields in the original C++ class
+    CloseToGroundHeight(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"raycastDistanceDown"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "raycastDistanceDown")]
-    RaycastDistanceDown(f64),
-    /// # Information on fields in the original C++ class
+    RaycastDistanceDown(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionFilterInfo")]
-    CollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    CollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneIndex")]
-    BoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    BoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"animBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 66
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "animBoneIndex")]
-    AnimBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    AnimBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"isCloseToGround"`
     /// -   type: `hkBool`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "isCloseToGround", skip_serializing)]
-    IsCloseToGround(bool),
+    IsCloseToGround(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -119,10 +120,10 @@ pub enum HkbDetectCloseToGroundModifierHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbDetectCloseToGroundModifierHkParam<'de>, "@name",
     ("closeToGroundEvent" => CloseToGroundEvent(HkbEventProperty)),
-    ("closeToGroundHeight" => CloseToGroundHeight(f64)),
-    ("raycastDistanceDown" => RaycastDistanceDown(f64)),
-    ("collisionFilterInfo" => CollisionFilterInfo(u32)),
-    ("boneIndex" => BoneIndex(i16)),
-    ("animBoneIndex" => AnimBoneIndex(i16)),
-    ("isCloseToGround" => IsCloseToGround(bool)),
+    ("closeToGroundHeight" => CloseToGroundHeight(Primitive<f32>)),
+    ("raycastDistanceDown" => RaycastDistanceDown(Primitive<f32>)),
+    ("collisionFilterInfo" => CollisionFilterInfo(Primitive<u32>)),
+    ("boneIndex" => BoneIndex(Primitive<i16>)),
+    ("animBoneIndex" => AnimBoneIndex(Primitive<i16>)),
+    ("isCloseToGround" => IsCloseToGround(Primitive<bool>)),
 }

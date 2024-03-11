@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxMaterial<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxMaterial"`: Name of this class.
+    /// `"hkxMaterial"`: The original C++ class name.
     #[serde(default = "HkxMaterial::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxMaterial<'a> {
 }
 
 impl HkxMaterial<'_> {
-    /// Return `"hkxMaterial"`, which is the name of this class.
+    /// Return `"hkxMaterial"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxMaterial".into()
+        "hkxMaterial".into()
     }
 
     /// Return `"0x2954537a"`, which is the signature of this class.
@@ -63,63 +64,63 @@ impl HkxMaterial<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxMaterialHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"stages"`
     /// -   type: `hkArray&lt;struct hkxMaterialTextureStage&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stages")]
     Stages(Vec<HkxMaterialTextureStage>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"diffuseColor"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "diffuseColor")]
-    DiffuseColor(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    DiffuseColor(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"ambientColor"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ambientColor")]
-    AmbientColor(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AmbientColor(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"specularColor"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "specularColor")]
-    SpecularColor(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    SpecularColor(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"emissiveColor"`
     /// -   type: `hkVector4`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "emissiveColor")]
-    EmissiveColor(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    EmissiveColor(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"subMaterials"`
     /// -   type: `hkArray&lt;hkxMaterial*&gt;`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "subMaterials")]
-    SubMaterials(Vec<Box<HkxMaterial>>),
-    /// # Information on fields in the original C++ class
+    SubMaterials(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"extraData"`
     /// -   type: `struct hkReferencedObject*`
     /// - offset: 124
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extraData")]
-    ExtraData(Box<HkReferencedObject>),
-    /// # Information on fields in the original C++ class
+    ExtraData(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"properties"`
     /// -   type: `hkArray&lt;struct hkxMaterialProperty&gt;`
     /// - offset: 128
@@ -132,14 +133,14 @@ pub enum HkxMaterialHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxMaterialHkParam<'de>, "@name",
-    ("name" => Name(String)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
     ("stages" => Stages(Vec<HkxMaterialTextureStage>)),
-    ("diffuseColor" => DiffuseColor(cgmath::Vector4<f32>)),
-    ("ambientColor" => AmbientColor(cgmath::Vector4<f32>)),
-    ("specularColor" => SpecularColor(cgmath::Vector4<f32>)),
-    ("emissiveColor" => EmissiveColor(cgmath::Vector4<f32>)),
-    ("subMaterials" => SubMaterials(Vec<Box<HkxMaterial>>)),
-    ("extraData" => ExtraData(Box<HkReferencedObject>)),
+    ("diffuseColor" => DiffuseColor(Vector4<f32>)),
+    ("ambientColor" => AmbientColor(Vector4<f32>)),
+    ("specularColor" => SpecularColor(Vector4<f32>)),
+    ("emissiveColor" => EmissiveColor(Vector4<f32>)),
+    ("subMaterials" => SubMaterials(Vec<Cow<'a, str>>)),
+    ("extraData" => ExtraData(Cow<'a, str>)),
     ("properties" => Properties(Vec<HkxMaterialProperty>)),
 }
 

@@ -2,7 +2,8 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
-use super::*;
+use super::hkx_vertex_description_element_decl::HkxVertexDescriptionElementDeclHkParam;
+use crate::havok_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,30 +25,29 @@ pub struct HkxVertexDescription<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxVertexDescription"`: Name of this class.
+    /// `"hkxVertexDescription"`: The original C++ class name.
     #[serde(default = "HkxVertexDescription::class_name")]
-    #[serde(rename = "@class", borrow)]
+    #[serde(rename = "@class", borrow, skip_deserializing)]
     pub class: Cow<'a, str>,
 
     /// `0x2df6313d`: Unique value of this class.
     #[serde(default = "HkxVertexDescription::signature")]
-    #[serde(rename = "@signature", borrow)]
+    #[serde(rename = "@signature", borrow, skip_deserializing)]
     pub signature: Cow<'a, str>,
 
     /// The `"hkparam"` tag (C++ field) vector
-    #[serde(bound(deserialize = "Vec<HkxVertexDescriptionHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<HkxVertexDescriptionHkParam<'a>>
+    pub hkparams: Vec<HkxVertexDescriptionHkParam>,
 }
 
 impl HkxVertexDescription<'_> {
-    /// Return `"hkxVertexDescription"`, which is the name of this class.
+    /// Return `"hkxVertexDescription"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxVertexDescription".into()
+        "hkxVertexDescription".into()
     }
 
     /// Return `"0x2df6313d"`, which is the signature of this class.
@@ -62,57 +62,19 @@ impl HkxVertexDescription<'_> {
 /// In C++, it represents the name of one field in the class.
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
-pub enum HkxVertexDescriptionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+pub enum HkxVertexDescriptionHkParam {
+    /// # Field information in the original C++ class
     /// -   name:`"decls"`
     /// -   type: `hkArray&lt;struct hkxVertexDescriptionElementDecl&gt;`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "decls")]
-    Decls(Vec<HkxVertexDescriptionElementDecl>),
+    Decls(HkArrayClass<HkxVertexDescriptionElementDeclHkParam>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
-    HkxVertexDescriptionHkParam<'de>, "@name",
-    ("decls" => Decls(Vec<HkxVertexDescriptionElementDecl>)),
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum DataType {
-    #[serde(rename = "HKX_DT_NONE")]
-    HkxDtNone = 0,
-    #[serde(rename = "HKX_DT_UINT8")]
-    HkxDtUint8 = 1,
-    #[serde(rename = "HKX_DT_INT16")]
-    HkxDtInt16 = 2,
-    #[serde(rename = "HKX_DT_UINT32")]
-    HkxDtUint32 = 3,
-    #[serde(rename = "HKX_DT_FLOAT")]
-    HkxDtFloat = 4,
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum DataUsage {
-    #[serde(rename = "HKX_DU_NONE")]
-    HkxDuNone = 0,
-    #[serde(rename = "HKX_DU_POSITION")]
-    HkxDuPosition = 1,
-    #[serde(rename = "HKX_DU_COLOR")]
-    HkxDuColor = 2,
-    #[serde(rename = "HKX_DU_NORMAL")]
-    HkxDuNormal = 4,
-    #[serde(rename = "HKX_DU_TANGENT")]
-    HkxDuTangent = 8,
-    #[serde(rename = "HKX_DU_BINORMAL")]
-    HkxDuBinormal = 16,
-    #[serde(rename = "HKX_DU_TEXCOORD")]
-    HkxDuTexcoord = 32,
-    #[serde(rename = "HKX_DU_BLENDWEIGHTS")]
-    HkxDuBlendweights = 64,
-    #[serde(rename = "HKX_DU_BLENDINDICES")]
-    HkxDuBlendindices = 128,
-    #[serde(rename = "HKX_DU_USERDATA")]
-    HkxDuUserdata = 256,
+    HkxVertexDescriptionHkParam, "@name",
+    ("decls" => Decls(HkArrayClass<HkxVertexDescriptionElementDeclHkParam>)),
 }

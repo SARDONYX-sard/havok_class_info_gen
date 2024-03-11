@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMonitorStreamStringMapStringMap<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMonitorStreamStringMapStringMap"`: Name of this class.
+    /// `"hkMonitorStreamStringMapStringMap"`: The original C++ class name.
     #[serde(default = "HkMonitorStreamStringMapStringMap::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMonitorStreamStringMapStringMap<'a> {
 }
 
 impl HkMonitorStreamStringMapStringMap<'_> {
-    /// Return `"hkMonitorStreamStringMapStringMap"`, which is the name of this class.
+    /// Return `"hkMonitorStreamStringMapStringMap"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMonitorStreamStringMapStringMap".into()
+        "hkMonitorStreamStringMapStringMap".into()
     }
 
     /// Return `"0x2c76ce16"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkMonitorStreamStringMapStringMap<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMonitorStreamStringMapStringMapHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"id"`
     /// -   type: `hkUint64`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | ALIGN8`
     #[serde(rename = "id")]
-    Id(u64),
-    /// # Information on fields in the original C++ class
+    Id(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"string"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "string")]
-    String(String),
+    String(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMonitorStreamStringMapStringMapHkParam<'de>, "@name",
-    ("id" => Id(u64)),
-    ("string" => String(String)),
+    ("id" => Id(Primitive<u64>)),
+    ("string" => String(Primitive<Cow<'a, str>>)),
 }

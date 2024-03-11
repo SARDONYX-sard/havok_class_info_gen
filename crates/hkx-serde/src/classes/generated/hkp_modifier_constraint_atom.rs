@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpModifierConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpModifierConstraintAtom"`: Name of this class.
+    /// `"hkpModifierConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpModifierConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpModifierConstraintAtom<'a> {
 }
 
 impl HkpModifierConstraintAtom<'_> {
-    /// Return `"hkpModifierConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpModifierConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpModifierConstraintAtom".into()
+        "hkpModifierConstraintAtom".into()
     }
 
     /// Return `"0xb13fef1f"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpModifierConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpModifierConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"modifierAtomSize"`
     /// -   type: `hkUint16`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "modifierAtomSize")]
-    ModifierAtomSize(u16),
-    /// # Information on fields in the original C++ class
+    ModifierAtomSize(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"childSize"`
     /// -   type: `hkUint16`
     /// - offset: 18
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childSize")]
-    ChildSize(u16),
-    /// # Information on fields in the original C++ class
+    ChildSize(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"child"`
     /// -   type: `struct hkpConstraintAtom*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "child")]
-    Child(Box<HkpConstraintAtom>),
-    /// # Information on fields in the original C++ class
+    Child(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"pad"`
     /// -   type: `hkUint32[2]`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pad")]
-    Pad([u32; 2]),
+    Pad([Primitive<u32>; 2]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpModifierConstraintAtomHkParam<'de>, "@name",
-    ("modifierAtomSize" => ModifierAtomSize(u16)),
-    ("childSize" => ChildSize(u16)),
-    ("child" => Child(Box<HkpConstraintAtom>)),
-    ("pad" => Pad([u32; 2])),
+    ("modifierAtomSize" => ModifierAtomSize(Primitive<u16>)),
+    ("childSize" => ChildSize(Primitive<u16>)),
+    ("child" => Child(Cow<'a, str>)),
+    ("pad" => Pad([Primitive<u32>; 2])),
 }

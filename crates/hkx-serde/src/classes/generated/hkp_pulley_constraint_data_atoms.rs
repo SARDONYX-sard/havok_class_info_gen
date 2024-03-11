@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPulleyConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPulleyConstraintDataAtoms"`: Name of this class.
+    /// `"hkpPulleyConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpPulleyConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPulleyConstraintDataAtoms<'a> {
 }
 
 impl HkpPulleyConstraintDataAtoms<'_> {
-    /// Return `"hkpPulleyConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpPulleyConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPulleyConstraintDataAtoms".into()
+        "hkpPulleyConstraintDataAtoms".into()
     }
 
     /// Return `"0xb149e5a"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkpPulleyConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPulleyConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"translations"`
     /// -   type: `struct hkpSetLocalTranslationsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "translations")]
     Translations(HkpSetLocalTranslationsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pulley"`
     /// -   type: `struct hkpPulleyConstraintAtom`
     /// - offset: 48

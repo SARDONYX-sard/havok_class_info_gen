@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbFootIkDriverInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbFootIkDriverInfo"`: Name of this class.
+    /// `"hkbFootIkDriverInfo"`: The original C++ class name.
     #[serde(default = "HkbFootIkDriverInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbFootIkDriverInfo<'a> {
 }
 
 impl HkbFootIkDriverInfo<'_> {
-    /// Return `"hkbFootIkDriverInfo"`, which is the name of this class.
+    /// Return `"hkbFootIkDriverInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbFootIkDriverInfo".into()
+        "hkbFootIkDriverInfo".into()
     }
 
     /// Return `"0xc6a09dbf"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkbFootIkDriverInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbFootIkDriverInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"legs"`
     /// -   type: `hkArray&lt;struct hkbFootIkDriverInfoLeg&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "legs")]
     Legs(Vec<HkbFootIkDriverInfoLeg>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"raycastDistanceUp"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "raycastDistanceUp")]
-    RaycastDistanceUp(f64),
-    /// # Information on fields in the original C++ class
+    RaycastDistanceUp(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"raycastDistanceDown"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "raycastDistanceDown")]
-    RaycastDistanceDown(f64),
-    /// # Information on fields in the original C++ class
+    RaycastDistanceDown(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"originalGroundHeightMS"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "originalGroundHeightMS")]
-    OriginalGroundHeightMs(f64),
-    /// # Information on fields in the original C++ class
+    OriginalGroundHeightMs(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"verticalOffset"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "verticalOffset")]
-    VerticalOffset(f64),
-    /// # Information on fields in the original C++ class
+    VerticalOffset(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionFilterInfo")]
-    CollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    CollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"forwardAlignFraction"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forwardAlignFraction")]
-    ForwardAlignFraction(f64),
-    /// # Information on fields in the original C++ class
+    ForwardAlignFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sidewaysAlignFraction"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sidewaysAlignFraction")]
-    SidewaysAlignFraction(f64),
-    /// # Information on fields in the original C++ class
+    SidewaysAlignFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sidewaysSampleWidth"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sidewaysSampleWidth")]
-    SidewaysSampleWidth(f64),
-    /// # Information on fields in the original C++ class
+    SidewaysSampleWidth(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"lockFeetWhenPlanted"`
     /// -   type: `hkBool`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lockFeetWhenPlanted")]
-    LockFeetWhenPlanted(bool),
-    /// # Information on fields in the original C++ class
+    LockFeetWhenPlanted(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"useCharacterUpVector"`
     /// -   type: `hkBool`
     /// - offset: 53
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "useCharacterUpVector")]
-    UseCharacterUpVector(bool),
-    /// # Information on fields in the original C++ class
+    UseCharacterUpVector(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isQuadrupedNarrow"`
     /// -   type: `hkBool`
     /// - offset: 54
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isQuadrupedNarrow")]
-    IsQuadrupedNarrow(bool),
+    IsQuadrupedNarrow(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -154,15 +155,15 @@ pub enum HkbFootIkDriverInfoHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbFootIkDriverInfoHkParam<'de>, "@name",
     ("legs" => Legs(Vec<HkbFootIkDriverInfoLeg>)),
-    ("raycastDistanceUp" => RaycastDistanceUp(f64)),
-    ("raycastDistanceDown" => RaycastDistanceDown(f64)),
-    ("originalGroundHeightMS" => OriginalGroundHeightMs(f64)),
-    ("verticalOffset" => VerticalOffset(f64)),
-    ("collisionFilterInfo" => CollisionFilterInfo(u32)),
-    ("forwardAlignFraction" => ForwardAlignFraction(f64)),
-    ("sidewaysAlignFraction" => SidewaysAlignFraction(f64)),
-    ("sidewaysSampleWidth" => SidewaysSampleWidth(f64)),
-    ("lockFeetWhenPlanted" => LockFeetWhenPlanted(bool)),
-    ("useCharacterUpVector" => UseCharacterUpVector(bool)),
-    ("isQuadrupedNarrow" => IsQuadrupedNarrow(bool)),
+    ("raycastDistanceUp" => RaycastDistanceUp(Primitive<f32>)),
+    ("raycastDistanceDown" => RaycastDistanceDown(Primitive<f32>)),
+    ("originalGroundHeightMS" => OriginalGroundHeightMs(Primitive<f32>)),
+    ("verticalOffset" => VerticalOffset(Primitive<f32>)),
+    ("collisionFilterInfo" => CollisionFilterInfo(Primitive<u32>)),
+    ("forwardAlignFraction" => ForwardAlignFraction(Primitive<f32>)),
+    ("sidewaysAlignFraction" => SidewaysAlignFraction(Primitive<f32>)),
+    ("sidewaysSampleWidth" => SidewaysSampleWidth(Primitive<f32>)),
+    ("lockFeetWhenPlanted" => LockFeetWhenPlanted(Primitive<bool>)),
+    ("useCharacterUpVector" => UseCharacterUpVector(Primitive<bool>)),
+    ("isQuadrupedNarrow" => IsQuadrupedNarrow(Primitive<bool>)),
 }

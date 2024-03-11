@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMassProperties<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMassProperties"`: Name of this class.
+    /// `"hkpMassProperties"`: The original C++ class name.
     #[serde(default = "HkpMassProperties::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMassProperties<'a> {
 }
 
 impl HkpMassProperties<'_> {
-    /// Return `"hkpMassProperties"`, which is the name of this class.
+    /// Return `"hkpMassProperties"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMassProperties".into()
+        "hkpMassProperties".into()
     }
 
     /// Return `"0x68a56834"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpMassProperties<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMassPropertiesHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"volume"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "volume")]
-    Volume(f64),
-    /// # Information on fields in the original C++ class
+    Volume(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"mass"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mass")]
-    Mass(f64),
-    /// # Information on fields in the original C++ class
+    Mass(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"centerOfMass"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "centerOfMass")]
-    CenterOfMass(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    CenterOfMass(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"inertiaTensor"`
     /// -   type: `hkMatrix3`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "inertiaTensor")]
-    InertiaTensor(cgmath::Matrix3<f32>),
+    InertiaTensor(Matrix3<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpMassPropertiesHkParam<'de>, "@name",
-    ("volume" => Volume(f64)),
-    ("mass" => Mass(f64)),
-    ("centerOfMass" => CenterOfMass(cgmath::Vector4<f32>)),
-    ("inertiaTensor" => InertiaTensor(cgmath::Matrix3<f32>)),
+    ("volume" => Volume(Primitive<f32>)),
+    ("mass" => Mass(Primitive<f32>)),
+    ("centerOfMass" => CenterOfMass(Vector4<f32>)),
+    ("inertiaTensor" => InertiaTensor(Matrix3<f32>)),
 }

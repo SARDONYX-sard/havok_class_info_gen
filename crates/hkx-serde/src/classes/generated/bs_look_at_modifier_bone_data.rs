@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsLookAtModifierBoneData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSLookAtModifierBoneData"`: Name of this class.
+    /// `"BSLookAtModifierBoneData"`: The original C++ class name.
     #[serde(default = "BsLookAtModifierBoneData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsLookAtModifierBoneData<'a> {
 }
 
 impl BsLookAtModifierBoneData<'_> {
-    /// Return `"BSLookAtModifierBoneData"`, which is the name of this class.
+    /// Return `"BSLookAtModifierBoneData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsLookAtModifierBoneData".into()
+        "BSLookAtModifierBoneData".into()
     }
 
     /// Return `"0x29efee59"`, which is the signature of this class.
@@ -63,66 +64,66 @@ impl BsLookAtModifierBoneData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsLookAtModifierBoneDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"index"`
     /// -   type: `hkInt16`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "index")]
-    Index(i16),
-    /// # Information on fields in the original C++ class
+    Index(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"fwdAxisLS"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fwdAxisLS")]
-    FwdAxisLs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    FwdAxisLs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"limitAngleDegrees"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "limitAngleDegrees")]
-    LimitAngleDegrees(f64),
-    /// # Information on fields in the original C++ class
+    LimitAngleDegrees(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"onGain"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "onGain")]
-    OnGain(f64),
-    /// # Information on fields in the original C++ class
+    OnGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"offGain"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "offGain")]
-    OffGain(f64),
-    /// # Information on fields in the original C++ class
+    OffGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"enabled"`
     /// -   type: `hkBool`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enabled")]
-    Enabled(bool),
-    /// # Information on fields in the original C++ class
+    Enabled(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"currentFwdAxisLS"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "currentFwdAxisLS", skip_serializing)]
-    CurrentFwdAxisLs(cgmath::Vector4<f32>),
+    CurrentFwdAxisLs(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsLookAtModifierBoneDataHkParam<'de>, "@name",
-    ("index" => Index(i16)),
-    ("fwdAxisLS" => FwdAxisLs(cgmath::Vector4<f32>)),
-    ("limitAngleDegrees" => LimitAngleDegrees(f64)),
-    ("onGain" => OnGain(f64)),
-    ("offGain" => OffGain(f64)),
-    ("enabled" => Enabled(bool)),
-    ("currentFwdAxisLS" => CurrentFwdAxisLs(cgmath::Vector4<f32>)),
+    ("index" => Index(Primitive<i16>)),
+    ("fwdAxisLS" => FwdAxisLs(Vector4<f32>)),
+    ("limitAngleDegrees" => LimitAngleDegrees(Primitive<f32>)),
+    ("onGain" => OnGain(Primitive<f32>)),
+    ("offGain" => OffGain(Primitive<f32>)),
+    ("enabled" => Enabled(Primitive<bool>)),
+    ("currentFwdAxisLS" => CurrentFwdAxisLs(Vector4<f32>)),
 }

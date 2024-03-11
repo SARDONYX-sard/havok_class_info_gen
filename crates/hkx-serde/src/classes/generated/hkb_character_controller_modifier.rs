@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCharacterControllerModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCharacterControllerModifier"`: Name of this class.
+    /// `"hkbCharacterControllerModifier"`: The original C++ class name.
     #[serde(default = "HkbCharacterControllerModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCharacterControllerModifier<'a> {
 }
 
 impl HkbCharacterControllerModifier<'_> {
-    /// Return `"hkbCharacterControllerModifier"`, which is the name of this class.
+    /// Return `"hkbCharacterControllerModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCharacterControllerModifier".into()
+        "hkbCharacterControllerModifier".into()
     }
 
     /// Return `"0xf675d6fb"`, which is the signature of this class.
@@ -63,83 +64,83 @@ impl HkbCharacterControllerModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCharacterControllerModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"controlData"`
     /// -   type: `struct hkbCharacterControllerControlData`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "controlData")]
     ControlData(HkbCharacterControllerControlData),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"initialVelocity"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initialVelocity")]
-    InitialVelocity(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    InitialVelocity(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"initialVelocityCoordinates"`
     /// -   type: `enum InitialVelocityCoordinates`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initialVelocityCoordinates")]
     InitialVelocityCoordinates(InitialVelocityCoordinates),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"motionMode"`
     /// -   type: `enum MotionMode`
     /// - offset: 97
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "motionMode")]
     MotionMode(MotionMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"forceDownwardMomentum"`
     /// -   type: `hkBool`
     /// - offset: 98
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forceDownwardMomentum")]
-    ForceDownwardMomentum(bool),
-    /// # Information on fields in the original C++ class
+    ForceDownwardMomentum(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"applyGravity"`
     /// -   type: `hkBool`
     /// - offset: 99
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "applyGravity")]
-    ApplyGravity(bool),
-    /// # Information on fields in the original C++ class
+    ApplyGravity(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"setInitialVelocity"`
     /// -   type: `hkBool`
     /// - offset: 100
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "setInitialVelocity")]
-    SetInitialVelocity(bool),
-    /// # Information on fields in the original C++ class
+    SetInitialVelocity(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isTouchingGround"`
     /// -   type: `hkBool`
     /// - offset: 101
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isTouchingGround")]
-    IsTouchingGround(bool),
-    /// # Information on fields in the original C++ class
+    IsTouchingGround(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"gravity"`
     /// -   type: `hkVector4`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "gravity", skip_serializing)]
-    Gravity(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Gravity(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timestep"`
     /// -   type: `hkReal`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timestep", skip_serializing)]
-    Timestep(f64),
-    /// # Information on fields in the original C++ class
+    Timestep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isInitialVelocityAdded"`
     /// -   type: `hkBool`
     /// - offset: 132
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "isInitialVelocityAdded", skip_serializing)]
-    IsInitialVelocityAdded(bool),
+    IsInitialVelocityAdded(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -147,16 +148,16 @@ pub enum HkbCharacterControllerModifierHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbCharacterControllerModifierHkParam<'de>, "@name",
     ("controlData" => ControlData(HkbCharacterControllerControlData)),
-    ("initialVelocity" => InitialVelocity(cgmath::Vector4<f32>)),
+    ("initialVelocity" => InitialVelocity(Vector4<f32>)),
     ("initialVelocityCoordinates" => InitialVelocityCoordinates(InitialVelocityCoordinates)),
     ("motionMode" => MotionMode(MotionMode)),
-    ("forceDownwardMomentum" => ForceDownwardMomentum(bool)),
-    ("applyGravity" => ApplyGravity(bool)),
-    ("setInitialVelocity" => SetInitialVelocity(bool)),
-    ("isTouchingGround" => IsTouchingGround(bool)),
-    ("gravity" => Gravity(cgmath::Vector4<f32>)),
-    ("timestep" => Timestep(f64)),
-    ("isInitialVelocityAdded" => IsInitialVelocityAdded(bool)),
+    ("forceDownwardMomentum" => ForceDownwardMomentum(Primitive<bool>)),
+    ("applyGravity" => ApplyGravity(Primitive<bool>)),
+    ("setInitialVelocity" => SetInitialVelocity(Primitive<bool>)),
+    ("isTouchingGround" => IsTouchingGround(Primitive<bool>)),
+    ("gravity" => Gravity(Vector4<f32>)),
+    ("timestep" => Timestep(Primitive<f32>)),
+    ("isInitialVelocityAdded" => IsInitialVelocityAdded(Primitive<bool>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

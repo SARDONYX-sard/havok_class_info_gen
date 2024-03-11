@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpTwistLimitConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpTwistLimitConstraintAtom"`: Name of this class.
+    /// `"hkpTwistLimitConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpTwistLimitConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpTwistLimitConstraintAtom<'a> {
 }
 
 impl HkpTwistLimitConstraintAtom<'_> {
-    /// Return `"hkpTwistLimitConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpTwistLimitConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpTwistLimitConstraintAtom".into()
+        "hkpTwistLimitConstraintAtom".into()
     }
 
     /// Return `"0x7c9b1052"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkpTwistLimitConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpTwistLimitConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"isEnabled"`
     /// -   type: `hkUint8`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isEnabled")]
-    IsEnabled(u8),
-    /// # Information on fields in the original C++ class
+    IsEnabled(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"twistAxis"`
     /// -   type: `hkUint8`
     /// - offset: 3
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "twistAxis")]
-    TwistAxis(u8),
-    /// # Information on fields in the original C++ class
+    TwistAxis(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"refAxis"`
     /// -   type: `hkUint8`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "refAxis")]
-    RefAxis(u8),
-    /// # Information on fields in the original C++ class
+    RefAxis(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"minAngle"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "minAngle")]
-    MinAngle(f64),
-    /// # Information on fields in the original C++ class
+    MinAngle(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxAngle"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxAngle")]
-    MaxAngle(f64),
-    /// # Information on fields in the original C++ class
+    MaxAngle(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"angularLimitsTauFactor"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angularLimitsTauFactor")]
-    AngularLimitsTauFactor(f64),
+    AngularLimitsTauFactor(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpTwistLimitConstraintAtomHkParam<'de>, "@name",
-    ("isEnabled" => IsEnabled(u8)),
-    ("twistAxis" => TwistAxis(u8)),
-    ("refAxis" => RefAxis(u8)),
-    ("minAngle" => MinAngle(f64)),
-    ("maxAngle" => MaxAngle(f64)),
-    ("angularLimitsTauFactor" => AngularLimitsTauFactor(f64)),
+    ("isEnabled" => IsEnabled(Primitive<u8>)),
+    ("twistAxis" => TwistAxis(Primitive<u8>)),
+    ("refAxis" => RefAxis(Primitive<u8>)),
+    ("minAngle" => MinAngle(Primitive<f32>)),
+    ("maxAngle" => MaxAngle(Primitive<f32>)),
+    ("angularLimitsTauFactor" => AngularLimitsTauFactor(Primitive<f32>)),
 }

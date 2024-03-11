@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaInterleavedUncompressedAnimation<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaInterleavedUncompressedAnimation"`: Name of this class.
+    /// `"hkaInterleavedUncompressedAnimation"`: The original C++ class name.
     #[serde(default = "HkaInterleavedUncompressedAnimation::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaInterleavedUncompressedAnimation<'a> {
 }
 
 impl HkaInterleavedUncompressedAnimation<'_> {
-    /// Return `"hkaInterleavedUncompressedAnimation"`, which is the name of this class.
+    /// Return `"hkaInterleavedUncompressedAnimation"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaInterleavedUncompressedAnimation".into()
+        "hkaInterleavedUncompressedAnimation".into()
     }
 
     /// Return `"0x930af031"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkaInterleavedUncompressedAnimation<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaInterleavedUncompressedAnimationHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transforms"`
     /// -   type: `hkArray&lt;hkQsTransform&gt;`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transforms")]
-    Transforms(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    Transforms(Vec<QsTransform<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"floats"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "floats")]
-    Floats(Vec<f64>),
+    Floats(Vec<Primitive<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaInterleavedUncompressedAnimationHkParam<'de>, "@name",
-    ("transforms" => Transforms(Vec<cgmath::Matrix4<f32>>)),
-    ("floats" => Floats(Vec<f64>)),
+    ("transforms" => Transforms(Vec<QsTransform<f32>>)),
+    ("floats" => Floats(Vec<Primitive<f32>>)),
 }

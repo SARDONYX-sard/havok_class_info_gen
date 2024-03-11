@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbGetUpModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbGetUpModifier"`: Name of this class.
+    /// `"hkbGetUpModifier"`: The original C++ class name.
     #[serde(default = "HkbGetUpModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbGetUpModifier<'a> {
 }
 
 impl HkbGetUpModifier<'_> {
-    /// Return `"hkbGetUpModifier"`, which is the name of this class.
+    /// Return `"hkbGetUpModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbGetUpModifier".into()
+        "hkbGetUpModifier".into()
     }
 
     /// Return `"0x61cb7ac0"`, which is the signature of this class.
@@ -63,82 +64,82 @@ impl HkbGetUpModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbGetUpModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"groundNormal"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "groundNormal")]
-    GroundNormal(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    GroundNormal(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"duration"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "duration")]
-    Duration(f64),
-    /// # Information on fields in the original C++ class
+    Duration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"alignWithGroundDuration"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "alignWithGroundDuration")]
-    AlignWithGroundDuration(f64),
-    /// # Information on fields in the original C++ class
+    AlignWithGroundDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rootBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rootBoneIndex")]
-    RootBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    RootBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"otherBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 74
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "otherBoneIndex")]
-    OtherBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    OtherBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"anotherBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "anotherBoneIndex")]
-    AnotherBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    AnotherBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeSinceBegin"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeSinceBegin", skip_serializing)]
-    TimeSinceBegin(f64),
-    /// # Information on fields in the original C++ class
+    TimeSinceBegin(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeStep"`
     /// -   type: `hkReal`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeStep", skip_serializing)]
-    TimeStep(f64),
-    /// # Information on fields in the original C++ class
+    TimeStep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"initNextModify"`
     /// -   type: `hkBool`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "initNextModify", skip_serializing)]
-    InitNextModify(bool),
+    InitNextModify(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbGetUpModifierHkParam<'de>, "@name",
-    ("groundNormal" => GroundNormal(cgmath::Vector4<f32>)),
-    ("duration" => Duration(f64)),
-    ("alignWithGroundDuration" => AlignWithGroundDuration(f64)),
-    ("rootBoneIndex" => RootBoneIndex(i16)),
-    ("otherBoneIndex" => OtherBoneIndex(i16)),
-    ("anotherBoneIndex" => AnotherBoneIndex(i16)),
-    ("timeSinceBegin" => TimeSinceBegin(f64)),
-    ("timeStep" => TimeStep(f64)),
-    ("initNextModify" => InitNextModify(bool)),
+    ("groundNormal" => GroundNormal(Vector4<f32>)),
+    ("duration" => Duration(Primitive<f32>)),
+    ("alignWithGroundDuration" => AlignWithGroundDuration(Primitive<f32>)),
+    ("rootBoneIndex" => RootBoneIndex(Primitive<i16>)),
+    ("otherBoneIndex" => OtherBoneIndex(Primitive<i16>)),
+    ("anotherBoneIndex" => AnotherBoneIndex(Primitive<i16>)),
+    ("timeSinceBegin" => TimeSinceBegin(Primitive<f32>)),
+    ("timeStep" => TimeStep(Primitive<f32>)),
+    ("initNextModify" => InitNextModify(Primitive<bool>)),
 }

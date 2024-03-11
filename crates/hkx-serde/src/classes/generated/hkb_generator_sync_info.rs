@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbGeneratorSyncInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbGeneratorSyncInfo"`: Name of this class.
+    /// `"hkbGeneratorSyncInfo"`: The original C++ class name.
     #[serde(default = "HkbGeneratorSyncInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbGeneratorSyncInfo<'a> {
 }
 
 impl HkbGeneratorSyncInfo<'_> {
-    /// Return `"hkbGeneratorSyncInfo"`, which is the name of this class.
+    /// Return `"hkbGeneratorSyncInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbGeneratorSyncInfo".into()
+        "hkbGeneratorSyncInfo".into()
     }
 
     /// Return `"0xa3c341f8"`, which is the signature of this class.
@@ -63,74 +64,74 @@ impl HkbGeneratorSyncInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbGeneratorSyncInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"syncPoints"`
     /// -   type: `struct hkbGeneratorSyncInfoSyncPoint[8]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "syncPoints")]
-    SyncPoints(HkbGeneratorSyncInfoSyncPoint[8]),
-    /// # Information on fields in the original C++ class
+    SyncPoints([HkbGeneratorSyncInfoSyncPoint; 8]),
+    /// # Field information in the original C++ class
     /// -   name:`"baseFrequency"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "baseFrequency")]
-    BaseFrequency(f64),
-    /// # Information on fields in the original C++ class
+    BaseFrequency(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"localTime"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "localTime")]
-    LocalTime(f64),
-    /// # Information on fields in the original C++ class
+    LocalTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"playbackSpeed"`
     /// -   type: `hkReal`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "playbackSpeed")]
-    PlaybackSpeed(f64),
-    /// # Information on fields in the original C++ class
+    PlaybackSpeed(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numSyncPoints"`
     /// -   type: `hkInt8`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numSyncPoints")]
-    NumSyncPoints(i8),
-    /// # Information on fields in the original C++ class
+    NumSyncPoints(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"isCyclic"`
     /// -   type: `hkBool`
     /// - offset: 77
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isCyclic")]
-    IsCyclic(bool),
-    /// # Information on fields in the original C++ class
+    IsCyclic(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isMirrored"`
     /// -   type: `hkBool`
     /// - offset: 78
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isMirrored")]
-    IsMirrored(bool),
-    /// # Information on fields in the original C++ class
+    IsMirrored(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isAdditive"`
     /// -   type: `hkBool`
     /// - offset: 79
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isAdditive")]
-    IsAdditive(bool),
+    IsAdditive(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbGeneratorSyncInfoHkParam<'de>, "@name",
-    ("syncPoints" => SyncPoints(HkbGeneratorSyncInfoSyncPoint[8])),
-    ("baseFrequency" => BaseFrequency(f64)),
-    ("localTime" => LocalTime(f64)),
-    ("playbackSpeed" => PlaybackSpeed(f64)),
-    ("numSyncPoints" => NumSyncPoints(i8)),
-    ("isCyclic" => IsCyclic(bool)),
-    ("isMirrored" => IsMirrored(bool)),
-    ("isAdditive" => IsAdditive(bool)),
+    ("syncPoints" => SyncPoints([HkbGeneratorSyncInfoSyncPoint; 8])),
+    ("baseFrequency" => BaseFrequency(Primitive<f32>)),
+    ("localTime" => LocalTime(Primitive<f32>)),
+    ("playbackSpeed" => PlaybackSpeed(Primitive<f32>)),
+    ("numSyncPoints" => NumSyncPoints(Primitive<i8>)),
+    ("isCyclic" => IsCyclic(Primitive<bool>)),
+    ("isMirrored" => IsMirrored(Primitive<bool>)),
+    ("isAdditive" => IsAdditive(Primitive<bool>)),
 }

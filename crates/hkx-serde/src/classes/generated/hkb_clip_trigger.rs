@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbClipTrigger<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbClipTrigger"`: Name of this class.
+    /// `"hkbClipTrigger"`: The original C++ class name.
     #[serde(default = "HkbClipTrigger::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbClipTrigger<'a> {
 }
 
 impl HkbClipTrigger<'_> {
-    /// Return `"hkbClipTrigger"`, which is the name of this class.
+    /// Return `"hkbClipTrigger"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbClipTrigger".into()
+        "hkbClipTrigger".into()
     }
 
     /// Return `"0x7eb45cea"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkbClipTrigger<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbClipTriggerHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"localTime"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "localTime")]
-    LocalTime(f64),
-    /// # Information on fields in the original C++ class
+    LocalTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"event"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "event")]
     Event(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"relativeToEndOfClip"`
     /// -   type: `hkBool`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "relativeToEndOfClip")]
-    RelativeToEndOfClip(bool),
-    /// # Information on fields in the original C++ class
+    RelativeToEndOfClip(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"acyclic"`
     /// -   type: `hkBool`
     /// - offset: 13
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "acyclic")]
-    Acyclic(bool),
-    /// # Information on fields in the original C++ class
+    Acyclic(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isAnnotation"`
     /// -   type: `hkBool`
     /// - offset: 14
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isAnnotation")]
-    IsAnnotation(bool),
+    IsAnnotation(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbClipTriggerHkParam<'de>, "@name",
-    ("localTime" => LocalTime(f64)),
+    ("localTime" => LocalTime(Primitive<f32>)),
     ("event" => Event(HkbEventProperty)),
-    ("relativeToEndOfClip" => RelativeToEndOfClip(bool)),
-    ("acyclic" => Acyclic(bool)),
-    ("isAnnotation" => IsAnnotation(bool)),
+    ("relativeToEndOfClip" => RelativeToEndOfClip(Primitive<bool>)),
+    ("acyclic" => Acyclic(Primitive<bool>)),
+    ("isAnnotation" => IsAnnotation(Primitive<bool>)),
 }

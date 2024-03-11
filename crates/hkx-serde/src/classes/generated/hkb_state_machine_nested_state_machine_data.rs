@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbStateMachineNestedStateMachineData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbStateMachineNestedStateMachineData"`: Name of this class.
+    /// `"hkbStateMachineNestedStateMachineData"`: The original C++ class name.
     #[serde(default = "HkbStateMachineNestedStateMachineData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbStateMachineNestedStateMachineData<'a> {
 }
 
 impl HkbStateMachineNestedStateMachineData<'_> {
-    /// Return `"hkbStateMachineNestedStateMachineData"`, which is the name of this class.
+    /// Return `"hkbStateMachineNestedStateMachineData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbStateMachineNestedStateMachineData".into()
+        "hkbStateMachineNestedStateMachineData".into()
     }
 
     /// Return `"0x7358f5da"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkbStateMachineNestedStateMachineData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbStateMachineNestedStateMachineDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"nestedStateMachine"`
     /// -   type: `void*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "nestedStateMachine", skip_serializing)]
     NestedStateMachine(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"eventIdMap"`
     /// -   type: `void*`
     /// - offset: 4

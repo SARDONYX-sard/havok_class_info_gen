@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpTriggerVolume<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpTriggerVolume"`: Name of this class.
+    /// `"hkpTriggerVolume"`: The original C++ class name.
     #[serde(default = "HkpTriggerVolume::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpTriggerVolume<'a> {
 }
 
 impl HkpTriggerVolume<'_> {
-    /// Return `"hkpTriggerVolume"`, which is the name of this class.
+    /// Return `"hkpTriggerVolume"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpTriggerVolume".into()
+        "hkpTriggerVolume".into()
     }
 
     /// Return `"0xa29a8d1a"`, which is the signature of this class.
@@ -63,44 +64,44 @@ impl HkpTriggerVolume<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpTriggerVolumeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"overlappingBodies"`
     /// -   type: `hkArray&lt;hkpRigidBody*&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "overlappingBodies")]
-    OverlappingBodies(Vec<Box<HkpRigidBody>>),
-    /// # Information on fields in the original C++ class
+    OverlappingBodies(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"eventQueue"`
     /// -   type: `hkArray&lt;struct hkpTriggerVolumeEventInfo&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventQueue")]
     EventQueue(Vec<HkpTriggerVolumeEventInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"triggerBody"`
     /// -   type: `struct hkpRigidBody*`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "triggerBody")]
-    TriggerBody(Box<HkpRigidBody>),
-    /// # Information on fields in the original C++ class
+    TriggerBody(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"sequenceNumber"`
     /// -   type: `hkUint32`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sequenceNumber")]
-    SequenceNumber(u32),
+    SequenceNumber(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpTriggerVolumeHkParam<'de>, "@name",
-    ("overlappingBodies" => OverlappingBodies(Vec<Box<HkpRigidBody>>)),
+    ("overlappingBodies" => OverlappingBodies(Vec<Cow<'a, str>>)),
     ("eventQueue" => EventQueue(Vec<HkpTriggerVolumeEventInfo>)),
-    ("triggerBody" => TriggerBody(Box<HkpRigidBody>)),
-    ("sequenceNumber" => SequenceNumber(u32)),
+    ("triggerBody" => TriggerBody(Cow<'a, str>)),
+    ("sequenceNumber" => SequenceNumber(Primitive<u32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

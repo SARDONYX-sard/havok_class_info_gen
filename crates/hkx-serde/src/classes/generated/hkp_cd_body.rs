@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCdBody<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCdBody"`: Name of this class.
+    /// `"hkpCdBody"`: The original C++ class name.
     #[serde(default = "HkpCdBody::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCdBody<'a> {
 }
 
 impl HkpCdBody<'_> {
-    /// Return `"hkpCdBody"`, which is the name of this class.
+    /// Return `"hkpCdBody"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCdBody".into()
+        "hkpCdBody".into()
     }
 
     /// Return `"0x54a4b841"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpCdBody<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCdBodyHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"shape"`
     /// -   type: `struct hkpShape*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shape")]
-    Shape(Box<HkpShape>),
-    /// # Information on fields in the original C++ class
+    Shape(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"shapeKey"`
     /// -   type: `hkUint32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shapeKey")]
-    ShapeKey(u32),
-    /// # Information on fields in the original C++ class
+    ShapeKey(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"motion"`
     /// -   type: `void*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "motion", skip_serializing)]
     Motion(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"parent"`
     /// -   type: `struct hkpCdBody*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "parent", skip_serializing)]
-    Parent(Box<HkpCdBody>),
+    Parent(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCdBodyHkParam<'de>, "@name",
-    ("shape" => Shape(Box<HkpShape>)),
-    ("shapeKey" => ShapeKey(u32)),
+    ("shape" => Shape(Cow<'a, str>)),
+    ("shapeKey" => ShapeKey(Primitive<u32>)),
     ("motion" => Motion(())),
-    ("parent" => Parent(Box<HkpCdBody>)),
+    ("parent" => Parent(Cow<'a, str>)),
 }

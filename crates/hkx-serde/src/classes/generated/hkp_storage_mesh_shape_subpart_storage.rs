@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpStorageMeshShapeSubpartStorage<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpStorageMeshShapeSubpartStorage"`: Name of this class.
+    /// `"hkpStorageMeshShapeSubpartStorage"`: The original C++ class name.
     #[serde(default = "HkpStorageMeshShapeSubpartStorage::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpStorageMeshShapeSubpartStorage<'a> {
 }
 
 impl HkpStorageMeshShapeSubpartStorage<'_> {
-    /// Return `"hkpStorageMeshShapeSubpartStorage"`, which is the name of this class.
+    /// Return `"hkpStorageMeshShapeSubpartStorage"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpStorageMeshShapeSubpartStorage".into()
+        "hkpStorageMeshShapeSubpartStorage".into()
     }
 
     /// Return `"0xbf27438"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkpStorageMeshShapeSubpartStorage<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpStorageMeshShapeSubpartStorageHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertices"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertices")]
-    Vertices(Vec<f64>),
-    /// # Information on fields in the original C++ class
+    Vertices(Vec<Primitive<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"indices16"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indices16")]
-    Indices16(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Indices16(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"indices32"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indices32")]
-    Indices32(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    Indices32(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndices"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialIndices")]
-    MaterialIndices(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    MaterialIndices(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"materials"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materials")]
-    Materials(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    Materials(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndices16"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialIndices16")]
-    MaterialIndices16(Vec<u16>),
+    MaterialIndices16(Vec<Primitive<u16>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpStorageMeshShapeSubpartStorageHkParam<'de>, "@name",
-    ("vertices" => Vertices(Vec<f64>)),
-    ("indices16" => Indices16(Vec<u16>)),
-    ("indices32" => Indices32(Vec<u32>)),
-    ("materialIndices" => MaterialIndices(Vec<u8>)),
-    ("materials" => Materials(Vec<u32>)),
-    ("materialIndices16" => MaterialIndices16(Vec<u16>)),
+    ("vertices" => Vertices(Vec<Primitive<f32>>)),
+    ("indices16" => Indices16(Vec<Primitive<u16>>)),
+    ("indices32" => Indices32(Vec<Primitive<u32>>)),
+    ("materialIndices" => MaterialIndices(Vec<Primitive<u8>>)),
+    ("materials" => Materials(Vec<Primitive<u32>>)),
+    ("materialIndices16" => MaterialIndices16(Vec<Primitive<u16>>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMemoryMeshShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMemoryMeshShape"`: Name of this class.
+    /// `"hkMemoryMeshShape"`: The original C++ class name.
     #[serde(default = "HkMemoryMeshShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMemoryMeshShape<'a> {
 }
 
 impl HkMemoryMeshShape<'_> {
-    /// Return `"hkMemoryMeshShape"`, which is the name of this class.
+    /// Return `"hkMemoryMeshShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMemoryMeshShape".into()
+        "hkMemoryMeshShape".into()
     }
 
     /// Return `"0xb743a578"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkMemoryMeshShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMemoryMeshShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sections"`
     /// -   type: `hkArray&lt;struct hkMeshSectionCinfo&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sections")]
     Sections(Vec<HkMeshSectionCinfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"indices16"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indices16")]
-    Indices16(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Indices16(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"indices32"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indices32")]
-    Indices32(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    Indices32(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
+    Name(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -98,7 +99,7 @@ pub enum HkMemoryMeshShapeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkMemoryMeshShapeHkParam<'de>, "@name",
     ("sections" => Sections(Vec<HkMeshSectionCinfo>)),
-    ("indices16" => Indices16(Vec<u16>)),
-    ("indices32" => Indices32(Vec<u32>)),
-    ("name" => Name(String)),
+    ("indices16" => Indices16(Vec<Primitive<u16>>)),
+    ("indices32" => Indices32(Vec<Primitive<u32>>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
 }

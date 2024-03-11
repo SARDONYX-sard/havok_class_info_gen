@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCollidableBoundingVolumeData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCollidableBoundingVolumeData"`: Name of this class.
+    /// `"hkpCollidableBoundingVolumeData"`: The original C++ class name.
     #[serde(default = "HkpCollidableBoundingVolumeData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCollidableBoundingVolumeData<'a> {
 }
 
 impl HkpCollidableBoundingVolumeData<'_> {
-    /// Return `"hkpCollidableBoundingVolumeData"`, which is the name of this class.
+    /// Return `"hkpCollidableBoundingVolumeData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCollidableBoundingVolumeData".into()
+        "hkpCollidableBoundingVolumeData".into()
     }
 
     /// Return `"0xb5f0e6b1"`, which is the signature of this class.
@@ -63,70 +64,70 @@ impl HkpCollidableBoundingVolumeData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCollidableBoundingVolumeDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"min"`
     /// -   type: `hkUint32[3]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "min")]
-    Min([u32; 3]),
-    /// # Information on fields in the original C++ class
+    Min([Primitive<u32>; 3]),
+    /// # Field information in the original C++ class
     /// -   name:`"expansionMin"`
     /// -   type: `hkUint8[3]`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "expansionMin")]
-    ExpansionMin([u8; 3]),
-    /// # Information on fields in the original C++ class
+    ExpansionMin([Primitive<u8>; 3]),
+    /// # Field information in the original C++ class
     /// -   name:`"expansionShift"`
     /// -   type: `hkUint8`
     /// - offset: 15
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "expansionShift")]
-    ExpansionShift(u8),
-    /// # Information on fields in the original C++ class
+    ExpansionShift(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"max"`
     /// -   type: `hkUint32[3]`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "max")]
-    Max([u32; 3]),
-    /// # Information on fields in the original C++ class
+    Max([Primitive<u32>; 3]),
+    /// # Field information in the original C++ class
     /// -   name:`"expansionMax"`
     /// -   type: `hkUint8[3]`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "expansionMax")]
-    ExpansionMax([u8; 3]),
-    /// # Information on fields in the original C++ class
+    ExpansionMax([Primitive<u8>; 3]),
+    /// # Field information in the original C++ class
     /// -   name:`"padding"`
     /// -   type: `hkUint8`
     /// - offset: 31
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "padding")]
-    Padding(u8),
-    /// # Information on fields in the original C++ class
+    Padding(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"numChildShapeAabbs"`
     /// -   type: `hkUint16`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "numChildShapeAabbs", skip_serializing)]
-    NumChildShapeAabbs(u16),
-    /// # Information on fields in the original C++ class
+    NumChildShapeAabbs(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"capacityChildShapeAabbs"`
     /// -   type: `hkUint16`
     /// - offset: 34
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "capacityChildShapeAabbs", skip_serializing)]
-    CapacityChildShapeAabbs(u16),
-    /// # Information on fields in the original C++ class
+    CapacityChildShapeAabbs(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"childShapeAabbs"`
     /// -   type: `void*`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "childShapeAabbs", skip_serializing)]
     ChildShapeAabbs(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childShapeKeys"`
     /// -   type: `void*`
     /// - offset: 40
@@ -139,14 +140,14 @@ pub enum HkpCollidableBoundingVolumeDataHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCollidableBoundingVolumeDataHkParam<'de>, "@name",
-    ("min" => Min([u32; 3])),
-    ("expansionMin" => ExpansionMin([u8; 3])),
-    ("expansionShift" => ExpansionShift(u8)),
-    ("max" => Max([u32; 3])),
-    ("expansionMax" => ExpansionMax([u8; 3])),
-    ("padding" => Padding(u8)),
-    ("numChildShapeAabbs" => NumChildShapeAabbs(u16)),
-    ("capacityChildShapeAabbs" => CapacityChildShapeAabbs(u16)),
+    ("min" => Min([Primitive<u32>; 3])),
+    ("expansionMin" => ExpansionMin([Primitive<u8>; 3])),
+    ("expansionShift" => ExpansionShift(Primitive<u8>)),
+    ("max" => Max([Primitive<u32>; 3])),
+    ("expansionMax" => ExpansionMax([Primitive<u8>; 3])),
+    ("padding" => Padding(Primitive<u8>)),
+    ("numChildShapeAabbs" => NumChildShapeAabbs(Primitive<u16>)),
+    ("capacityChildShapeAabbs" => CapacityChildShapeAabbs(Primitive<u16>)),
     ("childShapeAabbs" => ChildShapeAabbs(())),
     ("childShapeKeys" => ChildShapeKeys(())),
 }

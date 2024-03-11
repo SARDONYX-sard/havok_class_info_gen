@@ -2,7 +2,7 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
-use super::*;
+use crate::havok_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +24,7 @@ pub struct HkxVertexDescriptionElementDecl<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxVertexDescriptionElementDecl"`: Name of this class.
+    /// `"hkxVertexDescriptionElementDecl"`: The original C++ class name.
     #[serde(default = "HkxVertexDescriptionElementDecl::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -35,19 +35,18 @@ pub struct HkxVertexDescriptionElementDecl<'a> {
     pub signature: Cow<'a, str>,
 
     /// The `"hkparam"` tag (C++ field) vector
-    #[serde(bound(deserialize = "Vec<HkxVertexDescriptionElementDeclHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<HkxVertexDescriptionElementDeclHkParam<'a>>
+    pub hkparams: Vec<HkxVertexDescriptionElementDeclHkParam>,
 }
 
 impl HkxVertexDescriptionElementDecl<'_> {
-    /// Return `"hkxVertexDescriptionElementDecl"`, which is the name of this class.
+    /// Return `"hkxVertexDescriptionElementDecl"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxVertexDescriptionElementDecl".into()
+        "hkxVertexDescriptionElementDecl".into()
     }
 
     /// Return `"0x483a429b"`, which is the signature of this class.
@@ -62,51 +61,89 @@ impl HkxVertexDescriptionElementDecl<'_> {
 /// In C++, it represents the name of one field in the class.
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
-pub enum HkxVertexDescriptionElementDeclHkParam<'a> {
-    /// # Information on fields in the original C++ class
+pub enum HkxVertexDescriptionElementDeclHkParam {
+    /// # Field information in the original C++ class
     /// -   name:`"byteOffset"`
     /// -   type: `hkUint32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "byteOffset")]
-    ByteOffset(u32),
-    /// # Information on fields in the original C++ class
+    ByteOffset(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum DataType`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(DataType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"usage"`
     /// -   type: `enum DataUsage`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "usage")]
     Usage(DataUsage),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"byteStride"`
     /// -   type: `hkUint32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "byteStride")]
-    ByteStride(u32),
-    /// # Information on fields in the original C++ class
+    ByteStride(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numElements"`
     /// -   type: `hkUint8`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numElements")]
-    NumElements(u8),
+    NumElements(Primitive<u8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
-    HkxVertexDescriptionElementDeclHkParam<'de>, "@name",
-    ("byteOffset" => ByteOffset(u32)),
+    HkxVertexDescriptionElementDeclHkParam, "@name",
+    ("byteOffset" => ByteOffset(Primitive<u32>)),
     ("type" => Type(DataType)),
     ("usage" => Usage(DataUsage)),
-    ("byteStride" => ByteStride(u32)),
-    ("numElements" => NumElements(u8)),
+    ("byteStride" => ByteStride(Primitive<u32>)),
+    ("numElements" => NumElements(Primitive<u8>)),
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum DataType {
+    #[serde(rename = "HKX_DT_NONE")]
+    HkxDtNone = 0,
+    #[serde(rename = "HKX_DT_UINT8")]
+    HkxDtUint8 = 1,
+    #[serde(rename = "HKX_DT_INT16")]
+    HkxDtInt16 = 2,
+    #[serde(rename = "HKX_DT_UINT32")]
+    HkxDtUint32 = 3,
+    #[serde(rename = "HKX_DT_FLOAT")]
+    HkxDtFloat = 4,
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum DataUsage {
+    #[serde(rename = "HKX_DU_NONE")]
+    None = 0,
+    #[serde(rename = "HKX_DU_POSITION")]
+    Position = 1,
+    #[serde(rename = "HKX_DU_COLOR")]
+    Color = 2,
+    #[serde(rename = "HKX_DU_NORMAL")]
+    Normal = 4,
+    #[serde(rename = "HKX_DU_TANGENT")]
+    Tangent = 8,
+    #[serde(rename = "HKX_DU_BINORMAL")]
+    BiNormal = 16,
+    #[serde(rename = "HKX_DU_TEXCOORD")]
+    TexCoord = 32,
+    #[serde(rename = "HKX_DU_BLENDWEIGHTS")]
+    BlendWeights = 64,
+    #[serde(rename = "HKX_DU_BLENDINDICES")]
+    BlendIndices = 128,
+    #[serde(rename = "HKX_DU_USERDATA")]
+    UserData = 256,
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsLimbIkModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSLimbIKModifier"`: Name of this class.
+    /// `"BSLimbIKModifier"`: The original C++ class name.
     #[serde(default = "BsLimbIkModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsLimbIkModifier<'a> {
 }
 
 impl BsLimbIkModifier<'_> {
-    /// Return `"BSLimbIKModifier"`, which is the name of this class.
+    /// Return `"BSLimbIKModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsLimbIkModifier".into()
+        "BSLimbIKModifier".into()
     }
 
     /// Return `"0x8ea971e5"`, which is the signature of this class.
@@ -63,63 +64,63 @@ impl BsLimbIkModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsLimbIkModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"limitAngleDegrees"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "limitAngleDegrees")]
-    LimitAngleDegrees(f64),
-    /// # Information on fields in the original C++ class
+    LimitAngleDegrees(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"currentAngle"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "currentAngle", skip_serializing)]
-    CurrentAngle(f64),
-    /// # Information on fields in the original C++ class
+    CurrentAngle(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"startBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startBoneIndex")]
-    StartBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    StartBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"endBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 54
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endBoneIndex")]
-    EndBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    EndBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"gain"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "gain")]
-    Gain(f64),
-    /// # Information on fields in the original C++ class
+    Gain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneRadius"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneRadius")]
-    BoneRadius(f64),
-    /// # Information on fields in the original C++ class
+    BoneRadius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"castOffset"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "castOffset")]
-    CastOffset(f64),
-    /// # Information on fields in the original C++ class
+    CastOffset(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeStep"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeStep", skip_serializing)]
-    TimeStep(f64),
-    /// # Information on fields in the original C++ class
+    TimeStep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"pSkeletonMemory"`
     /// -   type: `void*`
     /// - offset: 72
@@ -132,13 +133,13 @@ pub enum BsLimbIkModifierHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsLimbIkModifierHkParam<'de>, "@name",
-    ("limitAngleDegrees" => LimitAngleDegrees(f64)),
-    ("currentAngle" => CurrentAngle(f64)),
-    ("startBoneIndex" => StartBoneIndex(i16)),
-    ("endBoneIndex" => EndBoneIndex(i16)),
-    ("gain" => Gain(f64)),
-    ("boneRadius" => BoneRadius(f64)),
-    ("castOffset" => CastOffset(f64)),
-    ("timeStep" => TimeStep(f64)),
+    ("limitAngleDegrees" => LimitAngleDegrees(Primitive<f32>)),
+    ("currentAngle" => CurrentAngle(Primitive<f32>)),
+    ("startBoneIndex" => StartBoneIndex(Primitive<i16>)),
+    ("endBoneIndex" => EndBoneIndex(Primitive<i16>)),
+    ("gain" => Gain(Primitive<f32>)),
+    ("boneRadius" => BoneRadius(Primitive<f32>)),
+    ("castOffset" => CastOffset(Primitive<f32>)),
+    ("timeStep" => TimeStep(Primitive<f32>)),
     ("pSkeletonMemory" => PSkeletonMemory(())),
 }

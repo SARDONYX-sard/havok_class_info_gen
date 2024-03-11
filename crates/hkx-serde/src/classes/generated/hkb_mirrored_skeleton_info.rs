@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbMirroredSkeletonInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbMirroredSkeletonInfo"`: Name of this class.
+    /// `"hkbMirroredSkeletonInfo"`: The original C++ class name.
     #[serde(default = "HkbMirroredSkeletonInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbMirroredSkeletonInfo<'a> {
 }
 
 impl HkbMirroredSkeletonInfo<'_> {
-    /// Return `"hkbMirroredSkeletonInfo"`, which is the name of this class.
+    /// Return `"hkbMirroredSkeletonInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbMirroredSkeletonInfo".into()
+        "hkbMirroredSkeletonInfo".into()
     }
 
     /// Return `"0xc6c2da4f"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkbMirroredSkeletonInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbMirroredSkeletonInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"mirrorAxis"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mirrorAxis")]
-    MirrorAxis(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    MirrorAxis(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bonePairMap"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bonePairMap")]
-    BonePairMap(Vec<i16>),
+    BonePairMap(Vec<Primitive<i16>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbMirroredSkeletonInfoHkParam<'de>, "@name",
-    ("mirrorAxis" => MirrorAxis(cgmath::Vector4<f32>)),
-    ("bonePairMap" => BonePairMap(Vec<i16>)),
+    ("mirrorAxis" => MirrorAxis(Vector4<f32>)),
+    ("bonePairMap" => BonePairMap(Vec<Primitive<i16>>)),
 }

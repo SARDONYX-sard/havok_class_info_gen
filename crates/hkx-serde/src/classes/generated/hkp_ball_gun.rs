@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpBallGun<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpBallGun"`: Name of this class.
+    /// `"hkpBallGun"`: The original C++ class name.
     #[serde(default = "HkpBallGun::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpBallGun<'a> {
 }
 
 impl HkpBallGun<'_> {
-    /// Return `"hkpBallGun"`, which is the name of this class.
+    /// Return `"hkpBallGun"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpBallGun".into()
+        "hkpBallGun".into()
     }
 
     /// Return `"0x57b06d35"`, which is the signature of this class.
@@ -63,49 +64,49 @@ impl HkpBallGun<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpBallGunHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bulletRadius"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bulletRadius")]
-    BulletRadius(f64),
-    /// # Information on fields in the original C++ class
+    BulletRadius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bulletVelocity"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bulletVelocity")]
-    BulletVelocity(f64),
-    /// # Information on fields in the original C++ class
+    BulletVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bulletMass"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bulletMass")]
-    BulletMass(f64),
-    /// # Information on fields in the original C++ class
+    BulletMass(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"damageMultiplier"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "damageMultiplier")]
-    DamageMultiplier(f64),
-    /// # Information on fields in the original C++ class
+    DamageMultiplier(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxBulletsInWorld"`
     /// -   type: `hkInt32`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxBulletsInWorld")]
-    MaxBulletsInWorld(i32),
-    /// # Information on fields in the original C++ class
+    MaxBulletsInWorld(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bulletOffsetFromCenter"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bulletOffsetFromCenter")]
-    BulletOffsetFromCenter(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    BulletOffsetFromCenter(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"addedBodies"`
     /// -   type: `void*`
     /// - offset: 80
@@ -118,11 +119,11 @@ pub enum HkpBallGunHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpBallGunHkParam<'de>, "@name",
-    ("bulletRadius" => BulletRadius(f64)),
-    ("bulletVelocity" => BulletVelocity(f64)),
-    ("bulletMass" => BulletMass(f64)),
-    ("damageMultiplier" => DamageMultiplier(f64)),
-    ("maxBulletsInWorld" => MaxBulletsInWorld(i32)),
-    ("bulletOffsetFromCenter" => BulletOffsetFromCenter(cgmath::Vector4<f32>)),
+    ("bulletRadius" => BulletRadius(Primitive<f32>)),
+    ("bulletVelocity" => BulletVelocity(Primitive<f32>)),
+    ("bulletMass" => BulletMass(Primitive<f32>)),
+    ("damageMultiplier" => DamageMultiplier(Primitive<f32>)),
+    ("maxBulletsInWorld" => MaxBulletsInWorld(Primitive<i32>)),
+    ("bulletOffsetFromCenter" => BulletOffsetFromCenter(Vector4<f32>)),
     ("addedBodies" => AddedBodies(())),
 }

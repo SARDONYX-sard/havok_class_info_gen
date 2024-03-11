@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbProxyModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbProxyModifier"`: Name of this class.
+    /// `"hkbProxyModifier"`: The original C++ class name.
     #[serde(default = "HkbProxyModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbProxyModifier<'a> {
 }
 
 impl HkbProxyModifier<'_> {
-    /// Return `"hkbProxyModifier"`, which is the name of this class.
+    /// Return `"hkbProxyModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbProxyModifier".into()
+        "hkbProxyModifier".into()
     }
 
     /// Return `"0x8a41554f"`, which is the signature of this class.
@@ -63,209 +64,209 @@ impl HkbProxyModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbProxyModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"proxyInfo"`
     /// -   type: `struct hkbProxyModifierProxyInfo`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "proxyInfo")]
     ProxyInfo(HkbProxyModifierProxyInfo),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"linearVelocity"`
     /// -   type: `hkVector4`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "linearVelocity")]
-    LinearVelocity(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    LinearVelocity(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"horizontalGain"`
     /// -   type: `hkReal`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "horizontalGain")]
-    HorizontalGain(f64),
-    /// # Information on fields in the original C++ class
+    HorizontalGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"verticalGain"`
     /// -   type: `hkReal`
     /// - offset: 148
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "verticalGain")]
-    VerticalGain(f64),
-    /// # Information on fields in the original C++ class
+    VerticalGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxHorizontalSeparation"`
     /// -   type: `hkReal`
     /// - offset: 152
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxHorizontalSeparation")]
-    MaxHorizontalSeparation(f64),
-    /// # Information on fields in the original C++ class
+    MaxHorizontalSeparation(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxVerticalSeparation"`
     /// -   type: `hkReal`
     /// - offset: 156
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxVerticalSeparation")]
-    MaxVerticalSeparation(f64),
-    /// # Information on fields in the original C++ class
+    MaxVerticalSeparation(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"verticalDisplacementError"`
     /// -   type: `hkReal`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "verticalDisplacementError")]
-    VerticalDisplacementError(f64),
-    /// # Information on fields in the original C++ class
+    VerticalDisplacementError(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"verticalDisplacementErrorGain"`
     /// -   type: `hkReal`
     /// - offset: 164
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "verticalDisplacementErrorGain")]
-    VerticalDisplacementErrorGain(f64),
-    /// # Information on fields in the original C++ class
+    VerticalDisplacementErrorGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxVerticalDisplacement"`
     /// -   type: `hkReal`
     /// - offset: 168
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxVerticalDisplacement")]
-    MaxVerticalDisplacement(f64),
-    /// # Information on fields in the original C++ class
+    MaxVerticalDisplacement(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"minVerticalDisplacement"`
     /// -   type: `hkReal`
     /// - offset: 172
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "minVerticalDisplacement")]
-    MinVerticalDisplacement(f64),
-    /// # Information on fields in the original C++ class
+    MinVerticalDisplacement(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"capsuleHeight"`
     /// -   type: `hkReal`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "capsuleHeight")]
-    CapsuleHeight(f64),
-    /// # Information on fields in the original C++ class
+    CapsuleHeight(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"capsuleRadius"`
     /// -   type: `hkReal`
     /// - offset: 180
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "capsuleRadius")]
-    CapsuleRadius(f64),
-    /// # Information on fields in the original C++ class
+    CapsuleRadius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxSlopeForRotation"`
     /// -   type: `hkReal`
     /// - offset: 184
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxSlopeForRotation")]
-    MaxSlopeForRotation(f64),
-    /// # Information on fields in the original C++ class
+    MaxSlopeForRotation(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 188
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionFilterInfo")]
-    CollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    CollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"phantomType"`
     /// -   type: `enum PhantomType`
     /// - offset: 192
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "phantomType")]
     PhantomType(PhantomType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"linearVelocityMode"`
     /// -   type: `enum LinearVelocityMode`
     /// - offset: 193
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "linearVelocityMode")]
     LinearVelocityMode(LinearVelocityMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ignoreIncomingRotation"`
     /// -   type: `hkBool`
     /// - offset: 194
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ignoreIncomingRotation")]
-    IgnoreIncomingRotation(bool),
-    /// # Information on fields in the original C++ class
+    IgnoreIncomingRotation(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"ignoreCollisionDuringRotation"`
     /// -   type: `hkBool`
     /// - offset: 195
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ignoreCollisionDuringRotation")]
-    IgnoreCollisionDuringRotation(bool),
-    /// # Information on fields in the original C++ class
+    IgnoreCollisionDuringRotation(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"ignoreIncomingTranslation"`
     /// -   type: `hkBool`
     /// - offset: 196
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ignoreIncomingTranslation")]
-    IgnoreIncomingTranslation(bool),
-    /// # Information on fields in the original C++ class
+    IgnoreIncomingTranslation(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"includeDownwardMomentum"`
     /// -   type: `hkBool`
     /// - offset: 197
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "includeDownwardMomentum")]
-    IncludeDownwardMomentum(bool),
-    /// # Information on fields in the original C++ class
+    IncludeDownwardMomentum(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"followWorldFromModel"`
     /// -   type: `hkBool`
     /// - offset: 198
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "followWorldFromModel")]
-    FollowWorldFromModel(bool),
-    /// # Information on fields in the original C++ class
+    FollowWorldFromModel(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isTouchingGround"`
     /// -   type: `hkBool`
     /// - offset: 199
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isTouchingGround")]
-    IsTouchingGround(bool),
-    /// # Information on fields in the original C++ class
+    IsTouchingGround(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"characterProxy"`
     /// -   type: `void*`
     /// - offset: 200
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "characterProxy", skip_serializing)]
     CharacterProxy(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"phantom"`
     /// -   type: `void*`
     /// - offset: 204
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "phantom", skip_serializing)]
     Phantom(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"phantomShape"`
     /// -   type: `void*`
     /// - offset: 208
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "phantomShape", skip_serializing)]
     PhantomShape(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"horizontalDisplacement"`
     /// -   type: `hkVector4`
     /// - offset: 224
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "horizontalDisplacement", skip_serializing)]
-    HorizontalDisplacement(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    HorizontalDisplacement(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"verticalDisplacement"`
     /// -   type: `hkReal`
     /// - offset: 240
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "verticalDisplacement", skip_serializing)]
-    VerticalDisplacement(f64),
-    /// # Information on fields in the original C++ class
+    VerticalDisplacement(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timestep"`
     /// -   type: `hkReal`
     /// - offset: 244
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timestep", skip_serializing)]
-    Timestep(f64),
-    /// # Information on fields in the original C++ class
+    Timestep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"previousFrameFollowWorldFromModel"`
     /// -   type: `hkBool`
     /// - offset: 248
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "previousFrameFollowWorldFromModel", skip_serializing)]
-    PreviousFrameFollowWorldFromModel(bool),
+    PreviousFrameFollowWorldFromModel(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -273,34 +274,34 @@ pub enum HkbProxyModifierHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbProxyModifierHkParam<'de>, "@name",
     ("proxyInfo" => ProxyInfo(HkbProxyModifierProxyInfo)),
-    ("linearVelocity" => LinearVelocity(cgmath::Vector4<f32>)),
-    ("horizontalGain" => HorizontalGain(f64)),
-    ("verticalGain" => VerticalGain(f64)),
-    ("maxHorizontalSeparation" => MaxHorizontalSeparation(f64)),
-    ("maxVerticalSeparation" => MaxVerticalSeparation(f64)),
-    ("verticalDisplacementError" => VerticalDisplacementError(f64)),
-    ("verticalDisplacementErrorGain" => VerticalDisplacementErrorGain(f64)),
-    ("maxVerticalDisplacement" => MaxVerticalDisplacement(f64)),
-    ("minVerticalDisplacement" => MinVerticalDisplacement(f64)),
-    ("capsuleHeight" => CapsuleHeight(f64)),
-    ("capsuleRadius" => CapsuleRadius(f64)),
-    ("maxSlopeForRotation" => MaxSlopeForRotation(f64)),
-    ("collisionFilterInfo" => CollisionFilterInfo(u32)),
+    ("linearVelocity" => LinearVelocity(Vector4<f32>)),
+    ("horizontalGain" => HorizontalGain(Primitive<f32>)),
+    ("verticalGain" => VerticalGain(Primitive<f32>)),
+    ("maxHorizontalSeparation" => MaxHorizontalSeparation(Primitive<f32>)),
+    ("maxVerticalSeparation" => MaxVerticalSeparation(Primitive<f32>)),
+    ("verticalDisplacementError" => VerticalDisplacementError(Primitive<f32>)),
+    ("verticalDisplacementErrorGain" => VerticalDisplacementErrorGain(Primitive<f32>)),
+    ("maxVerticalDisplacement" => MaxVerticalDisplacement(Primitive<f32>)),
+    ("minVerticalDisplacement" => MinVerticalDisplacement(Primitive<f32>)),
+    ("capsuleHeight" => CapsuleHeight(Primitive<f32>)),
+    ("capsuleRadius" => CapsuleRadius(Primitive<f32>)),
+    ("maxSlopeForRotation" => MaxSlopeForRotation(Primitive<f32>)),
+    ("collisionFilterInfo" => CollisionFilterInfo(Primitive<u32>)),
     ("phantomType" => PhantomType(PhantomType)),
     ("linearVelocityMode" => LinearVelocityMode(LinearVelocityMode)),
-    ("ignoreIncomingRotation" => IgnoreIncomingRotation(bool)),
-    ("ignoreCollisionDuringRotation" => IgnoreCollisionDuringRotation(bool)),
-    ("ignoreIncomingTranslation" => IgnoreIncomingTranslation(bool)),
-    ("includeDownwardMomentum" => IncludeDownwardMomentum(bool)),
-    ("followWorldFromModel" => FollowWorldFromModel(bool)),
-    ("isTouchingGround" => IsTouchingGround(bool)),
+    ("ignoreIncomingRotation" => IgnoreIncomingRotation(Primitive<bool>)),
+    ("ignoreCollisionDuringRotation" => IgnoreCollisionDuringRotation(Primitive<bool>)),
+    ("ignoreIncomingTranslation" => IgnoreIncomingTranslation(Primitive<bool>)),
+    ("includeDownwardMomentum" => IncludeDownwardMomentum(Primitive<bool>)),
+    ("followWorldFromModel" => FollowWorldFromModel(Primitive<bool>)),
+    ("isTouchingGround" => IsTouchingGround(Primitive<bool>)),
     ("characterProxy" => CharacterProxy(())),
     ("phantom" => Phantom(())),
     ("phantomShape" => PhantomShape(())),
-    ("horizontalDisplacement" => HorizontalDisplacement(cgmath::Vector4<f32>)),
-    ("verticalDisplacement" => VerticalDisplacement(f64)),
-    ("timestep" => Timestep(f64)),
-    ("previousFrameFollowWorldFromModel" => PreviousFrameFollowWorldFromModel(bool)),
+    ("horizontalDisplacement" => HorizontalDisplacement(Vector4<f32>)),
+    ("verticalDisplacement" => VerticalDisplacement(Primitive<f32>)),
+    ("timestep" => Timestep(Primitive<f32>)),
+    ("previousFrameFollowWorldFromModel" => PreviousFrameFollowWorldFromModel(Primitive<bool>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

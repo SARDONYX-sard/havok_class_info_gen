@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkSweptTransform<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkSweptTransform"`: Name of this class.
+    /// `"hkSweptTransform"`: The original C++ class name.
     #[serde(default = "HkSweptTransform::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkSweptTransform<'a> {
 }
 
 impl HkSweptTransform<'_> {
-    /// Return `"hkSweptTransform"`, which is the name of this class.
+    /// Return `"hkSweptTransform"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkSweptTransform".into()
+        "hkSweptTransform".into()
     }
 
     /// Return `"0xb4e5770"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkSweptTransform<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkSweptTransformHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"centerOfMass0"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "centerOfMass0")]
-    CenterOfMass0(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    CenterOfMass0(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"centerOfMass1"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "centerOfMass1")]
-    CenterOfMass1(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    CenterOfMass1(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotation0"`
     /// -   type: `hkQuaternion`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotation0")]
-    Rotation0(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    Rotation0(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotation1"`
     /// -   type: `hkQuaternion`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotation1")]
-    Rotation1(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    Rotation1(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"centerOfMassLocal"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "centerOfMassLocal")]
-    CenterOfMassLocal(cgmath::Vector4<f32>),
+    CenterOfMassLocal(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkSweptTransformHkParam<'de>, "@name",
-    ("centerOfMass0" => CenterOfMass0(cgmath::Vector4<f32>)),
-    ("centerOfMass1" => CenterOfMass1(cgmath::Vector4<f32>)),
-    ("rotation0" => Rotation0(cgmath::Quaternion<f32>)),
-    ("rotation1" => Rotation1(cgmath::Quaternion<f32>)),
-    ("centerOfMassLocal" => CenterOfMassLocal(cgmath::Vector4<f32>)),
+    ("centerOfMass0" => CenterOfMass0(Vector4<f32>)),
+    ("centerOfMass1" => CenterOfMass1(Vector4<f32>)),
+    ("rotation0" => Rotation0(Quaternion<f32>)),
+    ("rotation1" => Rotation1(Quaternion<f32>)),
+    ("centerOfMassLocal" => CenterOfMassLocal(Vector4<f32>)),
 }

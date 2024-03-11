@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCollisionFilter<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCollisionFilter"`: Name of this class.
+    /// `"hkpCollisionFilter"`: The original C++ class name.
     #[serde(default = "HkpCollisionFilter::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCollisionFilter<'a> {
 }
 
 impl HkpCollisionFilter<'_> {
-    /// Return `"hkpCollisionFilter"`, which is the name of this class.
+    /// Return `"hkpCollisionFilter"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCollisionFilter".into()
+        "hkpCollisionFilter".into()
     }
 
     /// Return `"0x60960336"`, which is the signature of this class.
@@ -63,36 +64,36 @@ impl HkpCollisionFilter<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCollisionFilterHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"prepad"`
     /// -   type: `hkUint32[2]`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "prepad")]
-    Prepad([u32; 2]),
-    /// # Information on fields in the original C++ class
+    Prepad([Primitive<u32>; 2]),
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum hkpFilterType`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(HkpFilterType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"postpad"`
     /// -   type: `hkUint32[3]`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "postpad")]
-    Postpad([u32; 3]),
+    Postpad([Primitive<u32>; 3]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCollisionFilterHkParam<'de>, "@name",
-    ("prepad" => Prepad([u32; 2])),
+    ("prepad" => Prepad([Primitive<u32>; 2])),
     ("type" => Type(HkpFilterType)),
-    ("postpad" => Postpad([u32; 3])),
+    ("postpad" => Postpad([Primitive<u32>; 3])),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

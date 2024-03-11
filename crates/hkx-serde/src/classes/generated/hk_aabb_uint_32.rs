@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkAabbUint32<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkAabbUint32"`: Name of this class.
+    /// `"hkAabbUint32"`: The original C++ class name.
     #[serde(default = "HkAabbUint32::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkAabbUint32<'a> {
 }
 
 impl HkAabbUint32<'_> {
-    /// Return `"hkAabbUint32"`, which is the name of this class.
+    /// Return `"hkAabbUint32"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkAabbUint32".into()
+        "hkAabbUint32".into()
     }
 
     /// Return `"0x11e7c11"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkAabbUint32<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkAabbUint32HkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"min"`
     /// -   type: `hkUint32[3]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "min")]
-    Min([u32; 3]),
-    /// # Information on fields in the original C++ class
+    Min([Primitive<u32>; 3]),
+    /// # Field information in the original C++ class
     /// -   name:`"expansionMin"`
     /// -   type: `hkUint8[3]`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "expansionMin")]
-    ExpansionMin([u8; 3]),
-    /// # Information on fields in the original C++ class
+    ExpansionMin([Primitive<u8>; 3]),
+    /// # Field information in the original C++ class
     /// -   name:`"expansionShift"`
     /// -   type: `hkUint8`
     /// - offset: 15
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "expansionShift")]
-    ExpansionShift(u8),
-    /// # Information on fields in the original C++ class
+    ExpansionShift(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"max"`
     /// -   type: `hkUint32[3]`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "max")]
-    Max([u32; 3]),
-    /// # Information on fields in the original C++ class
+    Max([Primitive<u32>; 3]),
+    /// # Field information in the original C++ class
     /// -   name:`"expansionMax"`
     /// -   type: `hkUint8[3]`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "expansionMax")]
-    ExpansionMax([u8; 3]),
-    /// # Information on fields in the original C++ class
+    ExpansionMax([Primitive<u8>; 3]),
+    /// # Field information in the original C++ class
     /// -   name:`"shapeKeyByte"`
     /// -   type: `hkUint8`
     /// - offset: 31
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shapeKeyByte")]
-    ShapeKeyByte(u8),
+    ShapeKeyByte(Primitive<u8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkAabbUint32HkParam<'de>, "@name",
-    ("min" => Min([u32; 3])),
-    ("expansionMin" => ExpansionMin([u8; 3])),
-    ("expansionShift" => ExpansionShift(u8)),
-    ("max" => Max([u32; 3])),
-    ("expansionMax" => ExpansionMax([u8; 3])),
-    ("shapeKeyByte" => ShapeKeyByte(u8)),
+    ("min" => Min([Primitive<u32>; 3])),
+    ("expansionMin" => ExpansionMin([Primitive<u8>; 3])),
+    ("expansionShift" => ExpansionShift(Primitive<u8>)),
+    ("max" => Max([Primitive<u32>; 3])),
+    ("expansionMax" => ExpansionMax([Primitive<u8>; 3])),
+    ("shapeKeyByte" => ShapeKeyByte(Primitive<u8>)),
 }

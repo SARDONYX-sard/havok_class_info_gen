@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxMesh<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxMesh"`: Name of this class.
+    /// `"hkxMesh"`: The original C++ class name.
     #[serde(default = "HkxMesh::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxMesh<'a> {
 }
 
 impl HkxMesh<'_> {
-    /// Return `"hkxMesh"`, which is the name of this class.
+    /// Return `"hkxMesh"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxMesh".into()
+        "hkxMesh".into()
     }
 
     /// Return `"0xf2edcc5f"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkxMesh<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxMeshHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sections"`
     /// -   type: `hkArray&lt;hkxMeshSection*&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sections")]
-    Sections(Vec<Box<HkxMeshSection>>),
-    /// # Information on fields in the original C++ class
+    Sections(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"userChannelInfos"`
     /// -   type: `hkArray&lt;hkxMeshUserChannelInfo*&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userChannelInfos")]
-    UserChannelInfos(Vec<Box<HkxMeshUserChannelInfo>>),
+    UserChannelInfos(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxMeshHkParam<'de>, "@name",
-    ("sections" => Sections(Vec<Box<HkxMeshSection>>)),
-    ("userChannelInfos" => UserChannelInfos(Vec<Box<HkxMeshUserChannelInfo>>)),
+    ("sections" => Sections(Vec<Cow<'a, str>>)),
+    ("userChannelInfos" => UserChannelInfos(Vec<Cow<'a, str>>)),
 }

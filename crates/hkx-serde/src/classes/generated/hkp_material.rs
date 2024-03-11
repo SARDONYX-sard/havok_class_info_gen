@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMaterial<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMaterial"`: Name of this class.
+    /// `"hkpMaterial"`: The original C++ class name.
     #[serde(default = "HkpMaterial::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMaterial<'a> {
 }
 
 impl HkpMaterial<'_> {
-    /// Return `"hkpMaterial"`, which is the name of this class.
+    /// Return `"hkpMaterial"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMaterial".into()
+        "hkpMaterial".into()
     }
 
     /// Return `"0x33be6570"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpMaterial<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMaterialHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"responseType"`
     /// -   type: `enum ResponseType`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "responseType")]
     ResponseType(ResponseType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rollingFrictionMultiplier"`
     /// -   type: `hkHalf`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rollingFrictionMultiplier")]
-    RollingFrictionMultiplier(f32),
-    /// # Information on fields in the original C++ class
+    RollingFrictionMultiplier(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"friction"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "friction")]
-    Friction(f64),
-    /// # Information on fields in the original C++ class
+    Friction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"restitution"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "restitution")]
-    Restitution(f64),
+    Restitution(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -98,9 +99,9 @@ pub enum HkpMaterialHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpMaterialHkParam<'de>, "@name",
     ("responseType" => ResponseType(ResponseType)),
-    ("rollingFrictionMultiplier" => RollingFrictionMultiplier(f32)),
-    ("friction" => Friction(f64)),
-    ("restitution" => Restitution(f64)),
+    ("rollingFrictionMultiplier" => RollingFrictionMultiplier(Primitive<f32>)),
+    ("friction" => Friction(Primitive<f32>)),
+    ("restitution" => Restitution(Primitive<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

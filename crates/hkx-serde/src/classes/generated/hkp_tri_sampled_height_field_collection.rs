@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpTriSampledHeightFieldCollection<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpTriSampledHeightFieldCollection"`: Name of this class.
+    /// `"hkpTriSampledHeightFieldCollection"`: The original C++ class name.
     #[serde(default = "HkpTriSampledHeightFieldCollection::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpTriSampledHeightFieldCollection<'a> {
 }
 
 impl HkpTriSampledHeightFieldCollection<'_> {
-    /// Return `"hkpTriSampledHeightFieldCollection"`, which is the name of this class.
+    /// Return `"hkpTriSampledHeightFieldCollection"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpTriSampledHeightFieldCollection".into()
+        "hkpTriSampledHeightFieldCollection".into()
     }
 
     /// Return `"0xc291ddde"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkpTriSampledHeightFieldCollection<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpTriSampledHeightFieldCollectionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"heightfield"`
     /// -   type: `struct hkpSampledHeightFieldShape*`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "heightfield")]
-    Heightfield(Box<HkpSampledHeightFieldShape>),
-    /// # Information on fields in the original C++ class
+    Heightfield(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"childSize"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "childSize", skip_serializing)]
-    ChildSize(i32),
-    /// # Information on fields in the original C++ class
+    ChildSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"radius"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "radius")]
-    Radius(f64),
-    /// # Information on fields in the original C++ class
+    Radius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"weldingInfo"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingInfo")]
-    WeldingInfo(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    WeldingInfo(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"triangleExtrusion"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "triangleExtrusion")]
-    TriangleExtrusion(cgmath::Vector4<f32>),
+    TriangleExtrusion(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpTriSampledHeightFieldCollectionHkParam<'de>, "@name",
-    ("heightfield" => Heightfield(Box<HkpSampledHeightFieldShape>)),
-    ("childSize" => ChildSize(i32)),
-    ("radius" => Radius(f64)),
-    ("weldingInfo" => WeldingInfo(Vec<u16>)),
-    ("triangleExtrusion" => TriangleExtrusion(cgmath::Vector4<f32>)),
+    ("heightfield" => Heightfield(Cow<'a, str>)),
+    ("childSize" => ChildSize(Primitive<i32>)),
+    ("radius" => Radius(Primitive<f32>)),
+    ("weldingInfo" => WeldingInfo(Vec<Primitive<u16>>)),
+    ("triangleExtrusion" => TriangleExtrusion(Vector4<f32>)),
 }

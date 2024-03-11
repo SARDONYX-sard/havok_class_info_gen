@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbTwistModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbTwistModifier"`: Name of this class.
+    /// `"hkbTwistModifier"`: The original C++ class name.
     #[serde(default = "HkbTwistModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbTwistModifier<'a> {
 }
 
 impl HkbTwistModifier<'_> {
-    /// Return `"hkbTwistModifier"`, which is the name of this class.
+    /// Return `"hkbTwistModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbTwistModifier".into()
+        "hkbTwistModifier".into()
     }
 
     /// Return `"0xb6b76b32"`, which is the signature of this class.
@@ -63,63 +64,63 @@ impl HkbTwistModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbTwistModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"axisOfRotation"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "axisOfRotation")]
-    AxisOfRotation(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AxisOfRotation(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"twistAngle"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "twistAngle")]
-    TwistAngle(f64),
-    /// # Information on fields in the original C++ class
+    TwistAngle(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"startBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startBoneIndex")]
-    StartBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    StartBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"endBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 70
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endBoneIndex")]
-    EndBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    EndBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"setAngleMethod"`
     /// -   type: `enum SetAngleMethod`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "setAngleMethod")]
     SetAngleMethod(SetAngleMethod),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rotationAxisCoordinates"`
     /// -   type: `enum RotationAxisCoordinates`
     /// - offset: 73
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotationAxisCoordinates")]
     RotationAxisCoordinates(RotationAxisCoordinates),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"isAdditive"`
     /// -   type: `hkBool`
     /// - offset: 74
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isAdditive")]
-    IsAdditive(bool),
-    /// # Information on fields in the original C++ class
+    IsAdditive(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneChainIndices"`
     /// -   type: `hkArray&lt;void&gt;`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "boneChainIndices", skip_serializing)]
     BoneChainIndices(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"parentBoneIndices"`
     /// -   type: `hkArray&lt;void&gt;`
     /// - offset: 88
@@ -132,13 +133,13 @@ pub enum HkbTwistModifierHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbTwistModifierHkParam<'de>, "@name",
-    ("axisOfRotation" => AxisOfRotation(cgmath::Vector4<f32>)),
-    ("twistAngle" => TwistAngle(f64)),
-    ("startBoneIndex" => StartBoneIndex(i16)),
-    ("endBoneIndex" => EndBoneIndex(i16)),
+    ("axisOfRotation" => AxisOfRotation(Vector4<f32>)),
+    ("twistAngle" => TwistAngle(Primitive<f32>)),
+    ("startBoneIndex" => StartBoneIndex(Primitive<i16>)),
+    ("endBoneIndex" => EndBoneIndex(Primitive<i16>)),
     ("setAngleMethod" => SetAngleMethod(SetAngleMethod)),
     ("rotationAxisCoordinates" => RotationAxisCoordinates(RotationAxisCoordinates)),
-    ("isAdditive" => IsAdditive(bool)),
+    ("isAdditive" => IsAdditive(Primitive<bool>)),
     ("boneChainIndices" => BoneChainIndices(Vec<()>)),
     ("parentBoneIndices" => ParentBoneIndices(Vec<()>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsSpeedSamplerModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSSpeedSamplerModifier"`: Name of this class.
+    /// `"BSSpeedSamplerModifier"`: The original C++ class name.
     #[serde(default = "BsSpeedSamplerModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsSpeedSamplerModifier<'a> {
 }
 
 impl BsSpeedSamplerModifier<'_> {
-    /// Return `"BSSpeedSamplerModifier"`, which is the name of this class.
+    /// Return `"BSSpeedSamplerModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsSpeedSamplerModifier".into()
+        "BSSpeedSamplerModifier".into()
     }
 
     /// Return `"0xd297fda9"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl BsSpeedSamplerModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsSpeedSamplerModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"state"`
     /// -   type: `hkInt32`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "state")]
-    State(i32),
-    /// # Information on fields in the original C++ class
+    State(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"direction"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "direction")]
-    Direction(f64),
-    /// # Information on fields in the original C++ class
+    Direction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"goalSpeed"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "goalSpeed")]
-    GoalSpeed(f64),
-    /// # Information on fields in the original C++ class
+    GoalSpeed(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"speedOut"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "speedOut")]
-    SpeedOut(f64),
+    SpeedOut(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsSpeedSamplerModifierHkParam<'de>, "@name",
-    ("state" => State(i32)),
-    ("direction" => Direction(f64)),
-    ("goalSpeed" => GoalSpeed(f64)),
-    ("speedOut" => SpeedOut(f64)),
+    ("state" => State(Primitive<i32>)),
+    ("direction" => Direction(Primitive<f32>)),
+    ("goalSpeed" => GoalSpeed(Primitive<f32>)),
+    ("speedOut" => SpeedOut(Primitive<f32>)),
 }

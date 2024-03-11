@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbEventsFromRangeModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbEventsFromRangeModifier"`: Name of this class.
+    /// `"hkbEventsFromRangeModifier"`: The original C++ class name.
     #[serde(default = "HkbEventsFromRangeModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbEventsFromRangeModifier<'a> {
 }
 
 impl HkbEventsFromRangeModifier<'_> {
-    /// Return `"hkbEventsFromRangeModifier"`, which is the name of this class.
+    /// Return `"hkbEventsFromRangeModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbEventsFromRangeModifier".into()
+        "hkbEventsFromRangeModifier".into()
     }
 
     /// Return `"0xbc561b6e"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl HkbEventsFromRangeModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbEventsFromRangeModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"inputValue"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "inputValue")]
-    InputValue(f64),
-    /// # Information on fields in the original C++ class
+    InputValue(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"lowerBound"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lowerBound")]
-    LowerBound(f64),
-    /// # Information on fields in the original C++ class
+    LowerBound(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"eventRanges"`
     /// -   type: `struct hkbEventRangeDataArray*`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventRanges")]
-    EventRanges(Box<HkbEventRangeDataArray>),
-    /// # Information on fields in the original C++ class
+    EventRanges(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"wasActiveInPreviousFrame"`
     /// -   type: `hkArray&lt;void&gt;`
     /// - offset: 56
@@ -97,8 +98,8 @@ pub enum HkbEventsFromRangeModifierHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbEventsFromRangeModifierHkParam<'de>, "@name",
-    ("inputValue" => InputValue(f64)),
-    ("lowerBound" => LowerBound(f64)),
-    ("eventRanges" => EventRanges(Box<HkbEventRangeDataArray>)),
+    ("inputValue" => InputValue(Primitive<f32>)),
+    ("lowerBound" => LowerBound(Primitive<f32>)),
+    ("eventRanges" => EventRanges(Cow<'a, str>)),
     ("wasActiveInPreviousFrame" => WasActiveInPreviousFrame(Vec<()>)),
 }

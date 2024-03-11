@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBehaviorReferenceGenerator<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBehaviorReferenceGenerator"`: Name of this class.
+    /// `"hkbBehaviorReferenceGenerator"`: The original C++ class name.
     #[serde(default = "HkbBehaviorReferenceGenerator::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBehaviorReferenceGenerator<'a> {
 }
 
 impl HkbBehaviorReferenceGenerator<'_> {
-    /// Return `"hkbBehaviorReferenceGenerator"`, which is the name of this class.
+    /// Return `"hkbBehaviorReferenceGenerator"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBehaviorReferenceGenerator".into()
+        "hkbBehaviorReferenceGenerator".into()
     }
 
     /// Return `"0xfcb5423"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkbBehaviorReferenceGenerator<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBehaviorReferenceGeneratorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"behaviorName"`
     /// -   type: `hkStringPtr`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "behaviorName")]
-    BehaviorName(String),
-    /// # Information on fields in the original C++ class
+    BehaviorName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"behavior"`
     /// -   type: `void*`
     /// - offset: 44
@@ -83,6 +84,6 @@ pub enum HkbBehaviorReferenceGeneratorHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbBehaviorReferenceGeneratorHkParam<'de>, "@name",
-    ("behaviorName" => BehaviorName(String)),
+    ("behaviorName" => BehaviorName(Primitive<Cow<'a, str>>)),
     ("behavior" => Behavior(())),
 }

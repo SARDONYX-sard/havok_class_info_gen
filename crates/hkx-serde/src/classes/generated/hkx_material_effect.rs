@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxMaterialEffect<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxMaterialEffect"`: Name of this class.
+    /// `"hkxMaterialEffect"`: The original C++ class name.
     #[serde(default = "HkxMaterialEffect::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxMaterialEffect<'a> {
 }
 
 impl HkxMaterialEffect<'_> {
-    /// Return `"hkxMaterialEffect"`, which is the name of this class.
+    /// Return `"hkxMaterialEffect"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxMaterialEffect".into()
+        "hkxMaterialEffect".into()
     }
 
     /// Return `"0x1d39f925"`, which is the signature of this class.
@@ -63,36 +64,36 @@ impl HkxMaterialEffect<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxMaterialEffectHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum EffectType`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(EffectType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(Vec<u8>),
+    Data(Vec<Primitive<u8>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxMaterialEffectHkParam<'de>, "@name",
-    ("name" => Name(String)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
     ("type" => Type(EffectType)),
-    ("data" => Data(Vec<u8>)),
+    ("data" => Data(Vec<Primitive<u8>>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

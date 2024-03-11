@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpRagdollMotorConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpRagdollMotorConstraintAtom"`: Name of this class.
+    /// `"hkpRagdollMotorConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpRagdollMotorConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpRagdollMotorConstraintAtom<'a> {
 }
 
 impl HkpRagdollMotorConstraintAtom<'_> {
-    /// Return `"hkpRagdollMotorConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpRagdollMotorConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpRagdollMotorConstraintAtom".into()
+        "hkpRagdollMotorConstraintAtom".into()
     }
 
     /// Return `"0x71013826"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkpRagdollMotorConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpRagdollMotorConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"isEnabled"`
     /// -   type: `hkBool`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isEnabled")]
-    IsEnabled(bool),
-    /// # Information on fields in the original C++ class
+    IsEnabled(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"initializedOffset"`
     /// -   type: `hkInt16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initializedOffset")]
-    InitializedOffset(i16),
-    /// # Information on fields in the original C++ class
+    InitializedOffset(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"previousTargetAnglesOffset"`
     /// -   type: `hkInt16`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "previousTargetAnglesOffset")]
-    PreviousTargetAnglesOffset(i16),
-    /// # Information on fields in the original C++ class
+    PreviousTargetAnglesOffset(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"target_bRca"`
     /// -   type: `hkMatrix3`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "target_bRca")]
-    TargetBRca(cgmath::Matrix3<f32>),
-    /// # Information on fields in the original C++ class
+    TargetBRca(Matrix3<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"motors"`
     /// -   type: `struct hkpConstraintMotor*`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "motors")]
-    Motors(Box<HkpConstraintMotor>),
+    Motors(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpRagdollMotorConstraintAtomHkParam<'de>, "@name",
-    ("isEnabled" => IsEnabled(bool)),
-    ("initializedOffset" => InitializedOffset(i16)),
-    ("previousTargetAnglesOffset" => PreviousTargetAnglesOffset(i16)),
-    ("target_bRca" => TargetBRca(cgmath::Matrix3<f32>)),
-    ("motors" => Motors(Box<HkpConstraintMotor>)),
+    ("isEnabled" => IsEnabled(Primitive<bool>)),
+    ("initializedOffset" => InitializedOffset(Primitive<i16>)),
+    ("previousTargetAnglesOffset" => PreviousTargetAnglesOffset(Primitive<i16>)),
+    ("target_bRca" => TargetBRca(Matrix3<f32>)),
+    ("motors" => Motors(Cow<'a, str>)),
 }

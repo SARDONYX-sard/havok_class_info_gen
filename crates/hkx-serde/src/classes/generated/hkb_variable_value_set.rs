@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbVariableValueSet<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbVariableValueSet"`: Name of this class.
+    /// `"hkbVariableValueSet"`: The original C++ class name.
     #[serde(default = "HkbVariableValueSet::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbVariableValueSet<'a> {
 }
 
 impl HkbVariableValueSet<'_> {
-    /// Return `"hkbVariableValueSet"`, which is the name of this class.
+    /// Return `"hkbVariableValueSet"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbVariableValueSet".into()
+        "hkbVariableValueSet".into()
     }
 
     /// Return `"0x27812d8d"`, which is the signature of this class.
@@ -63,27 +64,27 @@ impl HkbVariableValueSet<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbVariableValueSetHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wordVariableValues"`
     /// -   type: `hkArray&lt;struct hkbVariableValue&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wordVariableValues")]
     WordVariableValues(Vec<HkbVariableValue>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"quadVariableValues"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "quadVariableValues")]
-    QuadVariableValues(Vec<cgmath::Vector4<f32>>),
-    /// # Information on fields in the original C++ class
+    QuadVariableValues(Vec<Vector4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"variantVariableValues"`
     /// -   type: `hkArray&lt;hkReferencedObject*&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variantVariableValues")]
-    VariantVariableValues(Vec<Box<HkReferencedObject>>),
+    VariantVariableValues(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -91,6 +92,6 @@ pub enum HkbVariableValueSetHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbVariableValueSetHkParam<'de>, "@name",
     ("wordVariableValues" => WordVariableValues(Vec<HkbVariableValue>)),
-    ("quadVariableValues" => QuadVariableValues(Vec<cgmath::Vector4<f32>>)),
-    ("variantVariableValues" => VariantVariableValues(Vec<Box<HkReferencedObject>>)),
+    ("quadVariableValues" => QuadVariableValues(Vec<Vector4<f32>>)),
+    ("variantVariableValues" => VariantVariableValues(Vec<Cow<'a, str>>)),
 }

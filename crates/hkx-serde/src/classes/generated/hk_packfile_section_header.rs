@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkPackfileSectionHeader<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkPackfileSectionHeader"`: Name of this class.
+    /// `"hkPackfileSectionHeader"`: The original C++ class name.
     #[serde(default = "HkPackfileSectionHeader::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkPackfileSectionHeader<'a> {
 }
 
 impl HkPackfileSectionHeader<'_> {
-    /// Return `"hkPackfileSectionHeader"`, which is the name of this class.
+    /// Return `"hkPackfileSectionHeader"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkPackfileSectionHeader".into()
+        "hkPackfileSectionHeader".into()
     }
 
     /// Return `"0xf2a92154"`, which is the signature of this class.
@@ -63,82 +64,82 @@ impl HkPackfileSectionHeader<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkPackfileSectionHeaderHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sectionTag"`
     /// -   type: `hkChar[19]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sectionTag")]
-    SectionTag([char; 19]),
-    /// # Information on fields in the original C++ class
+    SectionTag([Primitive<char>; 19]),
+    /// # Field information in the original C++ class
     /// -   name:`"nullByte"`
     /// -   type: `hkChar`
     /// - offset: 19
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nullByte")]
-    NullByte(char),
-    /// # Information on fields in the original C++ class
+    NullByte(Primitive<char>),
+    /// # Field information in the original C++ class
     /// -   name:`"absoluteDataStart"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "absoluteDataStart")]
-    AbsoluteDataStart(i32),
-    /// # Information on fields in the original C++ class
+    AbsoluteDataStart(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"localFixupsOffset"`
     /// -   type: `hkInt32`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "localFixupsOffset")]
-    LocalFixupsOffset(i32),
-    /// # Information on fields in the original C++ class
+    LocalFixupsOffset(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"globalFixupsOffset"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "globalFixupsOffset")]
-    GlobalFixupsOffset(i32),
-    /// # Information on fields in the original C++ class
+    GlobalFixupsOffset(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"virtualFixupsOffset"`
     /// -   type: `hkInt32`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "virtualFixupsOffset")]
-    VirtualFixupsOffset(i32),
-    /// # Information on fields in the original C++ class
+    VirtualFixupsOffset(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"exportsOffset"`
     /// -   type: `hkInt32`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "exportsOffset")]
-    ExportsOffset(i32),
-    /// # Information on fields in the original C++ class
+    ExportsOffset(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"importsOffset"`
     /// -   type: `hkInt32`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "importsOffset")]
-    ImportsOffset(i32),
-    /// # Information on fields in the original C++ class
+    ImportsOffset(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"endOffset"`
     /// -   type: `hkInt32`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endOffset")]
-    EndOffset(i32),
+    EndOffset(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkPackfileSectionHeaderHkParam<'de>, "@name",
-    ("sectionTag" => SectionTag([char; 19])),
-    ("nullByte" => NullByte(char)),
-    ("absoluteDataStart" => AbsoluteDataStart(i32)),
-    ("localFixupsOffset" => LocalFixupsOffset(i32)),
-    ("globalFixupsOffset" => GlobalFixupsOffset(i32)),
-    ("virtualFixupsOffset" => VirtualFixupsOffset(i32)),
-    ("exportsOffset" => ExportsOffset(i32)),
-    ("importsOffset" => ImportsOffset(i32)),
-    ("endOffset" => EndOffset(i32)),
+    ("sectionTag" => SectionTag([Primitive<char>; 19])),
+    ("nullByte" => NullByte(Primitive<char>)),
+    ("absoluteDataStart" => AbsoluteDataStart(Primitive<i32>)),
+    ("localFixupsOffset" => LocalFixupsOffset(Primitive<i32>)),
+    ("globalFixupsOffset" => GlobalFixupsOffset(Primitive<i32>)),
+    ("virtualFixupsOffset" => VirtualFixupsOffset(Primitive<i32>)),
+    ("exportsOffset" => ExportsOffset(Primitive<i32>)),
+    ("importsOffset" => ImportsOffset(Primitive<i32>)),
+    ("endOffset" => EndOffset(Primitive<i32>)),
 }

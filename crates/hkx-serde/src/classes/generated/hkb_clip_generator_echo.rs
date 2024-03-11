@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbClipGeneratorEcho<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbClipGeneratorEcho"`: Name of this class.
+    /// `"hkbClipGeneratorEcho"`: The original C++ class name.
     #[serde(default = "HkbClipGeneratorEcho::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbClipGeneratorEcho<'a> {
 }
 
 impl HkbClipGeneratorEcho<'_> {
-    /// Return `"hkbClipGeneratorEcho"`, which is the name of this class.
+    /// Return `"hkbClipGeneratorEcho"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbClipGeneratorEcho".into()
+        "hkbClipGeneratorEcho".into()
     }
 
     /// Return `"0x750edf40"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbClipGeneratorEcho<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbClipGeneratorEchoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"offsetLocalTime"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "offsetLocalTime")]
-    OffsetLocalTime(f64),
-    /// # Information on fields in the original C++ class
+    OffsetLocalTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"weight"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weight")]
-    Weight(f64),
-    /// # Information on fields in the original C++ class
+    Weight(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"dwdt"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "dwdt")]
-    Dwdt(f64),
+    Dwdt(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbClipGeneratorEchoHkParam<'de>, "@name",
-    ("offsetLocalTime" => OffsetLocalTime(f64)),
-    ("weight" => Weight(f64)),
-    ("dwdt" => Dwdt(f64)),
+    ("offsetLocalTime" => OffsetLocalTime(Primitive<f32>)),
+    ("weight" => Weight(Primitive<f32>)),
+    ("dwdt" => Dwdt(Primitive<f32>)),
 }

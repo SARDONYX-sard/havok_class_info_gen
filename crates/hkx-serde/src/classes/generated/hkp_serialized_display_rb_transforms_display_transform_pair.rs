@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSerializedDisplayRbTransformsDisplayTransformPair<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSerializedDisplayRbTransformsDisplayTransformPair"`: Name of this class.
+    /// `"hkpSerializedDisplayRbTransformsDisplayTransformPair"`: The original C++ class name.
     #[serde(default = "HkpSerializedDisplayRbTransformsDisplayTransformPair::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSerializedDisplayRbTransformsDisplayTransformPair<'a> {
 }
 
 impl HkpSerializedDisplayRbTransformsDisplayTransformPair<'_> {
-    /// Return `"hkpSerializedDisplayRbTransformsDisplayTransformPair"`, which is the name of this class.
+    /// Return `"hkpSerializedDisplayRbTransformsDisplayTransformPair"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSerializedDisplayRbTransformsDisplayTransformPair".into()
+        "hkpSerializedDisplayRbTransformsDisplayTransformPair".into()
     }
 
     /// Return `"0x94ac5bec"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpSerializedDisplayRbTransformsDisplayTransformPair<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSerializedDisplayRbTransformsDisplayTransformPairHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rb"`
     /// -   type: `struct hkpRigidBody*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rb")]
-    Rb(Box<HkpRigidBody>),
-    /// # Information on fields in the original C++ class
+    Rb(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"localToDisplay"`
     /// -   type: `hkTransform`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "localToDisplay")]
-    LocalToDisplay(cgmath::Matrix4<f32>),
+    LocalToDisplay(Transform<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSerializedDisplayRbTransformsDisplayTransformPairHkParam<'de>, "@name",
-    ("rb" => Rb(Box<HkpRigidBody>)),
-    ("localToDisplay" => LocalToDisplay(cgmath::Matrix4<f32>)),
+    ("rb" => Rb(Cow<'a, str>)),
+    ("localToDisplay" => LocalToDisplay(Transform<f32>)),
 }

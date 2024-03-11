@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbEventRangeDataArray<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbEventRangeDataArray"`: Name of this class.
+    /// `"hkbEventRangeDataArray"`: The original C++ class name.
     #[serde(default = "HkbEventRangeDataArray::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbEventRangeDataArray<'a> {
 }
 
 impl HkbEventRangeDataArray<'_> {
-    /// Return `"hkbEventRangeDataArray"`, which is the name of this class.
+    /// Return `"hkbEventRangeDataArray"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbEventRangeDataArray".into()
+        "hkbEventRangeDataArray".into()
     }
 
     /// Return `"0x330a56ee"`, which is the signature of this class.
@@ -63,7 +64,7 @@ impl HkbEventRangeDataArray<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbEventRangeDataArrayHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"eventData"`
     /// -   type: `hkArray&lt;struct hkbEventRangeData&gt;`
     /// - offset: 8

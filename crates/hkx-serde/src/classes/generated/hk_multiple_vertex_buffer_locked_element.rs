@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMultipleVertexBufferLockedElement<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMultipleVertexBufferLockedElement"`: Name of this class.
+    /// `"hkMultipleVertexBufferLockedElement"`: The original C++ class name.
     #[serde(default = "HkMultipleVertexBufferLockedElement::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMultipleVertexBufferLockedElement<'a> {
 }
 
 impl HkMultipleVertexBufferLockedElement<'_> {
-    /// Return `"hkMultipleVertexBufferLockedElement"`, which is the name of this class.
+    /// Return `"hkMultipleVertexBufferLockedElement"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMultipleVertexBufferLockedElement".into()
+        "hkMultipleVertexBufferLockedElement".into()
     }
 
     /// Return `"0xa0e22afc"`, which is the signature of this class.
@@ -63,66 +64,66 @@ impl HkMultipleVertexBufferLockedElement<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMultipleVertexBufferLockedElementHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexBufferIndex"`
     /// -   type: `hkUint8`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexBufferIndex")]
-    VertexBufferIndex(u8),
-    /// # Information on fields in the original C++ class
+    VertexBufferIndex(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"elementIndex"`
     /// -   type: `hkUint8`
     /// - offset: 1
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "elementIndex")]
-    ElementIndex(u8),
-    /// # Information on fields in the original C++ class
+    ElementIndex(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"lockedBufferIndex"`
     /// -   type: `hkUint8`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lockedBufferIndex")]
-    LockedBufferIndex(u8),
-    /// # Information on fields in the original C++ class
+    LockedBufferIndex(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertexFormatIndex"`
     /// -   type: `hkUint8`
     /// - offset: 3
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexFormatIndex")]
-    VertexFormatIndex(u8),
-    /// # Information on fields in the original C++ class
+    VertexFormatIndex(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"lockFlags"`
     /// -   type: `hkUint8`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lockFlags")]
-    LockFlags(u8),
-    /// # Information on fields in the original C++ class
+    LockFlags(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"outputBufferIndex"`
     /// -   type: `hkUint8`
     /// - offset: 5
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "outputBufferIndex")]
-    OutputBufferIndex(u8),
-    /// # Information on fields in the original C++ class
+    OutputBufferIndex(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"emulatedIndex"`
     /// -   type: `hkInt8`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "emulatedIndex")]
-    EmulatedIndex(i8),
+    EmulatedIndex(Primitive<i8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMultipleVertexBufferLockedElementHkParam<'de>, "@name",
-    ("vertexBufferIndex" => VertexBufferIndex(u8)),
-    ("elementIndex" => ElementIndex(u8)),
-    ("lockedBufferIndex" => LockedBufferIndex(u8)),
-    ("vertexFormatIndex" => VertexFormatIndex(u8)),
-    ("lockFlags" => LockFlags(u8)),
-    ("outputBufferIndex" => OutputBufferIndex(u8)),
-    ("emulatedIndex" => EmulatedIndex(i8)),
+    ("vertexBufferIndex" => VertexBufferIndex(Primitive<u8>)),
+    ("elementIndex" => ElementIndex(Primitive<u8>)),
+    ("lockedBufferIndex" => LockedBufferIndex(Primitive<u8>)),
+    ("vertexFormatIndex" => VertexFormatIndex(Primitive<u8>)),
+    ("lockFlags" => LockFlags(Primitive<u8>)),
+    ("outputBufferIndex" => OutputBufferIndex(Primitive<u8>)),
+    ("emulatedIndex" => EmulatedIndex(Primitive<i8>)),
 }

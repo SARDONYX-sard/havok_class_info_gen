@@ -82,32 +82,10 @@ pub fn generate_classes() {
 
 #[cfg(test)]
 mod tests {
-    use self::helpers::tracing::init_tracing;
     use super::*;
-    use crate::generators::rust::cpp_type_parser::generate_all_mapping_types;
 
     #[test]
     pub fn should_generate_classes() {
         generate_classes()
-    }
-
-    #[test]
-    fn should_generate_all_mapping_types() {
-        let _guard = init_tracing(None, tracing::Level::DEBUG);
-
-        let rpt_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-            .join("assets")
-            .join("hkxcmd_help")
-            .join("rpt");
-
-        let output_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-            .join("src")
-            .join("generators")
-            .join("rust")
-            .join("generated");
-        std::fs::create_dir_all(&output_dir).unwrap();
-        let output_file = output_dir.join("hk_types.rs");
-
-        std::fs::write(output_file, generate_all_mapping_types(rpt_dir)).unwrap();
     }
 }

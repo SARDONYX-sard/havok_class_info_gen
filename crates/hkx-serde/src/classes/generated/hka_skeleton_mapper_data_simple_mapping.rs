@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaSkeletonMapperDataSimpleMapping<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaSkeletonMapperDataSimpleMapping"`: Name of this class.
+    /// `"hkaSkeletonMapperDataSimpleMapping"`: The original C++ class name.
     #[serde(default = "HkaSkeletonMapperDataSimpleMapping::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaSkeletonMapperDataSimpleMapping<'a> {
 }
 
 impl HkaSkeletonMapperDataSimpleMapping<'_> {
-    /// Return `"hkaSkeletonMapperDataSimpleMapping"`, which is the name of this class.
+    /// Return `"hkaSkeletonMapperDataSimpleMapping"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaSkeletonMapperDataSimpleMapping".into()
+        "hkaSkeletonMapperDataSimpleMapping".into()
     }
 
     /// Return `"0x3405deca"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkaSkeletonMapperDataSimpleMapping<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaSkeletonMapperDataSimpleMappingHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"boneA"`
     /// -   type: `hkInt16`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneA")]
-    BoneA(i16),
-    /// # Information on fields in the original C++ class
+    BoneA(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneB"`
     /// -   type: `hkInt16`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneB")]
-    BoneB(i16),
-    /// # Information on fields in the original C++ class
+    BoneB(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"aFromBTransform"`
     /// -   type: `hkQsTransform`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aFromBTransform")]
-    AFromBTransform(cgmath::Matrix4<f32>),
+    AFromBTransform(QsTransform<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaSkeletonMapperDataSimpleMappingHkParam<'de>, "@name",
-    ("boneA" => BoneA(i16)),
-    ("boneB" => BoneB(i16)),
-    ("aFromBTransform" => AFromBTransform(cgmath::Matrix4<f32>)),
+    ("boneA" => BoneA(Primitive<i16>)),
+    ("boneB" => BoneB(Primitive<i16>)),
+    ("aFromBTransform" => AFromBTransform(QsTransform<f32>)),
 }

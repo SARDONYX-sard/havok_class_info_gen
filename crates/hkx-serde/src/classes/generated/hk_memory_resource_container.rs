@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMemoryResourceContainer<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMemoryResourceContainer"`: Name of this class.
+    /// `"hkMemoryResourceContainer"`: The original C++ class name.
     #[serde(default = "HkMemoryResourceContainer::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMemoryResourceContainer<'a> {
 }
 
 impl HkMemoryResourceContainer<'_> {
-    /// Return `"hkMemoryResourceContainer"`, which is the name of this class.
+    /// Return `"hkMemoryResourceContainer"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMemoryResourceContainer".into()
+        "hkMemoryResourceContainer".into()
     }
 
     /// Return `"0x4762f92a"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkMemoryResourceContainer<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMemoryResourceContainerHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"parent"`
     /// -   type: `struct hkMemoryResourceContainer*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "parent", skip_serializing)]
-    Parent(Box<HkMemoryResourceContainer>),
-    /// # Information on fields in the original C++ class
+    Parent(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"resourceHandles"`
     /// -   type: `hkArray&lt;hkMemoryResourceHandle*&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "resourceHandles")]
-    ResourceHandles(Vec<Box<HkMemoryResourceHandle>>),
-    /// # Information on fields in the original C++ class
+    ResourceHandles(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"children"`
     /// -   type: `hkArray&lt;hkMemoryResourceContainer*&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "children")]
-    Children(Vec<Box<HkMemoryResourceContainer>>),
+    Children(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMemoryResourceContainerHkParam<'de>, "@name",
-    ("name" => Name(String)),
-    ("parent" => Parent(Box<HkMemoryResourceContainer>)),
-    ("resourceHandles" => ResourceHandles(Vec<Box<HkMemoryResourceHandle>>)),
-    ("children" => Children(Vec<Box<HkMemoryResourceContainer>>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("parent" => Parent(Cow<'a, str>)),
+    ("resourceHandles" => ResourceHandles(Vec<Cow<'a, str>>)),
+    ("children" => Children(Vec<Cow<'a, str>>)),
 }

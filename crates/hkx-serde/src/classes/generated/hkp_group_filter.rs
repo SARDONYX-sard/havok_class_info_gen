@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpGroupFilter<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpGroupFilter"`: Name of this class.
+    /// `"hkpGroupFilter"`: The original C++ class name.
     #[serde(default = "HkpGroupFilter::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpGroupFilter<'a> {
 }
 
 impl HkpGroupFilter<'_> {
-    /// Return `"hkpGroupFilter"`, which is the name of this class.
+    /// Return `"hkpGroupFilter"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpGroupFilter".into()
+        "hkpGroupFilter".into()
     }
 
     /// Return `"0x65ee88e4"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpGroupFilter<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpGroupFilterHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"nextFreeSystemGroup"`
     /// -   type: `hkInt32`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nextFreeSystemGroup")]
-    NextFreeSystemGroup(i32),
-    /// # Information on fields in the original C++ class
+    NextFreeSystemGroup(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionLookupTable"`
     /// -   type: `hkUint32[32]`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionLookupTable")]
-    CollisionLookupTable([u32; 32]),
-    /// # Information on fields in the original C++ class
+    CollisionLookupTable([Primitive<u32>; 32]),
+    /// # Field information in the original C++ class
     /// -   name:`"pad256"`
     /// -   type: `hkVector4[4]`
     /// - offset: 192
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pad256")]
-    Pad256([cgmath::Vector4<f32>; 4]),
+    Pad256(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpGroupFilterHkParam<'de>, "@name",
-    ("nextFreeSystemGroup" => NextFreeSystemGroup(i32)),
-    ("collisionLookupTable" => CollisionLookupTable([u32; 32])),
-    ("pad256" => Pad256([cgmath::Vector4<f32>; 4])),
+    ("nextFreeSystemGroup" => NextFreeSystemGroup(Primitive<i32>)),
+    ("collisionLookupTable" => CollisionLookupTable([Primitive<u32>; 32])),
+    ("pad256" => Pad256(Vector4<f32>)),
 }

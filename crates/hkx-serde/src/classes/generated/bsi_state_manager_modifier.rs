@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsiStateManagerModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSIStateManagerModifier"`: Name of this class.
+    /// `"BSIStateManagerModifier"`: The original C++ class name.
     #[serde(default = "BsiStateManagerModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsiStateManagerModifier<'a> {
 }
 
 impl BsiStateManagerModifier<'_> {
-    /// Return `"BSIStateManagerModifier"`, which is the name of this class.
+    /// Return `"BSIStateManagerModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsiStateManagerModifier".into()
+        "BSIStateManagerModifier".into()
     }
 
     /// Return `"0x6cb24f2e"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl BsiStateManagerModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsiStateManagerModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"iStateVar"`
     /// -   type: `hkInt32`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "iStateVar")]
-    IStateVar(i32),
-    /// # Information on fields in the original C++ class
+    IStateVar(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"stateData"`
     /// -   type: `hkArray&lt;struct BSIStateManagerModifierBSiStateData&gt;`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stateData")]
     StateData(Vec<BsiStateManagerModifierBSiStateData>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"myStateListener"`
     /// -   type: `struct BSIStateManagerModifierBSIStateManagerStateListener`
     /// - offset: 60
@@ -90,7 +91,7 @@ pub enum BsiStateManagerModifierHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsiStateManagerModifierHkParam<'de>, "@name",
-    ("iStateVar" => IStateVar(i32)),
+    ("iStateVar" => IStateVar(Primitive<i32>)),
     ("stateData" => StateData(Vec<BsiStateManagerModifierBSiStateData>)),
     ("myStateListener" => MyStateListener(BsiStateManagerModifierBsiStateManagerStateListener)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpTyremarkPoint<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpTyremarkPoint"`: Name of this class.
+    /// `"hkpTyremarkPoint"`: The original C++ class name.
     #[serde(default = "HkpTyremarkPoint::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpTyremarkPoint<'a> {
 }
 
 impl HkpTyremarkPoint<'_> {
-    /// Return `"hkpTyremarkPoint"`, which is the name of this class.
+    /// Return `"hkpTyremarkPoint"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpTyremarkPoint".into()
+        "hkpTyremarkPoint".into()
     }
 
     /// Return `"0x6bb7c5e8"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpTyremarkPoint<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpTyremarkPointHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pointLeft"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pointLeft")]
-    PointLeft(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PointLeft(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"pointRight"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pointRight")]
-    PointRight(cgmath::Vector4<f32>),
+    PointRight(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpTyremarkPointHkParam<'de>, "@name",
-    ("pointLeft" => PointLeft(cgmath::Vector4<f32>)),
-    ("pointRight" => PointRight(cgmath::Vector4<f32>)),
+    ("pointLeft" => PointLeft(Vector4<f32>)),
+    ("pointRight" => PointRight(Vector4<f32>)),
 }

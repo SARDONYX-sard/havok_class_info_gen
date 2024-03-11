@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbComputeDirectionModifierInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbComputeDirectionModifierInternalState"`: Name of this class.
+    /// `"hkbComputeDirectionModifierInternalState"`: The original C++ class name.
     #[serde(default = "HkbComputeDirectionModifierInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbComputeDirectionModifierInternalState<'a> {
 }
 
 impl HkbComputeDirectionModifierInternalState<'_> {
-    /// Return `"hkbComputeDirectionModifierInternalState"`, which is the name of this class.
+    /// Return `"hkbComputeDirectionModifierInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbComputeDirectionModifierInternalState".into()
+        "hkbComputeDirectionModifierInternalState".into()
     }
 
     /// Return `"0x6ac054d7"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbComputeDirectionModifierInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbComputeDirectionModifierInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pointOut"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pointOut")]
-    PointOut(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PointOut(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"groundAngleOut"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "groundAngleOut")]
-    GroundAngleOut(f64),
-    /// # Information on fields in the original C++ class
+    GroundAngleOut(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"upAngleOut"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "upAngleOut")]
-    UpAngleOut(f64),
-    /// # Information on fields in the original C++ class
+    UpAngleOut(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"computedOutput"`
     /// -   type: `hkBool`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "computedOutput")]
-    ComputedOutput(bool),
+    ComputedOutput(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbComputeDirectionModifierInternalStateHkParam<'de>, "@name",
-    ("pointOut" => PointOut(cgmath::Vector4<f32>)),
-    ("groundAngleOut" => GroundAngleOut(f64)),
-    ("upAngleOut" => UpAngleOut(f64)),
-    ("computedOutput" => ComputedOutput(bool)),
+    ("pointOut" => PointOut(Vector4<f32>)),
+    ("groundAngleOut" => GroundAngleOut(Primitive<f32>)),
+    ("upAngleOut" => UpAngleOut(Primitive<f32>)),
+    ("computedOutput" => ComputedOutput(Primitive<bool>)),
 }

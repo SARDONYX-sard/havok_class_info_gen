@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsInterpValueModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSInterpValueModifier"`: Name of this class.
+    /// `"BSInterpValueModifier"`: The original C++ class name.
     #[serde(default = "BsInterpValueModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsInterpValueModifier<'a> {
 }
 
 impl BsInterpValueModifier<'_> {
-    /// Return `"BSInterpValueModifier"`, which is the name of this class.
+    /// Return `"BSInterpValueModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsInterpValueModifier".into()
+        "BSInterpValueModifier".into()
     }
 
     /// Return `"0x29adc802"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl BsInterpValueModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsInterpValueModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"source"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "source")]
-    Source(f64),
-    /// # Information on fields in the original C++ class
+    Source(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"target"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "target")]
-    Target(f64),
-    /// # Information on fields in the original C++ class
+    Target(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"result"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "result")]
-    Result(f64),
-    /// # Information on fields in the original C++ class
+    Result(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"gain"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "gain")]
-    Gain(f64),
-    /// # Information on fields in the original C++ class
+    Gain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeStep"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeStep", skip_serializing)]
-    TimeStep(f64),
+    TimeStep(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsInterpValueModifierHkParam<'de>, "@name",
-    ("source" => Source(f64)),
-    ("target" => Target(f64)),
-    ("result" => Result(f64)),
-    ("gain" => Gain(f64)),
-    ("timeStep" => TimeStep(f64)),
+    ("source" => Source(Primitive<f32>)),
+    ("target" => Target(Primitive<f32>)),
+    ("result" => Result(Primitive<f32>)),
+    ("gain" => Gain(Primitive<f32>)),
+    ("timeStep" => TimeStep(Primitive<f32>)),
 }

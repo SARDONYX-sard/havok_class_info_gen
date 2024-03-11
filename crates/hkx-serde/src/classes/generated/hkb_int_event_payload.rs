@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbIntEventPayload<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbIntEventPayload"`: Name of this class.
+    /// `"hkbIntEventPayload"`: The original C++ class name.
     #[serde(default = "HkbIntEventPayload::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbIntEventPayload<'a> {
 }
 
 impl HkbIntEventPayload<'_> {
-    /// Return `"hkbIntEventPayload"`, which is the name of this class.
+    /// Return `"hkbIntEventPayload"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbIntEventPayload".into()
+        "hkbIntEventPayload".into()
     }
 
     /// Return `"0xebbc1bd3"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkbIntEventPayload<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbIntEventPayloadHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(i32),
+    Data(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbIntEventPayloadHkParam<'de>, "@name",
-    ("data" => Data(i32)),
+    ("data" => Data(Primitive<i32>)),
 }

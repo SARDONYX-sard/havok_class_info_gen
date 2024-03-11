@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpHingeLimitsData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpHingeLimitsData"`: Name of this class.
+    /// `"hkpHingeLimitsData"`: The original C++ class name.
     #[serde(default = "HkpHingeLimitsData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpHingeLimitsData<'a> {
 }
 
 impl HkpHingeLimitsData<'_> {
-    /// Return `"hkpHingeLimitsData"`, which is the name of this class.
+    /// Return `"hkpHingeLimitsData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpHingeLimitsData".into()
+        "hkpHingeLimitsData".into()
     }
 
     /// Return `"0xbd46760a"`, which is the signature of this class.
@@ -63,7 +64,7 @@ impl HkpHingeLimitsData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpHingeLimitsDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"atoms"`
     /// -   type: `struct hkpHingeLimitsDataAtoms`
     /// - offset: 16

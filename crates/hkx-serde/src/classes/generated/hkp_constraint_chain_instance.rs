@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConstraintChainInstance<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConstraintChainInstance"`: Name of this class.
+    /// `"hkpConstraintChainInstance"`: The original C++ class name.
     #[serde(default = "HkpConstraintChainInstance::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConstraintChainInstance<'a> {
 }
 
 impl HkpConstraintChainInstance<'_> {
-    /// Return `"hkpConstraintChainInstance"`, which is the name of this class.
+    /// Return `"hkpConstraintChainInstance"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConstraintChainInstance".into()
+        "hkpConstraintChainInstance".into()
     }
 
     /// Return `"0x7a490753"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpConstraintChainInstance<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConstraintChainInstanceHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"chainedEntities"`
     /// -   type: `hkArray&lt;hkpEntity*&gt;`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chainedEntities")]
-    ChainedEntities(Vec<Box<HkpEntity>>),
-    /// # Information on fields in the original C++ class
+    ChainedEntities(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"action"`
     /// -   type: `struct hkpConstraintChainInstanceAction*`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "action")]
-    Action(Box<HkpConstraintChainInstanceAction>),
+    Action(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpConstraintChainInstanceHkParam<'de>, "@name",
-    ("chainedEntities" => ChainedEntities(Vec<Box<HkpEntity>>)),
-    ("action" => Action(Box<HkpConstraintChainInstanceAction>)),
+    ("chainedEntities" => ChainedEntities(Vec<Cow<'a, str>>)),
+    ("action" => Action(Cow<'a, str>)),
 }

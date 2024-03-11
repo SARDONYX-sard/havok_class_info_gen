@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpAction<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpAction"`: Name of this class.
+    /// `"hkpAction"`: The original C++ class name.
     #[serde(default = "HkpAction::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpAction<'a> {
 }
 
 impl HkpAction<'_> {
-    /// Return `"hkpAction"`, which is the name of this class.
+    /// Return `"hkpAction"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpAction".into()
+        "hkpAction".into()
     }
 
     /// Return `"0xbdf70a51"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpAction<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpActionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"world"`
     /// -   type: `void*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "world", skip_serializing)]
     World(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"island"`
     /// -   type: `void*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "island", skip_serializing)]
     Island(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"userData"`
     /// -   type: `hkUlong`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData")]
-    UserData(u64),
-    /// # Information on fields in the original C++ class
+    UserData(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
+    Name(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -99,6 +100,6 @@ impl_deserialize_for_internally_tagged_enum! {
     HkpActionHkParam<'de>, "@name",
     ("world" => World(())),
     ("island" => Island(())),
-    ("userData" => UserData(u64)),
-    ("name" => Name(String)),
+    ("userData" => UserData(Primitive<u64>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbPoweredRagdollControlsModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbPoweredRagdollControlsModifier"`: Name of this class.
+    /// `"hkbPoweredRagdollControlsModifier"`: The original C++ class name.
     #[serde(default = "HkbPoweredRagdollControlsModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbPoweredRagdollControlsModifier<'a> {
 }
 
 impl HkbPoweredRagdollControlsModifier<'_> {
-    /// Return `"hkbPoweredRagdollControlsModifier"`, which is the name of this class.
+    /// Return `"hkbPoweredRagdollControlsModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbPoweredRagdollControlsModifier".into()
+        "hkbPoweredRagdollControlsModifier".into()
     }
 
     /// Return `"0x7cb54065"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbPoweredRagdollControlsModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbPoweredRagdollControlsModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"controlData"`
     /// -   type: `struct hkbPoweredRagdollControlData`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "controlData")]
     ControlData(HkbPoweredRagdollControlData),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bones"`
     /// -   type: `struct hkbBoneIndexArray*`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bones")]
-    Bones(Box<HkbBoneIndexArray>),
-    /// # Information on fields in the original C++ class
+    Bones(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"worldFromModelModeData"`
     /// -   type: `struct hkbWorldFromModelModeData`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "worldFromModelModeData")]
     WorldFromModelModeData(HkbWorldFromModelModeData),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"boneWeights"`
     /// -   type: `struct hkbBoneWeightArray*`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneWeights")]
-    BoneWeights(Box<HkbBoneWeightArray>),
+    BoneWeights(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -98,7 +99,7 @@ pub enum HkbPoweredRagdollControlsModifierHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbPoweredRagdollControlsModifierHkParam<'de>, "@name",
     ("controlData" => ControlData(HkbPoweredRagdollControlData)),
-    ("bones" => Bones(Box<HkbBoneIndexArray>)),
+    ("bones" => Bones(Cow<'a, str>)),
     ("worldFromModelModeData" => WorldFromModelModeData(HkbWorldFromModelModeData)),
-    ("boneWeights" => BoneWeights(Box<HkbBoneWeightArray>)),
+    ("boneWeights" => BoneWeights(Cow<'a, str>)),
 }

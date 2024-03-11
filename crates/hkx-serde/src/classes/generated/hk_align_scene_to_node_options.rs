@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkAlignSceneToNodeOptions<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkAlignSceneToNodeOptions"`: Name of this class.
+    /// `"hkAlignSceneToNodeOptions"`: The original C++ class name.
     #[serde(default = "HkAlignSceneToNodeOptions::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkAlignSceneToNodeOptions<'a> {
 }
 
 impl HkAlignSceneToNodeOptions<'_> {
-    /// Return `"hkAlignSceneToNodeOptions"`, which is the name of this class.
+    /// Return `"hkAlignSceneToNodeOptions"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkAlignSceneToNodeOptions".into()
+        "hkAlignSceneToNodeOptions".into()
     }
 
     /// Return `"0x207cb01"`, which is the signature of this class.
@@ -63,82 +64,82 @@ impl HkAlignSceneToNodeOptions<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkAlignSceneToNodeOptionsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"invert"`
     /// -   type: `hkBool`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "invert")]
-    Invert(bool),
-    /// # Information on fields in the original C++ class
+    Invert(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformPositionX"`
     /// -   type: `hkBool`
     /// - offset: 9
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformPositionX")]
-    TransformPositionX(bool),
-    /// # Information on fields in the original C++ class
+    TransformPositionX(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformPositionY"`
     /// -   type: `hkBool`
     /// - offset: 10
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformPositionY")]
-    TransformPositionY(bool),
-    /// # Information on fields in the original C++ class
+    TransformPositionY(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformPositionZ"`
     /// -   type: `hkBool`
     /// - offset: 11
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformPositionZ")]
-    TransformPositionZ(bool),
-    /// # Information on fields in the original C++ class
+    TransformPositionZ(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformRotation"`
     /// -   type: `hkBool`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformRotation")]
-    TransformRotation(bool),
-    /// # Information on fields in the original C++ class
+    TransformRotation(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformScale"`
     /// -   type: `hkBool`
     /// - offset: 13
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformScale")]
-    TransformScale(bool),
-    /// # Information on fields in the original C++ class
+    TransformScale(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformSkew"`
     /// -   type: `hkBool`
     /// - offset: 14
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformSkew")]
-    TransformSkew(bool),
-    /// # Information on fields in the original C++ class
+    TransformSkew(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"keyframe"`
     /// -   type: `hkInt32`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keyframe")]
-    Keyframe(i32),
-    /// # Information on fields in the original C++ class
+    Keyframe(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"nodeName"`
     /// -   type: `hkStringPtr`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nodeName")]
-    NodeName(String),
+    NodeName(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkAlignSceneToNodeOptionsHkParam<'de>, "@name",
-    ("invert" => Invert(bool)),
-    ("transformPositionX" => TransformPositionX(bool)),
-    ("transformPositionY" => TransformPositionY(bool)),
-    ("transformPositionZ" => TransformPositionZ(bool)),
-    ("transformRotation" => TransformRotation(bool)),
-    ("transformScale" => TransformScale(bool)),
-    ("transformSkew" => TransformSkew(bool)),
-    ("keyframe" => Keyframe(i32)),
-    ("nodeName" => NodeName(String)),
+    ("invert" => Invert(Primitive<bool>)),
+    ("transformPositionX" => TransformPositionX(Primitive<bool>)),
+    ("transformPositionY" => TransformPositionY(Primitive<bool>)),
+    ("transformPositionZ" => TransformPositionZ(Primitive<bool>)),
+    ("transformRotation" => TransformRotation(Primitive<bool>)),
+    ("transformScale" => TransformScale(Primitive<bool>)),
+    ("transformSkew" => TransformSkew(Primitive<bool>)),
+    ("keyframe" => Keyframe(Primitive<i32>)),
+    ("nodeName" => NodeName(Primitive<Cow<'a, str>>)),
 }

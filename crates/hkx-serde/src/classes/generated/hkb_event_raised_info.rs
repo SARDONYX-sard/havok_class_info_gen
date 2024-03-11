@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbEventRaisedInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbEventRaisedInfo"`: Name of this class.
+    /// `"hkbEventRaisedInfo"`: The original C++ class name.
     #[serde(default = "HkbEventRaisedInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbEventRaisedInfo<'a> {
 }
 
 impl HkbEventRaisedInfo<'_> {
-    /// Return `"hkbEventRaisedInfo"`, which is the name of this class.
+    /// Return `"hkbEventRaisedInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbEventRaisedInfo".into()
+        "hkbEventRaisedInfo".into()
     }
 
     /// Return `"0xc02da3"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkbEventRaisedInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbEventRaisedInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterId"`
     /// -   type: `hkUint64`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterId")]
-    CharacterId(u64),
-    /// # Information on fields in the original C++ class
+    CharacterId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"eventName"`
     /// -   type: `hkStringPtr`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventName")]
-    EventName(String),
-    /// # Information on fields in the original C++ class
+    EventName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"raisedBySdk"`
     /// -   type: `hkBool`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "raisedBySdk")]
-    RaisedBySdk(bool),
-    /// # Information on fields in the original C++ class
+    RaisedBySdk(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"senderId"`
     /// -   type: `hkInt32`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "senderId")]
-    SenderId(i32),
-    /// # Information on fields in the original C++ class
+    SenderId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"padding"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "padding")]
-    Padding(i32),
+    Padding(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbEventRaisedInfoHkParam<'de>, "@name",
-    ("characterId" => CharacterId(u64)),
-    ("eventName" => EventName(String)),
-    ("raisedBySdk" => RaisedBySdk(bool)),
-    ("senderId" => SenderId(i32)),
-    ("padding" => Padding(i32)),
+    ("characterId" => CharacterId(Primitive<u64>)),
+    ("eventName" => EventName(Primitive<Cow<'a, str>>)),
+    ("raisedBySdk" => RaisedBySdk(Primitive<bool>)),
+    ("senderId" => SenderId(Primitive<i32>)),
+    ("padding" => Padding(Primitive<i32>)),
 }

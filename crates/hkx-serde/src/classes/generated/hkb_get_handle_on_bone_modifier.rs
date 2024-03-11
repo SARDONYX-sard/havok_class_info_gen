@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbGetHandleOnBoneModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbGetHandleOnBoneModifier"`: Name of this class.
+    /// `"hkbGetHandleOnBoneModifier"`: The original C++ class name.
     #[serde(default = "HkbGetHandleOnBoneModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbGetHandleOnBoneModifier<'a> {
 }
 
 impl HkbGetHandleOnBoneModifier<'_> {
-    /// Return `"hkbGetHandleOnBoneModifier"`, which is the name of this class.
+    /// Return `"hkbGetHandleOnBoneModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbGetHandleOnBoneModifier".into()
+        "hkbGetHandleOnBoneModifier".into()
     }
 
     /// Return `"0x50c34a17"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbGetHandleOnBoneModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbGetHandleOnBoneModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"handleOut"`
     /// -   type: `struct hkbHandle*`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handleOut")]
-    HandleOut(Box<HkbHandle>),
-    /// # Information on fields in the original C++ class
+    HandleOut(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"localFrameName"`
     /// -   type: `hkStringPtr`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "localFrameName")]
-    LocalFrameName(String),
-    /// # Information on fields in the original C++ class
+    LocalFrameName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"ragdollBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ragdollBoneIndex")]
-    RagdollBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    RagdollBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"animationBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 54
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "animationBoneIndex")]
-    AnimationBoneIndex(i16),
+    AnimationBoneIndex(Primitive<i16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbGetHandleOnBoneModifierHkParam<'de>, "@name",
-    ("handleOut" => HandleOut(Box<HkbHandle>)),
-    ("localFrameName" => LocalFrameName(String)),
-    ("ragdollBoneIndex" => RagdollBoneIndex(i16)),
-    ("animationBoneIndex" => AnimationBoneIndex(i16)),
+    ("handleOut" => HandleOut(Cow<'a, str>)),
+    ("localFrameName" => LocalFrameName(Primitive<Cow<'a, str>>)),
+    ("ragdollBoneIndex" => RagdollBoneIndex(Primitive<i16>)),
+    ("animationBoneIndex" => AnimationBoneIndex(Primitive<i16>)),
 }

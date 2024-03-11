@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpShapeInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpShapeInfo"`: Name of this class.
+    /// `"hkpShapeInfo"`: The original C++ class name.
     #[serde(default = "HkpShapeInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpShapeInfo<'a> {
 }
 
 impl HkpShapeInfo<'_> {
-    /// Return `"hkpShapeInfo"`, which is the name of this class.
+    /// Return `"hkpShapeInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpShapeInfo".into()
+        "hkpShapeInfo".into()
     }
 
     /// Return `"0xea7f1d08"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkpShapeInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpShapeInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"shape"`
     /// -   type: `struct hkpShape*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shape")]
-    Shape(Box<HkpShape>),
-    /// # Information on fields in the original C++ class
+    Shape(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"isHierarchicalCompound"`
     /// -   type: `hkBool`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isHierarchicalCompound")]
-    IsHierarchicalCompound(bool),
-    /// # Information on fields in the original C++ class
+    IsHierarchicalCompound(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"hkdShapesCollected"`
     /// -   type: `hkBool`
     /// - offset: 13
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hkdShapesCollected")]
-    HkdShapesCollected(bool),
-    /// # Information on fields in the original C++ class
+    HkdShapesCollected(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"childShapeNames"`
     /// -   type: `hkArray&lt;hkStringPtr&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childShapeNames")]
-    ChildShapeNames(Vec<String>),
-    /// # Information on fields in the original C++ class
+    ChildShapeNames(Vec<Primitive<Cow<'a, str>>>),
+    /// # Field information in the original C++ class
     /// -   name:`"childTransforms"`
     /// -   type: `hkArray&lt;hkTransform&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childTransforms")]
-    ChildTransforms(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    ChildTransforms(Vec<Transform<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"transform"`
     /// -   type: `hkTransform`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transform")]
-    Transform(cgmath::Matrix4<f32>),
+    Transform(Transform<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpShapeInfoHkParam<'de>, "@name",
-    ("shape" => Shape(Box<HkpShape>)),
-    ("isHierarchicalCompound" => IsHierarchicalCompound(bool)),
-    ("hkdShapesCollected" => HkdShapesCollected(bool)),
-    ("childShapeNames" => ChildShapeNames(Vec<String>)),
-    ("childTransforms" => ChildTransforms(Vec<cgmath::Matrix4<f32>>)),
-    ("transform" => Transform(cgmath::Matrix4<f32>)),
+    ("shape" => Shape(Cow<'a, str>)),
+    ("isHierarchicalCompound" => IsHierarchicalCompound(Primitive<bool>)),
+    ("hkdShapesCollected" => HkdShapesCollected(Primitive<bool>)),
+    ("childShapeNames" => ChildShapeNames(Vec<Primitive<Cow<'a, str>>>)),
+    ("childTransforms" => ChildTransforms(Vec<Transform<f32>>)),
+    ("transform" => Transform(Transform<f32>)),
 }

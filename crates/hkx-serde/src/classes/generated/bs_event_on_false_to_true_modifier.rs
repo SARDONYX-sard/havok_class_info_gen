@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsEventOnFalseToTrueModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSEventOnFalseToTrueModifier"`: Name of this class.
+    /// `"BSEventOnFalseToTrueModifier"`: The original C++ class name.
     #[serde(default = "BsEventOnFalseToTrueModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsEventOnFalseToTrueModifier<'a> {
 }
 
 impl BsEventOnFalseToTrueModifier<'_> {
-    /// Return `"BSEventOnFalseToTrueModifier"`, which is the name of this class.
+    /// Return `"BSEventOnFalseToTrueModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsEventOnFalseToTrueModifier".into()
+        "BSEventOnFalseToTrueModifier".into()
     }
 
     /// Return `"0x81d0777a"`, which is the signature of this class.
@@ -63,106 +64,106 @@ impl BsEventOnFalseToTrueModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsEventOnFalseToTrueModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bEnableEvent1"`
     /// -   type: `hkBool`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bEnableEvent1")]
-    BEnableEvent1(bool),
-    /// # Information on fields in the original C++ class
+    BEnableEvent1(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bVariableToTest1"`
     /// -   type: `hkBool`
     /// - offset: 45
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bVariableToTest1")]
-    BVariableToTest1(bool),
-    /// # Information on fields in the original C++ class
+    BVariableToTest1(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"EventToSend1"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "EventToSend1")]
     EventToSend1(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bEnableEvent2"`
     /// -   type: `hkBool`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bEnableEvent2")]
-    BEnableEvent2(bool),
-    /// # Information on fields in the original C++ class
+    BEnableEvent2(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bVariableToTest2"`
     /// -   type: `hkBool`
     /// - offset: 57
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bVariableToTest2")]
-    BVariableToTest2(bool),
-    /// # Information on fields in the original C++ class
+    BVariableToTest2(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"EventToSend2"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "EventToSend2")]
     EventToSend2(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bEnableEvent3"`
     /// -   type: `hkBool`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bEnableEvent3")]
-    BEnableEvent3(bool),
-    /// # Information on fields in the original C++ class
+    BEnableEvent3(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bVariableToTest3"`
     /// -   type: `hkBool`
     /// - offset: 69
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bVariableToTest3")]
-    BVariableToTest3(bool),
-    /// # Information on fields in the original C++ class
+    BVariableToTest3(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"EventToSend3"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "EventToSend3")]
     EventToSend3(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bSlot1ActivatedLastFrame"`
     /// -   type: `hkBool`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bSlot1ActivatedLastFrame", skip_serializing)]
-    BSlot1ActivatedLastFrame(bool),
-    /// # Information on fields in the original C++ class
+    BSlot1ActivatedLastFrame(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bSlot2ActivatedLastFrame"`
     /// -   type: `hkBool`
     /// - offset: 81
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bSlot2ActivatedLastFrame", skip_serializing)]
-    BSlot2ActivatedLastFrame(bool),
-    /// # Information on fields in the original C++ class
+    BSlot2ActivatedLastFrame(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bSlot3ActivatedLastFrame"`
     /// -   type: `hkBool`
     /// - offset: 82
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bSlot3ActivatedLastFrame", skip_serializing)]
-    BSlot3ActivatedLastFrame(bool),
+    BSlot3ActivatedLastFrame(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsEventOnFalseToTrueModifierHkParam<'de>, "@name",
-    ("bEnableEvent1" => BEnableEvent1(bool)),
-    ("bVariableToTest1" => BVariableToTest1(bool)),
+    ("bEnableEvent1" => BEnableEvent1(Primitive<bool>)),
+    ("bVariableToTest1" => BVariableToTest1(Primitive<bool>)),
     ("EventToSend1" => EventToSend1(HkbEventProperty)),
-    ("bEnableEvent2" => BEnableEvent2(bool)),
-    ("bVariableToTest2" => BVariableToTest2(bool)),
+    ("bEnableEvent2" => BEnableEvent2(Primitive<bool>)),
+    ("bVariableToTest2" => BVariableToTest2(Primitive<bool>)),
     ("EventToSend2" => EventToSend2(HkbEventProperty)),
-    ("bEnableEvent3" => BEnableEvent3(bool)),
-    ("bVariableToTest3" => BVariableToTest3(bool)),
+    ("bEnableEvent3" => BEnableEvent3(Primitive<bool>)),
+    ("bVariableToTest3" => BVariableToTest3(Primitive<bool>)),
     ("EventToSend3" => EventToSend3(HkbEventProperty)),
-    ("bSlot1ActivatedLastFrame" => BSlot1ActivatedLastFrame(bool)),
-    ("bSlot2ActivatedLastFrame" => BSlot2ActivatedLastFrame(bool)),
-    ("bSlot3ActivatedLastFrame" => BSlot3ActivatedLastFrame(bool)),
+    ("bSlot1ActivatedLastFrame" => BSlot1ActivatedLastFrame(Primitive<bool>)),
+    ("bSlot2ActivatedLastFrame" => BSlot2ActivatedLastFrame(Primitive<bool>)),
+    ("bSlot3ActivatedLastFrame" => BSlot3ActivatedLastFrame(Primitive<bool>)),
 }

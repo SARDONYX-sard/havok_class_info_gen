@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpLinLimitConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpLinLimitConstraintAtom"`: Name of this class.
+    /// `"hkpLinLimitConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpLinLimitConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpLinLimitConstraintAtom<'a> {
 }
 
 impl HkpLinLimitConstraintAtom<'_> {
-    /// Return `"hkpLinLimitConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpLinLimitConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpLinLimitConstraintAtom".into()
+        "hkpLinLimitConstraintAtom".into()
     }
 
     /// Return `"0xa44d1b07"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpLinLimitConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpLinLimitConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"axisIndex"`
     /// -   type: `hkUint8`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "axisIndex")]
-    AxisIndex(u8),
-    /// # Information on fields in the original C++ class
+    AxisIndex(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"min"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "min")]
-    Min(f64),
-    /// # Information on fields in the original C++ class
+    Min(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"max"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "max")]
-    Max(f64),
+    Max(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpLinLimitConstraintAtomHkParam<'de>, "@name",
-    ("axisIndex" => AxisIndex(u8)),
-    ("min" => Min(f64)),
-    ("max" => Max(f64)),
+    ("axisIndex" => AxisIndex(Primitive<u8>)),
+    ("min" => Min(Primitive<f32>)),
+    ("max" => Max(Primitive<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCharacterSteppedInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCharacterSteppedInfo"`: Name of this class.
+    /// `"hkbCharacterSteppedInfo"`: The original C++ class name.
     #[serde(default = "HkbCharacterSteppedInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCharacterSteppedInfo<'a> {
 }
 
 impl HkbCharacterSteppedInfo<'_> {
-    /// Return `"hkbCharacterSteppedInfo"`, which is the name of this class.
+    /// Return `"hkbCharacterSteppedInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCharacterSteppedInfo".into()
+        "hkbCharacterSteppedInfo".into()
     }
 
     /// Return `"0x2eda84f8"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkbCharacterSteppedInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCharacterSteppedInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterId"`
     /// -   type: `hkUint64`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterId")]
-    CharacterId(u64),
-    /// # Information on fields in the original C++ class
+    CharacterId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"deltaTime"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "deltaTime")]
-    DeltaTime(f64),
-    /// # Information on fields in the original C++ class
+    DeltaTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"worldFromModel"`
     /// -   type: `hkQsTransform`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "worldFromModel")]
-    WorldFromModel(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    WorldFromModel(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"poseModelSpace"`
     /// -   type: `hkArray&lt;hkQsTransform&gt;`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "poseModelSpace")]
-    PoseModelSpace(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    PoseModelSpace(Vec<QsTransform<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"rigidAttachmentTransforms"`
     /// -   type: `hkArray&lt;hkQsTransform&gt;`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rigidAttachmentTransforms")]
-    RigidAttachmentTransforms(Vec<cgmath::Matrix4<f32>>),
+    RigidAttachmentTransforms(Vec<QsTransform<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbCharacterSteppedInfoHkParam<'de>, "@name",
-    ("characterId" => CharacterId(u64)),
-    ("deltaTime" => DeltaTime(f64)),
-    ("worldFromModel" => WorldFromModel(cgmath::Matrix4<f32>)),
-    ("poseModelSpace" => PoseModelSpace(Vec<cgmath::Matrix4<f32>>)),
-    ("rigidAttachmentTransforms" => RigidAttachmentTransforms(Vec<cgmath::Matrix4<f32>>)),
+    ("characterId" => CharacterId(Primitive<u64>)),
+    ("deltaTime" => DeltaTime(Primitive<f32>)),
+    ("worldFromModel" => WorldFromModel(QsTransform<f32>)),
+    ("poseModelSpace" => PoseModelSpace(Vec<QsTransform<f32>>)),
+    ("rigidAttachmentTransforms" => RigidAttachmentTransforms(Vec<QsTransform<f32>>)),
 }

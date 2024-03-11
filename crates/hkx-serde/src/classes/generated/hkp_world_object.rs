@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpWorldObject<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpWorldObject"`: Name of this class.
+    /// `"hkpWorldObject"`: The original C++ class name.
     #[serde(default = "HkpWorldObject::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpWorldObject<'a> {
 }
 
 impl HkpWorldObject<'_> {
-    /// Return `"hkpWorldObject"`, which is the name of this class.
+    /// Return `"hkpWorldObject"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpWorldObject".into()
+        "hkpWorldObject".into()
     }
 
     /// Return `"0x49fb6f2e"`, which is the signature of this class.
@@ -63,49 +64,49 @@ impl HkpWorldObject<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpWorldObjectHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"world"`
     /// -   type: `void*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "world", skip_serializing)]
     World(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"userData"`
     /// -   type: `hkUlong`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData")]
-    UserData(u64),
-    /// # Information on fields in the original C++ class
+    UserData(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"collidable"`
     /// -   type: `struct hkpLinkedCollidable`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collidable")]
     Collidable(HkpLinkedCollidable),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"multiThreadCheck"`
     /// -   type: `struct hkMultiThreadCheck`
     /// - offset: 108
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "multiThreadCheck")]
     MultiThreadCheck(HkMultiThreadCheck),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 120
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"properties"`
     /// -   type: `hkArray&lt;struct hkpProperty&gt;`
     /// - offset: 124
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "properties")]
     Properties(Vec<HkpProperty>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"treeData"`
     /// -   type: `void*`
     /// - offset: 136
@@ -119,10 +120,10 @@ pub enum HkpWorldObjectHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpWorldObjectHkParam<'de>, "@name",
     ("world" => World(())),
-    ("userData" => UserData(u64)),
+    ("userData" => UserData(Primitive<u64>)),
     ("collidable" => Collidable(HkpLinkedCollidable)),
     ("multiThreadCheck" => MultiThreadCheck(HkMultiThreadCheck)),
-    ("name" => Name(String)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
     ("properties" => Properties(Vec<HkpProperty>)),
     ("treeData" => TreeData(())),
 }

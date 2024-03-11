@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpWheelConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpWheelConstraintDataAtoms"`: Name of this class.
+    /// `"hkpWheelConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpWheelConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpWheelConstraintDataAtoms<'a> {
 }
 
 impl HkpWheelConstraintDataAtoms<'_> {
-    /// Return `"hkpWheelConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpWheelConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpWheelConstraintDataAtoms".into()
+        "hkpWheelConstraintDataAtoms".into()
     }
 
     /// Return `"0x1188cbe1"`, which is the signature of this class.
@@ -63,49 +64,49 @@ impl HkpWheelConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpWheelConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"suspensionBase"`
     /// -   type: `struct hkpSetLocalTransformsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "suspensionBase")]
     SuspensionBase(HkpSetLocalTransformsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lin0Limit"`
     /// -   type: `struct hkpLinLimitConstraintAtom`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lin0Limit")]
     Lin0Limit(HkpLinLimitConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lin0Soft"`
     /// -   type: `struct hkpLinSoftConstraintAtom`
     /// - offset: 156
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lin0Soft")]
     Lin0Soft(HkpLinSoftConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lin1"`
     /// -   type: `struct hkpLinConstraintAtom`
     /// - offset: 168
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lin1")]
     Lin1(HkpLinConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lin2"`
     /// -   type: `struct hkpLinConstraintAtom`
     /// - offset: 172
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lin2")]
     Lin2(HkpLinConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"steeringBase"`
     /// -   type: `struct hkpSetLocalRotationsConstraintAtom`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "steeringBase")]
     SteeringBase(HkpSetLocalRotationsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"2dAng"`
     /// -   type: `struct hkp2dAngConstraintAtom`
     /// - offset: 288

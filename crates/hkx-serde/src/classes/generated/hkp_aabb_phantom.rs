@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpAabbPhantom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpAabbPhantom"`: Name of this class.
+    /// `"hkpAabbPhantom"`: The original C++ class name.
     #[serde(default = "HkpAabbPhantom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpAabbPhantom<'a> {
 }
 
 impl HkpAabbPhantom<'_> {
-    /// Return `"hkpAabbPhantom"`, which is the name of this class.
+    /// Return `"hkpAabbPhantom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpAabbPhantom".into()
+        "hkpAabbPhantom".into()
     }
 
     /// Return `"0x2c5189dd"`, which is the signature of this class.
@@ -63,27 +64,27 @@ impl HkpAabbPhantom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpAabbPhantomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"aabb"`
     /// -   type: `struct hkAabb`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabb")]
     Aabb(HkAabb),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"overlappingCollidables"`
     /// -   type: `hkArray&lt;void*&gt;`
     /// - offset: 208
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "overlappingCollidables", skip_serializing)]
     OverlappingCollidables(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"orderDirty"`
     /// -   type: `hkBool`
     /// - offset: 220
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "orderDirty", skip_serializing)]
-    OrderDirty(bool),
+    OrderDirty(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -92,5 +93,5 @@ impl_deserialize_for_internally_tagged_enum! {
     HkpAabbPhantomHkParam<'de>, "@name",
     ("aabb" => Aabb(HkAabb)),
     ("overlappingCollidables" => OverlappingCollidables(Vec<()>)),
-    ("orderDirty" => OrderDirty(bool)),
+    ("orderDirty" => OrderDirty(Primitive<bool>)),
 }

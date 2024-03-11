@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPhysicsSystemWithContacts<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPhysicsSystemWithContacts"`: Name of this class.
+    /// `"hkpPhysicsSystemWithContacts"`: The original C++ class name.
     #[serde(default = "HkpPhysicsSystemWithContacts::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPhysicsSystemWithContacts<'a> {
 }
 
 impl HkpPhysicsSystemWithContacts<'_> {
-    /// Return `"hkpPhysicsSystemWithContacts"`, which is the name of this class.
+    /// Return `"hkpPhysicsSystemWithContacts"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPhysicsSystemWithContacts".into()
+        "hkpPhysicsSystemWithContacts".into()
     }
 
     /// Return `"0xd0fd4bbe"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkpPhysicsSystemWithContacts<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPhysicsSystemWithContactsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"contacts"`
     /// -   type: `hkArray&lt;hkpSerializedAgentNnEntry*&gt;`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "contacts")]
-    Contacts(Vec<Box<HkpSerializedAgentNnEntry>>),
+    Contacts(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpPhysicsSystemWithContactsHkParam<'de>, "@name",
-    ("contacts" => Contacts(Vec<Box<HkpSerializedAgentNnEntry>>)),
+    ("contacts" => Contacts(Vec<Cow<'a, str>>)),
 }

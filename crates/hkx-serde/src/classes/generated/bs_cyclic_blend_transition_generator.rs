@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsCyclicBlendTransitionGenerator<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSCyclicBlendTransitionGenerator"`: Name of this class.
+    /// `"BSCyclicBlendTransitionGenerator"`: The original C++ class name.
     #[serde(default = "BsCyclicBlendTransitionGenerator::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsCyclicBlendTransitionGenerator<'a> {
 }
 
 impl BsCyclicBlendTransitionGenerator<'_> {
-    /// Return `"BSCyclicBlendTransitionGenerator"`, which is the name of this class.
+    /// Return `"BSCyclicBlendTransitionGenerator"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsCyclicBlendTransitionGenerator".into()
+        "BSCyclicBlendTransitionGenerator".into()
     }
 
     /// Return `"0x5119eb06"`, which is the signature of this class.
@@ -63,63 +64,63 @@ impl BsCyclicBlendTransitionGenerator<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsCyclicBlendTransitionGeneratorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pBlenderGenerator"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "pBlenderGenerator")]
-    PBlenderGenerator(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    PBlenderGenerator(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"EventToFreezeBlendValue"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "EventToFreezeBlendValue")]
     EventToFreezeBlendValue(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"EventToCrossBlend"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "EventToCrossBlend")]
     EventToCrossBlend(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"fBlendParameter"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fBlendParameter")]
-    FBlendParameter(f64),
-    /// # Information on fields in the original C++ class
+    FBlendParameter(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"fTransitionDuration"`
     /// -   type: `hkReal`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fTransitionDuration")]
-    FTransitionDuration(f64),
-    /// # Information on fields in the original C++ class
+    FTransitionDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"eBlendCurve"`
     /// -   type: `enum BlendCurve`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eBlendCurve")]
     EBlendCurve(BlendCurve),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pTransitionBlenderGenerator"`
     /// -   type: `void*`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE | ALIGN16 | SERIALIZE_IGNORED`
     #[serde(rename = "pTransitionBlenderGenerator", skip_serializing)]
     PTransitionBlenderGenerator(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pTransitionEffect"`
     /// -   type: `void*`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE | ALIGN16 | SERIALIZE_IGNORED`
     #[serde(rename = "pTransitionEffect", skip_serializing)]
     PTransitionEffect(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"currentMode"`
     /// -   type: `enum unknown`
     /// - offset: 100
@@ -132,11 +133,11 @@ pub enum BsCyclicBlendTransitionGeneratorHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsCyclicBlendTransitionGeneratorHkParam<'de>, "@name",
-    ("pBlenderGenerator" => PBlenderGenerator(Box<HkbGenerator>)),
+    ("pBlenderGenerator" => PBlenderGenerator(Cow<'a, str>)),
     ("EventToFreezeBlendValue" => EventToFreezeBlendValue(HkbEventProperty)),
     ("EventToCrossBlend" => EventToCrossBlend(HkbEventProperty)),
-    ("fBlendParameter" => FBlendParameter(f64)),
-    ("fTransitionDuration" => FTransitionDuration(f64)),
+    ("fBlendParameter" => FBlendParameter(Primitive<f32>)),
+    ("fTransitionDuration" => FTransitionDuration(Primitive<f32>)),
     ("eBlendCurve" => EBlendCurve(BlendCurve)),
     ("pTransitionBlenderGenerator" => PTransitionBlenderGenerator(())),
     ("pTransitionEffect" => PTransitionEffect(())),

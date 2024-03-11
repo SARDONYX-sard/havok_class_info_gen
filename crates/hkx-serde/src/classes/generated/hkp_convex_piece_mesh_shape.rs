@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConvexPieceMeshShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConvexPieceMeshShape"`: Name of this class.
+    /// `"hkpConvexPieceMeshShape"`: The original C++ class name.
     #[serde(default = "HkpConvexPieceMeshShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConvexPieceMeshShape<'a> {
 }
 
 impl HkpConvexPieceMeshShape<'_> {
-    /// Return `"hkpConvexPieceMeshShape"`, which is the name of this class.
+    /// Return `"hkpConvexPieceMeshShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConvexPieceMeshShape".into()
+        "hkpConvexPieceMeshShape".into()
     }
 
     /// Return `"0x38fd3d97"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpConvexPieceMeshShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConvexPieceMeshShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"convexPieceStream"`
     /// -   type: `struct hkpConvexPieceStreamData*`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "convexPieceStream")]
-    ConvexPieceStream(Box<HkpConvexPieceStreamData>),
-    /// # Information on fields in the original C++ class
+    ConvexPieceStream(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"displayMesh"`
     /// -   type: `struct hkpShapeCollection*`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "displayMesh")]
-    DisplayMesh(Box<HkpShapeCollection>),
-    /// # Information on fields in the original C++ class
+    DisplayMesh(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"radius"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "radius")]
-    Radius(f64),
+    Radius(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpConvexPieceMeshShapeHkParam<'de>, "@name",
-    ("convexPieceStream" => ConvexPieceStream(Box<HkpConvexPieceStreamData>)),
-    ("displayMesh" => DisplayMesh(Box<HkpShapeCollection>)),
-    ("radius" => Radius(f64)),
+    ("convexPieceStream" => ConvexPieceStream(Cow<'a, str>)),
+    ("displayMesh" => DisplayMesh(Cow<'a, str>)),
+    ("radius" => Radius(Primitive<f32>)),
 }

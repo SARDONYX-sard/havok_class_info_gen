@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbHandIkControlsModifierHand<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbHandIkControlsModifierHand"`: Name of this class.
+    /// `"hkbHandIkControlsModifierHand"`: The original C++ class name.
     #[serde(default = "HkbHandIkControlsModifierHand::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbHandIkControlsModifierHand<'a> {
 }
 
 impl HkbHandIkControlsModifierHand<'_> {
-    /// Return `"hkbHandIkControlsModifierHand"`, which is the name of this class.
+    /// Return `"hkbHandIkControlsModifierHand"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbHandIkControlsModifierHand".into()
+        "hkbHandIkControlsModifierHand".into()
     }
 
     /// Return `"0x9c72e9e3"`, which is the signature of this class.
@@ -63,27 +64,27 @@ impl HkbHandIkControlsModifierHand<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbHandIkControlsModifierHandHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"controlData"`
     /// -   type: `struct hkbHandIkControlData`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "controlData")]
     ControlData(HkbHandIkControlData),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"handIndex"`
     /// -   type: `hkInt32`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handIndex")]
-    HandIndex(i32),
-    /// # Information on fields in the original C++ class
+    HandIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"enable"`
     /// -   type: `hkBool`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enable")]
-    Enable(bool),
+    Enable(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -91,6 +92,6 @@ pub enum HkbHandIkControlsModifierHandHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbHandIkControlsModifierHandHkParam<'de>, "@name",
     ("controlData" => ControlData(HkbHandIkControlData)),
-    ("handIndex" => HandIndex(i32)),
-    ("enable" => Enable(bool)),
+    ("handIndex" => HandIndex(Primitive<i32>)),
+    ("enable" => Enable(Primitive<bool>)),
 }

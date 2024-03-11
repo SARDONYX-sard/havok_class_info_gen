@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpDisplayBindingData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpDisplayBindingData"`: Name of this class.
+    /// `"hkpDisplayBindingData"`: The original C++ class name.
     #[serde(default = "HkpDisplayBindingData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpDisplayBindingData<'a> {
 }
 
 impl HkpDisplayBindingData<'_> {
-    /// Return `"hkpDisplayBindingData"`, which is the name of this class.
+    /// Return `"hkpDisplayBindingData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpDisplayBindingData".into()
+        "hkpDisplayBindingData".into()
     }
 
     /// Return `"0xdc46c906"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpDisplayBindingData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpDisplayBindingDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rigidBodyBindings"`
     /// -   type: `hkArray&lt;hkpDisplayBindingDataRigidBody*&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rigidBodyBindings")]
-    RigidBodyBindings(Vec<Box<HkpDisplayBindingDataRigidBody>>),
-    /// # Information on fields in the original C++ class
+    RigidBodyBindings(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"physicsSystemBindings"`
     /// -   type: `hkArray&lt;hkpDisplayBindingDataPhysicsSystem*&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "physicsSystemBindings")]
-    PhysicsSystemBindings(Vec<Box<HkpDisplayBindingDataPhysicsSystem>>),
+    PhysicsSystemBindings(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpDisplayBindingDataHkParam<'de>, "@name",
-    ("rigidBodyBindings" => RigidBodyBindings(Vec<Box<HkpDisplayBindingDataRigidBody>>)),
-    ("physicsSystemBindings" => PhysicsSystemBindings(Vec<Box<HkpDisplayBindingDataPhysicsSystem>>)),
+    ("rigidBodyBindings" => RigidBodyBindings(Vec<Cow<'a, str>>)),
+    ("physicsSystemBindings" => PhysicsSystemBindings(Vec<Cow<'a, str>>)),
 }

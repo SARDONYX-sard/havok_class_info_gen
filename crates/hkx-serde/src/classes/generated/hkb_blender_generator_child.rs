@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBlenderGeneratorChild<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBlenderGeneratorChild"`: Name of this class.
+    /// `"hkbBlenderGeneratorChild"`: The original C++ class name.
     #[serde(default = "HkbBlenderGeneratorChild::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBlenderGeneratorChild<'a> {
 }
 
 impl HkbBlenderGeneratorChild<'_> {
-    /// Return `"hkbBlenderGeneratorChild"`, which is the name of this class.
+    /// Return `"hkbBlenderGeneratorChild"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBlenderGeneratorChild".into()
+        "hkbBlenderGeneratorChild".into()
     }
 
     /// Return `"0xe2b384b0"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbBlenderGeneratorChild<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBlenderGeneratorChildHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"generator"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "generator")]
-    Generator(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    Generator(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneWeights"`
     /// -   type: `struct hkbBoneWeightArray*`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneWeights")]
-    BoneWeights(Box<HkbBoneWeightArray>),
-    /// # Information on fields in the original C++ class
+    BoneWeights(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"weight"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weight")]
-    Weight(f64),
-    /// # Information on fields in the original C++ class
+    Weight(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"worldFromModelWeight"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "worldFromModelWeight")]
-    WorldFromModelWeight(f64),
+    WorldFromModelWeight(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbBlenderGeneratorChildHkParam<'de>, "@name",
-    ("generator" => Generator(Box<HkbGenerator>)),
-    ("boneWeights" => BoneWeights(Box<HkbBoneWeightArray>)),
-    ("weight" => Weight(f64)),
-    ("worldFromModelWeight" => WorldFromModelWeight(f64)),
+    ("generator" => Generator(Cow<'a, str>)),
+    ("boneWeights" => BoneWeights(Cow<'a, str>)),
+    ("weight" => Weight(Primitive<f32>)),
+    ("worldFromModelWeight" => WorldFromModelWeight(Primitive<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxNodeSelectionSet<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxNodeSelectionSet"`: Name of this class.
+    /// `"hkxNodeSelectionSet"`: The original C++ class name.
     #[serde(default = "HkxNodeSelectionSet::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxNodeSelectionSet<'a> {
 }
 
 impl HkxNodeSelectionSet<'_> {
-    /// Return `"hkxNodeSelectionSet"`, which is the name of this class.
+    /// Return `"hkxNodeSelectionSet"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxNodeSelectionSet".into()
+        "hkxNodeSelectionSet".into()
     }
 
     /// Return `"0xd753fc4d"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkxNodeSelectionSet<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxNodeSelectionSetHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"selectedNodes"`
     /// -   type: `hkArray&lt;hkxNode*&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "selectedNodes")]
-    SelectedNodes(Vec<Box<HkxNode>>),
-    /// # Information on fields in the original C++ class
+    SelectedNodes(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
+    Name(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxNodeSelectionSetHkParam<'de>, "@name",
-    ("selectedNodes" => SelectedNodes(Vec<Box<HkxNode>>)),
-    ("name" => Name(String)),
+    ("selectedNodes" => SelectedNodes(Vec<Cow<'a, str>>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
 }

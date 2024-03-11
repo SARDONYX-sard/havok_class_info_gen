@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsSynchronizedClipGenerator<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSSynchronizedClipGenerator"`: Name of this class.
+    /// `"BSSynchronizedClipGenerator"`: The original C++ class name.
     #[serde(default = "BsSynchronizedClipGenerator::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsSynchronizedClipGenerator<'a> {
 }
 
 impl BsSynchronizedClipGenerator<'_> {
-    /// Return `"BSSynchronizedClipGenerator"`, which is the name of this class.
+    /// Return `"BSSynchronizedClipGenerator"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsSynchronizedClipGenerator".into()
+        "BSSynchronizedClipGenerator".into()
     }
 
     /// Return `"0xd83bea64"`, which is the signature of this class.
@@ -63,162 +64,162 @@ impl BsSynchronizedClipGenerator<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsSynchronizedClipGeneratorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pClipGenerator"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "pClipGenerator")]
-    PClipGenerator(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    PClipGenerator(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"SyncAnimPrefix"`
     /// -   type: `char*`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "SyncAnimPrefix")]
-    SyncAnimPrefix(String),
-    /// # Information on fields in the original C++ class
+    SyncAnimPrefix(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"bSyncClipIgnoreMarkPlacement"`
     /// -   type: `hkBool`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bSyncClipIgnoreMarkPlacement")]
-    BSyncClipIgnoreMarkPlacement(bool),
-    /// # Information on fields in the original C++ class
+    BSyncClipIgnoreMarkPlacement(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"fGetToMarkTime"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fGetToMarkTime")]
-    FGetToMarkTime(f64),
-    /// # Information on fields in the original C++ class
+    FGetToMarkTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"fMarkErrorThreshold"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fMarkErrorThreshold")]
-    FMarkErrorThreshold(f64),
-    /// # Information on fields in the original C++ class
+    FMarkErrorThreshold(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bLeadCharacter"`
     /// -   type: `hkBool`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bLeadCharacter")]
-    BLeadCharacter(bool),
-    /// # Information on fields in the original C++ class
+    BLeadCharacter(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bReorientSupportChar"`
     /// -   type: `hkBool`
     /// - offset: 69
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bReorientSupportChar")]
-    BReorientSupportChar(bool),
-    /// # Information on fields in the original C++ class
+    BReorientSupportChar(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bApplyMotionFromRoot"`
     /// -   type: `hkBool`
     /// - offset: 70
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bApplyMotionFromRoot")]
-    BApplyMotionFromRoot(bool),
-    /// # Information on fields in the original C++ class
+    BApplyMotionFromRoot(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"pSyncScene"`
     /// -   type: `void*`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "pSyncScene", skip_serializing)]
     PSyncScene(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"StartMarkWS"`
     /// -   type: `hkQsTransform`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "StartMarkWS", skip_serializing)]
-    StartMarkWs(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    StartMarkWs(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"EndMarkWS"`
     /// -   type: `hkQsTransform`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "EndMarkWS", skip_serializing)]
-    EndMarkWs(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    EndMarkWs(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"StartMarkMS"`
     /// -   type: `hkQsTransform`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "StartMarkMS", skip_serializing)]
-    StartMarkMs(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    StartMarkMs(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"fCurrentLerp"`
     /// -   type: `hkReal`
     /// - offset: 224
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "fCurrentLerp", skip_serializing)]
-    FCurrentLerp(f64),
-    /// # Information on fields in the original C++ class
+    FCurrentLerp(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"pLocalSyncBinding"`
     /// -   type: `void*`
     /// - offset: 228
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "pLocalSyncBinding", skip_serializing)]
     PLocalSyncBinding(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pEventMap"`
     /// -   type: `void*`
     /// - offset: 232
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "pEventMap", skip_serializing)]
     PEventMap(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sAnimationBindingIndex"`
     /// -   type: `hkInt16`
     /// - offset: 236
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sAnimationBindingIndex")]
-    SAnimationBindingIndex(i16),
-    /// # Information on fields in the original C++ class
+    SAnimationBindingIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"bAtMark"`
     /// -   type: `hkBool`
     /// - offset: 238
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bAtMark", skip_serializing)]
-    BAtMark(bool),
-    /// # Information on fields in the original C++ class
+    BAtMark(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bAllCharactersInScene"`
     /// -   type: `hkBool`
     /// - offset: 239
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bAllCharactersInScene", skip_serializing)]
-    BAllCharactersInScene(bool),
-    /// # Information on fields in the original C++ class
+    BAllCharactersInScene(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bAllCharactersAtMarks"`
     /// -   type: `hkBool`
     /// - offset: 240
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bAllCharactersAtMarks", skip_serializing)]
-    BAllCharactersAtMarks(bool),
+    BAllCharactersAtMarks(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsSynchronizedClipGeneratorHkParam<'de>, "@name",
-    ("pClipGenerator" => PClipGenerator(Box<HkbGenerator>)),
-    ("SyncAnimPrefix" => SyncAnimPrefix(String)),
-    ("bSyncClipIgnoreMarkPlacement" => BSyncClipIgnoreMarkPlacement(bool)),
-    ("fGetToMarkTime" => FGetToMarkTime(f64)),
-    ("fMarkErrorThreshold" => FMarkErrorThreshold(f64)),
-    ("bLeadCharacter" => BLeadCharacter(bool)),
-    ("bReorientSupportChar" => BReorientSupportChar(bool)),
-    ("bApplyMotionFromRoot" => BApplyMotionFromRoot(bool)),
+    ("pClipGenerator" => PClipGenerator(Cow<'a, str>)),
+    ("SyncAnimPrefix" => SyncAnimPrefix(Primitive<Cow<'a, str>>)),
+    ("bSyncClipIgnoreMarkPlacement" => BSyncClipIgnoreMarkPlacement(Primitive<bool>)),
+    ("fGetToMarkTime" => FGetToMarkTime(Primitive<f32>)),
+    ("fMarkErrorThreshold" => FMarkErrorThreshold(Primitive<f32>)),
+    ("bLeadCharacter" => BLeadCharacter(Primitive<bool>)),
+    ("bReorientSupportChar" => BReorientSupportChar(Primitive<bool>)),
+    ("bApplyMotionFromRoot" => BApplyMotionFromRoot(Primitive<bool>)),
     ("pSyncScene" => PSyncScene(())),
-    ("StartMarkWS" => StartMarkWs(cgmath::Matrix4<f32>)),
-    ("EndMarkWS" => EndMarkWs(cgmath::Matrix4<f32>)),
-    ("StartMarkMS" => StartMarkMs(cgmath::Matrix4<f32>)),
-    ("fCurrentLerp" => FCurrentLerp(f64)),
+    ("StartMarkWS" => StartMarkWs(QsTransform<f32>)),
+    ("EndMarkWS" => EndMarkWs(QsTransform<f32>)),
+    ("StartMarkMS" => StartMarkMs(QsTransform<f32>)),
+    ("fCurrentLerp" => FCurrentLerp(Primitive<f32>)),
     ("pLocalSyncBinding" => PLocalSyncBinding(())),
     ("pEventMap" => PEventMap(())),
-    ("sAnimationBindingIndex" => SAnimationBindingIndex(i16)),
-    ("bAtMark" => BAtMark(bool)),
-    ("bAllCharactersInScene" => BAllCharactersInScene(bool)),
-    ("bAllCharactersAtMarks" => BAllCharactersAtMarks(bool)),
+    ("sAnimationBindingIndex" => SAnimationBindingIndex(Primitive<i16>)),
+    ("bAtMark" => BAtMark(Primitive<bool>)),
+    ("bAllCharactersInScene" => BAllCharactersInScene(Primitive<bool>)),
+    ("bAllCharactersAtMarks" => BAllCharactersAtMarks(Primitive<bool>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbGeneratorTransitionEffect<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbGeneratorTransitionEffect"`: Name of this class.
+    /// `"hkbGeneratorTransitionEffect"`: The original C++ class name.
     #[serde(default = "HkbGeneratorTransitionEffect::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbGeneratorTransitionEffect<'a> {
 }
 
 impl HkbGeneratorTransitionEffect<'_> {
-    /// Return `"hkbGeneratorTransitionEffect"`, which is the name of this class.
+    /// Return `"hkbGeneratorTransitionEffect"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbGeneratorTransitionEffect".into()
+        "hkbGeneratorTransitionEffect".into()
     }
 
     /// Return `"0x5f771b12"`, which is the signature of this class.
@@ -63,112 +64,112 @@ impl HkbGeneratorTransitionEffect<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbGeneratorTransitionEffectHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transitionGenerator"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transitionGenerator")]
-    TransitionGenerator(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    TransitionGenerator(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"blendInDuration"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "blendInDuration")]
-    BlendInDuration(f64),
-    /// # Information on fields in the original C++ class
+    BlendInDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"blendOutDuration"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "blendOutDuration")]
-    BlendOutDuration(f64),
-    /// # Information on fields in the original C++ class
+    BlendOutDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"syncToGeneratorStartTime"`
     /// -   type: `hkBool`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "syncToGeneratorStartTime")]
-    SyncToGeneratorStartTime(bool),
-    /// # Information on fields in the original C++ class
+    SyncToGeneratorStartTime(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"fromGenerator"`
     /// -   type: `void*`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "fromGenerator", skip_serializing)]
     FromGenerator(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"toGenerator"`
     /// -   type: `void*`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "toGenerator", skip_serializing)]
     ToGenerator(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"timeInTransition"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeInTransition", skip_serializing)]
-    TimeInTransition(f64),
-    /// # Information on fields in the original C++ class
+    TimeInTransition(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"duration"`
     /// -   type: `hkReal`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "duration", skip_serializing)]
-    Duration(f64),
-    /// # Information on fields in the original C++ class
+    Duration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"effectiveBlendInDuration"`
     /// -   type: `hkReal`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "effectiveBlendInDuration", skip_serializing)]
-    EffectiveBlendInDuration(f64),
-    /// # Information on fields in the original C++ class
+    EffectiveBlendInDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"effectiveBlendOutDuration"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "effectiveBlendOutDuration", skip_serializing)]
-    EffectiveBlendOutDuration(f64),
-    /// # Information on fields in the original C++ class
+    EffectiveBlendOutDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"toGeneratorState"`
     /// -   type: `enum unknown`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "toGeneratorState", skip_serializing)]
     ToGeneratorState(Unknown),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"echoTransitionGenerator"`
     /// -   type: `hkBool`
     /// - offset: 85
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "echoTransitionGenerator", skip_serializing)]
-    EchoTransitionGenerator(bool),
-    /// # Information on fields in the original C++ class
+    EchoTransitionGenerator(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"echoToGenerator"`
     /// -   type: `hkBool`
     /// - offset: 86
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "echoToGenerator", skip_serializing)]
-    EchoToGenerator(bool),
-    /// # Information on fields in the original C++ class
+    EchoToGenerator(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"justActivated"`
     /// -   type: `hkBool`
     /// - offset: 87
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "justActivated", skip_serializing)]
-    JustActivated(bool),
-    /// # Information on fields in the original C++ class
+    JustActivated(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"updateActiveNodes"`
     /// -   type: `hkBool`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "updateActiveNodes", skip_serializing)]
-    UpdateActiveNodes(bool),
-    /// # Information on fields in the original C++ class
+    UpdateActiveNodes(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"stage"`
     /// -   type: `enum unknown`
     /// - offset: 89
@@ -181,21 +182,21 @@ pub enum HkbGeneratorTransitionEffectHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbGeneratorTransitionEffectHkParam<'de>, "@name",
-    ("transitionGenerator" => TransitionGenerator(Box<HkbGenerator>)),
-    ("blendInDuration" => BlendInDuration(f64)),
-    ("blendOutDuration" => BlendOutDuration(f64)),
-    ("syncToGeneratorStartTime" => SyncToGeneratorStartTime(bool)),
+    ("transitionGenerator" => TransitionGenerator(Cow<'a, str>)),
+    ("blendInDuration" => BlendInDuration(Primitive<f32>)),
+    ("blendOutDuration" => BlendOutDuration(Primitive<f32>)),
+    ("syncToGeneratorStartTime" => SyncToGeneratorStartTime(Primitive<bool>)),
     ("fromGenerator" => FromGenerator(())),
     ("toGenerator" => ToGenerator(())),
-    ("timeInTransition" => TimeInTransition(f64)),
-    ("duration" => Duration(f64)),
-    ("effectiveBlendInDuration" => EffectiveBlendInDuration(f64)),
-    ("effectiveBlendOutDuration" => EffectiveBlendOutDuration(f64)),
+    ("timeInTransition" => TimeInTransition(Primitive<f32>)),
+    ("duration" => Duration(Primitive<f32>)),
+    ("effectiveBlendInDuration" => EffectiveBlendInDuration(Primitive<f32>)),
+    ("effectiveBlendOutDuration" => EffectiveBlendOutDuration(Primitive<f32>)),
     ("toGeneratorState" => ToGeneratorState(Unknown)),
-    ("echoTransitionGenerator" => EchoTransitionGenerator(bool)),
-    ("echoToGenerator" => EchoToGenerator(bool)),
-    ("justActivated" => JustActivated(bool)),
-    ("updateActiveNodes" => UpdateActiveNodes(bool)),
+    ("echoTransitionGenerator" => EchoTransitionGenerator(Primitive<bool>)),
+    ("echoToGenerator" => EchoToGenerator(Primitive<bool>)),
+    ("justActivated" => JustActivated(Primitive<bool>)),
+    ("updateActiveNodes" => UpdateActiveNodes(Primitive<bool>)),
     ("stage" => Stage(Unknown)),
 }
 

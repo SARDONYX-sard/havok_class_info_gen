@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaSkeletonLocalFrameOnBone<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaSkeletonLocalFrameOnBone"`: Name of this class.
+    /// `"hkaSkeletonLocalFrameOnBone"`: The original C++ class name.
     #[serde(default = "HkaSkeletonLocalFrameOnBone::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaSkeletonLocalFrameOnBone<'a> {
 }
 
 impl HkaSkeletonLocalFrameOnBone<'_> {
-    /// Return `"hkaSkeletonLocalFrameOnBone"`, which is the name of this class.
+    /// Return `"hkaSkeletonLocalFrameOnBone"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaSkeletonLocalFrameOnBone".into()
+        "hkaSkeletonLocalFrameOnBone".into()
     }
 
     /// Return `"0x52e8043"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkaSkeletonLocalFrameOnBone<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaSkeletonLocalFrameOnBoneHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"localFrame"`
     /// -   type: `struct hkLocalFrame*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "localFrame")]
-    LocalFrame(Box<HkLocalFrame>),
-    /// # Information on fields in the original C++ class
+    LocalFrame(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneIndex"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneIndex")]
-    BoneIndex(i32),
+    BoneIndex(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaSkeletonLocalFrameOnBoneHkParam<'de>, "@name",
-    ("localFrame" => LocalFrame(Box<HkLocalFrame>)),
-    ("boneIndex" => BoneIndex(i32)),
+    ("localFrame" => LocalFrame(Cow<'a, str>)),
+    ("boneIndex" => BoneIndex(Primitive<i32>)),
 }

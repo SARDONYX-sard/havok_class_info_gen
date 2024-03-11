@@ -2,6 +2,8 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
+use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -23,7 +25,7 @@ pub struct BsDecomposeVectorModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSDecomposeVectorModifier"`: Name of this class.
+    /// `"BSDecomposeVectorModifier"`: The original C++ class name.
     #[serde(default = "BsDecomposeVectorModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -34,19 +36,19 @@ pub struct BsDecomposeVectorModifier<'a> {
     pub signature: Cow<'a, str>,
 
     /// The `"hkparam"` tag (C++ field) vector
-    #[serde(bound(deserialize = "Vec<BsDecomposeVectorModifierHkParam>: Deserialize<'de>"))]
+    #[serde(bound(deserialize = "Vec<BsDecomposeVectorModifierHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<BsDecomposeVectorModifierHkParam>,
+    pub hkparams: Vec<BsDecomposeVectorModifierHkParam<'a>>
 }
 
 impl BsDecomposeVectorModifier<'_> {
-    /// Return `"BSDecomposeVectorModifier"`, which is the name of this class.
+    /// Return `"BSDecomposeVectorModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsDecomposeVectorModifier".into()
+        "BSDecomposeVectorModifier".into()
     }
 
     /// Return `"0x31f6b8b6"`, which is the signature of this class.
@@ -61,51 +63,51 @@ impl BsDecomposeVectorModifier<'_> {
 /// In C++, it represents the name of one field in the class.
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
-pub enum BsDecomposeVectorModifierHkParam {
-    /// # Information on fields in the original C++ class
+pub enum BsDecomposeVectorModifierHkParam<'a> {
+    /// # Field information in the original C++ class
     /// -   name:`"vector"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vector")]
-    Vector(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Vector(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"x"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "x")]
-    X(f64),
-    /// # Information on fields in the original C++ class
+    X(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"y"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "y")]
-    Y(f64),
-    /// # Information on fields in the original C++ class
+    Y(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"z"`
     /// -   type: `hkReal`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "z")]
-    Z(f64),
-    /// # Information on fields in the original C++ class
+    Z(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"w"`
     /// -   type: `hkReal`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "w")]
-    W(f64),
+    W(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
-    BsDecomposeVectorModifierHkParam, "@name",
-    ("vector" => Vector(cgmath::Vector4<f32>)),
-    ("x" => X(f64)),
-    ("y" => Y(f64)),
-    ("z" => Z(f64)),
-    ("w" => W(f64)),
+    BsDecomposeVectorModifierHkParam<'de>, "@name",
+    ("vector" => Vector(Vector4<f32>)),
+    ("x" => X(Primitive<f32>)),
+    ("y" => Y(Primitive<f32>)),
+    ("z" => Z(Primitive<f32>)),
+    ("w" => W(Primitive<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpGenericConstraintData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpGenericConstraintData"`: Name of this class.
+    /// `"hkpGenericConstraintData"`: The original C++ class name.
     #[serde(default = "HkpGenericConstraintData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpGenericConstraintData<'a> {
 }
 
 impl HkpGenericConstraintData<'_> {
-    /// Return `"hkpGenericConstraintData"`, which is the name of this class.
+    /// Return `"hkpGenericConstraintData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpGenericConstraintData".into()
+        "hkpGenericConstraintData".into()
     }
 
     /// Return `"0xfa824640"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkpGenericConstraintData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpGenericConstraintDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"atoms"`
     /// -   type: `struct hkpBridgeAtoms`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "atoms")]
     Atoms(HkpBridgeAtoms),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"scheme"`
     /// -   type: `struct hkpGenericConstraintDataScheme`
     /// - offset: 24

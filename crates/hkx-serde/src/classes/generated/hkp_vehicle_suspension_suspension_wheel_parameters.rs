@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleSuspensionSuspensionWheelParameters<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleSuspensionSuspensionWheelParameters"`: Name of this class.
+    /// `"hkpVehicleSuspensionSuspensionWheelParameters"`: The original C++ class name.
     #[serde(default = "HkpVehicleSuspensionSuspensionWheelParameters::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleSuspensionSuspensionWheelParameters<'a> {
 }
 
 impl HkpVehicleSuspensionSuspensionWheelParameters<'_> {
-    /// Return `"hkpVehicleSuspensionSuspensionWheelParameters"`, which is the name of this class.
+    /// Return `"hkpVehicleSuspensionSuspensionWheelParameters"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleSuspensionSuspensionWheelParameters".into()
+        "hkpVehicleSuspensionSuspensionWheelParameters".into()
     }
 
     /// Return `"0x358bfe9c"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpVehicleSuspensionSuspensionWheelParameters<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleSuspensionSuspensionWheelParametersHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"hardpointChassisSpace"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hardpointChassisSpace")]
-    HardpointChassisSpace(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    HardpointChassisSpace(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"directionChassisSpace"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "directionChassisSpace")]
-    DirectionChassisSpace(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    DirectionChassisSpace(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"length"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "length")]
-    Length(f64),
+    Length(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleSuspensionSuspensionWheelParametersHkParam<'de>, "@name",
-    ("hardpointChassisSpace" => HardpointChassisSpace(cgmath::Vector4<f32>)),
-    ("directionChassisSpace" => DirectionChassisSpace(cgmath::Vector4<f32>)),
-    ("length" => Length(f64)),
+    ("hardpointChassisSpace" => HardpointChassisSpace(Vector4<f32>)),
+    ("directionChassisSpace" => DirectionChassisSpace(Vector4<f32>)),
+    ("length" => Length(Primitive<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsIsActiveModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSIsActiveModifier"`: Name of this class.
+    /// `"BSIsActiveModifier"`: The original C++ class name.
     #[serde(default = "BsIsActiveModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsIsActiveModifier<'a> {
 }
 
 impl BsIsActiveModifier<'_> {
-    /// Return `"BSIsActiveModifier"`, which is the name of this class.
+    /// Return `"BSIsActiveModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsIsActiveModifier".into()
+        "BSIsActiveModifier".into()
     }
 
     /// Return `"0xb0fde45a"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl BsIsActiveModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsIsActiveModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bIsActive0"`
     /// -   type: `hkBool`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bIsActive0")]
-    BIsActive0(bool),
-    /// # Information on fields in the original C++ class
+    BIsActive0(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bInvertActive0"`
     /// -   type: `hkBool`
     /// - offset: 45
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bInvertActive0")]
-    BInvertActive0(bool),
-    /// # Information on fields in the original C++ class
+    BInvertActive0(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bIsActive1"`
     /// -   type: `hkBool`
     /// - offset: 46
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bIsActive1")]
-    BIsActive1(bool),
-    /// # Information on fields in the original C++ class
+    BIsActive1(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bInvertActive1"`
     /// -   type: `hkBool`
     /// - offset: 47
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bInvertActive1")]
-    BInvertActive1(bool),
-    /// # Information on fields in the original C++ class
+    BInvertActive1(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bIsActive2"`
     /// -   type: `hkBool`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bIsActive2")]
-    BIsActive2(bool),
-    /// # Information on fields in the original C++ class
+    BIsActive2(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bInvertActive2"`
     /// -   type: `hkBool`
     /// - offset: 49
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bInvertActive2")]
-    BInvertActive2(bool),
-    /// # Information on fields in the original C++ class
+    BInvertActive2(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bIsActive3"`
     /// -   type: `hkBool`
     /// - offset: 50
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bIsActive3")]
-    BIsActive3(bool),
-    /// # Information on fields in the original C++ class
+    BIsActive3(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bInvertActive3"`
     /// -   type: `hkBool`
     /// - offset: 51
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bInvertActive3")]
-    BInvertActive3(bool),
-    /// # Information on fields in the original C++ class
+    BInvertActive3(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bIsActive4"`
     /// -   type: `hkBool`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bIsActive4")]
-    BIsActive4(bool),
-    /// # Information on fields in the original C++ class
+    BIsActive4(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bInvertActive4"`
     /// -   type: `hkBool`
     /// - offset: 53
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bInvertActive4")]
-    BInvertActive4(bool),
+    BInvertActive4(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsIsActiveModifierHkParam<'de>, "@name",
-    ("bIsActive0" => BIsActive0(bool)),
-    ("bInvertActive0" => BInvertActive0(bool)),
-    ("bIsActive1" => BIsActive1(bool)),
-    ("bInvertActive1" => BInvertActive1(bool)),
-    ("bIsActive2" => BIsActive2(bool)),
-    ("bInvertActive2" => BInvertActive2(bool)),
-    ("bIsActive3" => BIsActive3(bool)),
-    ("bInvertActive3" => BInvertActive3(bool)),
-    ("bIsActive4" => BIsActive4(bool)),
-    ("bInvertActive4" => BInvertActive4(bool)),
+    ("bIsActive0" => BIsActive0(Primitive<bool>)),
+    ("bInvertActive0" => BInvertActive0(Primitive<bool>)),
+    ("bIsActive1" => BIsActive1(Primitive<bool>)),
+    ("bInvertActive1" => BInvertActive1(Primitive<bool>)),
+    ("bIsActive2" => BIsActive2(Primitive<bool>)),
+    ("bInvertActive2" => BInvertActive2(Primitive<bool>)),
+    ("bIsActive3" => BIsActive3(Primitive<bool>)),
+    ("bInvertActive3" => BInvertActive3(Primitive<bool>)),
+    ("bIsActive4" => BIsActive4(Primitive<bool>)),
+    ("bInvertActive4" => BInvertActive4(Primitive<bool>)),
 }

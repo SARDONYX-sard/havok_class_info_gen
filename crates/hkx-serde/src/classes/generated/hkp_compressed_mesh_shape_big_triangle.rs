@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCompressedMeshShapeBigTriangle<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCompressedMeshShapeBigTriangle"`: Name of this class.
+    /// `"hkpCompressedMeshShapeBigTriangle"`: The original C++ class name.
     #[serde(default = "HkpCompressedMeshShapeBigTriangle::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCompressedMeshShapeBigTriangle<'a> {
 }
 
 impl HkpCompressedMeshShapeBigTriangle<'_> {
-    /// Return `"hkpCompressedMeshShapeBigTriangle"`, which is the name of this class.
+    /// Return `"hkpCompressedMeshShapeBigTriangle"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCompressedMeshShapeBigTriangle".into()
+        "hkpCompressedMeshShapeBigTriangle".into()
     }
 
     /// Return `"0xcbfc95a4"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkpCompressedMeshShapeBigTriangle<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCompressedMeshShapeBigTriangleHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"a"`
     /// -   type: `hkUint16`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "a")]
-    A(u16),
-    /// # Information on fields in the original C++ class
+    A(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"b"`
     /// -   type: `hkUint16`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "b")]
-    B(u16),
-    /// # Information on fields in the original C++ class
+    B(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"c"`
     /// -   type: `hkUint16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "c")]
-    C(u16),
-    /// # Information on fields in the original C++ class
+    C(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"material"`
     /// -   type: `hkUint32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "material")]
-    Material(u32),
-    /// # Information on fields in the original C++ class
+    Material(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"weldingInfo"`
     /// -   type: `hkUint16`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingInfo")]
-    WeldingInfo(u16),
-    /// # Information on fields in the original C++ class
+    WeldingInfo(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformIndex"`
     /// -   type: `hkUint16`
     /// - offset: 14
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformIndex")]
-    TransformIndex(u16),
+    TransformIndex(Primitive<u16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCompressedMeshShapeBigTriangleHkParam<'de>, "@name",
-    ("a" => A(u16)),
-    ("b" => B(u16)),
-    ("c" => C(u16)),
-    ("material" => Material(u32)),
-    ("weldingInfo" => WeldingInfo(u16)),
-    ("transformIndex" => TransformIndex(u16)),
+    ("a" => A(Primitive<u16>)),
+    ("b" => B(Primitive<u16>)),
+    ("c" => C(Primitive<u16>)),
+    ("material" => Material(Primitive<u32>)),
+    ("weldingInfo" => WeldingInfo(Primitive<u16>)),
+    ("transformIndex" => TransformIndex(Primitive<u16>)),
 }

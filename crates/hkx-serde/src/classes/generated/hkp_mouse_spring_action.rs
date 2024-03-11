@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMouseSpringAction<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMouseSpringAction"`: Name of this class.
+    /// `"hkpMouseSpringAction"`: The original C++ class name.
     #[serde(default = "HkpMouseSpringAction::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMouseSpringAction<'a> {
 }
 
 impl HkpMouseSpringAction<'_> {
-    /// Return `"hkpMouseSpringAction"`, which is the name of this class.
+    /// Return `"hkpMouseSpringAction"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMouseSpringAction".into()
+        "hkpMouseSpringAction".into()
     }
 
     /// Return `"0x6e087fd6"`, which is the signature of this class.
@@ -63,56 +64,56 @@ impl HkpMouseSpringAction<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMouseSpringActionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"positionInRbLocal"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "positionInRbLocal")]
-    PositionInRbLocal(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PositionInRbLocal(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"mousePositionInWorld"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mousePositionInWorld")]
-    MousePositionInWorld(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    MousePositionInWorld(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"springDamping"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "springDamping")]
-    SpringDamping(f64),
-    /// # Information on fields in the original C++ class
+    SpringDamping(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"springElasticity"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "springElasticity")]
-    SpringElasticity(f64),
-    /// # Information on fields in the original C++ class
+    SpringElasticity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxRelativeForce"`
     /// -   type: `hkReal`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxRelativeForce")]
-    MaxRelativeForce(f64),
-    /// # Information on fields in the original C++ class
+    MaxRelativeForce(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"objectDamping"`
     /// -   type: `hkReal`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "objectDamping")]
-    ObjectDamping(f64),
-    /// # Information on fields in the original C++ class
+    ObjectDamping(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"shapeKey"`
     /// -   type: `hkUint32`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shapeKey")]
-    ShapeKey(u32),
-    /// # Information on fields in the original C++ class
+    ShapeKey(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"applyCallbacks"`
     /// -   type: `hkArray&lt;void*&gt;`
     /// - offset: 84
@@ -125,12 +126,12 @@ pub enum HkpMouseSpringActionHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpMouseSpringActionHkParam<'de>, "@name",
-    ("positionInRbLocal" => PositionInRbLocal(cgmath::Vector4<f32>)),
-    ("mousePositionInWorld" => MousePositionInWorld(cgmath::Vector4<f32>)),
-    ("springDamping" => SpringDamping(f64)),
-    ("springElasticity" => SpringElasticity(f64)),
-    ("maxRelativeForce" => MaxRelativeForce(f64)),
-    ("objectDamping" => ObjectDamping(f64)),
-    ("shapeKey" => ShapeKey(u32)),
+    ("positionInRbLocal" => PositionInRbLocal(Vector4<f32>)),
+    ("mousePositionInWorld" => MousePositionInWorld(Vector4<f32>)),
+    ("springDamping" => SpringDamping(Primitive<f32>)),
+    ("springElasticity" => SpringElasticity(Primitive<f32>)),
+    ("maxRelativeForce" => MaxRelativeForce(Primitive<f32>)),
+    ("objectDamping" => ObjectDamping(Primitive<f32>)),
+    ("shapeKey" => ShapeKey(Primitive<u32>)),
     ("applyCallbacks" => ApplyCallbacks(Vec<()>)),
 }

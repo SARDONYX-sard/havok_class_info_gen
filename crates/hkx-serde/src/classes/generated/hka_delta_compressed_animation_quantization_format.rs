@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaDeltaCompressedAnimationQuantizationFormat<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaDeltaCompressedAnimationQuantizationFormat"`: Name of this class.
+    /// `"hkaDeltaCompressedAnimationQuantizationFormat"`: The original C++ class name.
     #[serde(default = "HkaDeltaCompressedAnimationQuantizationFormat::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaDeltaCompressedAnimationQuantizationFormat<'a> {
 }
 
 impl HkaDeltaCompressedAnimationQuantizationFormat<'_> {
-    /// Return `"hkaDeltaCompressedAnimationQuantizationFormat"`, which is the name of this class.
+    /// Return `"hkaDeltaCompressedAnimationQuantizationFormat"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaDeltaCompressedAnimationQuantizationFormat".into()
+        "hkaDeltaCompressedAnimationQuantizationFormat".into()
     }
 
     /// Return `"0x724a7561"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkaDeltaCompressedAnimationQuantizationFormat<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaDeltaCompressedAnimationQuantizationFormatHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"maxBitWidth"`
     /// -   type: `hkUint8`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxBitWidth")]
-    MaxBitWidth(u8),
-    /// # Information on fields in the original C++ class
+    MaxBitWidth(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"preserved"`
     /// -   type: `hkUint8`
     /// - offset: 1
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "preserved")]
-    Preserved(u8),
-    /// # Information on fields in the original C++ class
+    Preserved(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"numD"`
     /// -   type: `hkUint32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numD")]
-    NumD(u32),
-    /// # Information on fields in the original C++ class
+    NumD(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"offsetIdx"`
     /// -   type: `hkUint32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "offsetIdx")]
-    OffsetIdx(u32),
-    /// # Information on fields in the original C++ class
+    OffsetIdx(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"scaleIdx"`
     /// -   type: `hkUint32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "scaleIdx")]
-    ScaleIdx(u32),
-    /// # Information on fields in the original C++ class
+    ScaleIdx(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bitWidthIdx"`
     /// -   type: `hkUint32`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bitWidthIdx")]
-    BitWidthIdx(u32),
+    BitWidthIdx(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaDeltaCompressedAnimationQuantizationFormatHkParam<'de>, "@name",
-    ("maxBitWidth" => MaxBitWidth(u8)),
-    ("preserved" => Preserved(u8)),
-    ("numD" => NumD(u32)),
-    ("offsetIdx" => OffsetIdx(u32)),
-    ("scaleIdx" => ScaleIdx(u32)),
-    ("bitWidthIdx" => BitWidthIdx(u32)),
+    ("maxBitWidth" => MaxBitWidth(Primitive<u8>)),
+    ("preserved" => Preserved(Primitive<u8>)),
+    ("numD" => NumD(Primitive<u32>)),
+    ("offsetIdx" => OffsetIdx(Primitive<u32>)),
+    ("scaleIdx" => ScaleIdx(Primitive<u32>)),
+    ("bitWidthIdx" => BitWidthIdx(Primitive<u32>)),
 }

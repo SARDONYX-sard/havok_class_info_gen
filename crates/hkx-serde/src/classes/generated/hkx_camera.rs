@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxCamera<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxCamera"`: Name of this class.
+    /// `"hkxCamera"`: The original C++ class name.
     #[serde(default = "HkxCamera::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxCamera<'a> {
 }
 
 impl HkxCamera<'_> {
-    /// Return `"hkxCamera"`, which is the name of this class.
+    /// Return `"hkxCamera"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxCamera".into()
+        "hkxCamera".into()
     }
 
     /// Return `"0xe3597b02"`, which is the signature of this class.
@@ -63,66 +64,66 @@ impl HkxCamera<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxCameraHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"from"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "from")]
-    From(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    From(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"focus"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "focus")]
-    Focus(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Focus(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"up"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "up")]
-    Up(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Up(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"fov"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fov")]
-    Fov(f64),
-    /// # Information on fields in the original C++ class
+    Fov(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"far"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "far")]
-    Far(f64),
-    /// # Information on fields in the original C++ class
+    Far(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"near"`
     /// -   type: `hkReal`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "near")]
-    Near(f64),
-    /// # Information on fields in the original C++ class
+    Near(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"leftHanded"`
     /// -   type: `hkBool`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "leftHanded")]
-    LeftHanded(bool),
+    LeftHanded(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxCameraHkParam<'de>, "@name",
-    ("from" => From(cgmath::Vector4<f32>)),
-    ("focus" => Focus(cgmath::Vector4<f32>)),
-    ("up" => Up(cgmath::Vector4<f32>)),
-    ("fov" => Fov(f64)),
-    ("far" => Far(f64)),
-    ("near" => Near(f64)),
-    ("leftHanded" => LeftHanded(bool)),
+    ("from" => From(Vector4<f32>)),
+    ("focus" => Focus(Vector4<f32>)),
+    ("up" => Up(Vector4<f32>)),
+    ("fov" => Fov(Primitive<f32>)),
+    ("far" => Far(Primitive<f32>)),
+    ("near" => Near(Primitive<f32>)),
+    ("leftHanded" => LeftHanded(Primitive<bool>)),
 }

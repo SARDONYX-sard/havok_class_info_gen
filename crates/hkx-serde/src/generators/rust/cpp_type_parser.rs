@@ -12,11 +12,12 @@ type IResult<I, O, E = nom::error::VerboseError<I>> = Result<(I, O), nom::Err<E>
 /// C++ type to Rust type conversion
 pub fn parse_cpp_type(input: &str) -> IResult<&str, Cow<'_, str>> {
     alt((
+        // Avoid recognizing un-arrayed structs and primitives by attempting to parse limit arrays first.
+        parse_array_type,
         parse_struct_type,
         parse_enum_type,
         parse_flags_type,
         parse_hk_array_type,
-        parse_array_type,
         parse_primitive_type,
         parse_vector,
     ))(input)
@@ -25,21 +26,21 @@ pub fn parse_cpp_type(input: &str) -> IResult<&str, Cow<'_, str>> {
 fn parse_primitive_type(input: &str) -> IResult<&str, Cow<'_, str>> {
     map(
         alt((
-            map(tag("char*"), |_| "Cow<'a, str>"),
-            map(tag("hkBool"), |_| "bool"),
-            map(tag("hkChar"), |_| "char"),
-            map(tag("hkHalf"), |_| "f32"), // f16
-            map(tag("hkInt16"), |_| "i16"),
-            map(tag("hkInt32"), |_| "i32"),
-            map(tag("hkInt8"), |_| "i8"),
-            map(tag("hkReal"), |_| "f32"), // C++ float
-            map(tag("hkUint16"), |_| "u16"),
-            map(tag("hkUint32"), |_| "u32"),
-            map(tag("hkUint64"), |_| "u64"),
-            map(tag("hkUint8"), |_| "u8"),
-            map(tag("hkUlong"), |_| "u64"),
-            map(tag("hkStringPtr"), |_| "Cow<'a, str>"),
-            map(tag("hkVariant"), |_| "u64"), // Fill in appropriate type for Variant
+            map(tag("char*"), |_| "Primitive<Cow<'a, str>>"),
+            map(tag("hkBool"), |_| "Primitive<bool>"),
+            map(tag("hkChar"), |_| "Primitive<char>"),
+            map(tag("hkHalf"), |_| "Primitive<f32>"), // f16
+            map(tag("hkInt16"), |_| "Primitive<i16>"),
+            map(tag("hkInt32"), |_| "Primitive<i32>"),
+            map(tag("hkInt8"), |_| "Primitive<i8>"),
+            map(tag("hkReal"), |_| "Primitive<f32>"), // C++ float
+            map(tag("hkUint16"), |_| "Primitive<u16>"),
+            map(tag("hkUint32"), |_| "Primitive<u32>"),
+            map(tag("hkUint64"), |_| "Primitive<u64>"),
+            map(tag("hkUint8"), |_| "Primitive<u8>"),
+            map(tag("hkUlong"), |_| "Primitive<u64>"),
+            map(tag("hkStringPtr"), |_| "Primitive<Cow<'a, str>>"),
+            map(tag("hkVariant"), |_| "Primitive<u64>"), // Fill in appropriate type for Variant
             map(tag("void"), |_| "()"),
         )),
         Cow::from,
@@ -61,7 +62,10 @@ fn parse_vector(input: &str) -> IResult<&str, Cow<'_, str>> {
     )(input)
 }
 
+/// Has limit array. like `[3]`
 fn parse_array_type(input: &str) -> IResult<&str, Cow<'_, str>> {
+    let (input, base_type) = alt((parse_struct_type, parse_primitive_type))(input)?;
+
     fn parse_array_len(input: &str) -> IResult<&str, usize> {
         let (input, _) = tag("[")(input)?;
         let (input, digits) = take_while(|c: char| c.is_ascii_digit())(input)?;
@@ -69,8 +73,6 @@ fn parse_array_type(input: &str) -> IResult<&str, Cow<'_, str>> {
         let dimensions = digits.parse::<usize>().unwrap_or(0);
         Ok((input, dimensions))
     }
-
-    let (input, base_type) = alt((parse_primitive_type, parse_struct_type))(input)?;
     let (input, dimensions) = parse_array_len(input)?;
     Ok((input, format!("[{}; {}]", base_type, dimensions).into()))
 }
@@ -114,12 +116,12 @@ fn parse_struct_type_core(input: &str, is_generics: bool) -> IResult<&str, Cow<'
         input = res.0;
     }
 
-    let (input, struct_name) = take_while(|c| c != '*')(input)?;
+    let (input, struct_name) = take_while(|c| c != '[' && c != '*')(input)?;
     let struct_name = struct_name.to_case(convert_case::Case::Pascal);
     let (input, is_ptr) = opt(char('*'))(input)?;
 
     if is_ptr.is_some() {
-        Ok((input, format!("Box<{}>", struct_name).into()))
+        Ok((input, "Cow<'a, str>".into()))
     } else {
         Ok((input, struct_name.into()))
     }
@@ -195,6 +197,13 @@ mod tests {
     }
 
     #[test]
+    fn should_parse_c_style_array() {
+        let input = "struct hkpVehicleFrictionStatusAxisStatus[2]";
+        let (_, rust_array) = parse_array_type(input).unwrap();
+        assert_eq!(rust_array, "[HkpVehicleFrictionStatusAxisStatus; 2]");
+    }
+
+    #[test]
     fn should_parse_all_type() {
         let _guard = init_tracing(Some("should_parse_all_type"), tracing::Level::DEBUG).unwrap();
 
@@ -216,5 +225,25 @@ mod tests {
                 }
             }
         }
+    }
+
+    #[test]
+    fn should_generate_all_mapping_types() {
+        let _guard = init_tracing(None, tracing::Level::DEBUG);
+
+        let rpt_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("assets")
+            .join("hkxcmd_help")
+            .join("rpt");
+
+        let output_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("src")
+            .join("generators")
+            .join("rust")
+            .join("generated");
+        std::fs::create_dir_all(&output_dir).unwrap();
+        let output_file = output_dir.join("hk_types.rs");
+
+        std::fs::write(output_file, generate_all_mapping_types(rpt_dir)).unwrap();
     }
 }

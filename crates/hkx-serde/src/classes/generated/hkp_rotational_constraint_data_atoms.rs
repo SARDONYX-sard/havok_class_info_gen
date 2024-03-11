@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpRotationalConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpRotationalConstraintDataAtoms"`: Name of this class.
+    /// `"hkpRotationalConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpRotationalConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpRotationalConstraintDataAtoms<'a> {
 }
 
 impl HkpRotationalConstraintDataAtoms<'_> {
-    /// Return `"hkpRotationalConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpRotationalConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpRotationalConstraintDataAtoms".into()
+        "hkpRotationalConstraintDataAtoms".into()
     }
 
     /// Return `"0xa0c64586"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkpRotationalConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpRotationalConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rotations"`
     /// -   type: `struct hkpSetLocalRotationsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotations")]
     Rotations(HkpSetLocalRotationsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ang"`
     /// -   type: `struct hkpAngConstraintAtom`
     /// - offset: 112

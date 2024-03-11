@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbAttachmentModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbAttachmentModifier"`: Name of this class.
+    /// `"hkbAttachmentModifier"`: The original C++ class name.
     #[serde(default = "HkbAttachmentModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbAttachmentModifier<'a> {
 }
 
 impl HkbAttachmentModifier<'_> {
-    /// Return `"hkbAttachmentModifier"`, which is the name of this class.
+    /// Return `"hkbAttachmentModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbAttachmentModifier".into()
+        "hkbAttachmentModifier".into()
     }
 
     /// Return `"0xcc0aab32"`, which is the signature of this class.
@@ -63,84 +64,84 @@ impl HkbAttachmentModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbAttachmentModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sendToAttacherOnAttach"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sendToAttacherOnAttach")]
     SendToAttacherOnAttach(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sendToAttacheeOnAttach"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sendToAttacheeOnAttach")]
     SendToAttacheeOnAttach(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sendToAttacherOnDetach"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sendToAttacherOnDetach")]
     SendToAttacherOnDetach(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sendToAttacheeOnDetach"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sendToAttacheeOnDetach")]
     SendToAttacheeOnDetach(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"attachmentSetup"`
     /// -   type: `struct hkbAttachmentSetup*`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "attachmentSetup")]
-    AttachmentSetup(Box<HkbAttachmentSetup>),
-    /// # Information on fields in the original C++ class
+    AttachmentSetup(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"attacherHandle"`
     /// -   type: `struct hkbHandle*`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "attacherHandle")]
-    AttacherHandle(Box<HkbHandle>),
-    /// # Information on fields in the original C++ class
+    AttacherHandle(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"attacheeHandle"`
     /// -   type: `struct hkbHandle*`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "attacheeHandle")]
-    AttacheeHandle(Box<HkbHandle>),
-    /// # Information on fields in the original C++ class
+    AttacheeHandle(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"attacheeLayer"`
     /// -   type: `hkInt32`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "attacheeLayer")]
-    AttacheeLayer(i32),
-    /// # Information on fields in the original C++ class
+    AttacheeLayer(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"attacheeRB"`
     /// -   type: `void*`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "attacheeRB", skip_serializing)]
     AttacheeRb(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"oldMotionType"`
     /// -   type: `enum unknown`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "oldMotionType", skip_serializing)]
     OldMotionType(Unknown),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"oldFilterInfo"`
     /// -   type: `hkInt32`
     /// - offset: 100
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "oldFilterInfo", skip_serializing)]
-    OldFilterInfo(i32),
-    /// # Information on fields in the original C++ class
+    OldFilterInfo(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"attachment"`
     /// -   type: `void*`
     /// - offset: 104
@@ -157,12 +158,12 @@ impl_deserialize_for_internally_tagged_enum! {
     ("sendToAttacheeOnAttach" => SendToAttacheeOnAttach(HkbEventProperty)),
     ("sendToAttacherOnDetach" => SendToAttacherOnDetach(HkbEventProperty)),
     ("sendToAttacheeOnDetach" => SendToAttacheeOnDetach(HkbEventProperty)),
-    ("attachmentSetup" => AttachmentSetup(Box<HkbAttachmentSetup>)),
-    ("attacherHandle" => AttacherHandle(Box<HkbHandle>)),
-    ("attacheeHandle" => AttacheeHandle(Box<HkbHandle>)),
-    ("attacheeLayer" => AttacheeLayer(i32)),
+    ("attachmentSetup" => AttachmentSetup(Cow<'a, str>)),
+    ("attacherHandle" => AttacherHandle(Cow<'a, str>)),
+    ("attacheeHandle" => AttacheeHandle(Cow<'a, str>)),
+    ("attacheeLayer" => AttacheeLayer(Primitive<i32>)),
     ("attacheeRB" => AttacheeRb(())),
     ("oldMotionType" => OldMotionType(Unknown)),
-    ("oldFilterInfo" => OldFilterInfo(i32)),
+    ("oldFilterInfo" => OldFilterInfo(Primitive<i32>)),
     ("attachment" => Attachment(())),
 }

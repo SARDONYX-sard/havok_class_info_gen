@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbEvaluateHandleModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbEvaluateHandleModifier"`: Name of this class.
+    /// `"hkbEvaluateHandleModifier"`: The original C++ class name.
     #[serde(default = "HkbEvaluateHandleModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbEvaluateHandleModifier<'a> {
 }
 
 impl HkbEvaluateHandleModifier<'_> {
-    /// Return `"hkbEvaluateHandleModifier"`, which is the name of this class.
+    /// Return `"hkbEvaluateHandleModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbEvaluateHandleModifier".into()
+        "hkbEvaluateHandleModifier".into()
     }
 
     /// Return `"0x79757102"`, which is the signature of this class.
@@ -63,108 +64,108 @@ impl HkbEvaluateHandleModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbEvaluateHandleModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"handle"`
     /// -   type: `struct hkbHandle*`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handle")]
-    Handle(Box<HkbHandle>),
-    /// # Information on fields in the original C++ class
+    Handle(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"handlePositionOut"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handlePositionOut")]
-    HandlePositionOut(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    HandlePositionOut(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"handleRotationOut"`
     /// -   type: `hkQuaternion`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handleRotationOut")]
-    HandleRotationOut(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    HandleRotationOut(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isValidOut"`
     /// -   type: `hkBool`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isValidOut")]
-    IsValidOut(bool),
-    /// # Information on fields in the original C++ class
+    IsValidOut(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"extrapolationTimeStep"`
     /// -   type: `hkReal`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extrapolationTimeStep")]
-    ExtrapolationTimeStep(f64),
-    /// # Information on fields in the original C++ class
+    ExtrapolationTimeStep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"handleChangeSpeed"`
     /// -   type: `hkReal`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handleChangeSpeed")]
-    HandleChangeSpeed(f64),
-    /// # Information on fields in the original C++ class
+    HandleChangeSpeed(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"handleChangeMode"`
     /// -   type: `enum HandleChangeMode`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handleChangeMode")]
     HandleChangeMode(HandleChangeMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"oldHandle"`
     /// -   type: `struct hkbHandle`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "oldHandle", skip_serializing)]
     OldHandle(HkbHandle),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"oldHandlePosition"`
     /// -   type: `hkVector4`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "oldHandlePosition", skip_serializing)]
-    OldHandlePosition(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    OldHandlePosition(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"oldHandleRotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "oldHandleRotation", skip_serializing)]
-    OldHandleRotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    OldHandleRotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeSinceLastModify"`
     /// -   type: `hkReal`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeSinceLastModify", skip_serializing)]
-    TimeSinceLastModify(f64),
-    /// # Information on fields in the original C++ class
+    TimeSinceLastModify(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"smoothlyChangingHandles"`
     /// -   type: `hkBool`
     /// - offset: 164
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "smoothlyChangingHandles", skip_serializing)]
-    SmoothlyChangingHandles(bool),
+    SmoothlyChangingHandles(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbEvaluateHandleModifierHkParam<'de>, "@name",
-    ("handle" => Handle(Box<HkbHandle>)),
-    ("handlePositionOut" => HandlePositionOut(cgmath::Vector4<f32>)),
-    ("handleRotationOut" => HandleRotationOut(cgmath::Quaternion<f32>)),
-    ("isValidOut" => IsValidOut(bool)),
-    ("extrapolationTimeStep" => ExtrapolationTimeStep(f64)),
-    ("handleChangeSpeed" => HandleChangeSpeed(f64)),
+    ("handle" => Handle(Cow<'a, str>)),
+    ("handlePositionOut" => HandlePositionOut(Vector4<f32>)),
+    ("handleRotationOut" => HandleRotationOut(Quaternion<f32>)),
+    ("isValidOut" => IsValidOut(Primitive<bool>)),
+    ("extrapolationTimeStep" => ExtrapolationTimeStep(Primitive<f32>)),
+    ("handleChangeSpeed" => HandleChangeSpeed(Primitive<f32>)),
     ("handleChangeMode" => HandleChangeMode(HandleChangeMode)),
     ("oldHandle" => OldHandle(HkbHandle)),
-    ("oldHandlePosition" => OldHandlePosition(cgmath::Vector4<f32>)),
-    ("oldHandleRotation" => OldHandleRotation(cgmath::Quaternion<f32>)),
-    ("timeSinceLastModify" => TimeSinceLastModify(f64)),
-    ("smoothlyChangingHandles" => SmoothlyChangingHandles(bool)),
+    ("oldHandlePosition" => OldHandlePosition(Vector4<f32>)),
+    ("oldHandleRotation" => OldHandleRotation(Quaternion<f32>)),
+    ("timeSinceLastModify" => TimeSinceLastModify(Primitive<f32>)),
+    ("smoothlyChangingHandles" => SmoothlyChangingHandles(Primitive<bool>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPulleyConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPulleyConstraintAtom"`: Name of this class.
+    /// `"hkpPulleyConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpPulleyConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPulleyConstraintAtom<'a> {
 }
 
 impl HkpPulleyConstraintAtom<'_> {
-    /// Return `"hkpPulleyConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpPulleyConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPulleyConstraintAtom".into()
+        "hkpPulleyConstraintAtom".into()
     }
 
     /// Return `"0x94a08848"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpPulleyConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPulleyConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"fixedPivotAinWorld"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fixedPivotAinWorld")]
-    FixedPivotAinWorld(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    FixedPivotAinWorld(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"fixedPivotBinWorld"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fixedPivotBinWorld")]
-    FixedPivotBinWorld(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    FixedPivotBinWorld(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"ropeLength"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ropeLength")]
-    RopeLength(f64),
-    /// # Information on fields in the original C++ class
+    RopeLength(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"leverageOnBodyB"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "leverageOnBodyB")]
-    LeverageOnBodyB(f64),
+    LeverageOnBodyB(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpPulleyConstraintAtomHkParam<'de>, "@name",
-    ("fixedPivotAinWorld" => FixedPivotAinWorld(cgmath::Vector4<f32>)),
-    ("fixedPivotBinWorld" => FixedPivotBinWorld(cgmath::Vector4<f32>)),
-    ("ropeLength" => RopeLength(f64)),
-    ("leverageOnBodyB" => LeverageOnBodyB(f64)),
+    ("fixedPivotAinWorld" => FixedPivotAinWorld(Vector4<f32>)),
+    ("fixedPivotBinWorld" => FixedPivotBinWorld(Vector4<f32>)),
+    ("ropeLength" => RopeLength(Primitive<f32>)),
+    ("leverageOnBodyB" => LeverageOnBodyB(Primitive<f32>)),
 }

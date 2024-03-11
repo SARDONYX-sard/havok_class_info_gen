@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCharacterDataCharacterControllerInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCharacterDataCharacterControllerInfo"`: Name of this class.
+    /// `"hkbCharacterDataCharacterControllerInfo"`: The original C++ class name.
     #[serde(default = "HkbCharacterDataCharacterControllerInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCharacterDataCharacterControllerInfo<'a> {
 }
 
 impl HkbCharacterDataCharacterControllerInfo<'_> {
-    /// Return `"hkbCharacterDataCharacterControllerInfo"`, which is the name of this class.
+    /// Return `"hkbCharacterDataCharacterControllerInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCharacterDataCharacterControllerInfo".into()
+        "hkbCharacterDataCharacterControllerInfo".into()
     }
 
     /// Return `"0xa0f415bf"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbCharacterDataCharacterControllerInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCharacterDataCharacterControllerInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"capsuleHeight"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "capsuleHeight")]
-    CapsuleHeight(f64),
-    /// # Information on fields in the original C++ class
+    CapsuleHeight(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"capsuleRadius"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "capsuleRadius")]
-    CapsuleRadius(f64),
-    /// # Information on fields in the original C++ class
+    CapsuleRadius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionFilterInfo")]
-    CollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    CollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"characterControllerCinfo"`
     /// -   type: `struct hkpCharacterControllerCinfo*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterControllerCinfo")]
-    CharacterControllerCinfo(Box<HkpCharacterControllerCinfo>),
+    CharacterControllerCinfo(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbCharacterDataCharacterControllerInfoHkParam<'de>, "@name",
-    ("capsuleHeight" => CapsuleHeight(f64)),
-    ("capsuleRadius" => CapsuleRadius(f64)),
-    ("collisionFilterInfo" => CollisionFilterInfo(u32)),
-    ("characterControllerCinfo" => CharacterControllerCinfo(Box<HkpCharacterControllerCinfo>)),
+    ("capsuleHeight" => CapsuleHeight(Primitive<f32>)),
+    ("capsuleRadius" => CapsuleRadius(Primitive<f32>)),
+    ("collisionFilterInfo" => CollisionFilterInfo(Primitive<u32>)),
+    ("characterControllerCinfo" => CharacterControllerCinfo(Cow<'a, str>)),
 }

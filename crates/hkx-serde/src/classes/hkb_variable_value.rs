@@ -2,10 +2,10 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
+use crate::havok_types::Primitive;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
-use crate::havok_types::Primitive;
 
 /// In XML, it is enclosed in a `hkobject` tag
 /// and the `class` attribute contains the C++ class nam
@@ -26,12 +26,12 @@ pub struct HkbVariableValue<'a> {
 
     /// `"hkbVariableValue"`: Name of C++ class.
     #[serde(default = "HkbVariableValue::class_name")]
-    #[serde(rename = "@class", borrow)]
+    #[serde(rename = "@class", borrow, skip_deserializing)]
     pub class: Cow<'a, str>,
 
     /// `0xb99bd6a`: Unique value of this class.
     #[serde(default = "HkbVariableValue::signature")]
-    #[serde(rename = "@signature", borrow)]
+    #[serde(rename = "@signature", borrow, skip_deserializing)]
     pub signature: Cow<'a, str>,
 
     /// The `"hkparam"` tag (C++ field) vector

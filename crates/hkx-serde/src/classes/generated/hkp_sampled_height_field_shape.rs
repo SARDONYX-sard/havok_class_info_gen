@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSampledHeightFieldShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSampledHeightFieldShape"`: Name of this class.
+    /// `"hkpSampledHeightFieldShape"`: The original C++ class name.
     #[serde(default = "HkpSampledHeightFieldShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSampledHeightFieldShape<'a> {
 }
 
 impl HkpSampledHeightFieldShape<'_> {
-    /// Return `"hkpSampledHeightFieldShape"`, which is the name of this class.
+    /// Return `"hkpSampledHeightFieldShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSampledHeightFieldShape".into()
+        "hkpSampledHeightFieldShape".into()
     }
 
     /// Return `"0x11213421"`, which is the signature of this class.
@@ -63,84 +64,84 @@ impl HkpSampledHeightFieldShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSampledHeightFieldShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"xRes"`
     /// -   type: `hkInt32`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "xRes")]
-    XRes(i32),
-    /// # Information on fields in the original C++ class
+    XRes(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"zRes"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "zRes")]
-    ZRes(i32),
-    /// # Information on fields in the original C++ class
+    ZRes(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"heightCenter"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "heightCenter")]
-    HeightCenter(f64),
-    /// # Information on fields in the original C++ class
+    HeightCenter(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"useProjectionBasedHeight"`
     /// -   type: `hkBool`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "useProjectionBasedHeight")]
-    UseProjectionBasedHeight(bool),
-    /// # Information on fields in the original C++ class
+    UseProjectionBasedHeight(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"heightfieldType"`
     /// -   type: `enum HeightFieldType`
     /// - offset: 29
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "heightfieldType")]
     HeightfieldType(HeightFieldType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"intToFloatScale"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "intToFloatScale")]
-    IntToFloatScale(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    IntToFloatScale(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"floatToIntScale"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "floatToIntScale")]
-    FloatToIntScale(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    FloatToIntScale(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"floatToIntOffsetFloorCorrected"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "floatToIntOffsetFloorCorrected")]
-    FloatToIntOffsetFloorCorrected(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    FloatToIntOffsetFloorCorrected(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"extents"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extents")]
-    Extents(cgmath::Vector4<f32>),
+    Extents(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSampledHeightFieldShapeHkParam<'de>, "@name",
-    ("xRes" => XRes(i32)),
-    ("zRes" => ZRes(i32)),
-    ("heightCenter" => HeightCenter(f64)),
-    ("useProjectionBasedHeight" => UseProjectionBasedHeight(bool)),
+    ("xRes" => XRes(Primitive<i32>)),
+    ("zRes" => ZRes(Primitive<i32>)),
+    ("heightCenter" => HeightCenter(Primitive<f32>)),
+    ("useProjectionBasedHeight" => UseProjectionBasedHeight(Primitive<bool>)),
     ("heightfieldType" => HeightfieldType(HeightFieldType)),
-    ("intToFloatScale" => IntToFloatScale(cgmath::Vector4<f32>)),
-    ("floatToIntScale" => FloatToIntScale(cgmath::Vector4<f32>)),
-    ("floatToIntOffsetFloorCorrected" => FloatToIntOffsetFloorCorrected(cgmath::Vector4<f32>)),
-    ("extents" => Extents(cgmath::Vector4<f32>)),
+    ("intToFloatScale" => IntToFloatScale(Vector4<f32>)),
+    ("floatToIntScale" => FloatToIntScale(Vector4<f32>)),
+    ("floatToIntOffsetFloorCorrected" => FloatToIntOffsetFloorCorrected(Vector4<f32>)),
+    ("extents" => Extents(Vector4<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

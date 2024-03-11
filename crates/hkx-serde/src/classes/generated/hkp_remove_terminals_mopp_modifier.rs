@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpRemoveTerminalsMoppModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpRemoveTerminalsMoppModifier"`: Name of this class.
+    /// `"hkpRemoveTerminalsMoppModifier"`: The original C++ class name.
     #[serde(default = "HkpRemoveTerminalsMoppModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpRemoveTerminalsMoppModifier<'a> {
 }
 
 impl HkpRemoveTerminalsMoppModifier<'_> {
-    /// Return `"hkpRemoveTerminalsMoppModifier"`, which is the name of this class.
+    /// Return `"hkpRemoveTerminalsMoppModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpRemoveTerminalsMoppModifier".into()
+        "hkpRemoveTerminalsMoppModifier".into()
     }
 
     /// Return `"0x91367f03"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkpRemoveTerminalsMoppModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpRemoveTerminalsMoppModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"removeInfo"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "removeInfo")]
-    RemoveInfo(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    RemoveInfo(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"tempShapesToRemove"`
     /// -   type: `void*`
     /// - offset: 24
@@ -83,6 +84,6 @@ pub enum HkpRemoveTerminalsMoppModifierHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpRemoveTerminalsMoppModifierHkParam<'de>, "@name",
-    ("removeInfo" => RemoveInfo(Vec<u32>)),
+    ("removeInfo" => RemoveInfo(Vec<Primitive<u32>>)),
     ("tempShapesToRemove" => TempShapesToRemove(())),
 }

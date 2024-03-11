@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpExtendedMeshShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpExtendedMeshShape"`: Name of this class.
+    /// `"hkpExtendedMeshShape"`: The original C++ class name.
     #[serde(default = "HkpExtendedMeshShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpExtendedMeshShape<'a> {
 }
 
 impl HkpExtendedMeshShape<'_> {
-    /// Return `"hkpExtendedMeshShape"`, which is the name of this class.
+    /// Return `"hkpExtendedMeshShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpExtendedMeshShape".into()
+        "hkpExtendedMeshShape".into()
     }
 
     /// Return `"0x177114a2"`, which is the signature of this class.
@@ -63,97 +64,97 @@ impl HkpExtendedMeshShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpExtendedMeshShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"embeddedTrianglesSubpart"`
     /// -   type: `struct hkpExtendedMeshShapeTrianglesSubpart`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "embeddedTrianglesSubpart")]
     EmbeddedTrianglesSubpart(HkpExtendedMeshShapeTrianglesSubpart),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"aabbHalfExtents"`
     /// -   type: `hkVector4`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabbHalfExtents")]
-    AabbHalfExtents(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AabbHalfExtents(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"aabbCenter"`
     /// -   type: `hkVector4`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabbCenter")]
-    AabbCenter(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AabbCenter(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"materialClass"`
     /// -   type: `void*`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "materialClass", skip_serializing)]
     MaterialClass(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numBitsForSubpartIndex"`
     /// -   type: `hkInt32`
     /// - offset: 180
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numBitsForSubpartIndex")]
-    NumBitsForSubpartIndex(i32),
-    /// # Information on fields in the original C++ class
+    NumBitsForSubpartIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"trianglesSubparts"`
     /// -   type: `hkArray&lt;struct hkpExtendedMeshShapeTrianglesSubpart&gt;`
     /// - offset: 184
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "trianglesSubparts")]
     TrianglesSubparts(Vec<HkpExtendedMeshShapeTrianglesSubpart>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"shapesSubparts"`
     /// -   type: `hkArray&lt;struct hkpExtendedMeshShapeShapesSubpart&gt;`
     /// - offset: 196
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shapesSubparts")]
     ShapesSubparts(Vec<HkpExtendedMeshShapeShapesSubpart>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"weldingInfo"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 208
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingInfo")]
-    WeldingInfo(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    WeldingInfo(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"weldingType"`
     /// -   type: `enum WeldingType`
     /// - offset: 220
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingType")]
     WeldingType(WeldingType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"defaultCollisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 224
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "defaultCollisionFilterInfo")]
-    DefaultCollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    DefaultCollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cachedNumChildShapes"`
     /// -   type: `hkInt32`
     /// - offset: 228
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cachedNumChildShapes")]
-    CachedNumChildShapes(i32),
-    /// # Information on fields in the original C++ class
+    CachedNumChildShapes(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"triangleRadius"`
     /// -   type: `hkReal`
     /// - offset: 232
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "triangleRadius")]
-    TriangleRadius(f64),
-    /// # Information on fields in the original C++ class
+    TriangleRadius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"padding"`
     /// -   type: `hkInt32`
     /// - offset: 236
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "padding", skip_serializing)]
-    Padding(i32),
+    Padding(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -161,18 +162,18 @@ pub enum HkpExtendedMeshShapeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpExtendedMeshShapeHkParam<'de>, "@name",
     ("embeddedTrianglesSubpart" => EmbeddedTrianglesSubpart(HkpExtendedMeshShapeTrianglesSubpart)),
-    ("aabbHalfExtents" => AabbHalfExtents(cgmath::Vector4<f32>)),
-    ("aabbCenter" => AabbCenter(cgmath::Vector4<f32>)),
+    ("aabbHalfExtents" => AabbHalfExtents(Vector4<f32>)),
+    ("aabbCenter" => AabbCenter(Vector4<f32>)),
     ("materialClass" => MaterialClass(())),
-    ("numBitsForSubpartIndex" => NumBitsForSubpartIndex(i32)),
+    ("numBitsForSubpartIndex" => NumBitsForSubpartIndex(Primitive<i32>)),
     ("trianglesSubparts" => TrianglesSubparts(Vec<HkpExtendedMeshShapeTrianglesSubpart>)),
     ("shapesSubparts" => ShapesSubparts(Vec<HkpExtendedMeshShapeShapesSubpart>)),
-    ("weldingInfo" => WeldingInfo(Vec<u16>)),
+    ("weldingInfo" => WeldingInfo(Vec<Primitive<u16>>)),
     ("weldingType" => WeldingType(WeldingType)),
-    ("defaultCollisionFilterInfo" => DefaultCollisionFilterInfo(u32)),
-    ("cachedNumChildShapes" => CachedNumChildShapes(i32)),
-    ("triangleRadius" => TriangleRadius(f64)),
-    ("padding" => Padding(i32)),
+    ("defaultCollisionFilterInfo" => DefaultCollisionFilterInfo(Primitive<u32>)),
+    ("cachedNumChildShapes" => CachedNumChildShapes(Primitive<i32>)),
+    ("triangleRadius" => TriangleRadius(Primitive<f32>)),
+    ("padding" => Padding(Primitive<i32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

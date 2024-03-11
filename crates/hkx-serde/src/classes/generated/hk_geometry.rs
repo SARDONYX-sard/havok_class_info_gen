@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkGeometry<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkGeometry"`: Name of this class.
+    /// `"hkGeometry"`: The original C++ class name.
     #[serde(default = "HkGeometry::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkGeometry<'a> {
 }
 
 impl HkGeometry<'_> {
-    /// Return `"hkGeometry"`, which is the name of this class.
+    /// Return `"hkGeometry"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkGeometry".into()
+        "hkGeometry".into()
     }
 
     /// Return `"0x98dd8bdc"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkGeometry<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkGeometryHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertices"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertices")]
-    Vertices(Vec<cgmath::Vector4<f32>>),
-    /// # Information on fields in the original C++ class
+    Vertices(Vec<Vector4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"triangles"`
     /// -   type: `hkArray&lt;struct hkGeometryTriangle&gt;`
     /// - offset: 12
@@ -83,6 +84,6 @@ pub enum HkGeometryHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkGeometryHkParam<'de>, "@name",
-    ("vertices" => Vertices(Vec<cgmath::Vector4<f32>>)),
+    ("vertices" => Vertices(Vec<Vector4<f32>>)),
     ("triangles" => Triangles(Vec<HkGeometryTriangle>)),
 }

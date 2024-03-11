@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpBallSocketChainData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpBallSocketChainData"`: Name of this class.
+    /// `"hkpBallSocketChainData"`: The original C++ class name.
     #[serde(default = "HkpBallSocketChainData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpBallSocketChainData<'a> {
 }
 
 impl HkpBallSocketChainData<'_> {
-    /// Return `"hkpBallSocketChainData"`, which is the name of this class.
+    /// Return `"hkpBallSocketChainData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpBallSocketChainData".into()
+        "hkpBallSocketChainData".into()
     }
 
     /// Return `"0x102aae9c"`, which is the signature of this class.
@@ -63,48 +64,48 @@ impl HkpBallSocketChainData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpBallSocketChainDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"atoms"`
     /// -   type: `struct hkpBridgeAtoms`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "atoms")]
     Atoms(HkpBridgeAtoms),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"infos"`
     /// -   type: `hkArray&lt;struct hkpBallSocketChainDataConstraintInfo&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "infos")]
     Infos(Vec<HkpBallSocketChainDataConstraintInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"tau"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "tau")]
-    Tau(f64),
-    /// # Information on fields in the original C++ class
+    Tau(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"damping"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "damping")]
-    Damping(f64),
-    /// # Information on fields in the original C++ class
+    Damping(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cfm"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cfm")]
-    Cfm(f64),
-    /// # Information on fields in the original C++ class
+    Cfm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxErrorDistance"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxErrorDistance")]
-    MaxErrorDistance(f64),
+    MaxErrorDistance(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -113,8 +114,8 @@ impl_deserialize_for_internally_tagged_enum! {
     HkpBallSocketChainDataHkParam<'de>, "@name",
     ("atoms" => Atoms(HkpBridgeAtoms)),
     ("infos" => Infos(Vec<HkpBallSocketChainDataConstraintInfo>)),
-    ("tau" => Tau(f64)),
-    ("damping" => Damping(f64)),
-    ("cfm" => Cfm(f64)),
-    ("maxErrorDistance" => MaxErrorDistance(f64)),
+    ("tau" => Tau(Primitive<f32>)),
+    ("damping" => Damping(Primitive<f32>)),
+    ("cfm" => Cfm(Primitive<f32>)),
+    ("maxErrorDistance" => MaxErrorDistance(Primitive<f32>)),
 }

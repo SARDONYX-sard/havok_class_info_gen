@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConstraintCollisionFilter<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConstraintCollisionFilter"`: Name of this class.
+    /// `"hkpConstraintCollisionFilter"`: The original C++ class name.
     #[serde(default = "HkpConstraintCollisionFilter::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConstraintCollisionFilter<'a> {
 }
 
 impl HkpConstraintCollisionFilter<'_> {
-    /// Return `"hkpConstraintCollisionFilter"`, which is the name of this class.
+    /// Return `"hkpConstraintCollisionFilter"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConstraintCollisionFilter".into()
+        "hkpConstraintCollisionFilter".into()
     }
 
     /// Return `"0xc3b577b1"`, which is the signature of this class.

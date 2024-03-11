@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbExpressionCondition<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbExpressionCondition"`: Name of this class.
+    /// `"hkbExpressionCondition"`: The original C++ class name.
     #[serde(default = "HkbExpressionCondition::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbExpressionCondition<'a> {
 }
 
 impl HkbExpressionCondition<'_> {
-    /// Return `"hkbExpressionCondition"`, which is the name of this class.
+    /// Return `"hkbExpressionCondition"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbExpressionCondition".into()
+        "hkbExpressionCondition".into()
     }
 
     /// Return `"0x1c3c1045"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkbExpressionCondition<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbExpressionConditionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"expression"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "expression")]
-    Expression(String),
-    /// # Information on fields in the original C++ class
+    Expression(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"compiledExpressionSet"`
     /// -   type: `void*`
     /// - offset: 12
@@ -83,6 +84,6 @@ pub enum HkbExpressionConditionHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbExpressionConditionHkParam<'de>, "@name",
-    ("expression" => Expression(String)),
+    ("expression" => Expression(Primitive<Cow<'a, str>>)),
     ("compiledExpressionSet" => CompiledExpressionSet(())),
 }

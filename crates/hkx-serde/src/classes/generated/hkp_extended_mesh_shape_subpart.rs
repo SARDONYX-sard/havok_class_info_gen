@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpExtendedMeshShapeSubpart<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpExtendedMeshShapeSubpart"`: Name of this class.
+    /// `"hkpExtendedMeshShapeSubpart"`: The original C++ class name.
     #[serde(default = "HkpExtendedMeshShapeSubpart::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpExtendedMeshShapeSubpart<'a> {
 }
 
 impl HkpExtendedMeshShapeSubpart<'_> {
-    /// Return `"hkpExtendedMeshShapeSubpart"`, which is the name of this class.
+    /// Return `"hkpExtendedMeshShapeSubpart"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpExtendedMeshShapeSubpart".into()
+        "hkpExtendedMeshShapeSubpart".into()
     }
 
     /// Return `"0xf4608207"`, which is the signature of this class.
@@ -63,62 +64,62 @@ impl HkpExtendedMeshShapeSubpart<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpExtendedMeshShapeSubpartHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum SubpartType`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(SubpartType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndexStridingType"`
     /// -   type: `enum MaterialIndexStridingType`
     /// - offset: 1
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialIndexStridingType")]
     MaterialIndexStridingType(MaterialIndexStridingType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialStriding"`
     /// -   type: `hkInt16`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "materialStriding", skip_serializing)]
-    MaterialStriding(i16),
-    /// # Information on fields in the original C++ class
+    MaterialStriding(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndexBase"`
     /// -   type: `void*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "materialIndexBase", skip_serializing)]
     MaterialIndexBase(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndexStriding"`
     /// -   type: `hkUint16`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialIndexStriding")]
-    MaterialIndexStriding(u16),
-    /// # Information on fields in the original C++ class
+    MaterialIndexStriding(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"numMaterials"`
     /// -   type: `hkUint16`
     /// - offset: 10
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numMaterials")]
-    NumMaterials(u16),
-    /// # Information on fields in the original C++ class
+    NumMaterials(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"materialBase"`
     /// -   type: `void*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "materialBase", skip_serializing)]
     MaterialBase(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"userData"`
     /// -   type: `hkUlong`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData")]
-    UserData(u64),
+    UserData(Primitive<u64>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -127,10 +128,10 @@ impl_deserialize_for_internally_tagged_enum! {
     HkpExtendedMeshShapeSubpartHkParam<'de>, "@name",
     ("type" => Type(SubpartType)),
     ("materialIndexStridingType" => MaterialIndexStridingType(MaterialIndexStridingType)),
-    ("materialStriding" => MaterialStriding(i16)),
+    ("materialStriding" => MaterialStriding(Primitive<i16>)),
     ("materialIndexBase" => MaterialIndexBase(())),
-    ("materialIndexStriding" => MaterialIndexStriding(u16)),
-    ("numMaterials" => NumMaterials(u16)),
+    ("materialIndexStriding" => MaterialIndexStriding(Primitive<u16>)),
+    ("numMaterials" => NumMaterials(Primitive<u16>)),
     ("materialBase" => MaterialBase(())),
-    ("userData" => UserData(u64)),
+    ("userData" => UserData(Primitive<u64>)),
 }

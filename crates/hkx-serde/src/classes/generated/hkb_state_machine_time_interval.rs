@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbStateMachineTimeInterval<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbStateMachineTimeInterval"`: Name of this class.
+    /// `"hkbStateMachineTimeInterval"`: The original C++ class name.
     #[serde(default = "HkbStateMachineTimeInterval::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbStateMachineTimeInterval<'a> {
 }
 
 impl HkbStateMachineTimeInterval<'_> {
-    /// Return `"hkbStateMachineTimeInterval"`, which is the name of this class.
+    /// Return `"hkbStateMachineTimeInterval"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbStateMachineTimeInterval".into()
+        "hkbStateMachineTimeInterval".into()
     }
 
     /// Return `"0x60a881e5"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbStateMachineTimeInterval<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbStateMachineTimeIntervalHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"enterEventId"`
     /// -   type: `hkInt32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enterEventId")]
-    EnterEventId(i32),
-    /// # Information on fields in the original C++ class
+    EnterEventId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"exitEventId"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "exitEventId")]
-    ExitEventId(i32),
-    /// # Information on fields in the original C++ class
+    ExitEventId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"enterTime"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enterTime")]
-    EnterTime(f64),
-    /// # Information on fields in the original C++ class
+    EnterTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"exitTime"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "exitTime")]
-    ExitTime(f64),
+    ExitTime(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbStateMachineTimeIntervalHkParam<'de>, "@name",
-    ("enterEventId" => EnterEventId(i32)),
-    ("exitEventId" => ExitEventId(i32)),
-    ("enterTime" => EnterTime(f64)),
-    ("exitTime" => ExitTime(f64)),
+    ("enterEventId" => EnterEventId(Primitive<i32>)),
+    ("exitEventId" => ExitEventId(Primitive<i32>)),
+    ("enterTime" => EnterTime(Primitive<f32>)),
+    ("exitTime" => ExitTime(Primitive<f32>)),
 }

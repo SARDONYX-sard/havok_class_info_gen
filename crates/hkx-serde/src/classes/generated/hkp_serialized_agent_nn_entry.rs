@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSerializedAgentNnEntry<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSerializedAgentNnEntry"`: Name of this class.
+    /// `"hkpSerializedAgentNnEntry"`: The original C++ class name.
     #[serde(default = "HkpSerializedAgentNnEntry::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSerializedAgentNnEntry<'a> {
 }
 
 impl HkpSerializedAgentNnEntry<'_> {
-    /// Return `"hkpSerializedAgentNnEntry"`, which is the name of this class.
+    /// Return `"hkpSerializedAgentNnEntry"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSerializedAgentNnEntry".into()
+        "hkpSerializedAgentNnEntry".into()
     }
 
     /// Return `"0x49ec7de3"`, which is the signature of this class.
@@ -63,124 +64,124 @@ impl HkpSerializedAgentNnEntry<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSerializedAgentNnEntryHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bodyA"`
     /// -   type: `struct hkpEntity*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bodyA")]
-    BodyA(Box<HkpEntity>),
-    /// # Information on fields in the original C++ class
+    BodyA(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"bodyB"`
     /// -   type: `struct hkpEntity*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bodyB")]
-    BodyB(Box<HkpEntity>),
-    /// # Information on fields in the original C++ class
+    BodyB(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"bodyAId"`
     /// -   type: `hkUlong`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bodyAId")]
-    BodyAId(u64),
-    /// # Information on fields in the original C++ class
+    BodyAId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"bodyBId"`
     /// -   type: `hkUlong`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bodyBId")]
-    BodyBId(u64),
-    /// # Information on fields in the original C++ class
+    BodyBId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"useEntityIds"`
     /// -   type: `hkBool`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "useEntityIds")]
-    UseEntityIds(bool),
-    /// # Information on fields in the original C++ class
+    UseEntityIds(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"agentType"`
     /// -   type: `enum SerializedAgentType`
     /// - offset: 25
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "agentType")]
     AgentType(SerializedAgentType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"atom"`
     /// -   type: `struct hkpSimpleContactConstraintAtom`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "atom")]
     Atom(HkpSimpleContactConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"propertiesStream"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "propertiesStream")]
-    PropertiesStream(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    PropertiesStream(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"contactPoints"`
     /// -   type: `hkArray&lt;struct hkContactPoint&gt;`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "contactPoints")]
     ContactPoints(Vec<HkContactPoint>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"cpIdMgr"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 104
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cpIdMgr")]
-    CpIdMgr(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    CpIdMgr(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"nnEntryData"`
     /// -   type: `hkUint8[160]`
     /// - offset: 116
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nnEntryData")]
-    NnEntryData([u8; 160]),
-    /// # Information on fields in the original C++ class
+    NnEntryData([Primitive<u8>; 160]),
+    /// # Field information in the original C++ class
     /// -   name:`"trackInfo"`
     /// -   type: `struct hkpSerializedTrack1nInfo`
     /// - offset: 276
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "trackInfo")]
     TrackInfo(HkpSerializedTrack1NInfo),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"endianCheckBuffer"`
     /// -   type: `hkUint8[4]`
     /// - offset: 300
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endianCheckBuffer")]
-    EndianCheckBuffer([u8; 4]),
-    /// # Information on fields in the original C++ class
+    EndianCheckBuffer([Primitive<u8>; 4]),
+    /// # Field information in the original C++ class
     /// -   name:`"version"`
     /// -   type: `hkUint32`
     /// - offset: 304
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "version")]
-    Version(u32),
+    Version(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSerializedAgentNnEntryHkParam<'de>, "@name",
-    ("bodyA" => BodyA(Box<HkpEntity>)),
-    ("bodyB" => BodyB(Box<HkpEntity>)),
-    ("bodyAId" => BodyAId(u64)),
-    ("bodyBId" => BodyBId(u64)),
-    ("useEntityIds" => UseEntityIds(bool)),
+    ("bodyA" => BodyA(Cow<'a, str>)),
+    ("bodyB" => BodyB(Cow<'a, str>)),
+    ("bodyAId" => BodyAId(Primitive<u64>)),
+    ("bodyBId" => BodyBId(Primitive<u64>)),
+    ("useEntityIds" => UseEntityIds(Primitive<bool>)),
     ("agentType" => AgentType(SerializedAgentType)),
     ("atom" => Atom(HkpSimpleContactConstraintAtom)),
-    ("propertiesStream" => PropertiesStream(Vec<u8>)),
+    ("propertiesStream" => PropertiesStream(Vec<Primitive<u8>>)),
     ("contactPoints" => ContactPoints(Vec<HkContactPoint>)),
-    ("cpIdMgr" => CpIdMgr(Vec<u8>)),
-    ("nnEntryData" => NnEntryData([u8; 160])),
+    ("cpIdMgr" => CpIdMgr(Vec<Primitive<u8>>)),
+    ("nnEntryData" => NnEntryData([Primitive<u8>; 160])),
     ("trackInfo" => TrackInfo(HkpSerializedTrack1NInfo)),
-    ("endianCheckBuffer" => EndianCheckBuffer([u8; 4])),
-    ("version" => Version(u32)),
+    ("endianCheckBuffer" => EndianCheckBuffer([Primitive<u8>; 4])),
+    ("version" => Version(Primitive<u32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

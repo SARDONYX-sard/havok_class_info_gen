@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbMoveCharacterModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbMoveCharacterModifier"`: Name of this class.
+    /// `"hkbMoveCharacterModifier"`: The original C++ class name.
     #[serde(default = "HkbMoveCharacterModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbMoveCharacterModifier<'a> {
 }
 
 impl HkbMoveCharacterModifier<'_> {
-    /// Return `"hkbMoveCharacterModifier"`, which is the name of this class.
+    /// Return `"hkbMoveCharacterModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbMoveCharacterModifier".into()
+        "hkbMoveCharacterModifier".into()
     }
 
     /// Return `"0x8f7492a0"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkbMoveCharacterModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbMoveCharacterModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"offsetPerSecondMS"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "offsetPerSecondMS")]
-    OffsetPerSecondMs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    OffsetPerSecondMs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeSinceLastModify"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeSinceLastModify", skip_serializing)]
-    TimeSinceLastModify(f64),
+    TimeSinceLastModify(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbMoveCharacterModifierHkParam<'de>, "@name",
-    ("offsetPerSecondMS" => OffsetPerSecondMs(cgmath::Vector4<f32>)),
-    ("timeSinceLastModify" => TimeSinceLastModify(f64)),
+    ("offsetPerSecondMS" => OffsetPerSecondMs(Vector4<f32>)),
+    ("timeSinceLastModify" => TimeSinceLastModify(Primitive<f32>)),
 }

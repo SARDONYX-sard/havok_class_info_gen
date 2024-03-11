@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxSparselyAnimatedInt<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxSparselyAnimatedInt"`: Name of this class.
+    /// `"hkxSparselyAnimatedInt"`: The original C++ class name.
     #[serde(default = "HkxSparselyAnimatedInt::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxSparselyAnimatedInt<'a> {
 }
 
 impl HkxSparselyAnimatedInt<'_> {
-    /// Return `"hkxSparselyAnimatedInt"`, which is the name of this class.
+    /// Return `"hkxSparselyAnimatedInt"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxSparselyAnimatedInt".into()
+        "hkxSparselyAnimatedInt".into()
     }
 
     /// Return `"0xca961951"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkxSparselyAnimatedInt<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxSparselyAnimatedIntHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ints"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ints")]
-    Ints(Vec<i32>),
-    /// # Information on fields in the original C++ class
+    Ints(Vec<Primitive<i32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"times"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "times")]
-    Times(Vec<f64>),
+    Times(Vec<Primitive<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxSparselyAnimatedIntHkParam<'de>, "@name",
-    ("ints" => Ints(Vec<i32>)),
-    ("times" => Times(Vec<f64>)),
+    ("ints" => Ints(Vec<Primitive<i32>>)),
+    ("times" => Times(Vec<Primitive<f32>>)),
 }

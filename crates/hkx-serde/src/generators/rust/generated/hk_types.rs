@@ -6,7 +6,7 @@
 pub const HK_TYPES: [(&str, &str); 522] = [
     (
         "char*",
-        "String",
+        "Primitive<Cow<'a, str>>",
     ),
     (
         "enum AbsoluteTimeCounter",
@@ -430,315 +430,315 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "hkArray&lt;BSBoneSwitchGeneratorBoneData*&gt;",
-        "Vec<Box<BsBoneSwitchGeneratorBoneData>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkBool&gt;",
-        "Vec<bool>",
+        "Vec<Primitive<bool>>",
     ),
     (
         "hkArray&lt;hkChar&gt;",
-        "Vec<char>",
+        "Vec<Primitive<char>>",
     ),
     (
         "hkArray&lt;hkInt16&gt;",
-        "Vec<i16>",
+        "Vec<Primitive<i16>>",
     ),
     (
         "hkArray&lt;hkInt32&gt;",
-        "Vec<i32>",
+        "Vec<Primitive<i32>>",
     ),
     (
         "hkArray&lt;hkInt8&gt;",
-        "Vec<i8>",
+        "Vec<Primitive<i8>>",
     ),
     (
         "hkArray&lt;hkLocalFrame*&gt;",
-        "Vec<Box<HkLocalFrame>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkMatrix4&gt;",
-        "Vec<cgmath::Matrix4<f32>>",
+        "Vec<Matrix4<f32>>",
     ),
     (
         "hkArray&lt;hkMemoryResourceContainer*&gt;",
-        "Vec<Box<HkMemoryResourceContainer>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkMemoryResourceHandle*&gt;",
-        "Vec<Box<HkMemoryResourceHandle>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkMeshTexture*&gt;",
-        "Vec<Box<HkMeshTexture>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkMeshVertexBuffer*&gt;",
-        "Vec<Box<HkMeshVertexBuffer>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkQsTransform&gt;",
-        "Vec<cgmath::Matrix4<f32>>",
+        "Vec<QsTransform<f32>>",
     ),
     (
         "hkArray&lt;hkQuaternion&gt;",
-        "Vec<cgmath::Quaternion<f32>>",
+        "Vec<Quaternion<f32>>",
     ),
     (
         "hkArray&lt;hkReal&gt;",
-        "Vec<f64>",
+        "Vec<Primitive<f32>>",
     ),
     (
         "hkArray&lt;hkReferencedObject*&gt;",
-        "Vec<Box<HkReferencedObject>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkStringPtr&gt;",
-        "Vec<String>",
+        "Vec<Primitive<Cow<'a, str>>>",
     ),
     (
         "hkArray&lt;hkTransform&gt;",
-        "Vec<cgmath::Matrix4<f32>>",
+        "Vec<Transform<f32>>",
     ),
     (
         "hkArray&lt;hkUint16&gt;",
-        "Vec<u16>",
+        "Vec<Primitive<u16>>",
     ),
     (
         "hkArray&lt;hkUint32&gt;",
-        "Vec<u32>",
+        "Vec<Primitive<u32>>",
     ),
     (
         "hkArray&lt;hkUint64&gt;",
-        "Vec<u64>",
+        "Vec<Primitive<u64>>",
     ),
     (
         "hkArray&lt;hkUint8&gt;",
-        "Vec<u8>",
+        "Vec<Primitive<u8>>",
     ),
     (
         "hkArray&lt;hkVector4&gt;",
-        "Vec<cgmath::Vector4<f32>>",
+        "Vec<Vector4<f32>>",
     ),
     (
         "hkArray&lt;hkaAnimation*&gt;",
-        "Vec<Box<HkaAnimation>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkaAnimationBinding*&gt;",
-        "Vec<Box<HkaAnimationBinding>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkaBoneAttachment*&gt;",
-        "Vec<Box<HkaBoneAttachment>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkaFootstepAnalysisInfo*&gt;",
-        "Vec<Box<HkaFootstepAnalysisInfo>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkaMeshBinding*&gt;",
-        "Vec<Box<HkaMeshBinding>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkaSkeleton*&gt;",
-        "Vec<Box<HkaSkeleton>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkaSkeletonMapper*&gt;",
-        "Vec<Box<HkaSkeletonMapper>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbAuxiliaryNodeInfo*&gt;",
-        "Vec<Box<HkbAuxiliaryNodeInfo>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbBehaviorGraph*&gt;",
-        "Vec<Box<HkbBehaviorGraph>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbBlenderGeneratorChild*&gt;",
-        "Vec<Box<HkbBlenderGeneratorChild>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbBoolVariableSequencedData*&gt;",
-        "Vec<Box<HkbBoolVariableSequencedData>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbCharacter*&gt;",
-        "Vec<Box<HkbCharacter>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbEventPayload*&gt;",
-        "Vec<Box<HkbEventPayload>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbEventSequencedData*&gt;",
-        "Vec<Box<HkbEventSequencedData>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbGenerator*&gt;",
-        "Vec<Box<HkbGenerator>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbIntVariableSequencedData*&gt;",
-        "Vec<Box<HkbIntVariableSequencedData>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbModifier*&gt;",
-        "Vec<Box<HkbModifier>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbNodeInternalStateInfo*&gt;",
-        "Vec<Box<HkbNodeInternalStateInfo>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbRealVariableSequencedData*&gt;",
-        "Vec<Box<HkbRealVariableSequencedData>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbStateListener*&gt;",
-        "Vec<Box<HkbStateListener>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkbStateMachineStateInfo*&gt;",
-        "Vec<Box<HkbStateMachineStateInfo>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpAction*&gt;",
-        "Vec<Box<HkpAction>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpAgent1nSector*&gt;",
-        "Vec<Box<HkpAgent1NSector>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpCollisionFilter*&gt;",
-        "Vec<Box<HkpCollisionFilter>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpConstraintChainInstance*&gt;",
-        "Vec<Box<HkpConstraintChainInstance>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpConstraintInstance*&gt;",
-        "Vec<Box<HkpConstraintInstance>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpConstraintMotor*&gt;",
-        "Vec<Box<HkpConstraintMotor>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpConvexShape*&gt;",
-        "Vec<Box<HkpConvexShape>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpDisplayBindingDataPhysicsSystem*&gt;",
-        "Vec<Box<HkpDisplayBindingDataPhysicsSystem>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpDisplayBindingDataRigidBody*&gt;",
-        "Vec<Box<HkpDisplayBindingDataRigidBody>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpEntity*&gt;",
-        "Vec<Box<HkpEntity>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpPhantom*&gt;",
-        "Vec<Box<HkpPhantom>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpPhysicsSystem*&gt;",
-        "Vec<Box<HkpPhysicsSystem>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpRigidBody*&gt;",
-        "Vec<Box<HkpRigidBody>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpSerializedAgentNnEntry*&gt;",
-        "Vec<Box<HkpSerializedAgentNnEntry>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpSerializedDisplayMarker*&gt;",
-        "Vec<Box<HkpSerializedDisplayMarker>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpSerializedSubTrack1nInfo*&gt;",
-        "Vec<Box<HkpSerializedSubTrack1NInfo>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpStorageExtendedMeshShapeMeshSubpartStorage*&gt;",
-        "Vec<Box<HkpStorageExtendedMeshShapeMeshSubpartStorage>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpStorageExtendedMeshShapeShapeSubpartStorage*&gt;",
-        "Vec<Box<HkpStorageExtendedMeshShapeShapeSubpartStorage>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpStorageMeshShapeSubpartStorage*&gt;",
-        "Vec<Box<HkpStorageMeshShapeSubpartStorage>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpTyremarksWheel*&gt;",
-        "Vec<Box<HkpTyremarksWheel>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkpVehicleInstance*&gt;",
-        "Vec<Box<HkpVehicleInstance>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxCamera*&gt;",
-        "Vec<Box<HkxCamera>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxIndexBuffer*&gt;",
-        "Vec<Box<HkxIndexBuffer>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxLight*&gt;",
-        "Vec<Box<HkxLight>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxMaterial*&gt;",
-        "Vec<Box<HkxMaterial>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxMaterialShader*&gt;",
-        "Vec<Box<HkxMaterialShader>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxMesh*&gt;",
-        "Vec<Box<HkxMesh>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxMeshSection*&gt;",
-        "Vec<Box<HkxMeshSection>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxMeshUserChannelInfo*&gt;",
-        "Vec<Box<HkxMeshUserChannelInfo>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxNode*&gt;",
-        "Vec<Box<HkxNode>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxNodeSelectionSet*&gt;",
-        "Vec<Box<HkxNodeSelectionSet>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxSkinBinding*&gt;",
-        "Vec<Box<HkxSkinBinding>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxTextureFile*&gt;",
-        "Vec<Box<HkxTextureFile>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;hkxTextureInplace*&gt;",
-        "Vec<Box<HkxTextureInplace>>",
+        "Vec<Cow<'a, str>>",
     ),
     (
         "hkArray&lt;struct BSIStateManagerModifierBSiStateData&gt;",
@@ -1102,103 +1102,103 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "hkBool",
-        "bool",
+        "Primitive<bool>",
     ),
     (
         "hkBool[1]",
-        "[bool; 1]",
+        "[Primitive<bool>; 1]",
     ),
     (
         "hkBool[3]",
-        "[bool; 3]",
+        "[Primitive<bool>; 3]",
     ),
     (
         "hkChar",
-        "char",
+        "Primitive<char>",
     ),
     (
         "hkChar[16]",
-        "[char; 16]",
+        "[Primitive<char>; 16]",
     ),
     (
         "hkChar[19]",
-        "[char; 19]",
+        "[Primitive<char>; 19]",
     ),
     (
         "hkChar[32]",
-        "[char; 32]",
+        "[Primitive<char>; 32]",
     ),
     (
         "hkChar[4]",
-        "[char; 4]",
+        "[Primitive<char>; 4]",
     ),
     (
         "hkHalf",
-        "f32",
+        "Primitive<f32>",
     ),
     (
         "hkHalf[8]",
-        "[f32; 8]",
+        "[Primitive<f32>; 8]",
     ),
     (
         "hkInt16",
-        "i16",
+        "Primitive<i16>",
     ),
     (
         "hkInt16[4]",
-        "[i16; 4]",
+        "[Primitive<i16>; 4]",
     ),
     (
         "hkInt32",
-        "i32",
+        "Primitive<i32>",
     ),
     (
         "hkInt32[1]",
-        "[i32; 1]",
+        "[Primitive<i32>; 1]",
     ),
     (
         "hkInt32[2]",
-        "[i32; 2]",
+        "[Primitive<i32>; 2]",
     ),
     (
         "hkInt32[32]",
-        "[i32; 32]",
+        "[Primitive<i32>; 32]",
     ),
     (
         "hkInt32[3]",
-        "[i32; 3]",
+        "[Primitive<i32>; 3]",
     ),
     (
         "hkInt8",
-        "i8",
+        "Primitive<i8>",
     ),
     (
         "hkMatrix3",
-        "cgmath::Matrix3<f32>",
+        "Matrix3<f32>",
     ),
     (
         "hkMatrix4",
-        "cgmath::Matrix4<f32>",
+        "Matrix4<f32>",
     ),
     (
         "hkQsTransform",
-        "cgmath::Matrix4<f32>",
+        "QsTransform<f32>",
     ),
     (
         "hkQuaternion",
-        "cgmath::Quaternion<f32>",
+        "Quaternion<f32>",
     ),
     (
         "hkReal",
-        "f64",
+        "Primitive<f32>",
     ),
     (
         "hkReal[16]",
-        "[f64; 16]",
+        "[Primitive<f32>; 16]",
     ),
     (
         "hkRotation",
-        "cgmath::Matrix4<f32>",
+        "Rotation<f32>",
     ),
     (
         "hkSimpleArray&lt;struct hkClassEnum&gt;",
@@ -1222,107 +1222,107 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "hkStringPtr",
-        "String",
+        "Primitive<Cow<'a, str>>",
     ),
     (
         "hkTransform",
-        "cgmath::Matrix4<f32>",
+        "Transform<f32>",
     ),
     (
         "hkTransform[2]",
-        "[cgmath::Matrix4<f32>; 2]",
+        "Transform<f32>",
     ),
     (
         "hkUint16",
-        "u16",
+        "Primitive<u16>",
     ),
     (
         "hkUint16[2]",
-        "[u16; 2]",
+        "[Primitive<u16>; 2]",
     ),
     (
         "hkUint16[6]",
-        "[u16; 6]",
+        "[Primitive<u16>; 6]",
     ),
     (
         "hkUint32",
-        "u32",
+        "Primitive<u32>",
     ),
     (
         "hkUint32[2]",
-        "[u32; 2]",
+        "[Primitive<u32>; 2]",
     ),
     (
         "hkUint32[32]",
-        "[u32; 32]",
+        "[Primitive<u32>; 32]",
     ),
     (
         "hkUint32[3]",
-        "[u32; 3]",
+        "[Primitive<u32>; 3]",
     ),
     (
         "hkUint32[5]",
-        "[u32; 5]",
+        "[Primitive<u32>; 5]",
     ),
     (
         "hkUint32[8]",
-        "[u32; 8]",
+        "[Primitive<u32>; 8]",
     ),
     (
         "hkUint64",
-        "u64",
+        "Primitive<u64>",
     ),
     (
         "hkUint8",
-        "u8",
+        "Primitive<u8>",
     ),
     (
         "hkUint8[12]",
-        "[u8; 12]",
+        "[Primitive<u8>; 12]",
     ),
     (
         "hkUint8[160]",
-        "[u8; 160]",
+        "[Primitive<u8>; 160]",
     ),
     (
         "hkUint8[3]",
-        "[u8; 3]",
+        "[Primitive<u8>; 3]",
     ),
     (
         "hkUint8[496]",
-        "[u8; 496]",
+        "[Primitive<u8>; 496]",
     ),
     (
         "hkUint8[4]",
-        "[u8; 4]",
+        "[Primitive<u8>; 4]",
     ),
     (
         "hkUint8[8]",
-        "[u8; 8]",
+        "[Primitive<u8>; 8]",
     ),
     (
         "hkUlong",
-        "u64",
+        "Primitive<u64>",
     ),
     (
         "hkVariant",
-        "u64",
+        "Primitive<u64>",
     ),
     (
         "hkVector4",
-        "cgmath::Vector4<f32>",
+        "Vector4<f32>",
     ),
     (
         "hkVector4[2]",
-        "[cgmath::Vector4<f32>; 2]",
+        "Vector4<f32>",
     ),
     (
         "hkVector4[4]",
-        "[cgmath::Vector4<f32>; 4]",
+        "Vector4<f32>",
     ),
     (
         "hkVector4[8]",
-        "[cgmath::Vector4<f32>; 8]",
+        "Vector4<f32>",
     ),
     (
         "struct BSIStateManagerModifierBSIStateManagerStateListener",
@@ -1334,11 +1334,11 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkClass*",
-        "Box<HkClass>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkClassEnum*",
-        "Box<HkClassEnum>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkContactPoint",
@@ -1346,39 +1346,39 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkCustomAttributes*",
-        "Box<HkCustomAttributes>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkIndexedTransformSet*",
-        "Box<HkIndexedTransformSet>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkLocalFrame*",
-        "Box<HkLocalFrame>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkLocalFrameGroup*",
-        "Box<HkLocalFrameGroup>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkMemoryMeshVertexBuffer*",
-        "Box<HkMemoryMeshVertexBuffer>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkMemoryResourceContainer*",
-        "Box<HkMemoryResourceContainer>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkMeshMaterial*",
-        "Box<HkMeshMaterial>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkMeshShape*",
-        "Box<HkMeshShape>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkMeshVertexBuffer*",
-        "Box<HkMeshVertexBuffer>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkMotionState",
@@ -1390,7 +1390,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkReferencedObject*",
-        "Box<HkReferencedObject>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkSweptTransform",
@@ -1402,19 +1402,19 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkVertexFormatElement[32]",
-        "HkVertexFormatElement[32]",
+        "[HkVertexFormatElement; 32]",
     ),
     (
         "struct hkWorldMemoryAvailableWatchDog*",
-        "Box<HkWorldMemoryAvailableWatchDog>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkaAnimatedReferenceFrame*",
-        "Box<HkaAnimatedReferenceFrame>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkaAnimation*",
-        "Box<HkaAnimation>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkaDeltaCompressedAnimationQuantizationFormat",
@@ -1426,11 +1426,11 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkaSkeleton*",
-        "Box<HkaSkeleton>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkaSkeletonMapper*",
-        "Box<HkaSkeletonMapper>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkaSkeletonMapperData",
@@ -1442,35 +1442,35 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbAttachmentSetup*",
-        "Box<HkbAttachmentSetup>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbBehaviorGraph*",
-        "Box<HkbBehaviorGraph>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbBehaviorGraphData*",
-        "Box<HkbBehaviorGraphData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbBehaviorGraphInternalState*",
-        "Box<HkbBehaviorGraphInternalState>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbBehaviorGraphStringData*",
-        "Box<HkbBehaviorGraphStringData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbBoneIndexArray*",
-        "Box<HkbBoneIndexArray>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbBoneWeightArray*",
-        "Box<HkbBoneWeightArray>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbCharacter*",
-        "Box<HkbCharacter>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbCharacterControllerControlData",
@@ -1478,7 +1478,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbCharacterData*",
-        "Box<HkbCharacterData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbCharacterDataCharacterControllerInfo",
@@ -1486,19 +1486,19 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbCharacterSetup*",
-        "Box<HkbCharacterSetup>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbCharacterStringData*",
-        "Box<HkbCharacterStringData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbClipTriggerArray*",
-        "Box<HkbClipTriggerArray>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbCondition*",
-        "Box<HkbCondition>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbEvent",
@@ -1506,7 +1506,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbEventPayload*",
-        "Box<HkbEventPayload>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbEventProperty",
@@ -1514,11 +1514,11 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbEventRangeDataArray*",
-        "Box<HkbEventRangeDataArray>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbExpressionDataArray*",
-        "Box<HkbExpressionDataArray>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbFootIkControlData",
@@ -1526,7 +1526,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbFootIkDriverInfo*",
-        "Box<HkbFootIkDriverInfo>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbFootIkGains",
@@ -1534,11 +1534,11 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbGenerator*",
-        "Box<HkbGenerator>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbGeneratorOutputListener*",
-        "Box<HkbGeneratorOutputListener>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbGeneratorSyncInfo",
@@ -1546,7 +1546,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbGeneratorSyncInfoSyncPoint[8]",
-        "HkbGeneratorSyncInfoSyncPoint[8]",
+        "[HkbGeneratorSyncInfoSyncPoint; 8]",
     ),
     (
         "struct hkbHandIkControlData",
@@ -1554,7 +1554,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbHandIkDriverInfo*",
-        "Box<HkbHandIkDriverInfo>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbHandle",
@@ -1562,19 +1562,19 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbHandle*",
-        "Box<HkbHandle>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbMirroredSkeletonInfo*",
-        "Box<HkbMirroredSkeletonInfo>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbModifier*",
-        "Box<HkbModifier>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbNodeInternalStateInfo*",
-        "Box<HkbNodeInternalStateInfo>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbPoweredRagdollControlData",
@@ -1582,11 +1582,11 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbProjectData*",
-        "Box<HkbProjectData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbProjectStringData*",
-        "Box<HkbProjectStringData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbProxyModifierProxyInfo",
@@ -1602,15 +1602,15 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbSequenceStringData*",
-        "Box<HkbSequenceStringData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbStateChooser*",
-        "Box<HkbStateChooser>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbStateMachineEventPropertyArray*",
-        "Box<HkbStateMachineEventPropertyArray>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbStateMachineProspectiveTransitionInfo",
@@ -1622,7 +1622,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbStateMachineTransitionInfoArray*",
-        "Box<HkbStateMachineTransitionInfoArray>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbStateMachineTransitionInfoReference",
@@ -1630,11 +1630,11 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbTransitionEffect*",
-        "Box<HkbTransitionEffect>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbVariableBindingSet*",
-        "Box<HkbVariableBindingSet>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbVariableValue",
@@ -1642,7 +1642,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkbVariableValueSet*",
-        "Box<HkbVariableValueSet>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkbWorldFromModelModeData",
@@ -1654,7 +1654,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpAabbPhantom*",
-        "Box<HkpAabbPhantom>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpAngConstraintAtom",
@@ -1690,11 +1690,11 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpCdBody*",
-        "Box<HkpCdBody>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpCharacterControllerCinfo*",
-        "Box<HkpCharacterControllerCinfo>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpCogWheelConstraintAtom",
@@ -1706,7 +1706,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpCollidable*",
-        "Box<HkpCollidable>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpCollidableBoundingVolumeData",
@@ -1714,7 +1714,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpCollisionFilter*",
-        "Box<HkpCollisionFilter>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConeLimitConstraintAtom",
@@ -1722,23 +1722,23 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpConstraintAtom*",
-        "Box<HkpConstraintAtom>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConstraintChainInstance*",
-        "Box<HkpConstraintChainInstance>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConstraintChainInstanceAction*",
-        "Box<HkpConstraintChainInstanceAction>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConstraintData*",
-        "Box<HkpConstraintData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConstraintInstance*",
-        "Box<HkpConstraintInstance>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConstraintInstanceSmallArraySerializeOverrideType",
@@ -1746,27 +1746,27 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpConstraintMotor*",
-        "Box<HkpConstraintMotor>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConvexListFilter*",
-        "Box<HkpConvexListFilter>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConvexPieceStreamData*",
-        "Box<HkpConvexPieceStreamData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpConvexVerticesConnectivity*",
-        "Box<HkpConvexVerticesConnectivity>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpEntity*",
-        "Box<HkpEntity>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpEntityExtendedListeners*",
-        "Box<HkpEntityExtendedListeners>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpEntitySmallArraySerializeOverrideType",
@@ -1834,15 +1834,15 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpMaxSizeMotion*",
-        "Box<HkpMaxSizeMotion>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpModifierConstraintAtom*",
-        "Box<HkpModifierConstraintAtom>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpMoppCode*",
-        "Box<HkpMoppCode>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpMoppCodeCodeInfo",
@@ -1854,11 +1854,11 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpParametricCurve*",
-        "Box<HkpParametricCurve>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpPhysicsSystem*",
-        "Box<HkpPhysicsSystem>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpPointToPlaneConstraintDataAtoms",
@@ -1866,7 +1866,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpPoweredChainData*",
-        "Box<HkpPoweredChainData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpPrismaticConstraintDataAtoms",
@@ -1910,7 +1910,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpRigidBody*",
-        "Box<HkpRigidBody>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpRotationalConstraintDataAtoms",
@@ -1918,7 +1918,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpSampledHeightFieldShape*",
-        "Box<HkpSampledHeightFieldShape>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpSerializedTrack1nInfo",
@@ -1942,15 +1942,15 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpShape*",
-        "Box<HkpShape>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpShapeCollection*",
-        "Box<HkpShapeCollection>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpShapePhantom*",
-        "Box<HkpShapePhantom>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpSimpleContactConstraintAtom",
@@ -1962,7 +1962,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpSimulation*",
-        "Box<HkpSimulation>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpSingleShapeContainer",
@@ -1986,31 +1986,31 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpTyremarksInfo*",
-        "Box<HkpTyremarksInfo>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleAerodynamics*",
-        "Box<HkpVehicleAerodynamics>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleBrake*",
-        "Box<HkpVehicleBrake>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleData*",
-        "Box<HkpVehicleData>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleDriverInput*",
-        "Box<HkpVehicleDriverInput>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleDriverInputStatus*",
-        "Box<HkpVehicleDriverInputStatus>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleEngine*",
-        "Box<HkpVehicleEngine>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleFrictionDescription",
@@ -2018,7 +2018,7 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpVehicleFrictionDescriptionAxisDescription[2]",
-        "HkpVehicleFrictionDescriptionAxisDescription[2]",
+        "[HkpVehicleFrictionDescriptionAxisDescription; 2]",
     ),
     (
         "struct hkpVehicleFrictionStatus",
@@ -2026,27 +2026,27 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpVehicleFrictionStatusAxisStatus[2]",
-        "HkpVehicleFrictionStatusAxisStatus[2]",
+        "[HkpVehicleFrictionStatusAxisStatus; 2]",
     ),
     (
         "struct hkpVehicleSteering*",
-        "Box<HkpVehicleSteering>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleSuspension*",
-        "Box<HkpVehicleSuspension>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleTransmission*",
-        "Box<HkpVehicleTransmission>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleVelocityDamper*",
-        "Box<HkpVehicleVelocityDamper>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpVehicleWheelCollide*",
-        "Box<HkpVehicleWheelCollide>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpWheelConstraintDataAtoms",
@@ -2054,31 +2054,31 @@ pub const HK_TYPES: [(&str, &str); 522] = [
     ),
     (
         "struct hkpWorld*",
-        "Box<HkpWorld>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkpWorldCinfo*",
-        "Box<HkpWorldCinfo>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkxEnum*",
-        "Box<HkxEnum>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkxMaterial*",
-        "Box<HkxMaterial>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkxMesh*",
-        "Box<HkxMesh>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkxNode*",
-        "Box<HkxNode>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkxVertexBuffer*",
-        "Box<HkxVertexBuffer>",
+        "Cow<'a, str>",
     ),
     (
         "struct hkxVertexBufferVertexData",

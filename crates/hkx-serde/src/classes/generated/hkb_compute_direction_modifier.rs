@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbComputeDirectionModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbComputeDirectionModifier"`: Name of this class.
+    /// `"hkbComputeDirectionModifier"`: The original C++ class name.
     #[serde(default = "HkbComputeDirectionModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbComputeDirectionModifier<'a> {
 }
 
 impl HkbComputeDirectionModifier<'_> {
-    /// Return `"hkbComputeDirectionModifier"`, which is the name of this class.
+    /// Return `"hkbComputeDirectionModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbComputeDirectionModifier".into()
+        "hkbComputeDirectionModifier".into()
     }
 
     /// Return `"0xdf358bd3"`, which is the signature of this class.
@@ -63,98 +64,98 @@ impl HkbComputeDirectionModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbComputeDirectionModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pointIn"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pointIn")]
-    PointIn(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PointIn(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"pointOut"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pointOut")]
-    PointOut(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PointOut(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"groundAngleOut"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "groundAngleOut")]
-    GroundAngleOut(f64),
-    /// # Information on fields in the original C++ class
+    GroundAngleOut(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"upAngleOut"`
     /// -   type: `hkReal`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "upAngleOut")]
-    UpAngleOut(f64),
-    /// # Information on fields in the original C++ class
+    UpAngleOut(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"verticalOffset"`
     /// -   type: `hkReal`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "verticalOffset")]
-    VerticalOffset(f64),
-    /// # Information on fields in the original C++ class
+    VerticalOffset(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"reverseGroundAngle"`
     /// -   type: `hkBool`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "reverseGroundAngle")]
-    ReverseGroundAngle(bool),
-    /// # Information on fields in the original C++ class
+    ReverseGroundAngle(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"reverseUpAngle"`
     /// -   type: `hkBool`
     /// - offset: 93
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "reverseUpAngle")]
-    ReverseUpAngle(bool),
-    /// # Information on fields in the original C++ class
+    ReverseUpAngle(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"projectPoint"`
     /// -   type: `hkBool`
     /// - offset: 94
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "projectPoint")]
-    ProjectPoint(bool),
-    /// # Information on fields in the original C++ class
+    ProjectPoint(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"normalizePoint"`
     /// -   type: `hkBool`
     /// - offset: 95
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "normalizePoint")]
-    NormalizePoint(bool),
-    /// # Information on fields in the original C++ class
+    NormalizePoint(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"computeOnlyOnce"`
     /// -   type: `hkBool`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "computeOnlyOnce")]
-    ComputeOnlyOnce(bool),
-    /// # Information on fields in the original C++ class
+    ComputeOnlyOnce(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"computedOutput"`
     /// -   type: `hkBool`
     /// - offset: 97
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "computedOutput")]
-    ComputedOutput(bool),
+    ComputedOutput(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbComputeDirectionModifierHkParam<'de>, "@name",
-    ("pointIn" => PointIn(cgmath::Vector4<f32>)),
-    ("pointOut" => PointOut(cgmath::Vector4<f32>)),
-    ("groundAngleOut" => GroundAngleOut(f64)),
-    ("upAngleOut" => UpAngleOut(f64)),
-    ("verticalOffset" => VerticalOffset(f64)),
-    ("reverseGroundAngle" => ReverseGroundAngle(bool)),
-    ("reverseUpAngle" => ReverseUpAngle(bool)),
-    ("projectPoint" => ProjectPoint(bool)),
-    ("normalizePoint" => NormalizePoint(bool)),
-    ("computeOnlyOnce" => ComputeOnlyOnce(bool)),
-    ("computedOutput" => ComputedOutput(bool)),
+    ("pointIn" => PointIn(Vector4<f32>)),
+    ("pointOut" => PointOut(Vector4<f32>)),
+    ("groundAngleOut" => GroundAngleOut(Primitive<f32>)),
+    ("upAngleOut" => UpAngleOut(Primitive<f32>)),
+    ("verticalOffset" => VerticalOffset(Primitive<f32>)),
+    ("reverseGroundAngle" => ReverseGroundAngle(Primitive<bool>)),
+    ("reverseUpAngle" => ReverseUpAngle(Primitive<bool>)),
+    ("projectPoint" => ProjectPoint(Primitive<bool>)),
+    ("normalizePoint" => NormalizePoint(Primitive<bool>)),
+    ("computeOnlyOnce" => ComputeOnlyOnce(Primitive<bool>)),
+    ("computedOutput" => ComputedOutput(Primitive<bool>)),
 }

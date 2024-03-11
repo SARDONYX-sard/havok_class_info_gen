@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMemoryResourceHandle<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMemoryResourceHandle"`: Name of this class.
+    /// `"hkMemoryResourceHandle"`: The original C++ class name.
     #[serde(default = "HkMemoryResourceHandle::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMemoryResourceHandle<'a> {
 }
 
 impl HkMemoryResourceHandle<'_> {
-    /// Return `"hkMemoryResourceHandle"`, which is the name of this class.
+    /// Return `"hkMemoryResourceHandle"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMemoryResourceHandle".into()
+        "hkMemoryResourceHandle".into()
     }
 
     /// Return `"0xbffac086"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl HkMemoryResourceHandle<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMemoryResourceHandleHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"variant"`
     /// -   type: `struct hkReferencedObject*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variant")]
-    Variant(Box<HkReferencedObject>),
-    /// # Information on fields in the original C++ class
+    Variant(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"references"`
     /// -   type: `hkArray&lt;struct hkMemoryResourceHandleExternalLink&gt;`
     /// - offset: 16
@@ -90,7 +91,7 @@ pub enum HkMemoryResourceHandleHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMemoryResourceHandleHkParam<'de>, "@name",
-    ("variant" => Variant(Box<HkReferencedObject>)),
-    ("name" => Name(String)),
+    ("variant" => Variant(Cow<'a, str>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
     ("references" => References(Vec<HkMemoryResourceHandleExternalLink>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbParticleSystemEventPayload<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbParticleSystemEventPayload"`: Name of this class.
+    /// `"hkbParticleSystemEventPayload"`: The original C++ class name.
     #[serde(default = "HkbParticleSystemEventPayload::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbParticleSystemEventPayload<'a> {
 }
 
 impl HkbParticleSystemEventPayload<'_> {
-    /// Return `"hkbParticleSystemEventPayload"`, which is the name of this class.
+    /// Return `"hkbParticleSystemEventPayload"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbParticleSystemEventPayload".into()
+        "hkbParticleSystemEventPayload".into()
     }
 
     /// Return `"0x9df46cd6"`, which is the signature of this class.
@@ -63,48 +64,48 @@ impl HkbParticleSystemEventPayload<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbParticleSystemEventPayloadHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum SystemType`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(SystemType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"emitBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 10
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "emitBoneIndex")]
-    EmitBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    EmitBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"offset"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "offset")]
-    Offset(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Offset(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"direction"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "direction")]
-    Direction(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Direction(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numParticles"`
     /// -   type: `hkInt32`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numParticles")]
-    NumParticles(i32),
-    /// # Information on fields in the original C++ class
+    NumParticles(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"speed"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "speed")]
-    Speed(f64),
+    Speed(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -112,11 +113,11 @@ pub enum HkbParticleSystemEventPayloadHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbParticleSystemEventPayloadHkParam<'de>, "@name",
     ("type" => Type(SystemType)),
-    ("emitBoneIndex" => EmitBoneIndex(i16)),
-    ("offset" => Offset(cgmath::Vector4<f32>)),
-    ("direction" => Direction(cgmath::Vector4<f32>)),
-    ("numParticles" => NumParticles(i32)),
-    ("speed" => Speed(f64)),
+    ("emitBoneIndex" => EmitBoneIndex(Primitive<i16>)),
+    ("offset" => Offset(Vector4<f32>)),
+    ("direction" => Direction(Vector4<f32>)),
+    ("numParticles" => NumParticles(Primitive<i32>)),
+    ("speed" => Speed(Primitive<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

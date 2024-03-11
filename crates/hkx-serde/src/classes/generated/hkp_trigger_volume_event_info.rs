@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpTriggerVolumeEventInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpTriggerVolumeEventInfo"`: Name of this class.
+    /// `"hkpTriggerVolumeEventInfo"`: The original C++ class name.
     #[serde(default = "HkpTriggerVolumeEventInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpTriggerVolumeEventInfo<'a> {
 }
 
 impl HkpTriggerVolumeEventInfo<'_> {
-    /// Return `"hkpTriggerVolumeEventInfo"`, which is the name of this class.
+    /// Return `"hkpTriggerVolumeEventInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpTriggerVolumeEventInfo".into()
+        "hkpTriggerVolumeEventInfo".into()
     }
 
     /// Return `"0xeb60f431"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl HkpTriggerVolumeEventInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpTriggerVolumeEventInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sortValue"`
     /// -   type: `hkUint64`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sortValue")]
-    SortValue(u64),
-    /// # Information on fields in the original C++ class
+    SortValue(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"body"`
     /// -   type: `struct hkpRigidBody*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "body")]
-    Body(Box<HkpRigidBody>),
-    /// # Information on fields in the original C++ class
+    Body(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"operation"`
     /// -   type: `enum Operation`
     /// - offset: 12
@@ -90,7 +91,7 @@ pub enum HkpTriggerVolumeEventInfoHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpTriggerVolumeEventInfoHkParam<'de>, "@name",
-    ("sortValue" => SortValue(u64)),
-    ("body" => Body(Box<HkpRigidBody>)),
+    ("sortValue" => SortValue(Primitive<u64>)),
+    ("body" => Body(Cow<'a, str>)),
     ("operation" => Operation(Operation)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpAngFrictionConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpAngFrictionConstraintAtom"`: Name of this class.
+    /// `"hkpAngFrictionConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpAngFrictionConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpAngFrictionConstraintAtom<'a> {
 }
 
 impl HkpAngFrictionConstraintAtom<'_> {
-    /// Return `"hkpAngFrictionConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpAngFrictionConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpAngFrictionConstraintAtom".into()
+        "hkpAngFrictionConstraintAtom".into()
     }
 
     /// Return `"0xf313aa80"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpAngFrictionConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpAngFrictionConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"isEnabled"`
     /// -   type: `hkUint8`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isEnabled")]
-    IsEnabled(u8),
-    /// # Information on fields in the original C++ class
+    IsEnabled(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"firstFrictionAxis"`
     /// -   type: `hkUint8`
     /// - offset: 3
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "firstFrictionAxis")]
-    FirstFrictionAxis(u8),
-    /// # Information on fields in the original C++ class
+    FirstFrictionAxis(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"numFrictionAxes"`
     /// -   type: `hkUint8`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numFrictionAxes")]
-    NumFrictionAxes(u8),
-    /// # Information on fields in the original C++ class
+    NumFrictionAxes(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxFrictionTorque"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxFrictionTorque")]
-    MaxFrictionTorque(f64),
+    MaxFrictionTorque(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpAngFrictionConstraintAtomHkParam<'de>, "@name",
-    ("isEnabled" => IsEnabled(u8)),
-    ("firstFrictionAxis" => FirstFrictionAxis(u8)),
-    ("numFrictionAxes" => NumFrictionAxes(u8)),
-    ("maxFrictionTorque" => MaxFrictionTorque(f64)),
+    ("isEnabled" => IsEnabled(Primitive<u8>)),
+    ("firstFrictionAxis" => FirstFrictionAxis(Primitive<u8>)),
+    ("numFrictionAxes" => NumFrictionAxes(Primitive<u8>)),
+    ("maxFrictionTorque" => MaxFrictionTorque(Primitive<f32>)),
 }

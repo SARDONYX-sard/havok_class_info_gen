@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkGizmoAttribute<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkGizmoAttribute"`: Name of this class.
+    /// `"hkGizmoAttribute"`: The original C++ class name.
     #[serde(default = "HkGizmoAttribute::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkGizmoAttribute<'a> {
 }
 
 impl HkGizmoAttribute<'_> {
-    /// Return `"hkGizmoAttribute"`, which is the name of this class.
+    /// Return `"hkGizmoAttribute"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkGizmoAttribute".into()
+        "hkGizmoAttribute".into()
     }
 
     /// Return `"0x23aadfb6"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl HkGizmoAttribute<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkGizmoAttributeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"visible"`
     /// -   type: `hkBool`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "visible")]
-    Visible(bool),
-    /// # Information on fields in the original C++ class
+    Visible(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"label"`
     /// -   type: `char*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "label")]
-    Label(String),
-    /// # Information on fields in the original C++ class
+    Label(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum GizmoType`
     /// - offset: 8
@@ -90,8 +91,8 @@ pub enum HkGizmoAttributeHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkGizmoAttributeHkParam<'de>, "@name",
-    ("visible" => Visible(bool)),
-    ("label" => Label(String)),
+    ("visible" => Visible(Primitive<bool>)),
+    ("label" => Label(Primitive<Cow<'a, str>>)),
     ("type" => Type(GizmoType)),
 }
 

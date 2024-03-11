@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPointToPathConstraintData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPointToPathConstraintData"`: Name of this class.
+    /// `"hkpPointToPathConstraintData"`: The original C++ class name.
     #[serde(default = "HkpPointToPathConstraintData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPointToPathConstraintData<'a> {
 }
 
 impl HkpPointToPathConstraintData<'_> {
-    /// Return `"hkpPointToPathConstraintData"`, which is the name of this class.
+    /// Return `"hkpPointToPathConstraintData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPointToPathConstraintData".into()
+        "hkpPointToPathConstraintData".into()
     }
 
     /// Return `"0x8e7cb5da"`, which is the signature of this class.
@@ -63,41 +64,41 @@ impl HkpPointToPathConstraintData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPointToPathConstraintDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"atoms"`
     /// -   type: `struct hkpBridgeAtoms`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "atoms")]
     Atoms(HkpBridgeAtoms),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"path"`
     /// -   type: `struct hkpParametricCurve*`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "path")]
-    Path(Box<HkpParametricCurve>),
-    /// # Information on fields in the original C++ class
+    Path(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxFrictionForce"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxFrictionForce")]
-    MaxFrictionForce(f64),
-    /// # Information on fields in the original C++ class
+    MaxFrictionForce(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"angularConstrainedDOF"`
     /// -   type: `enum OrientationConstraintType`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angularConstrainedDOF")]
     AngularConstrainedDof(OrientationConstraintType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transform_OS_KS"`
     /// -   type: `hkTransform[2]`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transform_OS_KS")]
-    TransformOsKs([cgmath::Matrix4<f32>; 2]),
+    TransformOsKs(Transform<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -105,10 +106,10 @@ pub enum HkpPointToPathConstraintDataHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpPointToPathConstraintDataHkParam<'de>, "@name",
     ("atoms" => Atoms(HkpBridgeAtoms)),
-    ("path" => Path(Box<HkpParametricCurve>)),
-    ("maxFrictionForce" => MaxFrictionForce(f64)),
+    ("path" => Path(Cow<'a, str>)),
+    ("maxFrictionForce" => MaxFrictionForce(Primitive<f32>)),
     ("angularConstrainedDOF" => AngularConstrainedDof(OrientationConstraintType)),
-    ("transform_OS_KS" => TransformOsKs([cgmath::Matrix4<f32>; 2])),
+    ("transform_OS_KS" => TransformOsKs(Transform<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

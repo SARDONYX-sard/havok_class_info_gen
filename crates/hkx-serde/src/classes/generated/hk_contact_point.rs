@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkContactPoint<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkContactPoint"`: Name of this class.
+    /// `"hkContactPoint"`: The original C++ class name.
     #[serde(default = "HkContactPoint::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkContactPoint<'a> {
 }
 
 impl HkContactPoint<'_> {
-    /// Return `"hkContactPoint"`, which is the name of this class.
+    /// Return `"hkContactPoint"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkContactPoint".into()
+        "hkContactPoint".into()
     }
 
     /// Return `"0x91d7dd8e"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkContactPoint<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkContactPointHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"position"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "position")]
-    Position(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Position(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"separatingNormal"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "separatingNormal")]
-    SeparatingNormal(cgmath::Vector4<f32>),
+    SeparatingNormal(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkContactPointHkParam<'de>, "@name",
-    ("position" => Position(cgmath::Vector4<f32>)),
-    ("separatingNormal" => SeparatingNormal(cgmath::Vector4<f32>)),
+    ("position" => Position(Vector4<f32>)),
+    ("separatingNormal" => SeparatingNormal(Vector4<f32>)),
 }

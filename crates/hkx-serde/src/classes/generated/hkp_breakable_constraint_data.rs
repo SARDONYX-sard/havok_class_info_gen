@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpBreakableConstraintData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpBreakableConstraintData"`: Name of this class.
+    /// `"hkpBreakableConstraintData"`: The original C++ class name.
     #[serde(default = "HkpBreakableConstraintData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpBreakableConstraintData<'a> {
 }
 
 impl HkpBreakableConstraintData<'_> {
-    /// Return `"hkpBreakableConstraintData"`, which is the name of this class.
+    /// Return `"hkpBreakableConstraintData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpBreakableConstraintData".into()
+        "hkpBreakableConstraintData".into()
     }
 
     /// Return `"0x7d6310c8"`, which is the signature of this class.
@@ -63,55 +64,55 @@ impl HkpBreakableConstraintData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpBreakableConstraintDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"atoms"`
     /// -   type: `struct hkpBridgeAtoms`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "atoms")]
     Atoms(HkpBridgeAtoms),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"constraintData"`
     /// -   type: `struct hkpConstraintData*`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "constraintData")]
-    ConstraintData(Box<HkpConstraintData>),
-    /// # Information on fields in the original C++ class
+    ConstraintData(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"childRuntimeSize"`
     /// -   type: `hkUint16`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childRuntimeSize")]
-    ChildRuntimeSize(u16),
-    /// # Information on fields in the original C++ class
+    ChildRuntimeSize(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"childNumSolverResults"`
     /// -   type: `hkUint16`
     /// - offset: 30
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childNumSolverResults")]
-    ChildNumSolverResults(u16),
-    /// # Information on fields in the original C++ class
+    ChildNumSolverResults(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"solverResultLimit"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "solverResultLimit")]
-    SolverResultLimit(f64),
-    /// # Information on fields in the original C++ class
+    SolverResultLimit(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"removeWhenBroken"`
     /// -   type: `hkBool`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "removeWhenBroken")]
-    RemoveWhenBroken(bool),
-    /// # Information on fields in the original C++ class
+    RemoveWhenBroken(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"revertBackVelocityOnBreak"`
     /// -   type: `hkBool`
     /// - offset: 37
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "revertBackVelocityOnBreak")]
-    RevertBackVelocityOnBreak(bool),
+    RevertBackVelocityOnBreak(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -119,10 +120,10 @@ pub enum HkpBreakableConstraintDataHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpBreakableConstraintDataHkParam<'de>, "@name",
     ("atoms" => Atoms(HkpBridgeAtoms)),
-    ("constraintData" => ConstraintData(Box<HkpConstraintData>)),
-    ("childRuntimeSize" => ChildRuntimeSize(u16)),
-    ("childNumSolverResults" => ChildNumSolverResults(u16)),
-    ("solverResultLimit" => SolverResultLimit(f64)),
-    ("removeWhenBroken" => RemoveWhenBroken(bool)),
-    ("revertBackVelocityOnBreak" => RevertBackVelocityOnBreak(bool)),
+    ("constraintData" => ConstraintData(Cow<'a, str>)),
+    ("childRuntimeSize" => ChildRuntimeSize(Primitive<u16>)),
+    ("childNumSolverResults" => ChildNumSolverResults(Primitive<u16>)),
+    ("solverResultLimit" => SolverResultLimit(Primitive<f32>)),
+    ("removeWhenBroken" => RemoveWhenBroken(Primitive<bool>)),
+    ("revertBackVelocityOnBreak" => RevertBackVelocityOnBreak(Primitive<bool>)),
 }

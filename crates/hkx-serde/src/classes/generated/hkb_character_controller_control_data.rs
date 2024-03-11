@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCharacterControllerControlData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCharacterControllerControlData"`: Name of this class.
+    /// `"hkbCharacterControllerControlData"`: The original C++ class name.
     #[serde(default = "HkbCharacterControllerControlData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCharacterControllerControlData<'a> {
 }
 
 impl HkbCharacterControllerControlData<'_> {
-    /// Return `"hkbCharacterControllerControlData"`, which is the name of this class.
+    /// Return `"hkbCharacterControllerControlData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCharacterControllerControlData".into()
+        "hkbCharacterControllerControlData".into()
     }
 
     /// Return `"0x5b6c03d9"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkbCharacterControllerControlData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCharacterControllerControlDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"desiredVelocity"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "desiredVelocity")]
-    DesiredVelocity(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    DesiredVelocity(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"verticalGain"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "verticalGain")]
-    VerticalGain(f64),
-    /// # Information on fields in the original C++ class
+    VerticalGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"horizontalCatchUpGain"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "horizontalCatchUpGain")]
-    HorizontalCatchUpGain(f64),
-    /// # Information on fields in the original C++ class
+    HorizontalCatchUpGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxVerticalSeparation"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxVerticalSeparation")]
-    MaxVerticalSeparation(f64),
-    /// # Information on fields in the original C++ class
+    MaxVerticalSeparation(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxHorizontalSeparation"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxHorizontalSeparation")]
-    MaxHorizontalSeparation(f64),
+    MaxHorizontalSeparation(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbCharacterControllerControlDataHkParam<'de>, "@name",
-    ("desiredVelocity" => DesiredVelocity(cgmath::Vector4<f32>)),
-    ("verticalGain" => VerticalGain(f64)),
-    ("horizontalCatchUpGain" => HorizontalCatchUpGain(f64)),
-    ("maxVerticalSeparation" => MaxVerticalSeparation(f64)),
-    ("maxHorizontalSeparation" => MaxHorizontalSeparation(f64)),
+    ("desiredVelocity" => DesiredVelocity(Vector4<f32>)),
+    ("verticalGain" => VerticalGain(Primitive<f32>)),
+    ("horizontalCatchUpGain" => HorizontalCatchUpGain(Primitive<f32>)),
+    ("maxVerticalSeparation" => MaxVerticalSeparation(Primitive<f32>)),
+    ("maxHorizontalSeparation" => MaxHorizontalSeparation(Primitive<f32>)),
 }

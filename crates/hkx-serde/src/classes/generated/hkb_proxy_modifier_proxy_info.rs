@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbProxyModifierProxyInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbProxyModifierProxyInfo"`: Name of this class.
+    /// `"hkbProxyModifierProxyInfo"`: The original C++ class name.
     #[serde(default = "HkbProxyModifierProxyInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbProxyModifierProxyInfo<'a> {
 }
 
 impl HkbProxyModifierProxyInfo<'_> {
-    /// Return `"hkbProxyModifierProxyInfo"`, which is the name of this class.
+    /// Return `"hkbProxyModifierProxyInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbProxyModifierProxyInfo".into()
+        "hkbProxyModifierProxyInfo".into()
     }
 
     /// Return `"0x39de637e"`, which is the signature of this class.
@@ -63,122 +64,122 @@ impl HkbProxyModifierProxyInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbProxyModifierProxyInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"dynamicFriction"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "dynamicFriction")]
-    DynamicFriction(f64),
-    /// # Information on fields in the original C++ class
+    DynamicFriction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"staticFriction"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "staticFriction")]
-    StaticFriction(f64),
-    /// # Information on fields in the original C++ class
+    StaticFriction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"keepContactTolerance"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keepContactTolerance")]
-    KeepContactTolerance(f64),
-    /// # Information on fields in the original C++ class
+    KeepContactTolerance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"up"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "up")]
-    Up(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Up(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"keepDistance"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keepDistance")]
-    KeepDistance(f64),
-    /// # Information on fields in the original C++ class
+    KeepDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"contactAngleSensitivity"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "contactAngleSensitivity")]
-    ContactAngleSensitivity(f64),
-    /// # Information on fields in the original C++ class
+    ContactAngleSensitivity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"userPlanes"`
     /// -   type: `hkUint32`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userPlanes")]
-    UserPlanes(u32),
-    /// # Information on fields in the original C++ class
+    UserPlanes(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxCharacterSpeedForSolver"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxCharacterSpeedForSolver")]
-    MaxCharacterSpeedForSolver(f64),
-    /// # Information on fields in the original C++ class
+    MaxCharacterSpeedForSolver(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"characterStrength"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterStrength")]
-    CharacterStrength(f64),
-    /// # Information on fields in the original C++ class
+    CharacterStrength(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"characterMass"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterMass")]
-    CharacterMass(f64),
-    /// # Information on fields in the original C++ class
+    CharacterMass(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxSlope"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxSlope")]
-    MaxSlope(f64),
-    /// # Information on fields in the original C++ class
+    MaxSlope(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"penetrationRecoverySpeed"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "penetrationRecoverySpeed")]
-    PenetrationRecoverySpeed(f64),
-    /// # Information on fields in the original C++ class
+    PenetrationRecoverySpeed(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxCastIterations"`
     /// -   type: `hkInt32`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxCastIterations")]
-    MaxCastIterations(i32),
-    /// # Information on fields in the original C++ class
+    MaxCastIterations(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"refreshManifoldInCheckSupport"`
     /// -   type: `hkBool`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "refreshManifoldInCheckSupport")]
-    RefreshManifoldInCheckSupport(bool),
+    RefreshManifoldInCheckSupport(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbProxyModifierProxyInfoHkParam<'de>, "@name",
-    ("dynamicFriction" => DynamicFriction(f64)),
-    ("staticFriction" => StaticFriction(f64)),
-    ("keepContactTolerance" => KeepContactTolerance(f64)),
-    ("up" => Up(cgmath::Vector4<f32>)),
-    ("keepDistance" => KeepDistance(f64)),
-    ("contactAngleSensitivity" => ContactAngleSensitivity(f64)),
-    ("userPlanes" => UserPlanes(u32)),
-    ("maxCharacterSpeedForSolver" => MaxCharacterSpeedForSolver(f64)),
-    ("characterStrength" => CharacterStrength(f64)),
-    ("characterMass" => CharacterMass(f64)),
-    ("maxSlope" => MaxSlope(f64)),
-    ("penetrationRecoverySpeed" => PenetrationRecoverySpeed(f64)),
-    ("maxCastIterations" => MaxCastIterations(i32)),
-    ("refreshManifoldInCheckSupport" => RefreshManifoldInCheckSupport(bool)),
+    ("dynamicFriction" => DynamicFriction(Primitive<f32>)),
+    ("staticFriction" => StaticFriction(Primitive<f32>)),
+    ("keepContactTolerance" => KeepContactTolerance(Primitive<f32>)),
+    ("up" => Up(Vector4<f32>)),
+    ("keepDistance" => KeepDistance(Primitive<f32>)),
+    ("contactAngleSensitivity" => ContactAngleSensitivity(Primitive<f32>)),
+    ("userPlanes" => UserPlanes(Primitive<u32>)),
+    ("maxCharacterSpeedForSolver" => MaxCharacterSpeedForSolver(Primitive<f32>)),
+    ("characterStrength" => CharacterStrength(Primitive<f32>)),
+    ("characterMass" => CharacterMass(Primitive<f32>)),
+    ("maxSlope" => MaxSlope(Primitive<f32>)),
+    ("penetrationRecoverySpeed" => PenetrationRecoverySpeed(Primitive<f32>)),
+    ("maxCastIterations" => MaxCastIterations(Primitive<i32>)),
+    ("refreshManifoldInCheckSupport" => RefreshManifoldInCheckSupport(Primitive<bool>)),
 }

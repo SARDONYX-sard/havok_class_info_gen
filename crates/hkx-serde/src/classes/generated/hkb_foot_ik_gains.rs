@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbFootIkGains<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbFootIkGains"`: Name of this class.
+    /// `"hkbFootIkGains"`: The original C++ class name.
     #[serde(default = "HkbFootIkGains::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbFootIkGains<'a> {
 }
 
 impl HkbFootIkGains<'_> {
-    /// Return `"hkbFootIkGains"`, which is the name of this class.
+    /// Return `"hkbFootIkGains"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbFootIkGains".into()
+        "hkbFootIkGains".into()
     }
 
     /// Return `"0xa681b7f0"`, which is the signature of this class.
@@ -63,106 +64,106 @@ impl HkbFootIkGains<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbFootIkGainsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"onOffGain"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "onOffGain")]
-    OnOffGain(f64),
-    /// # Information on fields in the original C++ class
+    OnOffGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"groundAscendingGain"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "groundAscendingGain")]
-    GroundAscendingGain(f64),
-    /// # Information on fields in the original C++ class
+    GroundAscendingGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"groundDescendingGain"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "groundDescendingGain")]
-    GroundDescendingGain(f64),
-    /// # Information on fields in the original C++ class
+    GroundDescendingGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"footPlantedGain"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "footPlantedGain")]
-    FootPlantedGain(f64),
-    /// # Information on fields in the original C++ class
+    FootPlantedGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"footRaisedGain"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "footRaisedGain")]
-    FootRaisedGain(f64),
-    /// # Information on fields in the original C++ class
+    FootRaisedGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"footUnlockGain"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "footUnlockGain")]
-    FootUnlockGain(f64),
-    /// # Information on fields in the original C++ class
+    FootUnlockGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"worldFromModelFeedbackGain"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "worldFromModelFeedbackGain")]
-    WorldFromModelFeedbackGain(f64),
-    /// # Information on fields in the original C++ class
+    WorldFromModelFeedbackGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"errorUpDownBias"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "errorUpDownBias")]
-    ErrorUpDownBias(f64),
-    /// # Information on fields in the original C++ class
+    ErrorUpDownBias(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"alignWorldFromModelGain"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "alignWorldFromModelGain")]
-    AlignWorldFromModelGain(f64),
-    /// # Information on fields in the original C++ class
+    AlignWorldFromModelGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"hipOrientationGain"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hipOrientationGain")]
-    HipOrientationGain(f64),
-    /// # Information on fields in the original C++ class
+    HipOrientationGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxKneeAngleDifference"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxKneeAngleDifference")]
-    MaxKneeAngleDifference(f64),
-    /// # Information on fields in the original C++ class
+    MaxKneeAngleDifference(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"ankleOrientationGain"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ankleOrientationGain")]
-    AnkleOrientationGain(f64),
+    AnkleOrientationGain(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbFootIkGainsHkParam<'de>, "@name",
-    ("onOffGain" => OnOffGain(f64)),
-    ("groundAscendingGain" => GroundAscendingGain(f64)),
-    ("groundDescendingGain" => GroundDescendingGain(f64)),
-    ("footPlantedGain" => FootPlantedGain(f64)),
-    ("footRaisedGain" => FootRaisedGain(f64)),
-    ("footUnlockGain" => FootUnlockGain(f64)),
-    ("worldFromModelFeedbackGain" => WorldFromModelFeedbackGain(f64)),
-    ("errorUpDownBias" => ErrorUpDownBias(f64)),
-    ("alignWorldFromModelGain" => AlignWorldFromModelGain(f64)),
-    ("hipOrientationGain" => HipOrientationGain(f64)),
-    ("maxKneeAngleDifference" => MaxKneeAngleDifference(f64)),
-    ("ankleOrientationGain" => AnkleOrientationGain(f64)),
+    ("onOffGain" => OnOffGain(Primitive<f32>)),
+    ("groundAscendingGain" => GroundAscendingGain(Primitive<f32>)),
+    ("groundDescendingGain" => GroundDescendingGain(Primitive<f32>)),
+    ("footPlantedGain" => FootPlantedGain(Primitive<f32>)),
+    ("footRaisedGain" => FootRaisedGain(Primitive<f32>)),
+    ("footUnlockGain" => FootUnlockGain(Primitive<f32>)),
+    ("worldFromModelFeedbackGain" => WorldFromModelFeedbackGain(Primitive<f32>)),
+    ("errorUpDownBias" => ErrorUpDownBias(Primitive<f32>)),
+    ("alignWorldFromModelGain" => AlignWorldFromModelGain(Primitive<f32>)),
+    ("hipOrientationGain" => HipOrientationGain(Primitive<f32>)),
+    ("maxKneeAngleDifference" => MaxKneeAngleDifference(Primitive<f32>)),
+    ("ankleOrientationGain" => AnkleOrientationGain(Primitive<f32>)),
 }

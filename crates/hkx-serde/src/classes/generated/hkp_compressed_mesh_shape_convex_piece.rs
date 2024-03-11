@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCompressedMeshShapeConvexPiece<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCompressedMeshShapeConvexPiece"`: Name of this class.
+    /// `"hkpCompressedMeshShapeConvexPiece"`: The original C++ class name.
     #[serde(default = "HkpCompressedMeshShapeConvexPiece::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCompressedMeshShapeConvexPiece<'a> {
 }
 
 impl HkpCompressedMeshShapeConvexPiece<'_> {
-    /// Return `"hkpCompressedMeshShapeConvexPiece"`, which is the name of this class.
+    /// Return `"hkpCompressedMeshShapeConvexPiece"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCompressedMeshShapeConvexPiece".into()
+        "hkpCompressedMeshShapeConvexPiece".into()
     }
 
     /// Return `"0x385bb842"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkpCompressedMeshShapeConvexPiece<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCompressedMeshShapeConvexPieceHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"offset"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "offset")]
-    Offset(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Offset(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertices"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertices")]
-    Vertices(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Vertices(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"faceVertices"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "faceVertices")]
-    FaceVertices(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    FaceVertices(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"faceOffsets"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "faceOffsets")]
-    FaceOffsets(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    FaceOffsets(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"reference"`
     /// -   type: `hkUint16`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "reference")]
-    Reference(u16),
-    /// # Information on fields in the original C++ class
+    Reference(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformIndex"`
     /// -   type: `hkUint16`
     /// - offset: 54
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformIndex")]
-    TransformIndex(u16),
+    TransformIndex(Primitive<u16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCompressedMeshShapeConvexPieceHkParam<'de>, "@name",
-    ("offset" => Offset(cgmath::Vector4<f32>)),
-    ("vertices" => Vertices(Vec<u16>)),
-    ("faceVertices" => FaceVertices(Vec<u8>)),
-    ("faceOffsets" => FaceOffsets(Vec<u16>)),
-    ("reference" => Reference(u16)),
-    ("transformIndex" => TransformIndex(u16)),
+    ("offset" => Offset(Vector4<f32>)),
+    ("vertices" => Vertices(Vec<Primitive<u16>>)),
+    ("faceVertices" => FaceVertices(Vec<Primitive<u8>>)),
+    ("faceOffsets" => FaceOffsets(Vec<Primitive<u16>>)),
+    ("reference" => Reference(Primitive<u16>)),
+    ("transformIndex" => TransformIndex(Primitive<u16>)),
 }

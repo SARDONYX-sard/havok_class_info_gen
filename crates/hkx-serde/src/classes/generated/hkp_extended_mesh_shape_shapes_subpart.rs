@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpExtendedMeshShapeShapesSubpart<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpExtendedMeshShapeShapesSubpart"`: Name of this class.
+    /// `"hkpExtendedMeshShapeShapesSubpart"`: The original C++ class name.
     #[serde(default = "HkpExtendedMeshShapeShapesSubpart::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpExtendedMeshShapeShapesSubpart<'a> {
 }
 
 impl HkpExtendedMeshShapeShapesSubpart<'_> {
-    /// Return `"hkpExtendedMeshShapeShapesSubpart"`, which is the name of this class.
+    /// Return `"hkpExtendedMeshShapeShapesSubpart"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpExtendedMeshShapeShapesSubpart".into()
+        "hkpExtendedMeshShapeShapesSubpart".into()
     }
 
     /// Return `"0xf204b155"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpExtendedMeshShapeShapesSubpart<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpExtendedMeshShapeShapesSubpartHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childShapes"`
     /// -   type: `hkArray&lt;hkpConvexShape*&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childShapes")]
-    ChildShapes(Vec<Box<HkpConvexShape>>),
-    /// # Information on fields in the original C++ class
+    ChildShapes(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotation")]
-    Rotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    Rotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"translation"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "translation")]
-    Translation(cgmath::Vector4<f32>),
+    Translation(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpExtendedMeshShapeShapesSubpartHkParam<'de>, "@name",
-    ("childShapes" => ChildShapes(Vec<Box<HkpConvexShape>>)),
-    ("rotation" => Rotation(cgmath::Quaternion<f32>)),
-    ("translation" => Translation(cgmath::Vector4<f32>)),
+    ("childShapes" => ChildShapes(Vec<Cow<'a, str>>)),
+    ("rotation" => Rotation(Quaternion<f32>)),
+    ("translation" => Translation(Vector4<f32>)),
 }

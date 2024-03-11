@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxIndexBuffer<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxIndexBuffer"`: Name of this class.
+    /// `"hkxIndexBuffer"`: The original C++ class name.
     #[serde(default = "HkxIndexBuffer::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxIndexBuffer<'a> {
 }
 
 impl HkxIndexBuffer<'_> {
-    /// Return `"hkxIndexBuffer"`, which is the name of this class.
+    /// Return `"hkxIndexBuffer"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxIndexBuffer".into()
+        "hkxIndexBuffer".into()
     }
 
     /// Return `"0xc12c8197"`, which is the signature of this class.
@@ -63,41 +64,41 @@ impl HkxIndexBuffer<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxIndexBufferHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"indexType"`
     /// -   type: `enum IndexType`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexType")]
     IndexType(IndexType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"indices16"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indices16")]
-    Indices16(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Indices16(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"indices32"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indices32")]
-    Indices32(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    Indices32(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertexBaseOffset"`
     /// -   type: `hkUint32`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexBaseOffset")]
-    VertexBaseOffset(u32),
-    /// # Information on fields in the original C++ class
+    VertexBaseOffset(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"length"`
     /// -   type: `hkUint32`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "length")]
-    Length(u32),
+    Length(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -105,10 +106,10 @@ pub enum HkxIndexBufferHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkxIndexBufferHkParam<'de>, "@name",
     ("indexType" => IndexType(IndexType)),
-    ("indices16" => Indices16(Vec<u16>)),
-    ("indices32" => Indices32(Vec<u32>)),
-    ("vertexBaseOffset" => VertexBaseOffset(u32)),
-    ("length" => Length(u32)),
+    ("indices16" => Indices16(Vec<Primitive<u16>>)),
+    ("indices32" => Indices32(Vec<Primitive<u32>>)),
+    ("vertexBaseOffset" => VertexBaseOffset(Primitive<u32>)),
+    ("length" => Length(Primitive<u32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

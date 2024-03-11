@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSimpleContactConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSimpleContactConstraintAtom"`: Name of this class.
+    /// `"hkpSimpleContactConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpSimpleContactConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSimpleContactConstraintAtom<'a> {
 }
 
 impl HkpSimpleContactConstraintAtom<'_> {
-    /// Return `"hkpSimpleContactConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpSimpleContactConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSimpleContactConstraintAtom".into()
+        "hkpSimpleContactConstraintAtom".into()
     }
 
     /// Return `"0x920df11a"`, which is the signature of this class.
@@ -63,56 +64,56 @@ impl HkpSimpleContactConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSimpleContactConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sizeOfAllAtoms"`
     /// -   type: `hkUint16`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sizeOfAllAtoms")]
-    SizeOfAllAtoms(u16),
-    /// # Information on fields in the original C++ class
+    SizeOfAllAtoms(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"numContactPoints"`
     /// -   type: `hkUint16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numContactPoints")]
-    NumContactPoints(u16),
-    /// # Information on fields in the original C++ class
+    NumContactPoints(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"numReservedContactPoints"`
     /// -   type: `hkUint16`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numReservedContactPoints")]
-    NumReservedContactPoints(u16),
-    /// # Information on fields in the original C++ class
+    NumReservedContactPoints(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"numUserDatasForBodyA"`
     /// -   type: `hkUint8`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numUserDatasForBodyA")]
-    NumUserDatasForBodyA(u8),
-    /// # Information on fields in the original C++ class
+    NumUserDatasForBodyA(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"numUserDatasForBodyB"`
     /// -   type: `hkUint8`
     /// - offset: 9
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numUserDatasForBodyB")]
-    NumUserDatasForBodyB(u8),
-    /// # Information on fields in the original C++ class
+    NumUserDatasForBodyB(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"contactPointPropertiesStriding"`
     /// -   type: `hkUint8`
     /// - offset: 10
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "contactPointPropertiesStriding")]
-    ContactPointPropertiesStriding(u8),
-    /// # Information on fields in the original C++ class
+    ContactPointPropertiesStriding(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxNumContactPoints"`
     /// -   type: `hkUint16`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxNumContactPoints")]
-    MaxNumContactPoints(u16),
-    /// # Information on fields in the original C++ class
+    MaxNumContactPoints(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"info"`
     /// -   type: `struct hkpSimpleContactConstraintDataInfo`
     /// - offset: 16
@@ -125,12 +126,12 @@ pub enum HkpSimpleContactConstraintAtomHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSimpleContactConstraintAtomHkParam<'de>, "@name",
-    ("sizeOfAllAtoms" => SizeOfAllAtoms(u16)),
-    ("numContactPoints" => NumContactPoints(u16)),
-    ("numReservedContactPoints" => NumReservedContactPoints(u16)),
-    ("numUserDatasForBodyA" => NumUserDatasForBodyA(u8)),
-    ("numUserDatasForBodyB" => NumUserDatasForBodyB(u8)),
-    ("contactPointPropertiesStriding" => ContactPointPropertiesStriding(u8)),
-    ("maxNumContactPoints" => MaxNumContactPoints(u16)),
+    ("sizeOfAllAtoms" => SizeOfAllAtoms(Primitive<u16>)),
+    ("numContactPoints" => NumContactPoints(Primitive<u16>)),
+    ("numReservedContactPoints" => NumReservedContactPoints(Primitive<u16>)),
+    ("numUserDatasForBodyA" => NumUserDatasForBodyA(Primitive<u8>)),
+    ("numUserDatasForBodyB" => NumUserDatasForBodyB(Primitive<u8>)),
+    ("contactPointPropertiesStriding" => ContactPointPropertiesStriding(Primitive<u8>)),
+    ("maxNumContactPoints" => MaxNumContactPoints(Primitive<u16>)),
     ("info" => Info(HkpSimpleContactConstraintDataInfo)),
 }

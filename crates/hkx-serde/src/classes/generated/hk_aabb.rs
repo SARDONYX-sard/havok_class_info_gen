@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkAabb<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkAabb"`: Name of this class.
+    /// `"hkAabb"`: The original C++ class name.
     #[serde(default = "HkAabb::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkAabb<'a> {
 }
 
 impl HkAabb<'_> {
-    /// Return `"hkAabb"`, which is the name of this class.
+    /// Return `"hkAabb"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkAabb".into()
+        "hkAabb".into()
     }
 
     /// Return `"0x4a948b16"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkAabb<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkAabbHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"min"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "min")]
-    Min(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Min(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"max"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "max")]
-    Max(cgmath::Vector4<f32>),
+    Max(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkAabbHkParam<'de>, "@name",
-    ("min" => Min(cgmath::Vector4<f32>)),
-    ("max" => Max(cgmath::Vector4<f32>)),
+    ("min" => Min(Vector4<f32>)),
+    ("max" => Max(Vector4<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkTrackerSerializableScanSnapshotBlock<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkTrackerSerializableScanSnapshotBlock"`: Name of this class.
+    /// `"hkTrackerSerializableScanSnapshotBlock"`: The original C++ class name.
     #[serde(default = "HkTrackerSerializableScanSnapshotBlock::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkTrackerSerializableScanSnapshotBlock<'a> {
 }
 
 impl HkTrackerSerializableScanSnapshotBlock<'_> {
-    /// Return `"hkTrackerSerializableScanSnapshotBlock"`, which is the name of this class.
+    /// Return `"hkTrackerSerializableScanSnapshotBlock"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkTrackerSerializableScanSnapshotBlock".into()
+        "hkTrackerSerializableScanSnapshotBlock".into()
     }
 
     /// Return `"0xe7f23e6d"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkTrackerSerializableScanSnapshotBlock<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkTrackerSerializableScanSnapshotBlockHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"typeIndex"`
     /// -   type: `hkInt32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "typeIndex")]
-    TypeIndex(i32),
-    /// # Information on fields in the original C++ class
+    TypeIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"start"`
     /// -   type: `hkUlong`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "start")]
-    Start(u64),
-    /// # Information on fields in the original C++ class
+    Start(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"size"`
     /// -   type: `hkUlong`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "size")]
-    Size(u64),
-    /// # Information on fields in the original C++ class
+    Size(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"arraySize"`
     /// -   type: `hkInt32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "arraySize")]
-    ArraySize(i32),
-    /// # Information on fields in the original C++ class
+    ArraySize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"startReferenceIndex"`
     /// -   type: `hkInt32`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startReferenceIndex")]
-    StartReferenceIndex(i32),
-    /// # Information on fields in the original C++ class
+    StartReferenceIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numReferences"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numReferences")]
-    NumReferences(i32),
+    NumReferences(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkTrackerSerializableScanSnapshotBlockHkParam<'de>, "@name",
-    ("typeIndex" => TypeIndex(i32)),
-    ("start" => Start(u64)),
-    ("size" => Size(u64)),
-    ("arraySize" => ArraySize(i32)),
-    ("startReferenceIndex" => StartReferenceIndex(i32)),
-    ("numReferences" => NumReferences(i32)),
+    ("typeIndex" => TypeIndex(Primitive<i32>)),
+    ("start" => Start(Primitive<u64>)),
+    ("size" => Size(Primitive<u64>)),
+    ("arraySize" => ArraySize(Primitive<i32>)),
+    ("startReferenceIndex" => StartReferenceIndex(Primitive<i32>)),
+    ("numReferences" => NumReferences(Primitive<i32>)),
 }

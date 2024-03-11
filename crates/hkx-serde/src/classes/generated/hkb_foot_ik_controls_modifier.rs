@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbFootIkControlsModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbFootIkControlsModifier"`: Name of this class.
+    /// `"hkbFootIkControlsModifier"`: The original C++ class name.
     #[serde(default = "HkbFootIkControlsModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbFootIkControlsModifier<'a> {
 }
 
 impl HkbFootIkControlsModifier<'_> {
-    /// Return `"hkbFootIkControlsModifier"`, which is the name of this class.
+    /// Return `"hkbFootIkControlsModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbFootIkControlsModifier".into()
+        "hkbFootIkControlsModifier".into()
     }
 
     /// Return `"0xe5b6f544"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbFootIkControlsModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbFootIkControlsModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"controlData"`
     /// -   type: `struct hkbFootIkControlData`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "controlData")]
     ControlData(HkbFootIkControlData),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"legs"`
     /// -   type: `hkArray&lt;struct hkbFootIkControlsModifierLeg&gt;`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "legs")]
     Legs(Vec<HkbFootIkControlsModifierLeg>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"errorOutTranslation"`
     /// -   type: `hkVector4`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "errorOutTranslation")]
-    ErrorOutTranslation(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    ErrorOutTranslation(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"alignWithGroundRotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "alignWithGroundRotation")]
-    AlignWithGroundRotation(cgmath::Quaternion<f32>),
+    AlignWithGroundRotation(Quaternion<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -99,6 +100,6 @@ impl_deserialize_for_internally_tagged_enum! {
     HkbFootIkControlsModifierHkParam<'de>, "@name",
     ("controlData" => ControlData(HkbFootIkControlData)),
     ("legs" => Legs(Vec<HkbFootIkControlsModifierLeg>)),
-    ("errorOutTranslation" => ErrorOutTranslation(cgmath::Vector4<f32>)),
-    ("alignWithGroundRotation" => AlignWithGroundRotation(cgmath::Quaternion<f32>)),
+    ("errorOutTranslation" => ErrorOutTranslation(Vector4<f32>)),
+    ("alignWithGroundRotation" => AlignWithGroundRotation(Quaternion<f32>)),
 }

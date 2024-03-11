@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpTransformShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpTransformShape"`: Name of this class.
+    /// `"hkpTransformShape"`: The original C++ class name.
     #[serde(default = "HkpTransformShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpTransformShape<'a> {
 }
 
 impl HkpTransformShape<'_> {
-    /// Return `"hkpTransformShape"`, which is the name of this class.
+    /// Return `"hkpTransformShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpTransformShape".into()
+        "hkpTransformShape".into()
     }
 
     /// Return `"0x787ef513"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpTransformShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpTransformShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childShape"`
     /// -   type: `struct hkpSingleShapeContainer`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childShape")]
     ChildShape(HkpSingleShapeContainer),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childShapeSize"`
     /// -   type: `hkInt32`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "childShapeSize", skip_serializing)]
-    ChildShapeSize(i32),
-    /// # Information on fields in the original C++ class
+    ChildShapeSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotation")]
-    Rotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    Rotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"transform"`
     /// -   type: `hkTransform`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transform")]
-    Transform(cgmath::Matrix4<f32>),
+    Transform(Transform<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -98,7 +99,7 @@ pub enum HkpTransformShapeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpTransformShapeHkParam<'de>, "@name",
     ("childShape" => ChildShape(HkpSingleShapeContainer)),
-    ("childShapeSize" => ChildShapeSize(i32)),
-    ("rotation" => Rotation(cgmath::Quaternion<f32>)),
-    ("transform" => Transform(cgmath::Matrix4<f32>)),
+    ("childShapeSize" => ChildShapeSize(Primitive<i32>)),
+    ("rotation" => Rotation(Quaternion<f32>)),
+    ("transform" => Transform(Transform<f32>)),
 }

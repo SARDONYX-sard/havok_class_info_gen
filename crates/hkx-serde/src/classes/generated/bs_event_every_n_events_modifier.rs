@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsEventEveryNEventsModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSEventEveryNEventsModifier"`: Name of this class.
+    /// `"BSEventEveryNEventsModifier"`: The original C++ class name.
     #[serde(default = "BsEventEveryNEventsModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsEventEveryNEventsModifier<'a> {
 }
 
 impl BsEventEveryNEventsModifier<'_> {
-    /// Return `"BSEventEveryNEventsModifier"`, which is the name of this class.
+    /// Return `"BSEventEveryNEventsModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsEventEveryNEventsModifier".into()
+        "BSEventEveryNEventsModifier".into()
     }
 
     /// Return `"0x6030970c"`, which is the signature of this class.
@@ -63,55 +64,55 @@ impl BsEventEveryNEventsModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsEventEveryNEventsModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"eventToCheckFor"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventToCheckFor")]
     EventToCheckFor(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"eventToSend"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventToSend")]
     EventToSend(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numberOfEventsBeforeSend"`
     /// -   type: `hkInt8`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numberOfEventsBeforeSend")]
-    NumberOfEventsBeforeSend(i8),
-    /// # Information on fields in the original C++ class
+    NumberOfEventsBeforeSend(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"minimumNumberOfEventsBeforeSend"`
     /// -   type: `hkInt8`
     /// - offset: 61
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "minimumNumberOfEventsBeforeSend")]
-    MinimumNumberOfEventsBeforeSend(i8),
-    /// # Information on fields in the original C++ class
+    MinimumNumberOfEventsBeforeSend(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"randomizeNumberOfEvents"`
     /// -   type: `hkBool`
     /// - offset: 62
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "randomizeNumberOfEvents")]
-    RandomizeNumberOfEvents(bool),
-    /// # Information on fields in the original C++ class
+    RandomizeNumberOfEvents(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"numberOfEventsSeen"`
     /// -   type: `hkInt32`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "numberOfEventsSeen", skip_serializing)]
-    NumberOfEventsSeen(i32),
-    /// # Information on fields in the original C++ class
+    NumberOfEventsSeen(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"calculatedNumberOfEventsBeforeSend"`
     /// -   type: `hkInt8`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "calculatedNumberOfEventsBeforeSend", skip_serializing)]
-    CalculatedNumberOfEventsBeforeSend(i8),
+    CalculatedNumberOfEventsBeforeSend(Primitive<i8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -120,9 +121,9 @@ impl_deserialize_for_internally_tagged_enum! {
     BsEventEveryNEventsModifierHkParam<'de>, "@name",
     ("eventToCheckFor" => EventToCheckFor(HkbEventProperty)),
     ("eventToSend" => EventToSend(HkbEventProperty)),
-    ("numberOfEventsBeforeSend" => NumberOfEventsBeforeSend(i8)),
-    ("minimumNumberOfEventsBeforeSend" => MinimumNumberOfEventsBeforeSend(i8)),
-    ("randomizeNumberOfEvents" => RandomizeNumberOfEvents(bool)),
-    ("numberOfEventsSeen" => NumberOfEventsSeen(i32)),
-    ("calculatedNumberOfEventsBeforeSend" => CalculatedNumberOfEventsBeforeSend(i8)),
+    ("numberOfEventsBeforeSend" => NumberOfEventsBeforeSend(Primitive<i8>)),
+    ("minimumNumberOfEventsBeforeSend" => MinimumNumberOfEventsBeforeSend(Primitive<i8>)),
+    ("randomizeNumberOfEvents" => RandomizeNumberOfEvents(Primitive<bool>)),
+    ("numberOfEventsSeen" => NumberOfEventsSeen(Primitive<i32>)),
+    ("calculatedNumberOfEventsBeforeSend" => CalculatedNumberOfEventsBeforeSend(Primitive<i8>)),
 }

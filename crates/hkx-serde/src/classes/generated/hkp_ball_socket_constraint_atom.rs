@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpBallSocketConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpBallSocketConstraintAtom"`: Name of this class.
+    /// `"hkpBallSocketConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpBallSocketConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpBallSocketConstraintAtom<'a> {
 }
 
 impl HkpBallSocketConstraintAtom<'_> {
-    /// Return `"hkpBallSocketConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpBallSocketConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpBallSocketConstraintAtom".into()
+        "hkpBallSocketConstraintAtom".into()
     }
 
     /// Return `"0xe70e4dfa"`, which is the signature of this class.
@@ -63,41 +64,41 @@ impl HkpBallSocketConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpBallSocketConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"solvingMethod"`
     /// -   type: `enum SolvingMethod`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "solvingMethod")]
     SolvingMethod(SolvingMethod),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bodiesToNotify"`
     /// -   type: `hkUint8`
     /// - offset: 3
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bodiesToNotify")]
-    BodiesToNotify(u8),
-    /// # Information on fields in the original C++ class
+    BodiesToNotify(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"velocityStabilizationFactor"`
     /// -   type: `hkUint8`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "velocityStabilizationFactor")]
-    VelocityStabilizationFactor(u8),
-    /// # Information on fields in the original C++ class
+    VelocityStabilizationFactor(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxImpulse"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxImpulse")]
-    MaxImpulse(f64),
-    /// # Information on fields in the original C++ class
+    MaxImpulse(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"inertiaStabilizationFactor"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "inertiaStabilizationFactor")]
-    InertiaStabilizationFactor(f64),
+    InertiaStabilizationFactor(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -105,8 +106,8 @@ pub enum HkpBallSocketConstraintAtomHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpBallSocketConstraintAtomHkParam<'de>, "@name",
     ("solvingMethod" => SolvingMethod(SolvingMethod)),
-    ("bodiesToNotify" => BodiesToNotify(u8)),
-    ("velocityStabilizationFactor" => VelocityStabilizationFactor(u8)),
-    ("maxImpulse" => MaxImpulse(f64)),
-    ("inertiaStabilizationFactor" => InertiaStabilizationFactor(f64)),
+    ("bodiesToNotify" => BodiesToNotify(Primitive<u8>)),
+    ("velocityStabilizationFactor" => VelocityStabilizationFactor(Primitive<u8>)),
+    ("maxImpulse" => MaxImpulse(Primitive<f32>)),
+    ("inertiaStabilizationFactor" => InertiaStabilizationFactor(Primitive<f32>)),
 }

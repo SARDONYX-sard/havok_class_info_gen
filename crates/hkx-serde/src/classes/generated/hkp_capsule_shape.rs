@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCapsuleShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCapsuleShape"`: Name of this class.
+    /// `"hkpCapsuleShape"`: The original C++ class name.
     #[serde(default = "HkpCapsuleShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCapsuleShape<'a> {
 }
 
 impl HkpCapsuleShape<'_> {
-    /// Return `"hkpCapsuleShape"`, which is the name of this class.
+    /// Return `"hkpCapsuleShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCapsuleShape".into()
+        "hkpCapsuleShape".into()
     }
 
     /// Return `"0xdd0b1fd3"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl HkpCapsuleShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCapsuleShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexA"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexA")]
-    VertexA(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    VertexA(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertexB"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexB")]
-    VertexB(cgmath::Vector4<f32>),
+    VertexB(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCapsuleShapeHkParam<'de>, "@name",
-    ("vertexA" => VertexA(cgmath::Vector4<f32>)),
-    ("vertexB" => VertexB(cgmath::Vector4<f32>)),
+    ("vertexA" => VertexA(Vector4<f32>)),
+    ("vertexB" => VertexB(Vector4<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

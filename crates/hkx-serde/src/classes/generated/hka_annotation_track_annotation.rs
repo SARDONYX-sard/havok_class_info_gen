@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaAnnotationTrackAnnotation<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaAnnotationTrackAnnotation"`: Name of this class.
+    /// `"hkaAnnotationTrackAnnotation"`: The original C++ class name.
     #[serde(default = "HkaAnnotationTrackAnnotation::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaAnnotationTrackAnnotation<'a> {
 }
 
 impl HkaAnnotationTrackAnnotation<'_> {
-    /// Return `"hkaAnnotationTrackAnnotation"`, which is the name of this class.
+    /// Return `"hkaAnnotationTrackAnnotation"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaAnnotationTrackAnnotation".into()
+        "hkaAnnotationTrackAnnotation".into()
     }
 
     /// Return `"0x623bf34f"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkaAnnotationTrackAnnotation<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaAnnotationTrackAnnotationHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"time"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "time")]
-    Time(f64),
-    /// # Information on fields in the original C++ class
+    Time(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"text"`
     /// -   type: `hkStringPtr`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "text")]
-    Text(String),
+    Text(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaAnnotationTrackAnnotationHkParam<'de>, "@name",
-    ("time" => Time(f64)),
-    ("text" => Text(String)),
+    ("time" => Time(Primitive<f32>)),
+    ("text" => Text(Primitive<Cow<'a, str>>)),
 }

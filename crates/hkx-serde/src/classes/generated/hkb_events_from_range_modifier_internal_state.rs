@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbEventsFromRangeModifierInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbEventsFromRangeModifierInternalState"`: Name of this class.
+    /// `"hkbEventsFromRangeModifierInternalState"`: The original C++ class name.
     #[serde(default = "HkbEventsFromRangeModifierInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbEventsFromRangeModifierInternalState<'a> {
 }
 
 impl HkbEventsFromRangeModifierInternalState<'_> {
-    /// Return `"hkbEventsFromRangeModifierInternalState"`, which is the name of this class.
+    /// Return `"hkbEventsFromRangeModifierInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbEventsFromRangeModifierInternalState".into()
+        "hkbEventsFromRangeModifierInternalState".into()
     }
 
     /// Return `"0xcc47b48d"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkbEventsFromRangeModifierInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbEventsFromRangeModifierInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wasActiveInPreviousFrame"`
     /// -   type: `hkArray&lt;hkBool&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wasActiveInPreviousFrame")]
-    WasActiveInPreviousFrame(Vec<bool>),
+    WasActiveInPreviousFrame(Vec<Primitive<bool>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbEventsFromRangeModifierInternalStateHkParam<'de>, "@name",
-    ("wasActiveInPreviousFrame" => WasActiveInPreviousFrame(Vec<bool>)),
+    ("wasActiveInPreviousFrame" => WasActiveInPreviousFrame(Vec<Primitive<bool>>)),
 }

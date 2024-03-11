@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkUiAttribute<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkUiAttribute"`: Name of this class.
+    /// `"hkUiAttribute"`: The original C++ class name.
     #[serde(default = "HkUiAttribute::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkUiAttribute<'a> {
 }
 
 impl HkUiAttribute<'_> {
-    /// Return `"hkUiAttribute"`, which is the name of this class.
+    /// Return `"hkUiAttribute"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkUiAttribute".into()
+        "hkUiAttribute".into()
     }
 
     /// Return `"0xeb6e96e3"`, which is the signature of this class.
@@ -63,76 +64,76 @@ impl HkUiAttribute<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkUiAttributeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"visible"`
     /// -   type: `hkBool`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "visible")]
-    Visible(bool),
-    /// # Information on fields in the original C++ class
+    Visible(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"hideInModeler"`
     /// -   type: `enum HideInModeler`
     /// - offset: 1
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hideInModeler")]
     HideInModeler(HideInModeler),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"label"`
     /// -   type: `char*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "label")]
-    Label(String),
-    /// # Information on fields in the original C++ class
+    Label(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"group"`
     /// -   type: `char*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "group")]
-    Group(String),
-    /// # Information on fields in the original C++ class
+    Group(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"hideBaseClassMembers"`
     /// -   type: `char*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hideBaseClassMembers")]
-    HideBaseClassMembers(String),
-    /// # Information on fields in the original C++ class
+    HideBaseClassMembers(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"endGroup"`
     /// -   type: `hkBool`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endGroup")]
-    EndGroup(bool),
-    /// # Information on fields in the original C++ class
+    EndGroup(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"endGroup2"`
     /// -   type: `hkBool`
     /// - offset: 17
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endGroup2")]
-    EndGroup2(bool),
-    /// # Information on fields in the original C++ class
+    EndGroup2(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"advanced"`
     /// -   type: `hkBool`
     /// - offset: 18
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "advanced")]
-    Advanced(bool),
+    Advanced(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkUiAttributeHkParam<'de>, "@name",
-    ("visible" => Visible(bool)),
+    ("visible" => Visible(Primitive<bool>)),
     ("hideInModeler" => HideInModeler(HideInModeler)),
-    ("label" => Label(String)),
-    ("group" => Group(String)),
-    ("hideBaseClassMembers" => HideBaseClassMembers(String)),
-    ("endGroup" => EndGroup(bool)),
-    ("endGroup2" => EndGroup2(bool)),
-    ("advanced" => Advanced(bool)),
+    ("label" => Label(Primitive<Cow<'a, str>>)),
+    ("group" => Group(Primitive<Cow<'a, str>>)),
+    ("hideBaseClassMembers" => HideBaseClassMembers(Primitive<Cow<'a, str>>)),
+    ("endGroup" => EndGroup(Primitive<bool>)),
+    ("endGroup2" => EndGroup2(Primitive<bool>)),
+    ("advanced" => Advanced(Primitive<bool>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

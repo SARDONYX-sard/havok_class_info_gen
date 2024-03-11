@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaSplineCompressedAnimationAnimationCompressionParams<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaSplineCompressedAnimationAnimationCompressionParams"`: Name of this class.
+    /// `"hkaSplineCompressedAnimationAnimationCompressionParams"`: The original C++ class name.
     #[serde(default = "HkaSplineCompressedAnimationAnimationCompressionParams::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaSplineCompressedAnimationAnimationCompressionParams<'a> {
 }
 
 impl HkaSplineCompressedAnimationAnimationCompressionParams<'_> {
-    /// Return `"hkaSplineCompressedAnimationAnimationCompressionParams"`, which is the name of this class.
+    /// Return `"hkaSplineCompressedAnimationAnimationCompressionParams"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaSplineCompressedAnimationAnimationCompressionParams".into()
+        "hkaSplineCompressedAnimationAnimationCompressionParams".into()
     }
 
     /// Return `"0xde830789"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkaSplineCompressedAnimationAnimationCompressionParams<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaSplineCompressedAnimationAnimationCompressionParamsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"maxFramesPerBlock"`
     /// -   type: `hkUint16`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxFramesPerBlock")]
-    MaxFramesPerBlock(u16),
-    /// # Information on fields in the original C++ class
+    MaxFramesPerBlock(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"enableSampleSingleTracks"`
     /// -   type: `hkBool`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enableSampleSingleTracks")]
-    EnableSampleSingleTracks(bool),
+    EnableSampleSingleTracks(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaSplineCompressedAnimationAnimationCompressionParamsHkParam<'de>, "@name",
-    ("maxFramesPerBlock" => MaxFramesPerBlock(u16)),
-    ("enableSampleSingleTracks" => EnableSampleSingleTracks(bool)),
+    ("maxFramesPerBlock" => MaxFramesPerBlock(Primitive<u16>)),
+    ("enableSampleSingleTracks" => EnableSampleSingleTracks(Primitive<bool>)),
 }

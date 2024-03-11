@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbModifier"`: Name of this class.
+    /// `"hkbModifier"`: The original C++ class name.
     #[serde(default = "HkbModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbModifier<'a> {
 }
 
 impl HkbModifier<'_> {
-    /// Return `"hkbModifier"`, which is the name of this class.
+    /// Return `"hkbModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbModifier".into()
+        "hkbModifier".into()
     }
 
     /// Return `"0x96ec5ced"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkbModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"enable"`
     /// -   type: `hkBool`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enable")]
-    Enable(bool),
-    /// # Information on fields in the original C++ class
+    Enable(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"padModifier"`
     /// -   type: `hkBool[3]`
     /// - offset: 41
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "padModifier", skip_serializing)]
-    PadModifier([bool; 3]),
+    PadModifier([Primitive<bool>; 3]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbModifierHkParam<'de>, "@name",
-    ("enable" => Enable(bool)),
-    ("padModifier" => PadModifier([bool; 3])),
+    ("enable" => Enable(Primitive<bool>)),
+    ("padModifier" => PadModifier([Primitive<bool>; 3])),
 }

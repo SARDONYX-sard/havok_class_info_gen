@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbManualSelectorGenerator<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbManualSelectorGenerator"`: Name of this class.
+    /// `"hkbManualSelectorGenerator"`: The original C++ class name.
     #[serde(default = "HkbManualSelectorGenerator::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbManualSelectorGenerator<'a> {
 }
 
 impl HkbManualSelectorGenerator<'_> {
-    /// Return `"hkbManualSelectorGenerator"`, which is the name of this class.
+    /// Return `"hkbManualSelectorGenerator"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbManualSelectorGenerator".into()
+        "hkbManualSelectorGenerator".into()
     }
 
     /// Return `"0xd932fab8"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbManualSelectorGenerator<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbManualSelectorGeneratorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"generators"`
     /// -   type: `hkArray&lt;hkbGenerator*&gt;`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "generators")]
-    Generators(Vec<Box<HkbGenerator>>),
-    /// # Information on fields in the original C++ class
+    Generators(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"selectedGeneratorIndex"`
     /// -   type: `hkInt8`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "selectedGeneratorIndex")]
-    SelectedGeneratorIndex(i8),
-    /// # Information on fields in the original C++ class
+    SelectedGeneratorIndex(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"currentGeneratorIndex"`
     /// -   type: `hkInt8`
     /// - offset: 53
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "currentGeneratorIndex")]
-    CurrentGeneratorIndex(i8),
+    CurrentGeneratorIndex(Primitive<i8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbManualSelectorGeneratorHkParam<'de>, "@name",
-    ("generators" => Generators(Vec<Box<HkbGenerator>>)),
-    ("selectedGeneratorIndex" => SelectedGeneratorIndex(i8)),
-    ("currentGeneratorIndex" => CurrentGeneratorIndex(i8)),
+    ("generators" => Generators(Vec<Cow<'a, str>>)),
+    ("selectedGeneratorIndex" => SelectedGeneratorIndex(Primitive<i8>)),
+    ("currentGeneratorIndex" => CurrentGeneratorIndex(Primitive<i8>)),
 }

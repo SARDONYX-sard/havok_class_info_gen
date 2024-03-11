@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbComputeRotationFromAxisAngleModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbComputeRotationFromAxisAngleModifier"`: Name of this class.
+    /// `"hkbComputeRotationFromAxisAngleModifier"`: The original C++ class name.
     #[serde(default = "HkbComputeRotationFromAxisAngleModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbComputeRotationFromAxisAngleModifier<'a> {
 }
 
 impl HkbComputeRotationFromAxisAngleModifier<'_> {
-    /// Return `"hkbComputeRotationFromAxisAngleModifier"`, which is the name of this class.
+    /// Return `"hkbComputeRotationFromAxisAngleModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbComputeRotationFromAxisAngleModifier".into()
+        "hkbComputeRotationFromAxisAngleModifier".into()
     }
 
     /// Return `"0x9b3f6936"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbComputeRotationFromAxisAngleModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbComputeRotationFromAxisAngleModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rotationOut"`
     /// -   type: `hkQuaternion`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotationOut")]
-    RotationOut(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    RotationOut(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"axis"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "axis")]
-    Axis(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Axis(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"angleDegrees"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angleDegrees")]
-    AngleDegrees(f64),
+    AngleDegrees(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbComputeRotationFromAxisAngleModifierHkParam<'de>, "@name",
-    ("rotationOut" => RotationOut(cgmath::Quaternion<f32>)),
-    ("axis" => Axis(cgmath::Vector4<f32>)),
-    ("angleDegrees" => AngleDegrees(f64)),
+    ("rotationOut" => RotationOut(Quaternion<f32>)),
+    ("axis" => Axis(Vector4<f32>)),
+    ("angleDegrees" => AngleDegrees(Primitive<f32>)),
 }

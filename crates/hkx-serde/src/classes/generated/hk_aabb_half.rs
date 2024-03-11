@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkAabbHalf<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkAabbHalf"`: Name of this class.
+    /// `"hkAabbHalf"`: The original C++ class name.
     #[serde(default = "HkAabbHalf::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkAabbHalf<'a> {
 }
 
 impl HkAabbHalf<'_> {
-    /// Return `"hkAabbHalf"`, which is the name of this class.
+    /// Return `"hkAabbHalf"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkAabbHalf".into()
+        "hkAabbHalf".into()
     }
 
     /// Return `"0x1d716a17"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkAabbHalf<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkAabbHalfHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `hkUint16[6]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data([u16; 6]),
-    /// # Information on fields in the original C++ class
+    Data([Primitive<u16>; 6]),
+    /// # Field information in the original C++ class
     /// -   name:`"extras"`
     /// -   type: `hkUint16[2]`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extras")]
-    Extras([u16; 2]),
+    Extras([Primitive<u16>; 2]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkAabbHalfHkParam<'de>, "@name",
-    ("data" => Data([u16; 6])),
-    ("extras" => Extras([u16; 2])),
+    ("data" => Data([Primitive<u16>; 6])),
+    ("extras" => Extras([Primitive<u16>; 2])),
 }

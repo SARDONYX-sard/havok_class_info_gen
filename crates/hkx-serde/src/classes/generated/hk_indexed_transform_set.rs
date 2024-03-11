@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkIndexedTransformSet<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkIndexedTransformSet"`: Name of this class.
+    /// `"hkIndexedTransformSet"`: The original C++ class name.
     #[serde(default = "HkIndexedTransformSet::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkIndexedTransformSet<'a> {
 }
 
 impl HkIndexedTransformSet<'_> {
-    /// Return `"hkIndexedTransformSet"`, which is the name of this class.
+    /// Return `"hkIndexedTransformSet"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkIndexedTransformSet".into()
+        "hkIndexedTransformSet".into()
     }
 
     /// Return `"0x87fe6b5c"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkIndexedTransformSet<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkIndexedTransformSetHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"matrices"`
     /// -   type: `hkArray&lt;hkMatrix4&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "matrices")]
-    Matrices(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    Matrices(Vec<Matrix4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"inverseMatrices"`
     /// -   type: `hkArray&lt;hkMatrix4&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "inverseMatrices")]
-    InverseMatrices(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    InverseMatrices(Vec<Matrix4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"matricesOrder"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "matricesOrder")]
-    MatricesOrder(Vec<i16>),
-    /// # Information on fields in the original C++ class
+    MatricesOrder(Vec<Primitive<i16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"matricesNames"`
     /// -   type: `hkArray&lt;hkStringPtr&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "matricesNames")]
-    MatricesNames(Vec<String>),
-    /// # Information on fields in the original C++ class
+    MatricesNames(Vec<Primitive<Cow<'a, str>>>),
+    /// # Field information in the original C++ class
     /// -   name:`"indexMappings"`
     /// -   type: `hkArray&lt;struct hkMeshBoneIndexMapping&gt;`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexMappings")]
     IndexMappings(Vec<HkMeshBoneIndexMapping>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"allMatricesAreAffine"`
     /// -   type: `hkBool`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "allMatricesAreAffine")]
-    AllMatricesAreAffine(bool),
+    AllMatricesAreAffine(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkIndexedTransformSetHkParam<'de>, "@name",
-    ("matrices" => Matrices(Vec<cgmath::Matrix4<f32>>)),
-    ("inverseMatrices" => InverseMatrices(Vec<cgmath::Matrix4<f32>>)),
-    ("matricesOrder" => MatricesOrder(Vec<i16>)),
-    ("matricesNames" => MatricesNames(Vec<String>)),
+    ("matrices" => Matrices(Vec<Matrix4<f32>>)),
+    ("inverseMatrices" => InverseMatrices(Vec<Matrix4<f32>>)),
+    ("matricesOrder" => MatricesOrder(Vec<Primitive<i16>>)),
+    ("matricesNames" => MatricesNames(Vec<Primitive<Cow<'a, str>>>)),
     ("indexMappings" => IndexMappings(Vec<HkMeshBoneIndexMapping>)),
-    ("allMatricesAreAffine" => AllMatricesAreAffine(bool)),
+    ("allMatricesAreAffine" => AllMatricesAreAffine(Primitive<bool>)),
 }

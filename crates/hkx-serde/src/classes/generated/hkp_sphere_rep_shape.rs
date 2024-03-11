@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSphereRepShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSphereRepShape"`: Name of this class.
+    /// `"hkpSphereRepShape"`: The original C++ class name.
     #[serde(default = "HkpSphereRepShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSphereRepShape<'a> {
 }
 
 impl HkpSphereRepShape<'_> {
-    /// Return `"hkpSphereRepShape"`, which is the name of this class.
+    /// Return `"hkpSphereRepShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSphereRepShape".into()
+        "hkpSphereRepShape".into()
     }
 
     /// Return `"0xe7eca7eb"`, which is the signature of this class.

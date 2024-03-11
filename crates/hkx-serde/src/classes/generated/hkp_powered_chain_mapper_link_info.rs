@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPoweredChainMapperLinkInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPoweredChainMapperLinkInfo"`: Name of this class.
+    /// `"hkpPoweredChainMapperLinkInfo"`: The original C++ class name.
     #[serde(default = "HkpPoweredChainMapperLinkInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPoweredChainMapperLinkInfo<'a> {
 }
 
 impl HkpPoweredChainMapperLinkInfo<'_> {
-    /// Return `"hkpPoweredChainMapperLinkInfo"`, which is the name of this class.
+    /// Return `"hkpPoweredChainMapperLinkInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPoweredChainMapperLinkInfo".into()
+        "hkpPoweredChainMapperLinkInfo".into()
     }
 
     /// Return `"0xcf071a1b"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpPoweredChainMapperLinkInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPoweredChainMapperLinkInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"firstTargetIdx"`
     /// -   type: `hkInt32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "firstTargetIdx")]
-    FirstTargetIdx(i32),
-    /// # Information on fields in the original C++ class
+    FirstTargetIdx(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numTargets"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numTargets")]
-    NumTargets(i32),
-    /// # Information on fields in the original C++ class
+    NumTargets(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"limitConstraint"`
     /// -   type: `struct hkpConstraintInstance*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "limitConstraint")]
-    LimitConstraint(Box<HkpConstraintInstance>),
+    LimitConstraint(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpPoweredChainMapperLinkInfoHkParam<'de>, "@name",
-    ("firstTargetIdx" => FirstTargetIdx(i32)),
-    ("numTargets" => NumTargets(i32)),
-    ("limitConstraint" => LimitConstraint(Box<HkpConstraintInstance>)),
+    ("firstTargetIdx" => FirstTargetIdx(Primitive<i32>)),
+    ("numTargets" => NumTargets(Primitive<i32>)),
+    ("limitConstraint" => LimitConstraint(Cow<'a, str>)),
 }

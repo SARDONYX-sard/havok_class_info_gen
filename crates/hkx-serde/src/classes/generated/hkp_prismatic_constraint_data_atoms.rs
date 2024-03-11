@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPrismaticConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPrismaticConstraintDataAtoms"`: Name of this class.
+    /// `"hkpPrismaticConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpPrismaticConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPrismaticConstraintDataAtoms<'a> {
 }
 
 impl HkpPrismaticConstraintDataAtoms<'_> {
-    /// Return `"hkpPrismaticConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpPrismaticConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPrismaticConstraintDataAtoms".into()
+        "hkpPrismaticConstraintDataAtoms".into()
     }
 
     /// Return `"0x7f516137"`, which is the signature of this class.
@@ -63,49 +64,49 @@ impl HkpPrismaticConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPrismaticConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transforms"`
     /// -   type: `struct hkpSetLocalTransformsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transforms")]
     Transforms(HkpSetLocalTransformsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"motor"`
     /// -   type: `struct hkpLinMotorConstraintAtom`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "motor")]
     Motor(HkpLinMotorConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"friction"`
     /// -   type: `struct hkpLinFrictionConstraintAtom`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "friction")]
     Friction(HkpLinFrictionConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ang"`
     /// -   type: `struct hkpAngConstraintAtom`
     /// - offset: 168
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ang")]
     Ang(HkpAngConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lin0"`
     /// -   type: `struct hkpLinConstraintAtom`
     /// - offset: 172
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lin0")]
     Lin0(HkpLinConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lin1"`
     /// -   type: `struct hkpLinConstraintAtom`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lin1")]
     Lin1(HkpLinConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"linLimit"`
     /// -   type: `struct hkpLinLimitConstraintAtom`
     /// - offset: 180

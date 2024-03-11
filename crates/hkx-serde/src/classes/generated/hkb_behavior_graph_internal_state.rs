@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBehaviorGraphInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBehaviorGraphInternalState"`: Name of this class.
+    /// `"hkbBehaviorGraphInternalState"`: The original C++ class name.
     #[serde(default = "HkbBehaviorGraphInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBehaviorGraphInternalState<'a> {
 }
 
 impl HkbBehaviorGraphInternalState<'_> {
-    /// Return `"hkbBehaviorGraphInternalState"`, which is the name of this class.
+    /// Return `"hkbBehaviorGraphInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBehaviorGraphInternalState".into()
+        "hkbBehaviorGraphInternalState".into()
     }
 
     /// Return `"0x8699b6eb"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkbBehaviorGraphInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBehaviorGraphInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"nodeInternalStateInfos"`
     /// -   type: `hkArray&lt;hkbNodeInternalStateInfo*&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nodeInternalStateInfos")]
-    NodeInternalStateInfos(Vec<Box<HkbNodeInternalStateInfo>>),
-    /// # Information on fields in the original C++ class
+    NodeInternalStateInfos(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"variableValueSet"`
     /// -   type: `struct hkbVariableValueSet*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variableValueSet")]
-    VariableValueSet(Box<HkbVariableValueSet>),
+    VariableValueSet(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbBehaviorGraphInternalStateHkParam<'de>, "@name",
-    ("nodeInternalStateInfos" => NodeInternalStateInfos(Vec<Box<HkbNodeInternalStateInfo>>)),
-    ("variableValueSet" => VariableValueSet(Box<HkbVariableValueSet>)),
+    ("nodeInternalStateInfos" => NodeInternalStateInfos(Vec<Cow<'a, str>>)),
+    ("variableValueSet" => VariableValueSet(Cow<'a, str>)),
 }

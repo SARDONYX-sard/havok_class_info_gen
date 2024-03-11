@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMoppBvTreeShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMoppBvTreeShape"`: Name of this class.
+    /// `"hkpMoppBvTreeShape"`: The original C++ class name.
     #[serde(default = "HkpMoppBvTreeShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMoppBvTreeShape<'a> {
 }
 
 impl HkpMoppBvTreeShape<'_> {
-    /// Return `"hkpMoppBvTreeShape"`, which is the name of this class.
+    /// Return `"hkpMoppBvTreeShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMoppBvTreeShape".into()
+        "hkpMoppBvTreeShape".into()
     }
 
     /// Return `"0x90b29d39"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkpMoppBvTreeShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMoppBvTreeShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"child"`
     /// -   type: `struct hkpSingleShapeContainer`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "child")]
     Child(HkpSingleShapeContainer),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childSize"`
     /// -   type: `hkInt32`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "childSize", skip_serializing)]
-    ChildSize(i32),
+    ChildSize(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkpMoppBvTreeShapeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpMoppBvTreeShapeHkParam<'de>, "@name",
     ("child" => Child(HkpSingleShapeContainer)),
-    ("childSize" => ChildSize(i32)),
+    ("childSize" => ChildSize(Primitive<i32>)),
 }

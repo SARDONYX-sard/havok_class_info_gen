@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbRotateCharacterModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbRotateCharacterModifier"`: Name of this class.
+    /// `"hkbRotateCharacterModifier"`: The original C++ class name.
     #[serde(default = "HkbRotateCharacterModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbRotateCharacterModifier<'a> {
 }
 
 impl HkbRotateCharacterModifier<'_> {
-    /// Return `"hkbRotateCharacterModifier"`, which is the name of this class.
+    /// Return `"hkbRotateCharacterModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbRotateCharacterModifier".into()
+        "hkbRotateCharacterModifier".into()
     }
 
     /// Return `"0x877ebc0b"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbRotateCharacterModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbRotateCharacterModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"degreesPerSecond"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "degreesPerSecond")]
-    DegreesPerSecond(f64),
-    /// # Information on fields in the original C++ class
+    DegreesPerSecond(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"speedMultiplier"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "speedMultiplier")]
-    SpeedMultiplier(f64),
-    /// # Information on fields in the original C++ class
+    SpeedMultiplier(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"axisOfRotation"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "axisOfRotation")]
-    AxisOfRotation(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AxisOfRotation(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"angle"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "angle", skip_serializing)]
-    Angle(f64),
+    Angle(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbRotateCharacterModifierHkParam<'de>, "@name",
-    ("degreesPerSecond" => DegreesPerSecond(f64)),
-    ("speedMultiplier" => SpeedMultiplier(f64)),
-    ("axisOfRotation" => AxisOfRotation(cgmath::Vector4<f32>)),
-    ("angle" => Angle(f64)),
+    ("degreesPerSecond" => DegreesPerSecond(Primitive<f32>)),
+    ("speedMultiplier" => SpeedMultiplier(Primitive<f32>)),
+    ("axisOfRotation" => AxisOfRotation(Vector4<f32>)),
+    ("angle" => Angle(Primitive<f32>)),
 }

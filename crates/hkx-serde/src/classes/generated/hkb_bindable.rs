@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBindable<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBindable"`: Name of this class.
+    /// `"hkbBindable"`: The original C++ class name.
     #[serde(default = "HkbBindable::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBindable<'a> {
 }
 
 impl HkbBindable<'_> {
-    /// Return `"hkbBindable"`, which is the name of this class.
+    /// Return `"hkbBindable"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBindable".into()
+        "hkbBindable".into()
     }
 
     /// Return `"0x2c1432d7"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbBindable<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBindableHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"variableBindingSet"`
     /// -   type: `struct hkbVariableBindingSet*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variableBindingSet")]
-    VariableBindingSet(Box<HkbVariableBindingSet>),
-    /// # Information on fields in the original C++ class
+    VariableBindingSet(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"cachedBindables"`
     /// -   type: `hkArray&lt;void&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "cachedBindables", skip_serializing)]
     CachedBindables(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"areBindablesCached"`
     /// -   type: `hkBool`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "areBindablesCached", skip_serializing)]
-    AreBindablesCached(bool),
+    AreBindablesCached(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbBindableHkParam<'de>, "@name",
-    ("variableBindingSet" => VariableBindingSet(Box<HkbVariableBindingSet>)),
+    ("variableBindingSet" => VariableBindingSet(Cow<'a, str>)),
     ("cachedBindables" => CachedBindables(Vec<()>)),
-    ("areBindablesCached" => AreBindablesCached(bool)),
+    ("areBindablesCached" => AreBindablesCached(Primitive<bool>)),
 }

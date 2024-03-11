@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpHingeConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpHingeConstraintDataAtoms"`: Name of this class.
+    /// `"hkpHingeConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpHingeConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpHingeConstraintDataAtoms<'a> {
 }
 
 impl HkpHingeConstraintDataAtoms<'_> {
-    /// Return `"hkpHingeConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpHingeConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpHingeConstraintDataAtoms".into()
+        "hkpHingeConstraintDataAtoms".into()
     }
 
     /// Return `"0x6958371c"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl HkpHingeConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpHingeConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transforms"`
     /// -   type: `struct hkpSetLocalTransformsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transforms")]
     Transforms(HkpSetLocalTransformsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"setupStabilization"`
     /// -   type: `struct hkpSetupStabilizationAtom`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "setupStabilization")]
     SetupStabilization(HkpSetupStabilizationAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"2dAng"`
     /// -   type: `struct hkp2dAngConstraintAtom`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "2dAng")]
     2DAng(Hkp2DAngConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ballSocket"`
     /// -   type: `struct hkpBallSocketConstraintAtom`
     /// - offset: 164

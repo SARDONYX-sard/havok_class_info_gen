@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbFootIkModifierInternalLegData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbFootIkModifierInternalLegData"`: Name of this class.
+    /// `"hkbFootIkModifierInternalLegData"`: The original C++ class name.
     #[serde(default = "HkbFootIkModifierInternalLegData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbFootIkModifierInternalLegData<'a> {
 }
 
 impl HkbFootIkModifierInternalLegData<'_> {
-    /// Return `"hkbFootIkModifierInternalLegData"`, which is the name of this class.
+    /// Return `"hkbFootIkModifierInternalLegData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbFootIkModifierInternalLegData".into()
+        "hkbFootIkModifierInternalLegData".into()
     }
 
     /// Return `"0xe5ca3677"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkbFootIkModifierInternalLegData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbFootIkModifierInternalLegDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"groundPosition"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "groundPosition")]
-    GroundPosition(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    GroundPosition(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"footIkSolver"`
     /// -   type: `void*`
     /// - offset: 16
@@ -83,6 +84,6 @@ pub enum HkbFootIkModifierInternalLegDataHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbFootIkModifierInternalLegDataHkParam<'de>, "@name",
-    ("groundPosition" => GroundPosition(cgmath::Vector4<f32>)),
+    ("groundPosition" => GroundPosition(Vector4<f32>)),
     ("footIkSolver" => FootIkSolver(())),
 }

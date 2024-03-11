@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbDampingModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbDampingModifier"`: Name of this class.
+    /// `"hkbDampingModifier"`: The original C++ class name.
     #[serde(default = "HkbDampingModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbDampingModifier<'a> {
 }
 
 impl HkbDampingModifier<'_> {
-    /// Return `"hkbDampingModifier"`, which is the name of this class.
+    /// Return `"hkbDampingModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbDampingModifier".into()
+        "hkbDampingModifier".into()
     }
 
     /// Return `"0x9a040f03"`, which is the signature of this class.
@@ -63,114 +64,114 @@ impl HkbDampingModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbDampingModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"kP"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "kP")]
-    KP(f64),
-    /// # Information on fields in the original C++ class
+    KP(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"kI"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "kI")]
-    KI(f64),
-    /// # Information on fields in the original C++ class
+    KI(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"kD"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "kD")]
-    KD(f64),
-    /// # Information on fields in the original C++ class
+    KD(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"enableScalarDamping"`
     /// -   type: `hkBool`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enableScalarDamping")]
-    EnableScalarDamping(bool),
-    /// # Information on fields in the original C++ class
+    EnableScalarDamping(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"enableVectorDamping"`
     /// -   type: `hkBool`
     /// - offset: 57
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enableVectorDamping")]
-    EnableVectorDamping(bool),
-    /// # Information on fields in the original C++ class
+    EnableVectorDamping(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"rawValue"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rawValue")]
-    RawValue(f64),
-    /// # Information on fields in the original C++ class
+    RawValue(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"dampedValue"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "dampedValue")]
-    DampedValue(f64),
-    /// # Information on fields in the original C++ class
+    DampedValue(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rawVector"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rawVector")]
-    RawVector(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    RawVector(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"dampedVector"`
     /// -   type: `hkVector4`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "dampedVector")]
-    DampedVector(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    DampedVector(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vecErrorSum"`
     /// -   type: `hkVector4`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vecErrorSum")]
-    VecErrorSum(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    VecErrorSum(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vecPreviousError"`
     /// -   type: `hkVector4`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vecPreviousError")]
-    VecPreviousError(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    VecPreviousError(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"errorSum"`
     /// -   type: `hkReal`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "errorSum")]
-    ErrorSum(f64),
-    /// # Information on fields in the original C++ class
+    ErrorSum(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"previousError"`
     /// -   type: `hkReal`
     /// - offset: 148
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "previousError")]
-    PreviousError(f64),
+    PreviousError(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbDampingModifierHkParam<'de>, "@name",
-    ("kP" => KP(f64)),
-    ("kI" => KI(f64)),
-    ("kD" => KD(f64)),
-    ("enableScalarDamping" => EnableScalarDamping(bool)),
-    ("enableVectorDamping" => EnableVectorDamping(bool)),
-    ("rawValue" => RawValue(f64)),
-    ("dampedValue" => DampedValue(f64)),
-    ("rawVector" => RawVector(cgmath::Vector4<f32>)),
-    ("dampedVector" => DampedVector(cgmath::Vector4<f32>)),
-    ("vecErrorSum" => VecErrorSum(cgmath::Vector4<f32>)),
-    ("vecPreviousError" => VecPreviousError(cgmath::Vector4<f32>)),
-    ("errorSum" => ErrorSum(f64)),
-    ("previousError" => PreviousError(f64)),
+    ("kP" => KP(Primitive<f32>)),
+    ("kI" => KI(Primitive<f32>)),
+    ("kD" => KD(Primitive<f32>)),
+    ("enableScalarDamping" => EnableScalarDamping(Primitive<bool>)),
+    ("enableVectorDamping" => EnableVectorDamping(Primitive<bool>)),
+    ("rawValue" => RawValue(Primitive<f32>)),
+    ("dampedValue" => DampedValue(Primitive<f32>)),
+    ("rawVector" => RawVector(Vector4<f32>)),
+    ("dampedVector" => DampedVector(Vector4<f32>)),
+    ("vecErrorSum" => VecErrorSum(Vector4<f32>)),
+    ("vecPreviousError" => VecPreviousError(Vector4<f32>)),
+    ("errorSum" => ErrorSum(Primitive<f32>)),
+    ("previousError" => PreviousError(Primitive<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSerializedDisplayRbTransforms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSerializedDisplayRbTransforms"`: Name of this class.
+    /// `"hkpSerializedDisplayRbTransforms"`: The original C++ class name.
     #[serde(default = "HkpSerializedDisplayRbTransforms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSerializedDisplayRbTransforms<'a> {
 }
 
 impl HkpSerializedDisplayRbTransforms<'_> {
-    /// Return `"hkpSerializedDisplayRbTransforms"`, which is the name of this class.
+    /// Return `"hkpSerializedDisplayRbTransforms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSerializedDisplayRbTransforms".into()
+        "hkpSerializedDisplayRbTransforms".into()
     }
 
     /// Return `"0xc18650ac"`, which is the signature of this class.
@@ -63,7 +64,7 @@ impl HkpSerializedDisplayRbTransforms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSerializedDisplayRbTransformsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transforms"`
     /// -   type: `hkArray&lt;struct hkpSerializedDisplayRbTransformsDisplayTransformPair&gt;`
     /// - offset: 8

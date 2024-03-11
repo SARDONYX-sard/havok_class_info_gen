@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxAnimatedMatrix<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxAnimatedMatrix"`: Name of this class.
+    /// `"hkxAnimatedMatrix"`: The original C++ class name.
     #[serde(default = "HkxAnimatedMatrix::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxAnimatedMatrix<'a> {
 }
 
 impl HkxAnimatedMatrix<'_> {
-    /// Return `"hkxAnimatedMatrix"`, which is the name of this class.
+    /// Return `"hkxAnimatedMatrix"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxAnimatedMatrix".into()
+        "hkxAnimatedMatrix".into()
     }
 
     /// Return `"0x5838e337"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkxAnimatedMatrix<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxAnimatedMatrixHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"matrices"`
     /// -   type: `hkArray&lt;hkMatrix4&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "matrices")]
-    Matrices(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    Matrices(Vec<Matrix4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"hint"`
     /// -   type: `enum Hint`
     /// - offset: 20
@@ -83,6 +84,6 @@ pub enum HkxAnimatedMatrixHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxAnimatedMatrixHkParam<'de>, "@name",
-    ("matrices" => Matrices(Vec<cgmath::Matrix4<f32>>)),
+    ("matrices" => Matrices(Vec<Matrix4<f32>>)),
     ("hint" => Hint(Hint)),
 }

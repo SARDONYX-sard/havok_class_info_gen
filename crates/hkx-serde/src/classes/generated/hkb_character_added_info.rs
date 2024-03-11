@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCharacterAddedInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCharacterAddedInfo"`: Name of this class.
+    /// `"hkbCharacterAddedInfo"`: The original C++ class name.
     #[serde(default = "HkbCharacterAddedInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCharacterAddedInfo<'a> {
 }
 
 impl HkbCharacterAddedInfo<'_> {
-    /// Return `"hkbCharacterAddedInfo"`, which is the name of this class.
+    /// Return `"hkbCharacterAddedInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCharacterAddedInfo".into()
+        "hkbCharacterAddedInfo".into()
     }
 
     /// Return `"0x3544e182"`, which is the signature of this class.
@@ -63,66 +64,66 @@ impl HkbCharacterAddedInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCharacterAddedInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterId"`
     /// -   type: `hkUint64`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterId")]
-    CharacterId(u64),
-    /// # Information on fields in the original C++ class
+    CharacterId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"instanceName"`
     /// -   type: `hkStringPtr`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "instanceName")]
-    InstanceName(String),
-    /// # Information on fields in the original C++ class
+    InstanceName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"templateName"`
     /// -   type: `hkStringPtr`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "templateName")]
-    TemplateName(String),
-    /// # Information on fields in the original C++ class
+    TemplateName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"fullPathToProject"`
     /// -   type: `hkStringPtr`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fullPathToProject")]
-    FullPathToProject(String),
-    /// # Information on fields in the original C++ class
+    FullPathToProject(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"skeleton"`
     /// -   type: `struct hkaSkeleton*`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "skeleton")]
-    Skeleton(Box<HkaSkeleton>),
-    /// # Information on fields in the original C++ class
+    Skeleton(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"worldFromModel"`
     /// -   type: `hkQsTransform`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "worldFromModel")]
-    WorldFromModel(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    WorldFromModel(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"poseModelSpace"`
     /// -   type: `hkArray&lt;hkQsTransform&gt;`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "poseModelSpace")]
-    PoseModelSpace(Vec<cgmath::Matrix4<f32>>),
+    PoseModelSpace(Vec<QsTransform<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbCharacterAddedInfoHkParam<'de>, "@name",
-    ("characterId" => CharacterId(u64)),
-    ("instanceName" => InstanceName(String)),
-    ("templateName" => TemplateName(String)),
-    ("fullPathToProject" => FullPathToProject(String)),
-    ("skeleton" => Skeleton(Box<HkaSkeleton>)),
-    ("worldFromModel" => WorldFromModel(cgmath::Matrix4<f32>)),
-    ("poseModelSpace" => PoseModelSpace(Vec<cgmath::Matrix4<f32>>)),
+    ("characterId" => CharacterId(Primitive<u64>)),
+    ("instanceName" => InstanceName(Primitive<Cow<'a, str>>)),
+    ("templateName" => TemplateName(Primitive<Cow<'a, str>>)),
+    ("fullPathToProject" => FullPathToProject(Primitive<Cow<'a, str>>)),
+    ("skeleton" => Skeleton(Cow<'a, str>)),
+    ("worldFromModel" => WorldFromModel(QsTransform<f32>)),
+    ("poseModelSpace" => PoseModelSpace(Vec<QsTransform<f32>>)),
 }

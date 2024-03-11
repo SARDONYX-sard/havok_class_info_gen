@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpStorageExtendedMeshShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpStorageExtendedMeshShape"`: Name of this class.
+    /// `"hkpStorageExtendedMeshShape"`: The original C++ class name.
     #[serde(default = "HkpStorageExtendedMeshShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpStorageExtendedMeshShape<'a> {
 }
 
 impl HkpStorageExtendedMeshShape<'_> {
-    /// Return `"hkpStorageExtendedMeshShape"`, which is the name of this class.
+    /// Return `"hkpStorageExtendedMeshShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpStorageExtendedMeshShape".into()
+        "hkpStorageExtendedMeshShape".into()
     }
 
     /// Return `"0xb469efbc"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpStorageExtendedMeshShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpStorageExtendedMeshShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"meshstorage"`
     /// -   type: `hkArray&lt;hkpStorageExtendedMeshShapeMeshSubpartStorage*&gt;`
     /// - offset: 240
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "meshstorage")]
-    Meshstorage(Vec<Box<HkpStorageExtendedMeshShapeMeshSubpartStorage>>),
-    /// # Information on fields in the original C++ class
+    Meshstorage(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"shapestorage"`
     /// -   type: `hkArray&lt;hkpStorageExtendedMeshShapeShapeSubpartStorage*&gt;`
     /// - offset: 252
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shapestorage")]
-    Shapestorage(Vec<Box<HkpStorageExtendedMeshShapeShapeSubpartStorage>>),
+    Shapestorage(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpStorageExtendedMeshShapeHkParam<'de>, "@name",
-    ("meshstorage" => Meshstorage(Vec<Box<HkpStorageExtendedMeshShapeMeshSubpartStorage>>)),
-    ("shapestorage" => Shapestorage(Vec<Box<HkpStorageExtendedMeshShapeShapeSubpartStorage>>)),
+    ("meshstorage" => Meshstorage(Vec<Cow<'a, str>>)),
+    ("shapestorage" => Shapestorage(Vec<Cow<'a, str>>)),
 }

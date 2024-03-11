@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpLinSoftConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpLinSoftConstraintAtom"`: Name of this class.
+    /// `"hkpLinSoftConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpLinSoftConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpLinSoftConstraintAtom<'a> {
 }
 
 impl HkpLinSoftConstraintAtom<'_> {
-    /// Return `"hkpLinSoftConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpLinSoftConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpLinSoftConstraintAtom".into()
+        "hkpLinSoftConstraintAtom".into()
     }
 
     /// Return `"0x52b27d69"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpLinSoftConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpLinSoftConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"axisIndex"`
     /// -   type: `hkUint8`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "axisIndex")]
-    AxisIndex(u8),
-    /// # Information on fields in the original C++ class
+    AxisIndex(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"tau"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "tau")]
-    Tau(f64),
-    /// # Information on fields in the original C++ class
+    Tau(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"damping"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "damping")]
-    Damping(f64),
+    Damping(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpLinSoftConstraintAtomHkParam<'de>, "@name",
-    ("axisIndex" => AxisIndex(u8)),
-    ("tau" => Tau(f64)),
-    ("damping" => Damping(f64)),
+    ("axisIndex" => AxisIndex(Primitive<u8>)),
+    ("tau" => Tau(Primitive<f32>)),
+    ("damping" => Damping(Primitive<f32>)),
 }

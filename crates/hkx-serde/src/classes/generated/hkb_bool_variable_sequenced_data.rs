@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBoolVariableSequencedData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBoolVariableSequencedData"`: Name of this class.
+    /// `"hkbBoolVariableSequencedData"`: The original C++ class name.
     #[serde(default = "HkbBoolVariableSequencedData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBoolVariableSequencedData<'a> {
 }
 
 impl HkbBoolVariableSequencedData<'_> {
-    /// Return `"hkbBoolVariableSequencedData"`, which is the name of this class.
+    /// Return `"hkbBoolVariableSequencedData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBoolVariableSequencedData".into()
+        "hkbBoolVariableSequencedData".into()
     }
 
     /// Return `"0x37416fce"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkbBoolVariableSequencedData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBoolVariableSequencedDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"samples"`
     /// -   type: `hkArray&lt;struct hkbBoolVariableSequencedDataSample&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "samples")]
     Samples(Vec<HkbBoolVariableSequencedDataSample>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"variableIndex"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variableIndex")]
-    VariableIndex(i32),
+    VariableIndex(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkbBoolVariableSequencedDataHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbBoolVariableSequencedDataHkParam<'de>, "@name",
     ("samples" => Samples(Vec<HkbBoolVariableSequencedDataSample>)),
-    ("variableIndex" => VariableIndex(i32)),
+    ("variableIndex" => VariableIndex(Primitive<i32>)),
 }

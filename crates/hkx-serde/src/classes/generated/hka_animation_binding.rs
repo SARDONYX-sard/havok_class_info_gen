@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaAnimationBinding<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaAnimationBinding"`: Name of this class.
+    /// `"hkaAnimationBinding"`: The original C++ class name.
     #[serde(default = "HkaAnimationBinding::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaAnimationBinding<'a> {
 }
 
 impl HkaAnimationBinding<'_> {
-    /// Return `"hkaAnimationBinding"`, which is the name of this class.
+    /// Return `"hkaAnimationBinding"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaAnimationBinding".into()
+        "hkaAnimationBinding".into()
     }
 
     /// Return `"0x66eac971"`, which is the signature of this class.
@@ -63,35 +64,35 @@ impl HkaAnimationBinding<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaAnimationBindingHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"originalSkeletonName"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "originalSkeletonName")]
-    OriginalSkeletonName(String),
-    /// # Information on fields in the original C++ class
+    OriginalSkeletonName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"animation"`
     /// -   type: `struct hkaAnimation*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "animation")]
-    Animation(Box<HkaAnimation>),
-    /// # Information on fields in the original C++ class
+    Animation(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformTrackToBoneIndices"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformTrackToBoneIndices")]
-    TransformTrackToBoneIndices(Vec<i16>),
-    /// # Information on fields in the original C++ class
+    TransformTrackToBoneIndices(Vec<Primitive<i16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"floatTrackToFloatSlotIndices"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "floatTrackToFloatSlotIndices")]
-    FloatTrackToFloatSlotIndices(Vec<i16>),
-    /// # Information on fields in the original C++ class
+    FloatTrackToFloatSlotIndices(Vec<Primitive<i16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"blendHint"`
     /// -   type: `enum BlendHint`
     /// - offset: 40
@@ -104,10 +105,10 @@ pub enum HkaAnimationBindingHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaAnimationBindingHkParam<'de>, "@name",
-    ("originalSkeletonName" => OriginalSkeletonName(String)),
-    ("animation" => Animation(Box<HkaAnimation>)),
-    ("transformTrackToBoneIndices" => TransformTrackToBoneIndices(Vec<i16>)),
-    ("floatTrackToFloatSlotIndices" => FloatTrackToFloatSlotIndices(Vec<i16>)),
+    ("originalSkeletonName" => OriginalSkeletonName(Primitive<Cow<'a, str>>)),
+    ("animation" => Animation(Cow<'a, str>)),
+    ("transformTrackToBoneIndices" => TransformTrackToBoneIndices(Vec<Primitive<i16>>)),
+    ("floatTrackToFloatSlotIndices" => FloatTrackToFloatSlotIndices(Vec<Primitive<i16>>)),
     ("blendHint" => BlendHint(BlendHint)),
 }
 

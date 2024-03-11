@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkClassMember<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkClassMember"`: Name of this class.
+    /// `"hkClassMember"`: The original C++ class name.
     #[serde(default = "HkClassMember::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkClassMember<'a> {
 }
 
 impl HkClassMember<'_> {
-    /// Return `"hkClassMember"`, which is the name of this class.
+    /// Return `"hkClassMember"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkClassMember".into()
+        "hkClassMember".into()
     }
 
     /// Return `"0x5c7ea4c2"`, which is the signature of this class.
@@ -63,84 +64,84 @@ impl HkClassMember<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkClassMemberHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `char*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"class"`
     /// -   type: `struct hkClass*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "class")]
-    Class(Box<HkClass>),
-    /// # Information on fields in the original C++ class
+    Class(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"enum"`
     /// -   type: `struct hkClassEnum*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enum")]
-    Enum(Box<HkClassEnum>),
-    /// # Information on fields in the original C++ class
+    Enum(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum Type`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(Type),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"subtype"`
     /// -   type: `enum Type`
     /// - offset: 13
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "subtype")]
     Subtype(Type),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"cArraySize"`
     /// -   type: `hkInt16`
     /// - offset: 14
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cArraySize")]
-    CArraySize(i16),
-    /// # Information on fields in the original C++ class
+    CArraySize(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"flags"`
     /// -   type: `flags FlagValues`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "flags")]
     Flags(FlagValues),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"offset"`
     /// -   type: `hkUint16`
     /// - offset: 18
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "offset")]
-    Offset(u16),
-    /// # Information on fields in the original C++ class
+    Offset(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"attributes"`
     /// -   type: `struct hkCustomAttributes*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "attributes", skip_serializing)]
-    Attributes(Box<HkCustomAttributes>),
+    Attributes(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkClassMemberHkParam<'de>, "@name",
-    ("name" => Name(String)),
-    ("class" => Class(Box<HkClass>)),
-    ("enum" => Enum(Box<HkClassEnum>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("class" => Class(Cow<'a, str>)),
+    ("enum" => Enum(Cow<'a, str>)),
     ("type" => Type(Type)),
     ("subtype" => Subtype(Type)),
-    ("cArraySize" => CArraySize(i16)),
+    ("cArraySize" => CArraySize(Primitive<i16>)),
     ("flags" => Flags(FlagValues)),
-    ("offset" => Offset(u16)),
-    ("attributes" => Attributes(Box<HkCustomAttributes>)),
+    ("offset" => Offset(Primitive<u16>)),
+    ("attributes" => Attributes(Cow<'a, str>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaDefaultAnimatedReferenceFrame<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaDefaultAnimatedReferenceFrame"`: Name of this class.
+    /// `"hkaDefaultAnimatedReferenceFrame"`: The original C++ class name.
     #[serde(default = "HkaDefaultAnimatedReferenceFrame::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaDefaultAnimatedReferenceFrame<'a> {
 }
 
 impl HkaDefaultAnimatedReferenceFrame<'_> {
-    /// Return `"hkaDefaultAnimatedReferenceFrame"`, which is the name of this class.
+    /// Return `"hkaDefaultAnimatedReferenceFrame"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaDefaultAnimatedReferenceFrame".into()
+        "hkaDefaultAnimatedReferenceFrame".into()
     }
 
     /// Return `"0x6d85e445"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkaDefaultAnimatedReferenceFrame<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaDefaultAnimatedReferenceFrameHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"up"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "up")]
-    Up(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Up(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"forward"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forward")]
-    Forward(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Forward(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"duration"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "duration")]
-    Duration(f64),
-    /// # Information on fields in the original C++ class
+    Duration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"referenceFrameSamples"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "referenceFrameSamples")]
-    ReferenceFrameSamples(Vec<cgmath::Vector4<f32>>),
+    ReferenceFrameSamples(Vec<Vector4<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaDefaultAnimatedReferenceFrameHkParam<'de>, "@name",
-    ("up" => Up(cgmath::Vector4<f32>)),
-    ("forward" => Forward(cgmath::Vector4<f32>)),
-    ("duration" => Duration(f64)),
-    ("referenceFrameSamples" => ReferenceFrameSamples(Vec<cgmath::Vector4<f32>>)),
+    ("up" => Up(Vector4<f32>)),
+    ("forward" => Forward(Vector4<f32>)),
+    ("duration" => Duration(Primitive<f32>)),
+    ("referenceFrameSamples" => ReferenceFrameSamples(Vec<Vector4<f32>>)),
 }

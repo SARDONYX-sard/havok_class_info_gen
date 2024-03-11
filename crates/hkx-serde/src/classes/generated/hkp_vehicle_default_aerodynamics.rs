@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleDefaultAerodynamics<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleDefaultAerodynamics"`: Name of this class.
+    /// `"hkpVehicleDefaultAerodynamics"`: The original C++ class name.
     #[serde(default = "HkpVehicleDefaultAerodynamics::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleDefaultAerodynamics<'a> {
 }
 
 impl HkpVehicleDefaultAerodynamics<'_> {
-    /// Return `"hkpVehicleDefaultAerodynamics"`, which is the name of this class.
+    /// Return `"hkpVehicleDefaultAerodynamics"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleDefaultAerodynamics".into()
+        "hkpVehicleDefaultAerodynamics".into()
     }
 
     /// Return `"0x42fc5bbd"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkpVehicleDefaultAerodynamics<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDefaultAerodynamicsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"airDensity"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "airDensity")]
-    AirDensity(f64),
-    /// # Information on fields in the original C++ class
+    AirDensity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"frontalArea"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "frontalArea")]
-    FrontalArea(f64),
-    /// # Information on fields in the original C++ class
+    FrontalArea(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"dragCoefficient"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "dragCoefficient")]
-    DragCoefficient(f64),
-    /// # Information on fields in the original C++ class
+    DragCoefficient(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"liftCoefficient"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "liftCoefficient")]
-    LiftCoefficient(f64),
-    /// # Information on fields in the original C++ class
+    LiftCoefficient(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"extraGravityws"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extraGravityws")]
-    ExtraGravityws(cgmath::Vector4<f32>),
+    ExtraGravityws(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleDefaultAerodynamicsHkParam<'de>, "@name",
-    ("airDensity" => AirDensity(f64)),
-    ("frontalArea" => FrontalArea(f64)),
-    ("dragCoefficient" => DragCoefficient(f64)),
-    ("liftCoefficient" => LiftCoefficient(f64)),
-    ("extraGravityws" => ExtraGravityws(cgmath::Vector4<f32>)),
+    ("airDensity" => AirDensity(Primitive<f32>)),
+    ("frontalArea" => FrontalArea(Primitive<f32>)),
+    ("dragCoefficient" => DragCoefficient(Primitive<f32>)),
+    ("liftCoefficient" => LiftCoefficient(Primitive<f32>)),
+    ("extraGravityws" => ExtraGravityws(Vector4<f32>)),
 }

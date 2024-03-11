@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbTestStateChooser<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbTestStateChooser"`: Name of this class.
+    /// `"hkbTestStateChooser"`: The original C++ class name.
     #[serde(default = "HkbTestStateChooser::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbTestStateChooser<'a> {
 }
 
 impl HkbTestStateChooser<'_> {
-    /// Return `"hkbTestStateChooser"`, which is the name of this class.
+    /// Return `"hkbTestStateChooser"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbTestStateChooser".into()
+        "hkbTestStateChooser".into()
     }
 
     /// Return `"0xc0fcc436"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbTestStateChooser<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbTestStateChooserHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"int"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "int")]
-    Int(i32),
-    /// # Information on fields in the original C++ class
+    Int(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"real"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "real")]
-    Real(f64),
-    /// # Information on fields in the original C++ class
+    Real(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"string"`
     /// -   type: `hkStringPtr`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "string")]
-    String(String),
+    String(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbTestStateChooserHkParam<'de>, "@name",
-    ("int" => Int(i32)),
-    ("real" => Real(f64)),
-    ("string" => String(String)),
+    ("int" => Int(Primitive<i32>)),
+    ("real" => Real(Primitive<f32>)),
+    ("string" => String(Primitive<Cow<'a, str>>)),
 }

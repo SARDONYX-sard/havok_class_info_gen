@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaSkeleton<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaSkeleton"`: Name of this class.
+    /// `"hkaSkeleton"`: The original C++ class name.
     #[serde(default = "HkaSkeleton::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaSkeleton<'a> {
 }
 
 impl HkaSkeleton<'_> {
-    /// Return `"hkaSkeleton"`, which is the name of this class.
+    /// Return `"hkaSkeleton"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaSkeleton".into()
+        "hkaSkeleton".into()
     }
 
     /// Return `"0x366e8220"`, which is the signature of this class.
@@ -63,49 +64,49 @@ impl HkaSkeleton<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaSkeletonHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"parentIndices"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "parentIndices")]
-    ParentIndices(Vec<i16>),
-    /// # Information on fields in the original C++ class
+    ParentIndices(Vec<Primitive<i16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"bones"`
     /// -   type: `hkArray&lt;struct hkaBone&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bones")]
     Bones(Vec<HkaBone>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"referencePose"`
     /// -   type: `hkArray&lt;hkQsTransform&gt;`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "referencePose")]
-    ReferencePose(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    ReferencePose(Vec<QsTransform<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"referenceFloats"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "referenceFloats")]
-    ReferenceFloats(Vec<f64>),
-    /// # Information on fields in the original C++ class
+    ReferenceFloats(Vec<Primitive<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"floatSlots"`
     /// -   type: `hkArray&lt;hkStringPtr&gt;`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "floatSlots")]
-    FloatSlots(Vec<String>),
-    /// # Information on fields in the original C++ class
+    FloatSlots(Vec<Primitive<Cow<'a, str>>>),
+    /// # Field information in the original C++ class
     /// -   name:`"localFrames"`
     /// -   type: `hkArray&lt;struct hkaSkeletonLocalFrameOnBone&gt;`
     /// - offset: 72
@@ -118,11 +119,11 @@ pub enum HkaSkeletonHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaSkeletonHkParam<'de>, "@name",
-    ("name" => Name(String)),
-    ("parentIndices" => ParentIndices(Vec<i16>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("parentIndices" => ParentIndices(Vec<Primitive<i16>>)),
     ("bones" => Bones(Vec<HkaBone>)),
-    ("referencePose" => ReferencePose(Vec<cgmath::Matrix4<f32>>)),
-    ("referenceFloats" => ReferenceFloats(Vec<f64>)),
-    ("floatSlots" => FloatSlots(Vec<String>)),
+    ("referencePose" => ReferencePose(Vec<QsTransform<f32>>)),
+    ("referenceFloats" => ReferenceFloats(Vec<Primitive<f32>>)),
+    ("floatSlots" => FloatSlots(Vec<Primitive<Cow<'a, str>>>)),
     ("localFrames" => LocalFrames(Vec<HkaSkeletonLocalFrameOnBone>)),
 }

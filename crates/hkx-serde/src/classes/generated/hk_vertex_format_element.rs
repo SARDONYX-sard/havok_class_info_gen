@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkVertexFormatElement<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkVertexFormatElement"`: Name of this class.
+    /// `"hkVertexFormatElement"`: The original C++ class name.
     #[serde(default = "HkVertexFormatElement::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkVertexFormatElement<'a> {
 }
 
 impl HkVertexFormatElement<'_> {
-    /// Return `"hkVertexFormatElement"`, which is the name of this class.
+    /// Return `"hkVertexFormatElement"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkVertexFormatElement".into()
+        "hkVertexFormatElement".into()
     }
 
     /// Return `"0x54867cbf"`, which is the signature of this class.
@@ -63,48 +64,48 @@ impl HkVertexFormatElement<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkVertexFormatElementHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"dataType"`
     /// -   type: `enum ComponentType`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "dataType")]
     DataType(ComponentType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numValues"`
     /// -   type: `hkUint8`
     /// - offset: 1
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numValues")]
-    NumValues(u8),
-    /// # Information on fields in the original C++ class
+    NumValues(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"usage"`
     /// -   type: `enum ComponentUsage`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "usage")]
     Usage(ComponentUsage),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"subUsage"`
     /// -   type: `hkUint8`
     /// - offset: 3
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "subUsage")]
-    SubUsage(u8),
-    /// # Information on fields in the original C++ class
+    SubUsage(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"flags"`
     /// -   type: `flags HintFlags`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "flags")]
     Flags(HintFlags),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pad"`
     /// -   type: `hkUint8[3]`
     /// - offset: 5
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pad")]
-    Pad([u8; 3]),
+    Pad([Primitive<u8>; 3]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -112,9 +113,9 @@ pub enum HkVertexFormatElementHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkVertexFormatElementHkParam<'de>, "@name",
     ("dataType" => DataType(ComponentType)),
-    ("numValues" => NumValues(u8)),
+    ("numValues" => NumValues(Primitive<u8>)),
     ("usage" => Usage(ComponentUsage)),
-    ("subUsage" => SubUsage(u8)),
+    ("subUsage" => SubUsage(Primitive<u8>)),
     ("flags" => Flags(HintFlags)),
-    ("pad" => Pad([u8; 3])),
+    ("pad" => Pad([Primitive<u8>; 3])),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbClipGenerator<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbClipGenerator"`: Name of this class.
+    /// `"hkbClipGenerator"`: The original C++ class name.
     #[serde(default = "HkbClipGenerator::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbClipGenerator<'a> {
 }
 
 impl HkbClipGenerator<'_> {
-    /// Return `"hkbClipGenerator"`, which is the name of this class.
+    /// Return `"hkbClipGenerator"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbClipGenerator".into()
+        "hkbClipGenerator".into()
     }
 
     /// Return `"0x333b85b9"`, which is the signature of this class.
@@ -63,228 +64,228 @@ impl HkbClipGenerator<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbClipGeneratorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"animationName"`
     /// -   type: `hkStringPtr`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "animationName")]
-    AnimationName(String),
-    /// # Information on fields in the original C++ class
+    AnimationName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"triggers"`
     /// -   type: `struct hkbClipTriggerArray*`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "triggers")]
-    Triggers(Box<HkbClipTriggerArray>),
-    /// # Information on fields in the original C++ class
+    Triggers(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"cropStartAmountLocalTime"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cropStartAmountLocalTime")]
-    CropStartAmountLocalTime(f64),
-    /// # Information on fields in the original C++ class
+    CropStartAmountLocalTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cropEndAmountLocalTime"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cropEndAmountLocalTime")]
-    CropEndAmountLocalTime(f64),
-    /// # Information on fields in the original C++ class
+    CropEndAmountLocalTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"startTime"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startTime")]
-    StartTime(f64),
-    /// # Information on fields in the original C++ class
+    StartTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"playbackSpeed"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "playbackSpeed")]
-    PlaybackSpeed(f64),
-    /// # Information on fields in the original C++ class
+    PlaybackSpeed(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"enforcedDuration"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enforcedDuration")]
-    EnforcedDuration(f64),
-    /// # Information on fields in the original C++ class
+    EnforcedDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"userControlledTimeFraction"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userControlledTimeFraction")]
-    UserControlledTimeFraction(f64),
-    /// # Information on fields in the original C++ class
+    UserControlledTimeFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"animationBindingIndex"`
     /// -   type: `hkInt16`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "animationBindingIndex")]
-    AnimationBindingIndex(i16),
-    /// # Information on fields in the original C++ class
+    AnimationBindingIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"mode"`
     /// -   type: `enum PlaybackMode`
     /// - offset: 74
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mode")]
     Mode(PlaybackMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"flags"`
     /// -   type: `hkInt8`
     /// - offset: 75
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "flags")]
-    Flags(i8),
-    /// # Information on fields in the original C++ class
+    Flags(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"animDatas"`
     /// -   type: `hkArray&lt;void&gt;`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "animDatas", skip_serializing)]
     AnimDatas(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"animationControl"`
     /// -   type: `void*`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "animationControl", skip_serializing)]
     AnimationControl(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"originalTriggers"`
     /// -   type: `void*`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "originalTriggers", skip_serializing)]
     OriginalTriggers(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"mapperData"`
     /// -   type: `void*`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "mapperData", skip_serializing)]
     MapperData(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"binding"`
     /// -   type: `void*`
     /// - offset: 100
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "binding", skip_serializing)]
     Binding(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"mirroredAnimation"`
     /// -   type: `void*`
     /// - offset: 104
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "mirroredAnimation", skip_serializing)]
     MirroredAnimation(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"extractedMotion"`
     /// -   type: `hkQsTransform`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "extractedMotion", skip_serializing)]
-    ExtractedMotion(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    ExtractedMotion(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"echos"`
     /// -   type: `hkArray&lt;void&gt;`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "echos", skip_serializing)]
     Echos(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"localTime"`
     /// -   type: `hkReal`
     /// - offset: 172
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "localTime", skip_serializing)]
-    LocalTime(f64),
-    /// # Information on fields in the original C++ class
+    LocalTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"time"`
     /// -   type: `hkReal`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "time", skip_serializing)]
-    Time(f64),
-    /// # Information on fields in the original C++ class
+    Time(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"previousUserControlledTimeFraction"`
     /// -   type: `hkReal`
     /// - offset: 180
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "previousUserControlledTimeFraction", skip_serializing)]
-    PreviousUserControlledTimeFraction(f64),
-    /// # Information on fields in the original C++ class
+    PreviousUserControlledTimeFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bufferSize"`
     /// -   type: `hkInt32`
     /// - offset: 184
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bufferSize", skip_serializing)]
-    BufferSize(i32),
-    /// # Information on fields in the original C++ class
+    BufferSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"echoBufferSize"`
     /// -   type: `hkInt32`
     /// - offset: 188
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "echoBufferSize", skip_serializing)]
-    EchoBufferSize(i32),
-    /// # Information on fields in the original C++ class
+    EchoBufferSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"atEnd"`
     /// -   type: `hkBool`
     /// - offset: 192
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "atEnd", skip_serializing)]
-    AtEnd(bool),
-    /// # Information on fields in the original C++ class
+    AtEnd(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"ignoreStartTime"`
     /// -   type: `hkBool`
     /// - offset: 193
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "ignoreStartTime", skip_serializing)]
-    IgnoreStartTime(bool),
-    /// # Information on fields in the original C++ class
+    IgnoreStartTime(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"pingPongBackward"`
     /// -   type: `hkBool`
     /// - offset: 194
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "pingPongBackward", skip_serializing)]
-    PingPongBackward(bool),
+    PingPongBackward(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbClipGeneratorHkParam<'de>, "@name",
-    ("animationName" => AnimationName(String)),
-    ("triggers" => Triggers(Box<HkbClipTriggerArray>)),
-    ("cropStartAmountLocalTime" => CropStartAmountLocalTime(f64)),
-    ("cropEndAmountLocalTime" => CropEndAmountLocalTime(f64)),
-    ("startTime" => StartTime(f64)),
-    ("playbackSpeed" => PlaybackSpeed(f64)),
-    ("enforcedDuration" => EnforcedDuration(f64)),
-    ("userControlledTimeFraction" => UserControlledTimeFraction(f64)),
-    ("animationBindingIndex" => AnimationBindingIndex(i16)),
+    ("animationName" => AnimationName(Primitive<Cow<'a, str>>)),
+    ("triggers" => Triggers(Cow<'a, str>)),
+    ("cropStartAmountLocalTime" => CropStartAmountLocalTime(Primitive<f32>)),
+    ("cropEndAmountLocalTime" => CropEndAmountLocalTime(Primitive<f32>)),
+    ("startTime" => StartTime(Primitive<f32>)),
+    ("playbackSpeed" => PlaybackSpeed(Primitive<f32>)),
+    ("enforcedDuration" => EnforcedDuration(Primitive<f32>)),
+    ("userControlledTimeFraction" => UserControlledTimeFraction(Primitive<f32>)),
+    ("animationBindingIndex" => AnimationBindingIndex(Primitive<i16>)),
     ("mode" => Mode(PlaybackMode)),
-    ("flags" => Flags(i8)),
+    ("flags" => Flags(Primitive<i8>)),
     ("animDatas" => AnimDatas(Vec<()>)),
     ("animationControl" => AnimationControl(())),
     ("originalTriggers" => OriginalTriggers(())),
     ("mapperData" => MapperData(())),
     ("binding" => Binding(())),
     ("mirroredAnimation" => MirroredAnimation(())),
-    ("extractedMotion" => ExtractedMotion(cgmath::Matrix4<f32>)),
+    ("extractedMotion" => ExtractedMotion(QsTransform<f32>)),
     ("echos" => Echos(Vec<()>)),
-    ("localTime" => LocalTime(f64)),
-    ("time" => Time(f64)),
-    ("previousUserControlledTimeFraction" => PreviousUserControlledTimeFraction(f64)),
-    ("bufferSize" => BufferSize(i32)),
-    ("echoBufferSize" => EchoBufferSize(i32)),
-    ("atEnd" => AtEnd(bool)),
-    ("ignoreStartTime" => IgnoreStartTime(bool)),
-    ("pingPongBackward" => PingPongBackward(bool)),
+    ("localTime" => LocalTime(Primitive<f32>)),
+    ("time" => Time(Primitive<f32>)),
+    ("previousUserControlledTimeFraction" => PreviousUserControlledTimeFraction(Primitive<f32>)),
+    ("bufferSize" => BufferSize(Primitive<i32>)),
+    ("echoBufferSize" => EchoBufferSize(Primitive<i32>)),
+    ("atEnd" => AtEnd(Primitive<bool>)),
+    ("ignoreStartTime" => IgnoreStartTime(Primitive<bool>)),
+    ("pingPongBackward" => PingPongBackward(Primitive<bool>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

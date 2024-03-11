@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbExpressionData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbExpressionData"`: Name of this class.
+    /// `"hkbExpressionData"`: The original C++ class name.
     #[serde(default = "HkbExpressionData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbExpressionData<'a> {
 }
 
 impl HkbExpressionData<'_> {
-    /// Return `"hkbExpressionData"`, which is the name of this class.
+    /// Return `"hkbExpressionData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbExpressionData".into()
+        "hkbExpressionData".into()
     }
 
     /// Return `"0x6740042a"`, which is the signature of this class.
@@ -63,60 +64,60 @@ impl HkbExpressionData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbExpressionDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"expression"`
     /// -   type: `hkStringPtr`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "expression")]
-    Expression(String),
-    /// # Information on fields in the original C++ class
+    Expression(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"assignmentVariableIndex"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "assignmentVariableIndex")]
-    AssignmentVariableIndex(i32),
-    /// # Information on fields in the original C++ class
+    AssignmentVariableIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"assignmentEventIndex"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "assignmentEventIndex")]
-    AssignmentEventIndex(i32),
-    /// # Information on fields in the original C++ class
+    AssignmentEventIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"eventMode"`
     /// -   type: `enum ExpressionEventMode`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventMode")]
     EventMode(ExpressionEventMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"raisedEvent"`
     /// -   type: `hkBool`
     /// - offset: 13
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "raisedEvent", skip_serializing)]
-    RaisedEvent(bool),
-    /// # Information on fields in the original C++ class
+    RaisedEvent(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"wasTrueInPreviousFrame"`
     /// -   type: `hkBool`
     /// - offset: 14
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "wasTrueInPreviousFrame", skip_serializing)]
-    WasTrueInPreviousFrame(bool),
+    WasTrueInPreviousFrame(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbExpressionDataHkParam<'de>, "@name",
-    ("expression" => Expression(String)),
-    ("assignmentVariableIndex" => AssignmentVariableIndex(i32)),
-    ("assignmentEventIndex" => AssignmentEventIndex(i32)),
+    ("expression" => Expression(Primitive<Cow<'a, str>>)),
+    ("assignmentVariableIndex" => AssignmentVariableIndex(Primitive<i32>)),
+    ("assignmentEventIndex" => AssignmentEventIndex(Primitive<i32>)),
     ("eventMode" => EventMode(ExpressionEventMode)),
-    ("raisedEvent" => RaisedEvent(bool)),
-    ("wasTrueInPreviousFrame" => WasTrueInPreviousFrame(bool)),
+    ("raisedEvent" => RaisedEvent(Primitive<bool>)),
+    ("wasTrueInPreviousFrame" => WasTrueInPreviousFrame(Primitive<bool>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

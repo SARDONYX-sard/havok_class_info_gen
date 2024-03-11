@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMotion<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMotion"`: Name of this class.
+    /// `"hkpMotion"`: The original C++ class name.
     #[serde(default = "HkpMotion::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMotion<'a> {
 }
 
 impl HkpMotion<'_> {
-    /// Return `"hkpMotion"`, which is the name of this class.
+    /// Return `"hkpMotion"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMotion".into()
+        "hkpMotion".into()
     }
 
     /// Return `"0x98aadb4f"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkpMotion<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMotionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum MotionType`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(MotionType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"deactivationIntegrateCounter"`
     /// -   type: `hkUint8`
     /// - offset: 9
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "deactivationIntegrateCounter")]
-    DeactivationIntegrateCounter(u8),
-    /// # Information on fields in the original C++ class
+    DeactivationIntegrateCounter(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"deactivationNumInactiveFrames"`
     /// -   type: `hkUint16[2]`
     /// - offset: 10
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "deactivationNumInactiveFrames")]
-    DeactivationNumInactiveFrames([u16; 2]),
-    /// # Information on fields in the original C++ class
+    DeactivationNumInactiveFrames([Primitive<u16>; 2]),
+    /// # Field information in the original C++ class
     /// -   name:`"motionState"`
     /// -   type: `struct hkMotionState`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "motionState")]
     MotionState(HkMotionState),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"inertiaAndMassInv"`
     /// -   type: `hkVector4`
     /// - offset: 192
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "inertiaAndMassInv")]
-    InertiaAndMassInv(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    InertiaAndMassInv(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"linearVelocity"`
     /// -   type: `hkVector4`
     /// - offset: 208
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "linearVelocity")]
-    LinearVelocity(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    LinearVelocity(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"angularVelocity"`
     /// -   type: `hkVector4`
     /// - offset: 224
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angularVelocity")]
-    AngularVelocity(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AngularVelocity(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"deactivationRefPosition"`
     /// -   type: `hkVector4[2]`
     /// - offset: 240
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "deactivationRefPosition")]
-    DeactivationRefPosition([cgmath::Vector4<f32>; 2]),
-    /// # Information on fields in the original C++ class
+    DeactivationRefPosition(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"deactivationRefOrientation"`
     /// -   type: `hkUint32[2]`
     /// - offset: 272
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "deactivationRefOrientation")]
-    DeactivationRefOrientation([u32; 2]),
-    /// # Information on fields in the original C++ class
+    DeactivationRefOrientation([Primitive<u32>; 2]),
+    /// # Field information in the original C++ class
     /// -   name:`"savedMotion"`
     /// -   type: `struct hkpMaxSizeMotion*`
     /// - offset: 280
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "savedMotion")]
-    SavedMotion(Box<HkpMaxSizeMotion>),
-    /// # Information on fields in the original C++ class
+    SavedMotion(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"savedQualityTypeIndex"`
     /// -   type: `hkUint16`
     /// - offset: 284
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "savedQualityTypeIndex")]
-    SavedQualityTypeIndex(u16),
-    /// # Information on fields in the original C++ class
+    SavedQualityTypeIndex(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"gravityFactor"`
     /// -   type: `hkHalf`
     /// - offset: 286
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "gravityFactor")]
-    GravityFactor(f32),
+    GravityFactor(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -154,17 +155,17 @@ pub enum HkpMotionHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpMotionHkParam<'de>, "@name",
     ("type" => Type(MotionType)),
-    ("deactivationIntegrateCounter" => DeactivationIntegrateCounter(u8)),
-    ("deactivationNumInactiveFrames" => DeactivationNumInactiveFrames([u16; 2])),
+    ("deactivationIntegrateCounter" => DeactivationIntegrateCounter(Primitive<u8>)),
+    ("deactivationNumInactiveFrames" => DeactivationNumInactiveFrames([Primitive<u16>; 2])),
     ("motionState" => MotionState(HkMotionState)),
-    ("inertiaAndMassInv" => InertiaAndMassInv(cgmath::Vector4<f32>)),
-    ("linearVelocity" => LinearVelocity(cgmath::Vector4<f32>)),
-    ("angularVelocity" => AngularVelocity(cgmath::Vector4<f32>)),
-    ("deactivationRefPosition" => DeactivationRefPosition([cgmath::Vector4<f32>; 2])),
-    ("deactivationRefOrientation" => DeactivationRefOrientation([u32; 2])),
-    ("savedMotion" => SavedMotion(Box<HkpMaxSizeMotion>)),
-    ("savedQualityTypeIndex" => SavedQualityTypeIndex(u16)),
-    ("gravityFactor" => GravityFactor(f32)),
+    ("inertiaAndMassInv" => InertiaAndMassInv(Vector4<f32>)),
+    ("linearVelocity" => LinearVelocity(Vector4<f32>)),
+    ("angularVelocity" => AngularVelocity(Vector4<f32>)),
+    ("deactivationRefPosition" => DeactivationRefPosition(Vector4<f32>)),
+    ("deactivationRefOrientation" => DeactivationRefOrientation([Primitive<u32>; 2])),
+    ("savedMotion" => SavedMotion(Cow<'a, str>)),
+    ("savedQualityTypeIndex" => SavedQualityTypeIndex(Primitive<u16>)),
+    ("gravityFactor" => GravityFactor(Primitive<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

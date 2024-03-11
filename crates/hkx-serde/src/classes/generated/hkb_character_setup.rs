@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCharacterSetup<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCharacterSetup"`: Name of this class.
+    /// `"hkbCharacterSetup"`: The original C++ class name.
     #[serde(default = "HkbCharacterSetup::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCharacterSetup<'a> {
 }
 
 impl HkbCharacterSetup<'_> {
-    /// Return `"hkbCharacterSetup"`, which is the name of this class.
+    /// Return `"hkbCharacterSetup"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCharacterSetup".into()
+        "hkbCharacterSetup".into()
     }
 
     /// Return `"0xe5a2a413"`, which is the signature of this class.
@@ -63,56 +64,56 @@ impl HkbCharacterSetup<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCharacterSetupHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"retargetingSkeletonMappers"`
     /// -   type: `hkArray&lt;hkaSkeletonMapper*&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "retargetingSkeletonMappers")]
-    RetargetingSkeletonMappers(Vec<Box<HkaSkeletonMapper>>),
-    /// # Information on fields in the original C++ class
+    RetargetingSkeletonMappers(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"animationSkeleton"`
     /// -   type: `struct hkaSkeleton*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "animationSkeleton")]
-    AnimationSkeleton(Box<HkaSkeleton>),
-    /// # Information on fields in the original C++ class
+    AnimationSkeleton(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"ragdollToAnimationSkeletonMapper"`
     /// -   type: `struct hkaSkeletonMapper*`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ragdollToAnimationSkeletonMapper")]
-    RagdollToAnimationSkeletonMapper(Box<HkaSkeletonMapper>),
-    /// # Information on fields in the original C++ class
+    RagdollToAnimationSkeletonMapper(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"animationToRagdollSkeletonMapper"`
     /// -   type: `struct hkaSkeletonMapper*`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "animationToRagdollSkeletonMapper")]
-    AnimationToRagdollSkeletonMapper(Box<HkaSkeletonMapper>),
-    /// # Information on fields in the original C++ class
+    AnimationToRagdollSkeletonMapper(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"animationBindingSet"`
     /// -   type: `void*`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "animationBindingSet", skip_serializing)]
     AnimationBindingSet(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `struct hkbCharacterData*`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(Box<HkbCharacterData>),
-    /// # Information on fields in the original C++ class
+    Data(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"mirroredSkeleton"`
     /// -   type: `void*`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "mirroredSkeleton", skip_serializing)]
     MirroredSkeleton(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterPropertyIdMap"`
     /// -   type: `void*`
     /// - offset: 44
@@ -125,12 +126,12 @@ pub enum HkbCharacterSetupHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbCharacterSetupHkParam<'de>, "@name",
-    ("retargetingSkeletonMappers" => RetargetingSkeletonMappers(Vec<Box<HkaSkeletonMapper>>)),
-    ("animationSkeleton" => AnimationSkeleton(Box<HkaSkeleton>)),
-    ("ragdollToAnimationSkeletonMapper" => RagdollToAnimationSkeletonMapper(Box<HkaSkeletonMapper>)),
-    ("animationToRagdollSkeletonMapper" => AnimationToRagdollSkeletonMapper(Box<HkaSkeletonMapper>)),
+    ("retargetingSkeletonMappers" => RetargetingSkeletonMappers(Vec<Cow<'a, str>>)),
+    ("animationSkeleton" => AnimationSkeleton(Cow<'a, str>)),
+    ("ragdollToAnimationSkeletonMapper" => RagdollToAnimationSkeletonMapper(Cow<'a, str>)),
+    ("animationToRagdollSkeletonMapper" => AnimationToRagdollSkeletonMapper(Cow<'a, str>)),
     ("animationBindingSet" => AnimationBindingSet(())),
-    ("data" => Data(Box<HkbCharacterData>)),
+    ("data" => Data(Cow<'a, str>)),
     ("mirroredSkeleton" => MirroredSkeleton(())),
     ("characterPropertyIdMap" => CharacterPropertyIdMap(())),
 }

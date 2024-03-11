@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaBoneAttachment<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaBoneAttachment"`: Name of this class.
+    /// `"hkaBoneAttachment"`: The original C++ class name.
     #[serde(default = "HkaBoneAttachment::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaBoneAttachment<'a> {
 }
 
 impl HkaBoneAttachment<'_> {
-    /// Return `"hkaBoneAttachment"`, which is the name of this class.
+    /// Return `"hkaBoneAttachment"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaBoneAttachment".into()
+        "hkaBoneAttachment".into()
     }
 
     /// Return `"0xa8ccd5cf"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkaBoneAttachment<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaBoneAttachmentHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"originalSkeletonName"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "originalSkeletonName")]
-    OriginalSkeletonName(String),
-    /// # Information on fields in the original C++ class
+    OriginalSkeletonName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneFromAttachment"`
     /// -   type: `hkMatrix4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneFromAttachment")]
-    BoneFromAttachment(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    BoneFromAttachment(Matrix4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"attachment"`
     /// -   type: `struct hkReferencedObject*`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "attachment")]
-    Attachment(Box<HkReferencedObject>),
-    /// # Information on fields in the original C++ class
+    Attachment(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneIndex")]
-    BoneIndex(i16),
+    BoneIndex(Primitive<i16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaBoneAttachmentHkParam<'de>, "@name",
-    ("originalSkeletonName" => OriginalSkeletonName(String)),
-    ("boneFromAttachment" => BoneFromAttachment(cgmath::Matrix4<f32>)),
-    ("attachment" => Attachment(Box<HkReferencedObject>)),
-    ("name" => Name(String)),
-    ("boneIndex" => BoneIndex(i16)),
+    ("originalSkeletonName" => OriginalSkeletonName(Primitive<Cow<'a, str>>)),
+    ("boneFromAttachment" => BoneFromAttachment(Matrix4<f32>)),
+    ("attachment" => Attachment(Cow<'a, str>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("boneIndex" => BoneIndex(Primitive<i16>)),
 }

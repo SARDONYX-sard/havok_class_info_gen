@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxNode<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxNode"`: Name of this class.
+    /// `"hkxNode"`: The original C++ class name.
     #[serde(default = "HkxNode::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxNode<'a> {
 }
 
 impl HkxNode<'_> {
-    /// Return `"hkxNode"`, which is the name of this class.
+    /// Return `"hkxNode"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxNode".into()
+        "hkxNode".into()
     }
 
     /// Return `"0x5a218502"`, which is the signature of this class.
@@ -63,66 +64,66 @@ impl HkxNode<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxNodeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"object"`
     /// -   type: `struct hkReferencedObject*`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "object")]
-    Object(Box<HkReferencedObject>),
-    /// # Information on fields in the original C++ class
+    Object(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"keyFrames"`
     /// -   type: `hkArray&lt;hkMatrix4&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keyFrames")]
-    KeyFrames(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    KeyFrames(Vec<Matrix4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"children"`
     /// -   type: `hkArray&lt;hkxNode*&gt;`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "children")]
-    Children(Vec<Box<HkxNode>>),
-    /// # Information on fields in the original C++ class
+    Children(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"annotations"`
     /// -   type: `hkArray&lt;struct hkxNodeAnnotationData&gt;`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "annotations")]
     Annotations(Vec<HkxNodeAnnotationData>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"userProperties"`
     /// -   type: `hkStringPtr`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userProperties")]
-    UserProperties(String),
-    /// # Information on fields in the original C++ class
+    UserProperties(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"selected"`
     /// -   type: `hkBool`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "selected")]
-    Selected(bool),
+    Selected(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxNodeHkParam<'de>, "@name",
-    ("name" => Name(String)),
-    ("object" => Object(Box<HkReferencedObject>)),
-    ("keyFrames" => KeyFrames(Vec<cgmath::Matrix4<f32>>)),
-    ("children" => Children(Vec<Box<HkxNode>>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("object" => Object(Cow<'a, str>)),
+    ("keyFrames" => KeyFrames(Vec<Matrix4<f32>>)),
+    ("children" => Children(Vec<Cow<'a, str>>)),
     ("annotations" => Annotations(Vec<HkxNodeAnnotationData>)),
-    ("userProperties" => UserProperties(String)),
-    ("selected" => Selected(bool)),
+    ("userProperties" => UserProperties(Primitive<Cow<'a, str>>)),
+    ("selected" => Selected(Primitive<bool>)),
 }

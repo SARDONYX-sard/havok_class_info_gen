@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbHandIkControlData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbHandIkControlData"`: Name of this class.
+    /// `"hkbHandIkControlData"`: The original C++ class name.
     #[serde(default = "HkbHandIkControlData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbHandIkControlData<'a> {
 }
 
 impl HkbHandIkControlData<'_> {
-    /// Return `"hkbHandIkControlData"`, which is the name of this class.
+    /// Return `"hkbHandIkControlData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbHandIkControlData".into()
+        "hkbHandIkControlData".into()
     }
 
     /// Return `"0xd72b8d17"`, which is the signature of this class.
@@ -63,108 +64,108 @@ impl HkbHandIkControlData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbHandIkControlDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"targetPosition"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "targetPosition")]
-    TargetPosition(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    TargetPosition(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"targetRotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "targetRotation")]
-    TargetRotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    TargetRotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"targetNormal"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "targetNormal")]
-    TargetNormal(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    TargetNormal(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"targetHandle"`
     /// -   type: `struct hkbHandle*`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "targetHandle")]
-    TargetHandle(Box<HkbHandle>),
-    /// # Information on fields in the original C++ class
+    TargetHandle(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformOnFraction"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformOnFraction")]
-    TransformOnFraction(f64),
-    /// # Information on fields in the original C++ class
+    TransformOnFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"normalOnFraction"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "normalOnFraction")]
-    NormalOnFraction(f64),
-    /// # Information on fields in the original C++ class
+    NormalOnFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"fadeInDuration"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fadeInDuration")]
-    FadeInDuration(f64),
-    /// # Information on fields in the original C++ class
+    FadeInDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"fadeOutDuration"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fadeOutDuration")]
-    FadeOutDuration(f64),
-    /// # Information on fields in the original C++ class
+    FadeOutDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"extrapolationTimeStep"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extrapolationTimeStep")]
-    ExtrapolationTimeStep(f64),
-    /// # Information on fields in the original C++ class
+    ExtrapolationTimeStep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"handleChangeSpeed"`
     /// -   type: `hkReal`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handleChangeSpeed")]
-    HandleChangeSpeed(f64),
-    /// # Information on fields in the original C++ class
+    HandleChangeSpeed(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"handleChangeMode"`
     /// -   type: `enum HandleChangeMode`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handleChangeMode")]
     HandleChangeMode(HandleChangeMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"fixUp"`
     /// -   type: `hkBool`
     /// - offset: 77
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fixUp")]
-    FixUp(bool),
+    FixUp(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbHandIkControlDataHkParam<'de>, "@name",
-    ("targetPosition" => TargetPosition(cgmath::Vector4<f32>)),
-    ("targetRotation" => TargetRotation(cgmath::Quaternion<f32>)),
-    ("targetNormal" => TargetNormal(cgmath::Vector4<f32>)),
-    ("targetHandle" => TargetHandle(Box<HkbHandle>)),
-    ("transformOnFraction" => TransformOnFraction(f64)),
-    ("normalOnFraction" => NormalOnFraction(f64)),
-    ("fadeInDuration" => FadeInDuration(f64)),
-    ("fadeOutDuration" => FadeOutDuration(f64)),
-    ("extrapolationTimeStep" => ExtrapolationTimeStep(f64)),
-    ("handleChangeSpeed" => HandleChangeSpeed(f64)),
+    ("targetPosition" => TargetPosition(Vector4<f32>)),
+    ("targetRotation" => TargetRotation(Quaternion<f32>)),
+    ("targetNormal" => TargetNormal(Vector4<f32>)),
+    ("targetHandle" => TargetHandle(Cow<'a, str>)),
+    ("transformOnFraction" => TransformOnFraction(Primitive<f32>)),
+    ("normalOnFraction" => NormalOnFraction(Primitive<f32>)),
+    ("fadeInDuration" => FadeInDuration(Primitive<f32>)),
+    ("fadeOutDuration" => FadeOutDuration(Primitive<f32>)),
+    ("extrapolationTimeStep" => ExtrapolationTimeStep(Primitive<f32>)),
+    ("handleChangeSpeed" => HandleChangeSpeed(Primitive<f32>)),
     ("handleChangeMode" => HandleChangeMode(HandleChangeMode)),
-    ("fixUp" => FixUp(bool)),
+    ("fixUp" => FixUp(Primitive<bool>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPoweredChainData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPoweredChainData"`: Name of this class.
+    /// `"hkpPoweredChainData"`: The original C++ class name.
     #[serde(default = "HkpPoweredChainData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPoweredChainData<'a> {
 }
 
 impl HkpPoweredChainData<'_> {
-    /// Return `"hkpPoweredChainData"`, which is the name of this class.
+    /// Return `"hkpPoweredChainData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPoweredChainData".into()
+        "hkpPoweredChainData".into()
     }
 
     /// Return `"0x38aeafc3"`, which is the signature of this class.
@@ -63,69 +64,69 @@ impl HkpPoweredChainData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPoweredChainDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"atoms"`
     /// -   type: `struct hkpBridgeAtoms`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "atoms")]
     Atoms(HkpBridgeAtoms),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"infos"`
     /// -   type: `hkArray&lt;struct hkpPoweredChainDataConstraintInfo&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "infos")]
     Infos(Vec<HkpPoweredChainDataConstraintInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"tau"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "tau")]
-    Tau(f64),
-    /// # Information on fields in the original C++ class
+    Tau(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"damping"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "damping")]
-    Damping(f64),
-    /// # Information on fields in the original C++ class
+    Damping(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cfmLinAdd"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cfmLinAdd")]
-    CfmLinAdd(f64),
-    /// # Information on fields in the original C++ class
+    CfmLinAdd(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cfmLinMul"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cfmLinMul")]
-    CfmLinMul(f64),
-    /// # Information on fields in the original C++ class
+    CfmLinMul(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cfmAngAdd"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cfmAngAdd")]
-    CfmAngAdd(f64),
-    /// # Information on fields in the original C++ class
+    CfmAngAdd(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cfmAngMul"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cfmAngMul")]
-    CfmAngMul(f64),
-    /// # Information on fields in the original C++ class
+    CfmAngMul(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxErrorDistance"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxErrorDistance")]
-    MaxErrorDistance(f64),
+    MaxErrorDistance(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -134,11 +135,11 @@ impl_deserialize_for_internally_tagged_enum! {
     HkpPoweredChainDataHkParam<'de>, "@name",
     ("atoms" => Atoms(HkpBridgeAtoms)),
     ("infos" => Infos(Vec<HkpPoweredChainDataConstraintInfo>)),
-    ("tau" => Tau(f64)),
-    ("damping" => Damping(f64)),
-    ("cfmLinAdd" => CfmLinAdd(f64)),
-    ("cfmLinMul" => CfmLinMul(f64)),
-    ("cfmAngAdd" => CfmAngAdd(f64)),
-    ("cfmAngMul" => CfmAngMul(f64)),
-    ("maxErrorDistance" => MaxErrorDistance(f64)),
+    ("tau" => Tau(Primitive<f32>)),
+    ("damping" => Damping(Primitive<f32>)),
+    ("cfmLinAdd" => CfmLinAdd(Primitive<f32>)),
+    ("cfmLinMul" => CfmLinMul(Primitive<f32>)),
+    ("cfmAngAdd" => CfmAngAdd(Primitive<f32>)),
+    ("cfmAngMul" => CfmAngMul(Primitive<f32>)),
+    ("maxErrorDistance" => MaxErrorDistance(Primitive<f32>)),
 }

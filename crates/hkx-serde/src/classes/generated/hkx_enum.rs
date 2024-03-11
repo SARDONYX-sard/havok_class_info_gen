@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxEnum<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxEnum"`: Name of this class.
+    /// `"hkxEnum"`: The original C++ class name.
     #[serde(default = "HkxEnum::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxEnum<'a> {
 }
 
 impl HkxEnum<'_> {
-    /// Return `"hkxEnum"`, which is the name of this class.
+    /// Return `"hkxEnum"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxEnum".into()
+        "hkxEnum".into()
     }
 
     /// Return `"0xc4e1211"`, which is the signature of this class.
@@ -63,13 +64,13 @@ impl HkxEnum<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxEnumHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"items"`
     /// -   type: `hkArray&lt;struct hkxEnumItem&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "items")]
-    Items(Vec<HkxEnumItem<'a>>),
+    Items(Vec<HkxEnumItem>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary

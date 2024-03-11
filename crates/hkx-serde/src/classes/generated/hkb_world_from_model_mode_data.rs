@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbWorldFromModelModeData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbWorldFromModelModeData"`: Name of this class.
+    /// `"hkbWorldFromModelModeData"`: The original C++ class name.
     #[serde(default = "HkbWorldFromModelModeData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbWorldFromModelModeData<'a> {
 }
 
 impl HkbWorldFromModelModeData<'_> {
-    /// Return `"hkbWorldFromModelModeData"`, which is the name of this class.
+    /// Return `"hkbWorldFromModelModeData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbWorldFromModelModeData".into()
+        "hkbWorldFromModelModeData".into()
     }
 
     /// Return `"0xa3af8783"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl HkbWorldFromModelModeData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbWorldFromModelModeDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"poseMatchingBone0"`
     /// -   type: `hkInt16`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "poseMatchingBone0")]
-    PoseMatchingBone0(i16),
-    /// # Information on fields in the original C++ class
+    PoseMatchingBone0(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"poseMatchingBone1"`
     /// -   type: `hkInt16`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "poseMatchingBone1")]
-    PoseMatchingBone1(i16),
-    /// # Information on fields in the original C++ class
+    PoseMatchingBone1(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"poseMatchingBone2"`
     /// -   type: `hkInt16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "poseMatchingBone2")]
-    PoseMatchingBone2(i16),
-    /// # Information on fields in the original C++ class
+    PoseMatchingBone2(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"mode"`
     /// -   type: `enum WorldFromModelMode`
     /// - offset: 6
@@ -97,9 +98,9 @@ pub enum HkbWorldFromModelModeDataHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbWorldFromModelModeDataHkParam<'de>, "@name",
-    ("poseMatchingBone0" => PoseMatchingBone0(i16)),
-    ("poseMatchingBone1" => PoseMatchingBone1(i16)),
-    ("poseMatchingBone2" => PoseMatchingBone2(i16)),
+    ("poseMatchingBone0" => PoseMatchingBone0(Primitive<i16>)),
+    ("poseMatchingBone1" => PoseMatchingBone1(Primitive<i16>)),
+    ("poseMatchingBone2" => PoseMatchingBone2(Primitive<i16>)),
     ("mode" => Mode(WorldFromModelMode)),
 }
 

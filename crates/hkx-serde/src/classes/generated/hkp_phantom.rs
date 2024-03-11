@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPhantom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPhantom"`: Name of this class.
+    /// `"hkpPhantom"`: The original C++ class name.
     #[serde(default = "HkpPhantom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPhantom<'a> {
 }
 
 impl HkpPhantom<'_> {
-    /// Return `"hkpPhantom"`, which is the name of this class.
+    /// Return `"hkpPhantom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPhantom".into()
+        "hkpPhantom".into()
     }
 
     /// Return `"0x9b7e6f86"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkpPhantom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPhantomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"overlapListeners"`
     /// -   type: `hkArray&lt;void*&gt;`
     /// - offset: 140
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "overlapListeners", skip_serializing)]
     OverlapListeners(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"phantomListeners"`
     /// -   type: `hkArray&lt;void*&gt;`
     /// - offset: 152

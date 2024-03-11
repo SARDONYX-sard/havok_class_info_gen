@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaSkeletonMapperDataChainMapping<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaSkeletonMapperDataChainMapping"`: Name of this class.
+    /// `"hkaSkeletonMapperDataChainMapping"`: The original C++ class name.
     #[serde(default = "HkaSkeletonMapperDataChainMapping::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaSkeletonMapperDataChainMapping<'a> {
 }
 
 impl HkaSkeletonMapperDataChainMapping<'_> {
-    /// Return `"hkaSkeletonMapperDataChainMapping"`, which is the name of this class.
+    /// Return `"hkaSkeletonMapperDataChainMapping"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaSkeletonMapperDataChainMapping".into()
+        "hkaSkeletonMapperDataChainMapping".into()
     }
 
     /// Return `"0xa528f7cf"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkaSkeletonMapperDataChainMapping<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaSkeletonMapperDataChainMappingHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"startBoneA"`
     /// -   type: `hkInt16`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startBoneA")]
-    StartBoneA(i16),
-    /// # Information on fields in the original C++ class
+    StartBoneA(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"endBoneA"`
     /// -   type: `hkInt16`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endBoneA")]
-    EndBoneA(i16),
-    /// # Information on fields in the original C++ class
+    EndBoneA(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"startBoneB"`
     /// -   type: `hkInt16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startBoneB")]
-    StartBoneB(i16),
-    /// # Information on fields in the original C++ class
+    StartBoneB(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"endBoneB"`
     /// -   type: `hkInt16`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endBoneB")]
-    EndBoneB(i16),
-    /// # Information on fields in the original C++ class
+    EndBoneB(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"startAFromBTransform"`
     /// -   type: `hkQsTransform`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startAFromBTransform")]
-    StartAFromBTransform(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    StartAFromBTransform(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"endAFromBTransform"`
     /// -   type: `hkQsTransform`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endAFromBTransform")]
-    EndAFromBTransform(cgmath::Matrix4<f32>),
+    EndAFromBTransform(QsTransform<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaSkeletonMapperDataChainMappingHkParam<'de>, "@name",
-    ("startBoneA" => StartBoneA(i16)),
-    ("endBoneA" => EndBoneA(i16)),
-    ("startBoneB" => StartBoneB(i16)),
-    ("endBoneB" => EndBoneB(i16)),
-    ("startAFromBTransform" => StartAFromBTransform(cgmath::Matrix4<f32>)),
-    ("endAFromBTransform" => EndAFromBTransform(cgmath::Matrix4<f32>)),
+    ("startBoneA" => StartBoneA(Primitive<i16>)),
+    ("endBoneA" => EndBoneA(Primitive<i16>)),
+    ("startBoneB" => StartBoneB(Primitive<i16>)),
+    ("endBoneB" => EndBoneB(Primitive<i16>)),
+    ("startAFromBTransform" => StartAFromBTransform(QsTransform<f32>)),
+    ("endAFromBTransform" => EndAFromBTransform(QsTransform<f32>)),
 }

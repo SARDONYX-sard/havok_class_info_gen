@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBehaviorGraphInternalStateInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBehaviorGraphInternalStateInfo"`: Name of this class.
+    /// `"hkbBehaviorGraphInternalStateInfo"`: The original C++ class name.
     #[serde(default = "HkbBehaviorGraphInternalStateInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBehaviorGraphInternalStateInfo<'a> {
 }
 
 impl HkbBehaviorGraphInternalStateInfo<'_> {
-    /// Return `"hkbBehaviorGraphInternalStateInfo"`, which is the name of this class.
+    /// Return `"hkbBehaviorGraphInternalStateInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBehaviorGraphInternalStateInfo".into()
+        "hkbBehaviorGraphInternalStateInfo".into()
     }
 
     /// Return `"0x645f898b"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkbBehaviorGraphInternalStateInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBehaviorGraphInternalStateInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterId"`
     /// -   type: `hkUint64`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterId")]
-    CharacterId(u64),
-    /// # Information on fields in the original C++ class
+    CharacterId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"internalState"`
     /// -   type: `struct hkbBehaviorGraphInternalState*`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "internalState")]
-    InternalState(Box<HkbBehaviorGraphInternalState>),
-    /// # Information on fields in the original C++ class
+    InternalState(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"auxiliaryNodeInfo"`
     /// -   type: `hkArray&lt;hkbAuxiliaryNodeInfo*&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "auxiliaryNodeInfo")]
-    AuxiliaryNodeInfo(Vec<Box<HkbAuxiliaryNodeInfo>>),
-    /// # Information on fields in the original C++ class
+    AuxiliaryNodeInfo(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"activeEventIds"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "activeEventIds")]
-    ActiveEventIds(Vec<i16>),
-    /// # Information on fields in the original C++ class
+    ActiveEventIds(Vec<Primitive<i16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"activeVariableIds"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "activeVariableIds")]
-    ActiveVariableIds(Vec<i16>),
+    ActiveVariableIds(Vec<Primitive<i16>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbBehaviorGraphInternalStateInfoHkParam<'de>, "@name",
-    ("characterId" => CharacterId(u64)),
-    ("internalState" => InternalState(Box<HkbBehaviorGraphInternalState>)),
-    ("auxiliaryNodeInfo" => AuxiliaryNodeInfo(Vec<Box<HkbAuxiliaryNodeInfo>>)),
-    ("activeEventIds" => ActiveEventIds(Vec<i16>)),
-    ("activeVariableIds" => ActiveVariableIds(Vec<i16>)),
+    ("characterId" => CharacterId(Primitive<u64>)),
+    ("internalState" => InternalState(Cow<'a, str>)),
+    ("auxiliaryNodeInfo" => AuxiliaryNodeInfo(Vec<Cow<'a, str>>)),
+    ("activeEventIds" => ActiveEventIds(Vec<Primitive<i16>>)),
+    ("activeVariableIds" => ActiveVariableIds(Vec<Primitive<i16>>)),
 }

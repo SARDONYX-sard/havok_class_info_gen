@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbVariableBindingSetBinding<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbVariableBindingSetBinding"`: Name of this class.
+    /// `"hkbVariableBindingSetBinding"`: The original C++ class name.
     #[serde(default = "HkbVariableBindingSetBinding::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbVariableBindingSetBinding<'a> {
 }
 
 impl HkbVariableBindingSetBinding<'_> {
-    /// Return `"hkbVariableBindingSetBinding"`, which is the name of this class.
+    /// Return `"hkbVariableBindingSetBinding"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbVariableBindingSetBinding".into()
+        "hkbVariableBindingSetBinding".into()
     }
 
     /// Return `"0x4d592f72"`, which is the signature of this class.
@@ -63,77 +64,77 @@ impl HkbVariableBindingSetBinding<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbVariableBindingSetBindingHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"memberPath"`
     /// -   type: `hkStringPtr`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memberPath")]
-    MemberPath(String),
-    /// # Information on fields in the original C++ class
+    MemberPath(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"memberClass"`
     /// -   type: `void*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "memberClass", skip_serializing)]
     MemberClass(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"offsetInObjectPlusOne"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "offsetInObjectPlusOne", skip_serializing)]
-    OffsetInObjectPlusOne(i32),
-    /// # Information on fields in the original C++ class
+    OffsetInObjectPlusOne(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"offsetInArrayPlusOne"`
     /// -   type: `hkInt32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "offsetInArrayPlusOne", skip_serializing)]
-    OffsetInArrayPlusOne(i32),
-    /// # Information on fields in the original C++ class
+    OffsetInArrayPlusOne(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rootVariableIndex"`
     /// -   type: `hkInt32`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "rootVariableIndex", skip_serializing)]
-    RootVariableIndex(i32),
-    /// # Information on fields in the original C++ class
+    RootVariableIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"variableIndex"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variableIndex")]
-    VariableIndex(i32),
-    /// # Information on fields in the original C++ class
+    VariableIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bitIndex"`
     /// -   type: `hkInt8`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bitIndex")]
-    BitIndex(i8),
-    /// # Information on fields in the original C++ class
+    BitIndex(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"bindingType"`
     /// -   type: `enum BindingType`
     /// - offset: 25
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bindingType")]
     BindingType(BindingType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"memberType"`
     /// -   type: `enum unknown`
     /// - offset: 26
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "memberType", skip_serializing)]
     MemberType(Unknown),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"variableType"`
     /// -   type: `hkInt8`
     /// - offset: 27
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "variableType", skip_serializing)]
-    VariableType(i8),
-    /// # Information on fields in the original C++ class
+    VariableType(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"flags"`
     /// -   type: `flags unknown`
     /// - offset: 28
@@ -146,16 +147,16 @@ pub enum HkbVariableBindingSetBindingHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbVariableBindingSetBindingHkParam<'de>, "@name",
-    ("memberPath" => MemberPath(String)),
+    ("memberPath" => MemberPath(Primitive<Cow<'a, str>>)),
     ("memberClass" => MemberClass(())),
-    ("offsetInObjectPlusOne" => OffsetInObjectPlusOne(i32)),
-    ("offsetInArrayPlusOne" => OffsetInArrayPlusOne(i32)),
-    ("rootVariableIndex" => RootVariableIndex(i32)),
-    ("variableIndex" => VariableIndex(i32)),
-    ("bitIndex" => BitIndex(i8)),
+    ("offsetInObjectPlusOne" => OffsetInObjectPlusOne(Primitive<i32>)),
+    ("offsetInArrayPlusOne" => OffsetInArrayPlusOne(Primitive<i32>)),
+    ("rootVariableIndex" => RootVariableIndex(Primitive<i32>)),
+    ("variableIndex" => VariableIndex(Primitive<i32>)),
+    ("bitIndex" => BitIndex(Primitive<i8>)),
     ("bindingType" => BindingType(BindingType)),
     ("memberType" => MemberType(Unknown)),
-    ("variableType" => VariableType(i8)),
+    ("variableType" => VariableType(Primitive<i8>)),
     ("flags" => Flags(Unknown)),
 }
 

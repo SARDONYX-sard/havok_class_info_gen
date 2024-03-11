@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaAnimation<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaAnimation"`: Name of this class.
+    /// `"hkaAnimation"`: The original C++ class name.
     #[serde(default = "HkaAnimation::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaAnimation<'a> {
 }
 
 impl HkaAnimation<'_> {
-    /// Return `"hkaAnimation"`, which is the name of this class.
+    /// Return `"hkaAnimation"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaAnimation".into()
+        "hkaAnimation".into()
     }
 
     /// Return `"0xa6fa7e88"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkaAnimation<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaAnimationHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum AnimationType`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(AnimationType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"duration"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "duration")]
-    Duration(f64),
-    /// # Information on fields in the original C++ class
+    Duration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numberOfTransformTracks"`
     /// -   type: `hkInt32`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numberOfTransformTracks")]
-    NumberOfTransformTracks(i32),
-    /// # Information on fields in the original C++ class
+    NumberOfTransformTracks(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numberOfFloatTracks"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numberOfFloatTracks")]
-    NumberOfFloatTracks(i32),
-    /// # Information on fields in the original C++ class
+    NumberOfFloatTracks(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"extractedMotion"`
     /// -   type: `struct hkaAnimatedReferenceFrame*`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extractedMotion")]
-    ExtractedMotion(Box<HkaAnimatedReferenceFrame>),
-    /// # Information on fields in the original C++ class
+    ExtractedMotion(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"annotationTracks"`
     /// -   type: `hkArray&lt;struct hkaAnnotationTrack&gt;`
     /// - offset: 28
@@ -112,10 +113,10 @@ pub enum HkaAnimationHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkaAnimationHkParam<'de>, "@name",
     ("type" => Type(AnimationType)),
-    ("duration" => Duration(f64)),
-    ("numberOfTransformTracks" => NumberOfTransformTracks(i32)),
-    ("numberOfFloatTracks" => NumberOfFloatTracks(i32)),
-    ("extractedMotion" => ExtractedMotion(Box<HkaAnimatedReferenceFrame>)),
+    ("duration" => Duration(Primitive<f32>)),
+    ("numberOfTransformTracks" => NumberOfTransformTracks(Primitive<i32>)),
+    ("numberOfFloatTracks" => NumberOfFloatTracks(Primitive<i32>)),
+    ("extractedMotion" => ExtractedMotion(Cow<'a, str>)),
     ("annotationTracks" => AnnotationTracks(Vec<HkaAnnotationTrack>)),
 }
 

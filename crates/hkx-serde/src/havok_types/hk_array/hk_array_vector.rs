@@ -9,7 +9,7 @@ pub struct HkArrayVector<T> {
     #[serde(rename = "@numelements")]
     pub numelements: usize,
     /// [`Vec`], which stores [`Vector4`], etc.
-    #[serde(rename = "$value")]
+    #[serde(rename = "$value", default)]
     pub value: Vec<T>,
 }
 

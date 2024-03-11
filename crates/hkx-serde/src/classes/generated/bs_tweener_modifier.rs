@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsTweenerModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSTweenerModifier"`: Name of this class.
+    /// `"BSTweenerModifier"`: The original C++ class name.
     #[serde(default = "BsTweenerModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsTweenerModifier<'a> {
 }
 
 impl BsTweenerModifier<'_> {
-    /// Return `"BSTweenerModifier"`, which is the name of this class.
+    /// Return `"BSTweenerModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsTweenerModifier".into()
+        "BSTweenerModifier".into()
     }
 
     /// Return `"0xd2d9a04"`, which is the signature of this class.
@@ -63,82 +64,82 @@ impl BsTweenerModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsTweenerModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"tweenPosition"`
     /// -   type: `hkBool`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "tweenPosition")]
-    TweenPosition(bool),
-    /// # Information on fields in the original C++ class
+    TweenPosition(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"tweenRotation"`
     /// -   type: `hkBool`
     /// - offset: 45
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "tweenRotation")]
-    TweenRotation(bool),
-    /// # Information on fields in the original C++ class
+    TweenRotation(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"useTweenDuration"`
     /// -   type: `hkBool`
     /// - offset: 46
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "useTweenDuration")]
-    UseTweenDuration(bool),
-    /// # Information on fields in the original C++ class
+    UseTweenDuration(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"tweenDuration"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "tweenDuration")]
-    TweenDuration(f64),
-    /// # Information on fields in the original C++ class
+    TweenDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"targetPosition"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "targetPosition")]
-    TargetPosition(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    TargetPosition(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"targetRotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "targetRotation")]
-    TargetRotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    TargetRotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"duration"`
     /// -   type: `hkReal`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "duration", skip_serializing)]
-    Duration(f64),
-    /// # Information on fields in the original C++ class
+    Duration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"startTransform"`
     /// -   type: `hkQsTransform`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "startTransform", skip_serializing)]
-    StartTransform(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    StartTransform(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"time"`
     /// -   type: `hkReal`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "time", skip_serializing)]
-    Time(f64),
+    Time(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsTweenerModifierHkParam<'de>, "@name",
-    ("tweenPosition" => TweenPosition(bool)),
-    ("tweenRotation" => TweenRotation(bool)),
-    ("useTweenDuration" => UseTweenDuration(bool)),
-    ("tweenDuration" => TweenDuration(f64)),
-    ("targetPosition" => TargetPosition(cgmath::Vector4<f32>)),
-    ("targetRotation" => TargetRotation(cgmath::Quaternion<f32>)),
-    ("duration" => Duration(f64)),
-    ("startTransform" => StartTransform(cgmath::Matrix4<f32>)),
-    ("time" => Time(f64)),
+    ("tweenPosition" => TweenPosition(Primitive<bool>)),
+    ("tweenRotation" => TweenRotation(Primitive<bool>)),
+    ("useTweenDuration" => UseTweenDuration(Primitive<bool>)),
+    ("tweenDuration" => TweenDuration(Primitive<f32>)),
+    ("targetPosition" => TargetPosition(Vector4<f32>)),
+    ("targetRotation" => TargetRotation(Quaternion<f32>)),
+    ("duration" => Duration(Primitive<f32>)),
+    ("startTransform" => StartTransform(QsTransform<f32>)),
+    ("time" => Time(Primitive<f32>)),
 }

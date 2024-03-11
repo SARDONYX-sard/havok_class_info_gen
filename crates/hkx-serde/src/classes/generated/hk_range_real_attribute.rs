@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkRangeRealAttribute<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkRangeRealAttribute"`: Name of this class.
+    /// `"hkRangeRealAttribute"`: The original C++ class name.
     #[serde(default = "HkRangeRealAttribute::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkRangeRealAttribute<'a> {
 }
 
 impl HkRangeRealAttribute<'_> {
-    /// Return `"hkRangeRealAttribute"`, which is the name of this class.
+    /// Return `"hkRangeRealAttribute"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkRangeRealAttribute".into()
+        "hkRangeRealAttribute".into()
     }
 
     /// Return `"0x949db24f"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkRangeRealAttribute<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkRangeRealAttributeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"absmin"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "absmin")]
-    Absmin(f64),
-    /// # Information on fields in the original C++ class
+    Absmin(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"absmax"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "absmax")]
-    Absmax(f64),
-    /// # Information on fields in the original C++ class
+    Absmax(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"softmin"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "softmin")]
-    Softmin(f64),
-    /// # Information on fields in the original C++ class
+    Softmin(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"softmax"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "softmax")]
-    Softmax(f64),
+    Softmax(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkRangeRealAttributeHkParam<'de>, "@name",
-    ("absmin" => Absmin(f64)),
-    ("absmax" => Absmax(f64)),
-    ("softmin" => Softmin(f64)),
-    ("softmax" => Softmax(f64)),
+    ("absmin" => Absmin(Primitive<f32>)),
+    ("absmax" => Absmax(Primitive<f32>)),
+    ("softmin" => Softmin(Primitive<f32>)),
+    ("softmax" => Softmax(Primitive<f32>)),
 }

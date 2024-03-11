@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCylinderShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCylinderShape"`: Name of this class.
+    /// `"hkpCylinderShape"`: The original C++ class name.
     #[serde(default = "HkpCylinderShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCylinderShape<'a> {
 }
 
 impl HkpCylinderShape<'_> {
-    /// Return `"hkpCylinderShape"`, which is the name of this class.
+    /// Return `"hkpCylinderShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCylinderShape".into()
+        "hkpCylinderShape".into()
     }
 
     /// Return `"0x3e463c3a"`, which is the signature of this class.
@@ -63,60 +64,60 @@ impl HkpCylinderShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCylinderShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"cylRadius"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cylRadius")]
-    CylRadius(f64),
-    /// # Information on fields in the original C++ class
+    CylRadius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cylBaseRadiusFactorForHeightFieldCollisions"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cylBaseRadiusFactorForHeightFieldCollisions")]
-    CylBaseRadiusFactorForHeightFieldCollisions(f64),
-    /// # Information on fields in the original C++ class
+    CylBaseRadiusFactorForHeightFieldCollisions(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertexA"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexA")]
-    VertexA(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    VertexA(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertexB"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexB")]
-    VertexB(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    VertexB(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"perpendicular1"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "perpendicular1")]
-    Perpendicular1(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Perpendicular1(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"perpendicular2"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "perpendicular2")]
-    Perpendicular2(cgmath::Vector4<f32>),
+    Perpendicular2(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCylinderShapeHkParam<'de>, "@name",
-    ("cylRadius" => CylRadius(f64)),
-    ("cylBaseRadiusFactorForHeightFieldCollisions" => CylBaseRadiusFactorForHeightFieldCollisions(f64)),
-    ("vertexA" => VertexA(cgmath::Vector4<f32>)),
-    ("vertexB" => VertexB(cgmath::Vector4<f32>)),
-    ("perpendicular1" => Perpendicular1(cgmath::Vector4<f32>)),
-    ("perpendicular2" => Perpendicular2(cgmath::Vector4<f32>)),
+    ("cylRadius" => CylRadius(Primitive<f32>)),
+    ("cylBaseRadiusFactorForHeightFieldCollisions" => CylBaseRadiusFactorForHeightFieldCollisions(Primitive<f32>)),
+    ("vertexA" => VertexA(Vector4<f32>)),
+    ("vertexB" => VertexB(Vector4<f32>)),
+    ("perpendicular1" => Perpendicular1(Vector4<f32>)),
+    ("perpendicular2" => Perpendicular2(Vector4<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpGenericConstraintDataScheme<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpGenericConstraintDataScheme"`: Name of this class.
+    /// `"hkpGenericConstraintDataScheme"`: The original C++ class name.
     #[serde(default = "HkpGenericConstraintDataScheme::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpGenericConstraintDataScheme<'a> {
 }
 
 impl HkpGenericConstraintDataScheme<'_> {
-    /// Return `"hkpGenericConstraintDataScheme"`, which is the name of this class.
+    /// Return `"hkpGenericConstraintDataScheme"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpGenericConstraintDataScheme".into()
+        "hkpGenericConstraintDataScheme".into()
     }
 
     /// Return `"0x11fd6f6c"`, which is the signature of this class.
@@ -63,41 +64,41 @@ impl HkpGenericConstraintDataScheme<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpGenericConstraintDataSchemeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"info"`
     /// -   type: `struct hkpGenericConstraintDataSchemeConstraintInfo`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "info", skip_serializing)]
     Info(HkpGenericConstraintDataSchemeConstraintInfo),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(Vec<cgmath::Vector4<f32>>),
-    /// # Information on fields in the original C++ class
+    Data(Vec<Vector4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"commands"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "commands")]
-    Commands(Vec<i32>),
-    /// # Information on fields in the original C++ class
+    Commands(Vec<Primitive<i32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"modifiers"`
     /// -   type: `hkArray&lt;void*&gt;`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "modifiers", skip_serializing)]
     Modifiers(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"motors"`
     /// -   type: `hkArray&lt;hkpConstraintMotor*&gt;`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "motors")]
-    Motors(Vec<Box<HkpConstraintMotor>>),
+    Motors(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -105,8 +106,8 @@ pub enum HkpGenericConstraintDataSchemeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpGenericConstraintDataSchemeHkParam<'de>, "@name",
     ("info" => Info(HkpGenericConstraintDataSchemeConstraintInfo)),
-    ("data" => Data(Vec<cgmath::Vector4<f32>>)),
-    ("commands" => Commands(Vec<i32>)),
+    ("data" => Data(Vec<Vector4<f32>>)),
+    ("commands" => Commands(Vec<Primitive<i32>>)),
     ("modifiers" => Modifiers(Vec<()>)),
-    ("motors" => Motors(Vec<Box<HkpConstraintMotor>>)),
+    ("motors" => Motors(Vec<Cow<'a, str>>)),
 }

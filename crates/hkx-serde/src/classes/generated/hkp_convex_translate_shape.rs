@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConvexTranslateShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConvexTranslateShape"`: Name of this class.
+    /// `"hkpConvexTranslateShape"`: The original C++ class name.
     #[serde(default = "HkpConvexTranslateShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConvexTranslateShape<'a> {
 }
 
 impl HkpConvexTranslateShape<'_> {
-    /// Return `"hkpConvexTranslateShape"`, which is the name of this class.
+    /// Return `"hkpConvexTranslateShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConvexTranslateShape".into()
+        "hkpConvexTranslateShape".into()
     }
 
     /// Return `"0x5ba0a5f7"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkpConvexTranslateShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConvexTranslateShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"translation"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "translation")]
-    Translation(cgmath::Vector4<f32>),
+    Translation(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpConvexTranslateShapeHkParam<'de>, "@name",
-    ("translation" => Translation(cgmath::Vector4<f32>)),
+    ("translation" => Translation(Vector4<f32>)),
 }

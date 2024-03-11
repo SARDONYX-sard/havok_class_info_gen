@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpRackAndPinionConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpRackAndPinionConstraintAtom"`: Name of this class.
+    /// `"hkpRackAndPinionConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpRackAndPinionConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpRackAndPinionConstraintAtom<'a> {
 }
 
 impl HkpRackAndPinionConstraintAtom<'_> {
-    /// Return `"hkpRackAndPinionConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpRackAndPinionConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpRackAndPinionConstraintAtom".into()
+        "hkpRackAndPinionConstraintAtom".into()
     }
 
     /// Return `"0x30cae006"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkpRackAndPinionConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpRackAndPinionConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pinionRadiusOrScrewPitch"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pinionRadiusOrScrewPitch")]
-    PinionRadiusOrScrewPitch(f64),
-    /// # Information on fields in the original C++ class
+    PinionRadiusOrScrewPitch(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isScrew"`
     /// -   type: `hkBool`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isScrew")]
-    IsScrew(bool),
-    /// # Information on fields in the original C++ class
+    IsScrew(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"memOffsetToInitialAngleOffset"`
     /// -   type: `hkInt8`
     /// - offset: 9
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memOffsetToInitialAngleOffset")]
-    MemOffsetToInitialAngleOffset(i8),
-    /// # Information on fields in the original C++ class
+    MemOffsetToInitialAngleOffset(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"memOffsetToPrevAngle"`
     /// -   type: `hkInt8`
     /// - offset: 10
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memOffsetToPrevAngle")]
-    MemOffsetToPrevAngle(i8),
-    /// # Information on fields in the original C++ class
+    MemOffsetToPrevAngle(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"memOffsetToRevolutionCounter"`
     /// -   type: `hkInt8`
     /// - offset: 11
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memOffsetToRevolutionCounter")]
-    MemOffsetToRevolutionCounter(i8),
+    MemOffsetToRevolutionCounter(Primitive<i8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpRackAndPinionConstraintAtomHkParam<'de>, "@name",
-    ("pinionRadiusOrScrewPitch" => PinionRadiusOrScrewPitch(f64)),
-    ("isScrew" => IsScrew(bool)),
-    ("memOffsetToInitialAngleOffset" => MemOffsetToInitialAngleOffset(i8)),
-    ("memOffsetToPrevAngle" => MemOffsetToPrevAngle(i8)),
-    ("memOffsetToRevolutionCounter" => MemOffsetToRevolutionCounter(i8)),
+    ("pinionRadiusOrScrewPitch" => PinionRadiusOrScrewPitch(Primitive<f32>)),
+    ("isScrew" => IsScrew(Primitive<bool>)),
+    ("memOffsetToInitialAngleOffset" => MemOffsetToInitialAngleOffset(Primitive<i8>)),
+    ("memOffsetToPrevAngle" => MemOffsetToPrevAngle(Primitive<i8>)),
+    ("memOffsetToRevolutionCounter" => MemOffsetToRevolutionCounter(Primitive<i8>)),
 }

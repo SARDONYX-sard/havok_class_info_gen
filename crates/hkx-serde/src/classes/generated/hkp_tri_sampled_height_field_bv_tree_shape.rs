@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpTriSampledHeightFieldBvTreeShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpTriSampledHeightFieldBvTreeShape"`: Name of this class.
+    /// `"hkpTriSampledHeightFieldBvTreeShape"`: The original C++ class name.
     #[serde(default = "HkpTriSampledHeightFieldBvTreeShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpTriSampledHeightFieldBvTreeShape<'a> {
 }
 
 impl HkpTriSampledHeightFieldBvTreeShape<'_> {
-    /// Return `"hkpTriSampledHeightFieldBvTreeShape"`, which is the name of this class.
+    /// Return `"hkpTriSampledHeightFieldBvTreeShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpTriSampledHeightFieldBvTreeShape".into()
+        "hkpTriSampledHeightFieldBvTreeShape".into()
     }
 
     /// Return `"0x58e1e585"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpTriSampledHeightFieldBvTreeShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpTriSampledHeightFieldBvTreeShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childContainer"`
     /// -   type: `struct hkpSingleShapeContainer`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childContainer")]
     ChildContainer(HkpSingleShapeContainer),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childSize"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "childSize", skip_serializing)]
-    ChildSize(i32),
-    /// # Information on fields in the original C++ class
+    ChildSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wantAabbRejectionTest"`
     /// -   type: `hkBool`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wantAabbRejectionTest")]
-    WantAabbRejectionTest(bool),
-    /// # Information on fields in the original C++ class
+    WantAabbRejectionTest(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"padding"`
     /// -   type: `hkUint8[12]`
     /// - offset: 33
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "padding")]
-    Padding([u8; 12]),
+    Padding([Primitive<u8>; 12]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -98,7 +99,7 @@ pub enum HkpTriSampledHeightFieldBvTreeShapeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpTriSampledHeightFieldBvTreeShapeHkParam<'de>, "@name",
     ("childContainer" => ChildContainer(HkpSingleShapeContainer)),
-    ("childSize" => ChildSize(i32)),
-    ("wantAabbRejectionTest" => WantAabbRejectionTest(bool)),
-    ("padding" => Padding([u8; 12])),
+    ("childSize" => ChildSize(Primitive<i32>)),
+    ("wantAabbRejectionTest" => WantAabbRejectionTest(Primitive<bool>)),
+    ("padding" => Padding([Primitive<u8>; 12])),
 }

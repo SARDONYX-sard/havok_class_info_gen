@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpStiffSpringConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpStiffSpringConstraintDataAtoms"`: Name of this class.
+    /// `"hkpStiffSpringConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpStiffSpringConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpStiffSpringConstraintDataAtoms<'a> {
 }
 
 impl HkpStiffSpringConstraintDataAtoms<'_> {
-    /// Return `"hkpStiffSpringConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpStiffSpringConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpStiffSpringConstraintDataAtoms".into()
+        "hkpStiffSpringConstraintDataAtoms".into()
     }
 
     /// Return `"0x207eb376"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkpStiffSpringConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpStiffSpringConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pivots"`
     /// -   type: `struct hkpSetLocalTranslationsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pivots")]
     Pivots(HkpSetLocalTranslationsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"spring"`
     /// -   type: `struct hkpStiffSpringConstraintAtom`
     /// - offset: 48

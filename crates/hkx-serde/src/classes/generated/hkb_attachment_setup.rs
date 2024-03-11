@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbAttachmentSetup<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbAttachmentSetup"`: Name of this class.
+    /// `"hkbAttachmentSetup"`: The original C++ class name.
     #[serde(default = "HkbAttachmentSetup::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbAttachmentSetup<'a> {
 }
 
 impl HkbAttachmentSetup<'_> {
-    /// Return `"hkbAttachmentSetup"`, which is the name of this class.
+    /// Return `"hkbAttachmentSetup"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbAttachmentSetup".into()
+        "hkbAttachmentSetup".into()
     }
 
     /// Return `"0x774632b"`, which is the signature of this class.
@@ -63,56 +64,56 @@ impl HkbAttachmentSetup<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbAttachmentSetupHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"blendInTime"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "blendInTime")]
-    BlendInTime(f64),
-    /// # Information on fields in the original C++ class
+    BlendInTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"moveAttacherFraction"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "moveAttacherFraction")]
-    MoveAttacherFraction(f64),
-    /// # Information on fields in the original C++ class
+    MoveAttacherFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"gain"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "gain")]
-    Gain(f64),
-    /// # Information on fields in the original C++ class
+    Gain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"extrapolationTimeStep"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extrapolationTimeStep")]
-    ExtrapolationTimeStep(f64),
-    /// # Information on fields in the original C++ class
+    ExtrapolationTimeStep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"fixUpGain"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fixUpGain")]
-    FixUpGain(f64),
-    /// # Information on fields in the original C++ class
+    FixUpGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxLinearDistance"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxLinearDistance")]
-    MaxLinearDistance(f64),
-    /// # Information on fields in the original C++ class
+    MaxLinearDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxAngularDistance"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxAngularDistance")]
-    MaxAngularDistance(f64),
-    /// # Information on fields in the original C++ class
+    MaxAngularDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"attachmentType"`
     /// -   type: `enum AttachmentType`
     /// - offset: 36
@@ -125,13 +126,13 @@ pub enum HkbAttachmentSetupHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbAttachmentSetupHkParam<'de>, "@name",
-    ("blendInTime" => BlendInTime(f64)),
-    ("moveAttacherFraction" => MoveAttacherFraction(f64)),
-    ("gain" => Gain(f64)),
-    ("extrapolationTimeStep" => ExtrapolationTimeStep(f64)),
-    ("fixUpGain" => FixUpGain(f64)),
-    ("maxLinearDistance" => MaxLinearDistance(f64)),
-    ("maxAngularDistance" => MaxAngularDistance(f64)),
+    ("blendInTime" => BlendInTime(Primitive<f32>)),
+    ("moveAttacherFraction" => MoveAttacherFraction(Primitive<f32>)),
+    ("gain" => Gain(Primitive<f32>)),
+    ("extrapolationTimeStep" => ExtrapolationTimeStep(Primitive<f32>)),
+    ("fixUpGain" => FixUpGain(Primitive<f32>)),
+    ("maxLinearDistance" => MaxLinearDistance(Primitive<f32>)),
+    ("maxAngularDistance" => MaxAngularDistance(Primitive<f32>)),
     ("attachmentType" => AttachmentType(AttachmentType)),
 }
 

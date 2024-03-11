@@ -2,6 +2,8 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
+use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -23,7 +25,7 @@ pub struct BgsGamebryoSequenceGenerator<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BGSGamebryoSequenceGenerator"`: Name of this class.
+    /// `"BGSGamebryoSequenceGenerator"`: The original C++ class name.
     #[serde(default = "BgsGamebryoSequenceGenerator::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -34,21 +36,19 @@ pub struct BgsGamebryoSequenceGenerator<'a> {
     pub signature: Cow<'a, str>,
 
     /// The `"hkparam"` tag (C++ field) vector
-    #[serde(bound(
-        deserialize = "Vec<BgsGamebryoSequenceGeneratorHkParam<'a>>: Deserialize<'de>"
-    ))]
+    #[serde(bound(deserialize = "Vec<BgsGamebryoSequenceGeneratorHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<BgsGamebryoSequenceGeneratorHkParam<'a>>,
+    pub hkparams: Vec<BgsGamebryoSequenceGeneratorHkParam<'a>>
 }
 
 impl BgsGamebryoSequenceGenerator<'_> {
-    /// Return `"BGSGamebryoSequenceGenerator"`, which is the name of this class.
+    /// Return `"BGSGamebryoSequenceGenerator"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BgsGamebryoSequenceGenerator".into()
+        "BGSGamebryoSequenceGenerator".into()
     }
 
     /// Return `"0xc8df2d77"`, which is the signature of this class.
@@ -64,68 +64,68 @@ impl BgsGamebryoSequenceGenerator<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BgsGamebryoSequenceGeneratorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pSequence"`
     /// -   type: `char*`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pSequence")]
-    PSequence(Cow<'a, str>),
-    /// # Information on fields in the original C++ class
+    PSequence(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"eBlendModeFunction"`
     /// -   type: `enum BlendModeFunction`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eBlendModeFunction")]
     EBlendModeFunction(BlendModeFunction),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"fPercent"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fPercent")]
-    FPercent(f64),
-    /// # Information on fields in the original C++ class
+    FPercent(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"events"`
     /// -   type: `hkArray&lt;void&gt;`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "events", skip_serializing)]
     Events(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"fTime"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "fTime", skip_serializing)]
-    FTime(f64),
-    /// # Information on fields in the original C++ class
+    FTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bDelayedActivate"`
     /// -   type: `hkBool`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bDelayedActivate", skip_serializing)]
-    BDelayedActivate(bool),
-    /// # Information on fields in the original C++ class
+    BDelayedActivate(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"bLooping"`
     /// -   type: `hkBool`
     /// - offset: 69
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "bLooping", skip_serializing)]
-    BLooping(bool),
+    BLooping(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BgsGamebryoSequenceGeneratorHkParam<'de>, "@name",
-    ("pSequence" => PSequence(String)),
+    ("pSequence" => PSequence(Primitive<Cow<'a, str>>)),
     ("eBlendModeFunction" => EBlendModeFunction(BlendModeFunction)),
-    ("fPercent" => FPercent(f64)),
+    ("fPercent" => FPercent(Primitive<f32>)),
     ("events" => Events(Vec<()>)),
-    ("fTime" => FTime(f64)),
-    ("bDelayedActivate" => BDelayedActivate(bool)),
-    ("bLooping" => BLooping(bool)),
+    ("fTime" => FTime(Primitive<f32>)),
+    ("bDelayedActivate" => BDelayedActivate(Primitive<bool>)),
+    ("bLooping" => BLooping(Primitive<bool>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

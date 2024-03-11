@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpLinMotorConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpLinMotorConstraintAtom"`: Name of this class.
+    /// `"hkpLinMotorConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpLinMotorConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpLinMotorConstraintAtom<'a> {
 }
 
 impl HkpLinMotorConstraintAtom<'_> {
-    /// Return `"hkpLinMotorConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpLinMotorConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpLinMotorConstraintAtom".into()
+        "hkpLinMotorConstraintAtom".into()
     }
 
     /// Return `"0x10312464"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkpLinMotorConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpLinMotorConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"isEnabled"`
     /// -   type: `hkBool`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isEnabled")]
-    IsEnabled(bool),
-    /// # Information on fields in the original C++ class
+    IsEnabled(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"motorAxis"`
     /// -   type: `hkUint8`
     /// - offset: 3
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "motorAxis")]
-    MotorAxis(u8),
-    /// # Information on fields in the original C++ class
+    MotorAxis(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"initializedOffset"`
     /// -   type: `hkInt16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initializedOffset")]
-    InitializedOffset(i16),
-    /// # Information on fields in the original C++ class
+    InitializedOffset(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"previousTargetPositionOffset"`
     /// -   type: `hkInt16`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "previousTargetPositionOffset")]
-    PreviousTargetPositionOffset(i16),
-    /// # Information on fields in the original C++ class
+    PreviousTargetPositionOffset(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"targetPosition"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "targetPosition")]
-    TargetPosition(f64),
-    /// # Information on fields in the original C++ class
+    TargetPosition(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"motor"`
     /// -   type: `struct hkpConstraintMotor*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "motor")]
-    Motor(Box<HkpConstraintMotor>),
+    Motor(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpLinMotorConstraintAtomHkParam<'de>, "@name",
-    ("isEnabled" => IsEnabled(bool)),
-    ("motorAxis" => MotorAxis(u8)),
-    ("initializedOffset" => InitializedOffset(i16)),
-    ("previousTargetPositionOffset" => PreviousTargetPositionOffset(i16)),
-    ("targetPosition" => TargetPosition(f64)),
-    ("motor" => Motor(Box<HkpConstraintMotor>)),
+    ("isEnabled" => IsEnabled(Primitive<bool>)),
+    ("motorAxis" => MotorAxis(Primitive<u8>)),
+    ("initializedOffset" => InitializedOffset(Primitive<i16>)),
+    ("previousTargetPositionOffset" => PreviousTargetPositionOffset(Primitive<i16>)),
+    ("targetPosition" => TargetPosition(Primitive<f32>)),
+    ("motor" => Motor(Cow<'a, str>)),
 }

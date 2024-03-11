@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbNodeInternalStateInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbNodeInternalStateInfo"`: Name of this class.
+    /// `"hkbNodeInternalStateInfo"`: The original C++ class name.
     #[serde(default = "HkbNodeInternalStateInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbNodeInternalStateInfo<'a> {
 }
 
 impl HkbNodeInternalStateInfo<'_> {
-    /// Return `"hkbNodeInternalStateInfo"`, which is the name of this class.
+    /// Return `"hkbNodeInternalStateInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbNodeInternalStateInfo".into()
+        "hkbNodeInternalStateInfo".into()
     }
 
     /// Return `"0x7db9971d"`, which is the signature of this class.
@@ -63,41 +64,41 @@ impl HkbNodeInternalStateInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbNodeInternalStateInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"syncInfo"`
     /// -   type: `struct hkbGeneratorSyncInfo`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "syncInfo")]
     SyncInfo(HkbGeneratorSyncInfo),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"internalState"`
     /// -   type: `struct hkReferencedObject*`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "internalState")]
-    InternalState(Box<HkReferencedObject>),
-    /// # Information on fields in the original C++ class
+    InternalState(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"nodeId"`
     /// -   type: `hkInt16`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nodeId")]
-    NodeId(i16),
-    /// # Information on fields in the original C++ class
+    NodeId(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"hasActivateBeenCalled"`
     /// -   type: `hkBool`
     /// - offset: 98
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hasActivateBeenCalled")]
-    HasActivateBeenCalled(bool),
+    HasActivateBeenCalled(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -105,8 +106,8 @@ pub enum HkbNodeInternalStateInfoHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbNodeInternalStateInfoHkParam<'de>, "@name",
     ("syncInfo" => SyncInfo(HkbGeneratorSyncInfo)),
-    ("name" => Name(String)),
-    ("internalState" => InternalState(Box<HkReferencedObject>)),
-    ("nodeId" => NodeId(i16)),
-    ("hasActivateBeenCalled" => HasActivateBeenCalled(bool)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("internalState" => InternalState(Cow<'a, str>)),
+    ("nodeId" => NodeId(Primitive<i16>)),
+    ("hasActivateBeenCalled" => HasActivateBeenCalled(Primitive<bool>)),
 }

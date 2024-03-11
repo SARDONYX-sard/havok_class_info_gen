@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbNode<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbNode"`: Name of this class.
+    /// `"hkbNode"`: The original C++ class name.
     #[serde(default = "HkbNode::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbNode<'a> {
 }
 
 impl HkbNode<'_> {
-    /// Return `"hkbNode"`, which is the name of this class.
+    /// Return `"hkbNode"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbNode".into()
+        "hkbNode".into()
     }
 
     /// Return `"0x6d26f61d"`, which is the signature of this class.
@@ -63,52 +64,52 @@ impl HkbNode<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbNodeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"userData"`
     /// -   type: `hkUlong`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData")]
-    UserData(u64),
-    /// # Information on fields in the original C++ class
+    UserData(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"id"`
     /// -   type: `hkInt16`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "id", skip_serializing)]
-    Id(i16),
-    /// # Information on fields in the original C++ class
+    Id(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"cloneState"`
     /// -   type: `enum unknown`
     /// - offset: 38
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "cloneState", skip_serializing)]
     CloneState(Unknown),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"padNode"`
     /// -   type: `hkBool[1]`
     /// - offset: 39
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "padNode", skip_serializing)]
-    PadNode([bool; 1]),
+    PadNode([Primitive<bool>; 1]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbNodeHkParam<'de>, "@name",
-    ("userData" => UserData(u64)),
-    ("name" => Name(String)),
-    ("id" => Id(i16)),
+    ("userData" => UserData(Primitive<u64>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("id" => Id(Primitive<i16>)),
     ("cloneState" => CloneState(Unknown)),
-    ("padNode" => PadNode([bool; 1])),
+    ("padNode" => PadNode([Primitive<bool>; 1])),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

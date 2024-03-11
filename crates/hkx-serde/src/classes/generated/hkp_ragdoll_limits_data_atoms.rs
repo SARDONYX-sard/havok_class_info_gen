@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpRagdollLimitsDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpRagdollLimitsDataAtoms"`: Name of this class.
+    /// `"hkpRagdollLimitsDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpRagdollLimitsDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpRagdollLimitsDataAtoms<'a> {
 }
 
 impl HkpRagdollLimitsDataAtoms<'_> {
-    /// Return `"hkpRagdollLimitsDataAtoms"`, which is the name of this class.
+    /// Return `"hkpRagdollLimitsDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpRagdollLimitsDataAtoms".into()
+        "hkpRagdollLimitsDataAtoms".into()
     }
 
     /// Return `"0x82b894c3"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl HkpRagdollLimitsDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpRagdollLimitsDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rotations"`
     /// -   type: `struct hkpSetLocalRotationsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotations")]
     Rotations(HkpSetLocalRotationsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"twistLimit"`
     /// -   type: `struct hkpTwistLimitConstraintAtom`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "twistLimit")]
     TwistLimit(HkpTwistLimitConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"coneLimit"`
     /// -   type: `struct hkpConeLimitConstraintAtom`
     /// - offset: 132
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "coneLimit")]
     ConeLimit(HkpConeLimitConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"planesLimit"`
     /// -   type: `struct hkpConeLimitConstraintAtom`
     /// - offset: 152

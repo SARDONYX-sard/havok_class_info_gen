@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxMaterialProperty<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxMaterialProperty"`: Name of this class.
+    /// `"hkxMaterialProperty"`: The original C++ class name.
     #[serde(default = "HkxMaterialProperty::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxMaterialProperty<'a> {
 }
 
 impl HkxMaterialProperty<'_> {
-    /// Return `"hkxMaterialProperty"`, which is the name of this class.
+    /// Return `"hkxMaterialProperty"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxMaterialProperty".into()
+        "hkxMaterialProperty".into()
     }
 
     /// Return `"0xd295234d"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkxMaterialProperty<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxMaterialPropertyHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"key"`
     /// -   type: `hkUint32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "key")]
-    Key(u32),
-    /// # Information on fields in the original C++ class
+    Key(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"value"`
     /// -   type: `hkUint32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "value")]
-    Value(u32),
+    Value(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxMaterialPropertyHkParam<'de>, "@name",
-    ("key" => Key(u32)),
-    ("value" => Value(u32)),
+    ("key" => Key(Primitive<u32>)),
+    ("value" => Value(Primitive<u32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleFrictionDescription<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleFrictionDescription"`: Name of this class.
+    /// `"hkpVehicleFrictionDescription"`: The original C++ class name.
     #[serde(default = "HkpVehicleFrictionDescription::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleFrictionDescription<'a> {
 }
 
 impl HkpVehicleFrictionDescription<'_> {
-    /// Return `"hkpVehicleFrictionDescription"`, which is the name of this class.
+    /// Return `"hkpVehicleFrictionDescription"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleFrictionDescription".into()
+        "hkpVehicleFrictionDescription".into()
     }
 
     /// Return `"0x1034549a"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpVehicleFrictionDescription<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleFrictionDescriptionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wheelDistance"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelDistance")]
-    WheelDistance(f64),
-    /// # Information on fields in the original C++ class
+    WheelDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"chassisMassInv"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chassisMassInv")]
-    ChassisMassInv(f64),
-    /// # Information on fields in the original C++ class
+    ChassisMassInv(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"axleDescr"`
     /// -   type: `struct hkpVehicleFrictionDescriptionAxisDescription[2]`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "axleDescr")]
-    AxleDescr(HkpVehicleFrictionDescriptionAxisDescription[2]),
+    AxleDescr([HkpVehicleFrictionDescriptionAxisDescription; 2]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleFrictionDescriptionHkParam<'de>, "@name",
-    ("wheelDistance" => WheelDistance(f64)),
-    ("chassisMassInv" => ChassisMassInv(f64)),
-    ("axleDescr" => AxleDescr(HkpVehicleFrictionDescriptionAxisDescription[2])),
+    ("wheelDistance" => WheelDistance(Primitive<f32>)),
+    ("chassisMassInv" => ChassisMassInv(Primitive<f32>)),
+    ("axleDescr" => AxleDescr([HkpVehicleFrictionDescriptionAxisDescription; 2])),
 }

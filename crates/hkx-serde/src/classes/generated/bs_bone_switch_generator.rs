@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsBoneSwitchGenerator<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSBoneSwitchGenerator"`: Name of this class.
+    /// `"BSBoneSwitchGenerator"`: The original C++ class name.
     #[serde(default = "BsBoneSwitchGenerator::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -37,17 +38,17 @@ pub struct BsBoneSwitchGenerator<'a> {
     /// The `"hkparam"` tag (C++ field) vector
     #[serde(bound(deserialize = "Vec<BsBoneSwitchGeneratorHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<BsBoneSwitchGeneratorHkParam<'a>>,
+    pub hkparams: Vec<BsBoneSwitchGeneratorHkParam<'a>>
 }
 
 impl BsBoneSwitchGenerator<'_> {
-    /// Return `"BSBoneSwitchGenerator"`, which is the name of this class.
+    /// Return `"BSBoneSwitchGenerator"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsBoneSwitchGenerator".into()
+        "BSBoneSwitchGenerator".into()
     }
 
     /// Return `"0xf33d3eea"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl BsBoneSwitchGenerator<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsBoneSwitchGeneratorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pDefaultGenerator"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "pDefaultGenerator")]
-    PDefaultGenerator(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    PDefaultGenerator(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"ChildrenA"`
     /// -   type: `hkArray&lt;BSBoneSwitchGeneratorBoneData*&gt;`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ChildrenA")]
-    ChildrenA(Vec<Box<BsBoneSwitchGeneratorBoneData<'a>>>),
+    ChildrenA(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsBoneSwitchGeneratorHkParam<'de>, "@name",
-    ("pDefaultGenerator" => PDefaultGenerator(Box<HkbGenerator>)),
-    ("ChildrenA" => ChildrenA(Vec<Box<BsBoneSwitchGeneratorBoneData>>)),
+    ("pDefaultGenerator" => PDefaultGenerator(Cow<'a, str>)),
+    ("ChildrenA" => ChildrenA(Vec<Cow<'a, str>>)),
 }

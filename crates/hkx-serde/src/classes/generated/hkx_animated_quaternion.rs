@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxAnimatedQuaternion<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxAnimatedQuaternion"`: Name of this class.
+    /// `"hkxAnimatedQuaternion"`: The original C++ class name.
     #[serde(default = "HkxAnimatedQuaternion::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxAnimatedQuaternion<'a> {
 }
 
 impl HkxAnimatedQuaternion<'_> {
-    /// Return `"hkxAnimatedQuaternion"`, which is the name of this class.
+    /// Return `"hkxAnimatedQuaternion"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxAnimatedQuaternion".into()
+        "hkxAnimatedQuaternion".into()
     }
 
     /// Return `"0xb4f01baa"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkxAnimatedQuaternion<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxAnimatedQuaternionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"quaternions"`
     /// -   type: `hkArray&lt;hkQuaternion&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "quaternions")]
-    Quaternions(Vec<cgmath::Quaternion<f32>>),
+    Quaternions(Vec<Quaternion<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxAnimatedQuaternionHkParam<'de>, "@name",
-    ("quaternions" => Quaternions(Vec<cgmath::Quaternion<f32>>)),
+    ("quaternions" => Quaternions(Vec<Quaternion<f32>>)),
 }

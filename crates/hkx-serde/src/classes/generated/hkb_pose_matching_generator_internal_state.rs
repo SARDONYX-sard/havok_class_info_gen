@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbPoseMatchingGeneratorInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbPoseMatchingGeneratorInternalState"`: Name of this class.
+    /// `"hkbPoseMatchingGeneratorInternalState"`: The original C++ class name.
     #[serde(default = "HkbPoseMatchingGeneratorInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbPoseMatchingGeneratorInternalState<'a> {
 }
 
 impl HkbPoseMatchingGeneratorInternalState<'_> {
-    /// Return `"hkbPoseMatchingGeneratorInternalState"`, which is the name of this class.
+    /// Return `"hkbPoseMatchingGeneratorInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbPoseMatchingGeneratorInternalState".into()
+        "hkbPoseMatchingGeneratorInternalState".into()
     }
 
     /// Return `"0x552d9dd4"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkbPoseMatchingGeneratorInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbPoseMatchingGeneratorInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"currentMatch"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "currentMatch")]
-    CurrentMatch(i32),
-    /// # Information on fields in the original C++ class
+    CurrentMatch(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bestMatch"`
     /// -   type: `hkInt32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bestMatch")]
-    BestMatch(i32),
-    /// # Information on fields in the original C++ class
+    BestMatch(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeSinceBetterMatch"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timeSinceBetterMatch")]
-    TimeSinceBetterMatch(f64),
-    /// # Information on fields in the original C++ class
+    TimeSinceBetterMatch(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"error"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "error")]
-    Error(f64),
-    /// # Information on fields in the original C++ class
+    Error(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"resetCurrentMatchLocalTime"`
     /// -   type: `hkBool`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "resetCurrentMatchLocalTime")]
-    ResetCurrentMatchLocalTime(bool),
+    ResetCurrentMatchLocalTime(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbPoseMatchingGeneratorInternalStateHkParam<'de>, "@name",
-    ("currentMatch" => CurrentMatch(i32)),
-    ("bestMatch" => BestMatch(i32)),
-    ("timeSinceBetterMatch" => TimeSinceBetterMatch(f64)),
-    ("error" => Error(f64)),
-    ("resetCurrentMatchLocalTime" => ResetCurrentMatchLocalTime(bool)),
+    ("currentMatch" => CurrentMatch(Primitive<i32>)),
+    ("bestMatch" => BestMatch(Primitive<i32>)),
+    ("timeSinceBetterMatch" => TimeSinceBetterMatch(Primitive<f32>)),
+    ("error" => Error(Primitive<f32>)),
+    ("resetCurrentMatchLocalTime" => ResetCurrentMatchLocalTime(Primitive<bool>)),
 }

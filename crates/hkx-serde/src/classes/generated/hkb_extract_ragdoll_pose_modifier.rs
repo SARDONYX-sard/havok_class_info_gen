@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbExtractRagdollPoseModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbExtractRagdollPoseModifier"`: Name of this class.
+    /// `"hkbExtractRagdollPoseModifier"`: The original C++ class name.
     #[serde(default = "HkbExtractRagdollPoseModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbExtractRagdollPoseModifier<'a> {
 }
 
 impl HkbExtractRagdollPoseModifier<'_> {
-    /// Return `"hkbExtractRagdollPoseModifier"`, which is the name of this class.
+    /// Return `"hkbExtractRagdollPoseModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbExtractRagdollPoseModifier".into()
+        "hkbExtractRagdollPoseModifier".into()
     }
 
     /// Return `"0x804dcbab"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbExtractRagdollPoseModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbExtractRagdollPoseModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"poseMatchingBone0"`
     /// -   type: `hkInt16`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "poseMatchingBone0")]
-    PoseMatchingBone0(i16),
-    /// # Information on fields in the original C++ class
+    PoseMatchingBone0(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"poseMatchingBone1"`
     /// -   type: `hkInt16`
     /// - offset: 46
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "poseMatchingBone1")]
-    PoseMatchingBone1(i16),
-    /// # Information on fields in the original C++ class
+    PoseMatchingBone1(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"poseMatchingBone2"`
     /// -   type: `hkInt16`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "poseMatchingBone2")]
-    PoseMatchingBone2(i16),
-    /// # Information on fields in the original C++ class
+    PoseMatchingBone2(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"enableComputeWorldFromModel"`
     /// -   type: `hkBool`
     /// - offset: 50
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enableComputeWorldFromModel")]
-    EnableComputeWorldFromModel(bool),
+    EnableComputeWorldFromModel(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbExtractRagdollPoseModifierHkParam<'de>, "@name",
-    ("poseMatchingBone0" => PoseMatchingBone0(i16)),
-    ("poseMatchingBone1" => PoseMatchingBone1(i16)),
-    ("poseMatchingBone2" => PoseMatchingBone2(i16)),
-    ("enableComputeWorldFromModel" => EnableComputeWorldFromModel(bool)),
+    ("poseMatchingBone0" => PoseMatchingBone0(Primitive<i16>)),
+    ("poseMatchingBone1" => PoseMatchingBone1(Primitive<i16>)),
+    ("poseMatchingBone2" => PoseMatchingBone2(Primitive<i16>)),
+    ("enableComputeWorldFromModel" => EnableComputeWorldFromModel(Primitive<bool>)),
 }

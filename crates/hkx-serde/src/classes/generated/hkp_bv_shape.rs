@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpBvShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpBvShape"`: Name of this class.
+    /// `"hkpBvShape"`: The original C++ class name.
     #[serde(default = "HkpBvShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpBvShape<'a> {
 }
 
 impl HkpBvShape<'_> {
-    /// Return `"hkpBvShape"`, which is the name of this class.
+    /// Return `"hkpBvShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpBvShape".into()
+        "hkpBvShape".into()
     }
 
     /// Return `"0x286eb64c"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkpBvShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpBvShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"boundingVolumeShape"`
     /// -   type: `struct hkpShape*`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boundingVolumeShape")]
-    BoundingVolumeShape(Box<HkpShape>),
-    /// # Information on fields in the original C++ class
+    BoundingVolumeShape(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"childShape"`
     /// -   type: `struct hkpSingleShapeContainer`
     /// - offset: 20
@@ -83,6 +84,6 @@ pub enum HkpBvShapeHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpBvShapeHkParam<'de>, "@name",
-    ("boundingVolumeShape" => BoundingVolumeShape(Box<HkpShape>)),
+    ("boundingVolumeShape" => BoundingVolumeShape(Cow<'a, str>)),
     ("childShape" => ChildShape(HkpSingleShapeContainer)),
 }

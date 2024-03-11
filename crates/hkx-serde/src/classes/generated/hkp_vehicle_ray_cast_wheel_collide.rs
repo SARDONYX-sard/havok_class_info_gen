@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleRayCastWheelCollide<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleRayCastWheelCollide"`: Name of this class.
+    /// `"hkpVehicleRayCastWheelCollide"`: The original C++ class name.
     #[serde(default = "HkpVehicleRayCastWheelCollide::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleRayCastWheelCollide<'a> {
 }
 
 impl HkpVehicleRayCastWheelCollide<'_> {
-    /// Return `"hkpVehicleRayCastWheelCollide"`, which is the name of this class.
+    /// Return `"hkpVehicleRayCastWheelCollide"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleRayCastWheelCollide".into()
+        "hkpVehicleRayCastWheelCollide".into()
     }
 
     /// Return `"0x41efd9e3"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl HkpVehicleRayCastWheelCollide<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleRayCastWheelCollideHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wheelCollisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelCollisionFilterInfo")]
-    WheelCollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    WheelCollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"phantom"`
     /// -   type: `struct hkpAabbPhantom*`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "phantom")]
-    Phantom(Box<HkpAabbPhantom>),
-    /// # Information on fields in the original C++ class
+    Phantom(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"rejectRayChassisListener"`
     /// -   type: `struct hkpRejectChassisListener`
     /// - offset: 20
@@ -90,7 +91,7 @@ pub enum HkpVehicleRayCastWheelCollideHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleRayCastWheelCollideHkParam<'de>, "@name",
-    ("wheelCollisionFilterInfo" => WheelCollisionFilterInfo(u32)),
-    ("phantom" => Phantom(Box<HkpAabbPhantom>)),
+    ("wheelCollisionFilterInfo" => WheelCollisionFilterInfo(Primitive<u32>)),
+    ("phantom" => Phantom(Cow<'a, str>)),
     ("rejectRayChassisListener" => RejectRayChassisListener(HkpRejectChassisListener)),
 }

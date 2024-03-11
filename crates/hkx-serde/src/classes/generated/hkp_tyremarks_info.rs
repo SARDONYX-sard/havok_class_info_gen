@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpTyremarksInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpTyremarksInfo"`: Name of this class.
+    /// `"hkpTyremarksInfo"`: The original C++ class name.
     #[serde(default = "HkpTyremarksInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpTyremarksInfo<'a> {
 }
 
 impl HkpTyremarksInfo<'_> {
-    /// Return `"hkpTyremarksInfo"`, which is the name of this class.
+    /// Return `"hkpTyremarksInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpTyremarksInfo".into()
+        "hkpTyremarksInfo".into()
     }
 
     /// Return `"0x3d0433d6"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpTyremarksInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpTyremarksInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"minTyremarkEnergy"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "minTyremarkEnergy")]
-    MinTyremarkEnergy(f64),
-    /// # Information on fields in the original C++ class
+    MinTyremarkEnergy(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxTyremarkEnergy"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxTyremarkEnergy")]
-    MaxTyremarkEnergy(f64),
-    /// # Information on fields in the original C++ class
+    MaxTyremarkEnergy(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"tyremarksWheel"`
     /// -   type: `hkArray&lt;hkpTyremarksWheel*&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "tyremarksWheel")]
-    TyremarksWheel(Vec<Box<HkpTyremarksWheel>>),
+    TyremarksWheel(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpTyremarksInfoHkParam<'de>, "@name",
-    ("minTyremarkEnergy" => MinTyremarkEnergy(f64)),
-    ("maxTyremarkEnergy" => MaxTyremarkEnergy(f64)),
-    ("tyremarksWheel" => TyremarksWheel(Vec<Box<HkpTyremarksWheel>>)),
+    ("minTyremarkEnergy" => MinTyremarkEnergy(Primitive<f32>)),
+    ("maxTyremarkEnergy" => MaxTyremarkEnergy(Primitive<f32>)),
+    ("tyremarksWheel" => TyremarksWheel(Vec<Cow<'a, str>>)),
 }

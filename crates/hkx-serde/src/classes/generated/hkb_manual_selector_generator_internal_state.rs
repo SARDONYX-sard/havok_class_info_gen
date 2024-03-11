@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbManualSelectorGeneratorInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbManualSelectorGeneratorInternalState"`: Name of this class.
+    /// `"hkbManualSelectorGeneratorInternalState"`: The original C++ class name.
     #[serde(default = "HkbManualSelectorGeneratorInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbManualSelectorGeneratorInternalState<'a> {
 }
 
 impl HkbManualSelectorGeneratorInternalState<'_> {
-    /// Return `"hkbManualSelectorGeneratorInternalState"`, which is the name of this class.
+    /// Return `"hkbManualSelectorGeneratorInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbManualSelectorGeneratorInternalState".into()
+        "hkbManualSelectorGeneratorInternalState".into()
     }
 
     /// Return `"0x492c6137"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkbManualSelectorGeneratorInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbManualSelectorGeneratorInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"currentGeneratorIndex"`
     /// -   type: `hkInt8`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "currentGeneratorIndex")]
-    CurrentGeneratorIndex(i8),
+    CurrentGeneratorIndex(Primitive<i8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbManualSelectorGeneratorInternalStateHkParam<'de>, "@name",
-    ("currentGeneratorIndex" => CurrentGeneratorIndex(i8)),
+    ("currentGeneratorIndex" => CurrentGeneratorIndex(Primitive<i8>)),
 }

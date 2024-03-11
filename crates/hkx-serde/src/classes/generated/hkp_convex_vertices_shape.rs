@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConvexVerticesShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConvexVerticesShape"`: Name of this class.
+    /// `"hkpConvexVerticesShape"`: The original C++ class name.
     #[serde(default = "HkpConvexVerticesShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConvexVerticesShape<'a> {
 }
 
 impl HkpConvexVerticesShape<'_> {
-    /// Return `"hkpConvexVerticesShape"`, which is the name of this class.
+    /// Return `"hkpConvexVerticesShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConvexVerticesShape".into()
+        "hkpConvexVerticesShape".into()
     }
 
     /// Return `"0x28726ad8"`, which is the signature of this class.
@@ -63,74 +64,74 @@ impl HkpConvexVerticesShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConvexVerticesShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"aabbHalfExtents"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabbHalfExtents")]
-    AabbHalfExtents(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AabbHalfExtents(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"aabbCenter"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabbCenter")]
-    AabbCenter(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AabbCenter(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotatedVertices"`
     /// -   type: `hkArray&lt;struct hkpConvexVerticesShapeFourVectors&gt;`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotatedVertices")]
     RotatedVertices(Vec<HkpConvexVerticesShapeFourVectors>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numVertices"`
     /// -   type: `hkInt32`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numVertices")]
-    NumVertices(i32),
-    /// # Information on fields in the original C++ class
+    NumVertices(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"externalObject"`
     /// -   type: `void*`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "externalObject", skip_serializing)]
     ExternalObject(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"getFaceNormals"`
     /// -   type: `void*`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "getFaceNormals", skip_serializing)]
     GetFaceNormals(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"planeEquations"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "planeEquations")]
-    PlaneEquations(Vec<cgmath::Vector4<f32>>),
-    /// # Information on fields in the original C++ class
+    PlaneEquations(Vec<Vector4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"connectivity"`
     /// -   type: `struct hkpConvexVerticesConnectivity*`
     /// - offset: 100
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "connectivity")]
-    Connectivity(Box<HkpConvexVerticesConnectivity>),
+    Connectivity(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpConvexVerticesShapeHkParam<'de>, "@name",
-    ("aabbHalfExtents" => AabbHalfExtents(cgmath::Vector4<f32>)),
-    ("aabbCenter" => AabbCenter(cgmath::Vector4<f32>)),
+    ("aabbHalfExtents" => AabbHalfExtents(Vector4<f32>)),
+    ("aabbCenter" => AabbCenter(Vector4<f32>)),
     ("rotatedVertices" => RotatedVertices(Vec<HkpConvexVerticesShapeFourVectors>)),
-    ("numVertices" => NumVertices(i32)),
+    ("numVertices" => NumVertices(Primitive<i32>)),
     ("externalObject" => ExternalObject(())),
     ("getFaceNormals" => GetFaceNormals(())),
-    ("planeEquations" => PlaneEquations(Vec<cgmath::Vector4<f32>>)),
-    ("connectivity" => Connectivity(Box<HkpConvexVerticesConnectivity>)),
+    ("planeEquations" => PlaneEquations(Vec<Vector4<f32>>)),
+    ("connectivity" => Connectivity(Cow<'a, str>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpListShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpListShape"`: Name of this class.
+    /// `"hkpListShape"`: The original C++ class name.
     #[serde(default = "HkpListShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpListShape<'a> {
 }
 
 impl HkpListShape<'_> {
-    /// Return `"hkpListShape"`, which is the name of this class.
+    /// Return `"hkpListShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpListShape".into()
+        "hkpListShape".into()
     }
 
     /// Return `"0xa1937cbd"`, which is the signature of this class.
@@ -63,48 +64,48 @@ impl HkpListShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpListShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childInfo"`
     /// -   type: `hkArray&lt;struct hkpListShapeChildInfo&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childInfo")]
     ChildInfo(Vec<HkpListShapeChildInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"flags"`
     /// -   type: `hkUint16`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "flags")]
-    Flags(u16),
-    /// # Information on fields in the original C++ class
+    Flags(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"numDisabledChildren"`
     /// -   type: `hkUint16`
     /// - offset: 38
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numDisabledChildren")]
-    NumDisabledChildren(u16),
-    /// # Information on fields in the original C++ class
+    NumDisabledChildren(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"aabbHalfExtents"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabbHalfExtents")]
-    AabbHalfExtents(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AabbHalfExtents(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"aabbCenter"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabbCenter")]
-    AabbCenter(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AabbCenter(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"enabledChildren"`
     /// -   type: `hkUint32[8]`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enabledChildren")]
-    EnabledChildren([u32; 8]),
+    EnabledChildren([Primitive<u32>; 8]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -112,11 +113,11 @@ pub enum HkpListShapeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpListShapeHkParam<'de>, "@name",
     ("childInfo" => ChildInfo(Vec<HkpListShapeChildInfo>)),
-    ("flags" => Flags(u16)),
-    ("numDisabledChildren" => NumDisabledChildren(u16)),
-    ("aabbHalfExtents" => AabbHalfExtents(cgmath::Vector4<f32>)),
-    ("aabbCenter" => AabbCenter(cgmath::Vector4<f32>)),
-    ("enabledChildren" => EnabledChildren([u32; 8])),
+    ("flags" => Flags(Primitive<u16>)),
+    ("numDisabledChildren" => NumDisabledChildren(Primitive<u16>)),
+    ("aabbHalfExtents" => AabbHalfExtents(Vector4<f32>)),
+    ("aabbCenter" => AabbCenter(Vector4<f32>)),
+    ("enabledChildren" => EnabledChildren([Primitive<u32>; 8])),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

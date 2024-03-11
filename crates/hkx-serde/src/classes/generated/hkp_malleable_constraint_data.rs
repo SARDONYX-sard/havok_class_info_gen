@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMalleableConstraintData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMalleableConstraintData"`: Name of this class.
+    /// `"hkpMalleableConstraintData"`: The original C++ class name.
     #[serde(default = "HkpMalleableConstraintData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMalleableConstraintData<'a> {
 }
 
 impl HkpMalleableConstraintData<'_> {
-    /// Return `"hkpMalleableConstraintData"`, which is the name of this class.
+    /// Return `"hkpMalleableConstraintData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMalleableConstraintData".into()
+        "hkpMalleableConstraintData".into()
     }
 
     /// Return `"0x6748b2cf"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpMalleableConstraintData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMalleableConstraintDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"constraintData"`
     /// -   type: `struct hkpConstraintData*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "constraintData")]
-    ConstraintData(Box<HkpConstraintData>),
-    /// # Information on fields in the original C++ class
+    ConstraintData(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"atoms"`
     /// -   type: `struct hkpBridgeAtoms`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "atoms")]
     Atoms(HkpBridgeAtoms),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"strength"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "strength")]
-    Strength(f64),
+    Strength(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpMalleableConstraintDataHkParam<'de>, "@name",
-    ("constraintData" => ConstraintData(Box<HkpConstraintData>)),
+    ("constraintData" => ConstraintData(Cow<'a, str>)),
     ("atoms" => Atoms(HkpBridgeAtoms)),
-    ("strength" => Strength(f64)),
+    ("strength" => Strength(Primitive<f32>)),
 }

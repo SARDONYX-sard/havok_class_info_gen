@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConstraintInstance<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConstraintInstance"`: Name of this class.
+    /// `"hkpConstraintInstance"`: The original C++ class name.
     #[serde(default = "HkpConstraintInstance::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConstraintInstance<'a> {
 }
 
 impl HkpConstraintInstance<'_> {
-    /// Return `"hkpConstraintInstance"`, which is the name of this class.
+    /// Return `"hkpConstraintInstance"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConstraintInstance".into()
+        "hkpConstraintInstance".into()
     }
 
     /// Return `"0x34eba5f"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkpConstraintInstance<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConstraintInstanceHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"owner"`
     /// -   type: `void*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "owner", skip_serializing)]
     Owner(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `struct hkpConstraintData*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(Box<HkpConstraintData>),
-    /// # Information on fields in the original C++ class
+    Data(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"constraintModifiers"`
     /// -   type: `struct hkpModifierConstraintAtom*`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "constraintModifiers")]
-    ConstraintModifiers(Box<HkpModifierConstraintAtom>),
-    /// # Information on fields in the original C++ class
+    ConstraintModifiers(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"entities"`
     /// -   type: `struct hkpEntity*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "entities")]
-    Entities(Box<HkpEntity>),
-    /// # Information on fields in the original C++ class
+    Entities(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"priority"`
     /// -   type: `enum ConstraintPriority`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "priority")]
     Priority(ConstraintPriority),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wantRuntime"`
     /// -   type: `hkBool`
     /// - offset: 29
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wantRuntime")]
-    WantRuntime(bool),
-    /// # Information on fields in the original C++ class
+    WantRuntime(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"destructionRemapInfo"`
     /// -   type: `enum OnDestructionRemapInfo`
     /// - offset: 30
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "destructionRemapInfo")]
     DestructionRemapInfo(OnDestructionRemapInfo),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"listeners"`
     /// -   type: `struct hkpConstraintInstanceSmallArraySerializeOverrideType`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "listeners", skip_serializing)]
     Listeners(HkpConstraintInstanceSmallArraySerializeOverrideType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"userData"`
     /// -   type: `hkUlong`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData")]
-    UserData(u64),
-    /// # Information on fields in the original C++ class
+    UserData(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"internal"`
     /// -   type: `void*`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "internal", skip_serializing)]
     Internal(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"uid"`
     /// -   type: `hkUint32`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "uid", skip_serializing)]
-    Uid(u32),
+    Uid(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -154,17 +155,17 @@ pub enum HkpConstraintInstanceHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpConstraintInstanceHkParam<'de>, "@name",
     ("owner" => Owner(())),
-    ("data" => Data(Box<HkpConstraintData>)),
-    ("constraintModifiers" => ConstraintModifiers(Box<HkpModifierConstraintAtom>)),
-    ("entities" => Entities(Box<HkpEntity>)),
+    ("data" => Data(Cow<'a, str>)),
+    ("constraintModifiers" => ConstraintModifiers(Cow<'a, str>)),
+    ("entities" => Entities(Cow<'a, str>)),
     ("priority" => Priority(ConstraintPriority)),
-    ("wantRuntime" => WantRuntime(bool)),
+    ("wantRuntime" => WantRuntime(Primitive<bool>)),
     ("destructionRemapInfo" => DestructionRemapInfo(OnDestructionRemapInfo)),
     ("listeners" => Listeners(HkpConstraintInstanceSmallArraySerializeOverrideType)),
-    ("name" => Name(String)),
-    ("userData" => UserData(u64)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("userData" => UserData(Primitive<u64>)),
     ("internal" => Internal(())),
-    ("uid" => Uid(u32)),
+    ("uid" => Uid(Primitive<u32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

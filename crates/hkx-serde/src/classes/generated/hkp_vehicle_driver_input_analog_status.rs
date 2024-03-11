@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleDriverInputAnalogStatus<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleDriverInputAnalogStatus"`: Name of this class.
+    /// `"hkpVehicleDriverInputAnalogStatus"`: The original C++ class name.
     #[serde(default = "HkpVehicleDriverInputAnalogStatus::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleDriverInputAnalogStatus<'a> {
 }
 
 impl HkpVehicleDriverInputAnalogStatus<'_> {
-    /// Return `"hkpVehicleDriverInputAnalogStatus"`, which is the name of this class.
+    /// Return `"hkpVehicleDriverInputAnalogStatus"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleDriverInputAnalogStatus".into()
+        "hkpVehicleDriverInputAnalogStatus".into()
     }
 
     /// Return `"0x2b4a5803"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpVehicleDriverInputAnalogStatus<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDriverInputAnalogStatusHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"positionX"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "positionX")]
-    PositionX(f64),
-    /// # Information on fields in the original C++ class
+    PositionX(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"positionY"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "positionY")]
-    PositionY(f64),
-    /// # Information on fields in the original C++ class
+    PositionY(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"handbrakeButtonPressed"`
     /// -   type: `hkBool`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handbrakeButtonPressed")]
-    HandbrakeButtonPressed(bool),
-    /// # Information on fields in the original C++ class
+    HandbrakeButtonPressed(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"reverseButtonPressed"`
     /// -   type: `hkBool`
     /// - offset: 17
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "reverseButtonPressed")]
-    ReverseButtonPressed(bool),
+    ReverseButtonPressed(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleDriverInputAnalogStatusHkParam<'de>, "@name",
-    ("positionX" => PositionX(f64)),
-    ("positionY" => PositionY(f64)),
-    ("handbrakeButtonPressed" => HandbrakeButtonPressed(bool)),
-    ("reverseButtonPressed" => ReverseButtonPressed(bool)),
+    ("positionX" => PositionX(Primitive<f32>)),
+    ("positionY" => PositionY(Primitive<f32>)),
+    ("handbrakeButtonPressed" => HandbrakeButtonPressed(Primitive<bool>)),
+    ("reverseButtonPressed" => ReverseButtonPressed(Primitive<bool>)),
 }

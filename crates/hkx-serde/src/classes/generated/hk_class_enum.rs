@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkClassEnum<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkClassEnum"`: Name of this class.
+    /// `"hkClassEnum"`: The original C++ class name.
     #[serde(default = "HkClassEnum::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkClassEnum<'a> {
 }
 
 impl HkClassEnum<'_> {
-    /// Return `"hkClassEnum"`, which is the name of this class.
+    /// Return `"hkClassEnum"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkClassEnum".into()
+        "hkClassEnum".into()
     }
 
     /// Return `"0x8a3609cf"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl HkClassEnum<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkClassEnumHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `char*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"items"`
     /// -   type: `hkSimpleArray&lt;struct hkClassEnumItem&gt;`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "items")]
     Items(Vec<HkClassEnumItem>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"attributes"`
     /// -   type: `struct hkCustomAttributes*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "attributes", skip_serializing)]
-    Attributes(Box<HkCustomAttributes>),
-    /// # Information on fields in the original C++ class
+    Attributes(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"flags"`
     /// -   type: `flags FlagValues`
     /// - offset: 16
@@ -97,9 +98,9 @@ pub enum HkClassEnumHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkClassEnumHkParam<'de>, "@name",
-    ("name" => Name(String)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
     ("items" => Items(Vec<HkClassEnumItem>)),
-    ("attributes" => Attributes(Box<HkCustomAttributes>)),
+    ("attributes" => Attributes(Cow<'a, str>)),
     ("flags" => Flags(FlagValues)),
 }
 

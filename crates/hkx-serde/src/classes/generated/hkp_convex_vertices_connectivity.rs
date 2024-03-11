@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConvexVerticesConnectivity<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConvexVerticesConnectivity"`: Name of this class.
+    /// `"hkpConvexVerticesConnectivity"`: The original C++ class name.
     #[serde(default = "HkpConvexVerticesConnectivity::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConvexVerticesConnectivity<'a> {
 }
 
 impl HkpConvexVerticesConnectivity<'_> {
-    /// Return `"hkpConvexVerticesConnectivity"`, which is the name of this class.
+    /// Return `"hkpConvexVerticesConnectivity"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConvexVerticesConnectivity".into()
+        "hkpConvexVerticesConnectivity".into()
     }
 
     /// Return `"0x63d38e9c"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpConvexVerticesConnectivity<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConvexVerticesConnectivityHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexIndices"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexIndices")]
-    VertexIndices(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    VertexIndices(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"numVerticesPerFace"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numVerticesPerFace")]
-    NumVerticesPerFace(Vec<u8>),
+    NumVerticesPerFace(Vec<Primitive<u8>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpConvexVerticesConnectivityHkParam<'de>, "@name",
-    ("vertexIndices" => VertexIndices(Vec<u16>)),
-    ("numVerticesPerFace" => NumVerticesPerFace(Vec<u8>)),
+    ("vertexIndices" => VertexIndices(Vec<Primitive<u16>>)),
+    ("numVerticesPerFace" => NumVerticesPerFace(Vec<Primitive<u8>>)),
 }

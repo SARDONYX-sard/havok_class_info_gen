@@ -24,7 +24,7 @@ use bs_dist_trigger_modifier::*;
 
 mod bs_event_every_n_events_modifier;
 use bs_event_every_n_events_modifier::*;
-/*
+
 mod bs_event_on_deactivate_modifier;
 use bs_event_on_deactivate_modifier::*;
 
@@ -2031,4 +2031,3 @@ use hkx_vertex_selection_channel::*;
 
 mod hkx_vertex_vector_data_channel;
 use hkx_vertex_vector_data_channel::*;
- */

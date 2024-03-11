@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPoweredChainDataConstraintInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPoweredChainDataConstraintInfo"`: Name of this class.
+    /// `"hkpPoweredChainDataConstraintInfo"`: The original C++ class name.
     #[serde(default = "HkpPoweredChainDataConstraintInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPoweredChainDataConstraintInfo<'a> {
 }
 
 impl HkpPoweredChainDataConstraintInfo<'_> {
-    /// Return `"hkpPoweredChainDataConstraintInfo"`, which is the name of this class.
+    /// Return `"hkpPoweredChainDataConstraintInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPoweredChainDataConstraintInfo".into()
+        "hkpPoweredChainDataConstraintInfo".into()
     }
 
     /// Return `"0xf88aee25"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkpPoweredChainDataConstraintInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPoweredChainDataConstraintInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pivotInA"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pivotInA")]
-    PivotInA(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PivotInA(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"pivotInB"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pivotInB")]
-    PivotInB(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PivotInB(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"aTc"`
     /// -   type: `hkQuaternion`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aTc")]
-    ATc(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    ATc(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bTc"`
     /// -   type: `hkQuaternion`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bTc")]
-    BTc(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    BTc(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"motors"`
     /// -   type: `struct hkpConstraintMotor*`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "motors")]
-    Motors(Box<HkpConstraintMotor>),
-    /// # Information on fields in the original C++ class
+    Motors(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"switchBodies"`
     /// -   type: `hkBool`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "switchBodies")]
-    SwitchBodies(bool),
+    SwitchBodies(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpPoweredChainDataConstraintInfoHkParam<'de>, "@name",
-    ("pivotInA" => PivotInA(cgmath::Vector4<f32>)),
-    ("pivotInB" => PivotInB(cgmath::Vector4<f32>)),
-    ("aTc" => ATc(cgmath::Quaternion<f32>)),
-    ("bTc" => BTc(cgmath::Quaternion<f32>)),
-    ("motors" => Motors(Box<HkpConstraintMotor>)),
-    ("switchBodies" => SwitchBodies(bool)),
+    ("pivotInA" => PivotInA(Vector4<f32>)),
+    ("pivotInB" => PivotInB(Vector4<f32>)),
+    ("aTc" => ATc(Quaternion<f32>)),
+    ("bTc" => BTc(Quaternion<f32>)),
+    ("motors" => Motors(Cow<'a, str>)),
+    ("switchBodies" => SwitchBodies(Primitive<bool>)),
 }

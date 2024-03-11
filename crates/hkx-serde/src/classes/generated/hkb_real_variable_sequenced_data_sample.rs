@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbRealVariableSequencedDataSample<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbRealVariableSequencedDataSample"`: Name of this class.
+    /// `"hkbRealVariableSequencedDataSample"`: The original C++ class name.
     #[serde(default = "HkbRealVariableSequencedDataSample::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbRealVariableSequencedDataSample<'a> {
 }
 
 impl HkbRealVariableSequencedDataSample<'_> {
-    /// Return `"hkbRealVariableSequencedDataSample"`, which is the name of this class.
+    /// Return `"hkbRealVariableSequencedDataSample"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbRealVariableSequencedDataSample".into()
+        "hkbRealVariableSequencedDataSample".into()
     }
 
     /// Return `"0xbb708bbd"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkbRealVariableSequencedDataSample<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbRealVariableSequencedDataSampleHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"time"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "time")]
-    Time(f64),
-    /// # Information on fields in the original C++ class
+    Time(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"value"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "value")]
-    Value(f64),
+    Value(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbRealVariableSequencedDataSampleHkParam<'de>, "@name",
-    ("time" => Time(f64)),
-    ("value" => Value(f64)),
+    ("time" => Time(Primitive<f32>)),
+    ("value" => Value(Primitive<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMultiThreadCheck<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMultiThreadCheck"`: Name of this class.
+    /// `"hkMultiThreadCheck"`: The original C++ class name.
     #[serde(default = "HkMultiThreadCheck::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMultiThreadCheck<'a> {
 }
 
 impl HkMultiThreadCheck<'_> {
-    /// Return `"hkMultiThreadCheck"`, which is the name of this class.
+    /// Return `"hkMultiThreadCheck"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMultiThreadCheck".into()
+        "hkMultiThreadCheck".into()
     }
 
     /// Return `"0x11e4408b"`, which is the signature of this class.
@@ -63,44 +64,44 @@ impl HkMultiThreadCheck<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMultiThreadCheckHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"threadId"`
     /// -   type: `hkUint32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "threadId", skip_serializing)]
-    ThreadId(u32),
-    /// # Information on fields in the original C++ class
+    ThreadId(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"stackTraceId"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "stackTraceId", skip_serializing)]
-    StackTraceId(i32),
-    /// # Information on fields in the original C++ class
+    StackTraceId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"markCount"`
     /// -   type: `hkUint16`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "markCount", skip_serializing)]
-    MarkCount(u16),
-    /// # Information on fields in the original C++ class
+    MarkCount(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"markBitStack"`
     /// -   type: `hkUint16`
     /// - offset: 10
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "markBitStack", skip_serializing)]
-    MarkBitStack(u16),
+    MarkBitStack(Primitive<u16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMultiThreadCheckHkParam<'de>, "@name",
-    ("threadId" => ThreadId(u32)),
-    ("stackTraceId" => StackTraceId(i32)),
-    ("markCount" => MarkCount(u16)),
-    ("markBitStack" => MarkBitStack(u16)),
+    ("threadId" => ThreadId(Primitive<u32>)),
+    ("stackTraceId" => StackTraceId(Primitive<i32>)),
+    ("markCount" => MarkCount(Primitive<u16>)),
+    ("markBitStack" => MarkBitStack(Primitive<u16>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

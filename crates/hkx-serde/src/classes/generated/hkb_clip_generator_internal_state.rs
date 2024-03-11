@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbClipGeneratorInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbClipGeneratorInternalState"`: Name of this class.
+    /// `"hkbClipGeneratorInternalState"`: The original C++ class name.
     #[serde(default = "HkbClipGeneratorInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbClipGeneratorInternalState<'a> {
 }
 
 impl HkbClipGeneratorInternalState<'_> {
-    /// Return `"hkbClipGeneratorInternalState"`, which is the name of this class.
+    /// Return `"hkbClipGeneratorInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbClipGeneratorInternalState".into()
+        "hkbClipGeneratorInternalState".into()
     }
 
     /// Return `"0x26ce5bf3"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkbClipGeneratorInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbClipGeneratorInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"extractedMotion"`
     /// -   type: `hkQsTransform`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extractedMotion")]
-    ExtractedMotion(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    ExtractedMotion(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"echos"`
     /// -   type: `hkArray&lt;struct hkbClipGeneratorEcho&gt;`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "echos")]
     Echos(Vec<HkbClipGeneratorEcho>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"localTime"`
     /// -   type: `hkReal`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "localTime")]
-    LocalTime(f64),
-    /// # Information on fields in the original C++ class
+    LocalTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"time"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "time")]
-    Time(f64),
-    /// # Information on fields in the original C++ class
+    Time(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"previousUserControlledTimeFraction"`
     /// -   type: `hkReal`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "previousUserControlledTimeFraction")]
-    PreviousUserControlledTimeFraction(f64),
-    /// # Information on fields in the original C++ class
+    PreviousUserControlledTimeFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bufferSize"`
     /// -   type: `hkInt32`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bufferSize")]
-    BufferSize(i32),
-    /// # Information on fields in the original C++ class
+    BufferSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"echoBufferSize"`
     /// -   type: `hkInt32`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "echoBufferSize")]
-    EchoBufferSize(i32),
-    /// # Information on fields in the original C++ class
+    EchoBufferSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"atEnd"`
     /// -   type: `hkBool`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "atEnd")]
-    AtEnd(bool),
-    /// # Information on fields in the original C++ class
+    AtEnd(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"ignoreStartTime"`
     /// -   type: `hkBool`
     /// - offset: 97
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ignoreStartTime")]
-    IgnoreStartTime(bool),
-    /// # Information on fields in the original C++ class
+    IgnoreStartTime(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"pingPongBackward"`
     /// -   type: `hkBool`
     /// - offset: 98
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pingPongBackward")]
-    PingPongBackward(bool),
+    PingPongBackward(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbClipGeneratorInternalStateHkParam<'de>, "@name",
-    ("extractedMotion" => ExtractedMotion(cgmath::Matrix4<f32>)),
+    ("extractedMotion" => ExtractedMotion(QsTransform<f32>)),
     ("echos" => Echos(Vec<HkbClipGeneratorEcho>)),
-    ("localTime" => LocalTime(f64)),
-    ("time" => Time(f64)),
-    ("previousUserControlledTimeFraction" => PreviousUserControlledTimeFraction(f64)),
-    ("bufferSize" => BufferSize(i32)),
-    ("echoBufferSize" => EchoBufferSize(i32)),
-    ("atEnd" => AtEnd(bool)),
-    ("ignoreStartTime" => IgnoreStartTime(bool)),
-    ("pingPongBackward" => PingPongBackward(bool)),
+    ("localTime" => LocalTime(Primitive<f32>)),
+    ("time" => Time(Primitive<f32>)),
+    ("previousUserControlledTimeFraction" => PreviousUserControlledTimeFraction(Primitive<f32>)),
+    ("bufferSize" => BufferSize(Primitive<i32>)),
+    ("echoBufferSize" => EchoBufferSize(Primitive<i32>)),
+    ("atEnd" => AtEnd(Primitive<bool>)),
+    ("ignoreStartTime" => IgnoreStartTime(Primitive<bool>)),
+    ("pingPongBackward" => PingPongBackward(Primitive<bool>)),
 }

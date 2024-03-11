@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsTimerModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSTimerModifier"`: Name of this class.
+    /// `"BSTimerModifier"`: The original C++ class name.
     #[serde(default = "BsTimerModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsTimerModifier<'a> {
 }
 
 impl BsTimerModifier<'_> {
-    /// Return `"BSTimerModifier"`, which is the name of this class.
+    /// Return `"BSTimerModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsTimerModifier".into()
+        "BSTimerModifier".into()
     }
 
     /// Return `"0x531f3292"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl BsTimerModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsTimerModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"alarmTimeSeconds"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "alarmTimeSeconds")]
-    AlarmTimeSeconds(f64),
-    /// # Information on fields in the original C++ class
+    AlarmTimeSeconds(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"alarmEvent"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "alarmEvent")]
     AlarmEvent(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"resetAlarm"`
     /// -   type: `hkBool`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "resetAlarm")]
-    ResetAlarm(bool),
-    /// # Information on fields in the original C++ class
+    ResetAlarm(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"secondsElapsed"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "secondsElapsed", skip_serializing)]
-    SecondsElapsed(f64),
+    SecondsElapsed(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsTimerModifierHkParam<'de>, "@name",
-    ("alarmTimeSeconds" => AlarmTimeSeconds(f64)),
+    ("alarmTimeSeconds" => AlarmTimeSeconds(Primitive<f32>)),
     ("alarmEvent" => AlarmEvent(HkbEventProperty)),
-    ("resetAlarm" => ResetAlarm(bool)),
-    ("secondsElapsed" => SecondsElapsed(f64)),
+    ("resetAlarm" => ResetAlarm(Primitive<bool>)),
+    ("secondsElapsed" => SecondsElapsed(Primitive<f32>)),
 }

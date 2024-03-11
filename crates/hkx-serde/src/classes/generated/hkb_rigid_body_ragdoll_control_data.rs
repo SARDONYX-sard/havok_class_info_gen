@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbRigidBodyRagdollControlData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbRigidBodyRagdollControlData"`: Name of this class.
+    /// `"hkbRigidBodyRagdollControlData"`: The original C++ class name.
     #[serde(default = "HkbRigidBodyRagdollControlData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbRigidBodyRagdollControlData<'a> {
 }
 
 impl HkbRigidBodyRagdollControlData<'_> {
-    /// Return `"hkbRigidBodyRagdollControlData"`, which is the name of this class.
+    /// Return `"hkbRigidBodyRagdollControlData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbRigidBodyRagdollControlData".into()
+        "hkbRigidBodyRagdollControlData".into()
     }
 
     /// Return `"0x1e0bc068"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkbRigidBodyRagdollControlData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbRigidBodyRagdollControlDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"keyFrameHierarchyControlData"`
     /// -   type: `struct hkaKeyFrameHierarchyUtilityControlData`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "keyFrameHierarchyControlData")]
     KeyFrameHierarchyControlData(HkaKeyFrameHierarchyUtilityControlData),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"durationToBlend"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "durationToBlend")]
-    DurationToBlend(f64),
+    DurationToBlend(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkbRigidBodyRagdollControlDataHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbRigidBodyRagdollControlDataHkParam<'de>, "@name",
     ("keyFrameHierarchyControlData" => KeyFrameHierarchyControlData(HkaKeyFrameHierarchyUtilityControlData)),
-    ("durationToBlend" => DurationToBlend(f64)),
+    ("durationToBlend" => DurationToBlend(Primitive<f32>)),
 }

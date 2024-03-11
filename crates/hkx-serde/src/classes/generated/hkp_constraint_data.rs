@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConstraintData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConstraintData"`: Name of this class.
+    /// `"hkpConstraintData"`: The original C++ class name.
     #[serde(default = "HkpConstraintData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConstraintData<'a> {
 }
 
 impl HkpConstraintData<'_> {
-    /// Return `"hkpConstraintData"`, which is the name of this class.
+    /// Return `"hkpConstraintData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConstraintData".into()
+        "hkpConstraintData".into()
     }
 
     /// Return `"0x80559a4e"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkpConstraintData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConstraintDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"userData"`
     /// -   type: `hkUlong`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData")]
-    UserData(u64),
+    UserData(Primitive<u64>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpConstraintDataHkParam<'de>, "@name",
-    ("userData" => UserData(u64)),
+    ("userData" => UserData(Primitive<u64>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

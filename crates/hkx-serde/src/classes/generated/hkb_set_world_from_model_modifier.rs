@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbSetWorldFromModelModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbSetWorldFromModelModifier"`: Name of this class.
+    /// `"hkbSetWorldFromModelModifier"`: The original C++ class name.
     #[serde(default = "HkbSetWorldFromModelModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbSetWorldFromModelModifier<'a> {
 }
 
 impl HkbSetWorldFromModelModifier<'_> {
-    /// Return `"hkbSetWorldFromModelModifier"`, which is the name of this class.
+    /// Return `"hkbSetWorldFromModelModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbSetWorldFromModelModifier".into()
+        "hkbSetWorldFromModelModifier".into()
     }
 
     /// Return `"0xafcfa211"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbSetWorldFromModelModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbSetWorldFromModelModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"translation"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "translation")]
-    Translation(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Translation(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotation")]
-    Rotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    Rotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"setTranslation"`
     /// -   type: `hkBool`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "setTranslation")]
-    SetTranslation(bool),
-    /// # Information on fields in the original C++ class
+    SetTranslation(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"setRotation"`
     /// -   type: `hkBool`
     /// - offset: 81
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "setRotation")]
-    SetRotation(bool),
+    SetRotation(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbSetWorldFromModelModifierHkParam<'de>, "@name",
-    ("translation" => Translation(cgmath::Vector4<f32>)),
-    ("rotation" => Rotation(cgmath::Quaternion<f32>)),
-    ("setTranslation" => SetTranslation(bool)),
-    ("setRotation" => SetRotation(bool)),
+    ("translation" => Translation(Vector4<f32>)),
+    ("rotation" => Rotation(Quaternion<f32>)),
+    ("setTranslation" => SetTranslation(Primitive<bool>)),
+    ("setRotation" => SetRotation(Primitive<bool>)),
 }

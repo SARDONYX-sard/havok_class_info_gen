@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSimpleShapePhantom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSimpleShapePhantom"`: Name of this class.
+    /// `"hkpSimpleShapePhantom"`: The original C++ class name.
     #[serde(default = "HkpSimpleShapePhantom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSimpleShapePhantom<'a> {
 }
 
 impl HkpSimpleShapePhantom<'_> {
-    /// Return `"hkpSimpleShapePhantom"`, which is the name of this class.
+    /// Return `"hkpSimpleShapePhantom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSimpleShapePhantom".into()
+        "hkpSimpleShapePhantom".into()
     }
 
     /// Return `"0x32a2a8a8"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkpSimpleShapePhantom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSimpleShapePhantomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"collisionDetails"`
     /// -   type: `hkArray&lt;struct hkpSimpleShapePhantomCollisionDetail&gt;`
     /// - offset: 352
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "collisionDetails", skip_serializing)]
     CollisionDetails(Vec<HkpSimpleShapePhantomCollisionDetail>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"orderDirty"`
     /// -   type: `hkBool`
     /// - offset: 364
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "orderDirty", skip_serializing)]
-    OrderDirty(bool),
+    OrderDirty(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkpSimpleShapePhantomHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpSimpleShapePhantomHkParam<'de>, "@name",
     ("collisionDetails" => CollisionDetails(Vec<HkpSimpleShapePhantomCollisionDetail>)),
-    ("orderDirty" => OrderDirty(bool)),
+    ("orderDirty" => OrderDirty(Primitive<bool>)),
 }

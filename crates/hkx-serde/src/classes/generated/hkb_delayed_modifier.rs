@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbDelayedModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbDelayedModifier"`: Name of this class.
+    /// `"hkbDelayedModifier"`: The original C++ class name.
     #[serde(default = "HkbDelayedModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbDelayedModifier<'a> {
 }
 
 impl HkbDelayedModifier<'_> {
-    /// Return `"hkbDelayedModifier"`, which is the name of this class.
+    /// Return `"hkbDelayedModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbDelayedModifier".into()
+        "hkbDelayedModifier".into()
     }
 
     /// Return `"0x8e101a7a"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbDelayedModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbDelayedModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"delaySeconds"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "delaySeconds")]
-    DelaySeconds(f64),
-    /// # Information on fields in the original C++ class
+    DelaySeconds(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"durationSeconds"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "durationSeconds")]
-    DurationSeconds(f64),
-    /// # Information on fields in the original C++ class
+    DurationSeconds(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"secondsElapsed"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "secondsElapsed", skip_serializing)]
-    SecondsElapsed(f64),
-    /// # Information on fields in the original C++ class
+    SecondsElapsed(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isActive"`
     /// -   type: `hkBool`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "isActive", skip_serializing)]
-    IsActive(bool),
+    IsActive(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbDelayedModifierHkParam<'de>, "@name",
-    ("delaySeconds" => DelaySeconds(f64)),
-    ("durationSeconds" => DurationSeconds(f64)),
-    ("secondsElapsed" => SecondsElapsed(f64)),
-    ("isActive" => IsActive(bool)),
+    ("delaySeconds" => DelaySeconds(Primitive<f32>)),
+    ("durationSeconds" => DurationSeconds(Primitive<f32>)),
+    ("secondsElapsed" => SecondsElapsed(Primitive<f32>)),
+    ("isActive" => IsActive(Primitive<bool>)),
 }

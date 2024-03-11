@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMotionState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMotionState"`: Name of this class.
+    /// `"hkMotionState"`: The original C++ class name.
     #[serde(default = "HkMotionState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMotionState<'a> {
 }
 
 impl HkMotionState<'_> {
-    /// Return `"hkMotionState"`, which is the name of this class.
+    /// Return `"hkMotionState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMotionState".into()
+        "hkMotionState".into()
     }
 
     /// Return `"0x5797386e"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkMotionState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMotionStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transform"`
     /// -   type: `hkTransform`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transform")]
-    Transform(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    Transform(Transform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sweptTransform"`
     /// -   type: `struct hkSweptTransform`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sweptTransform")]
     SweptTransform(HkSweptTransform),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"deltaAngle"`
     /// -   type: `hkVector4`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "deltaAngle")]
-    DeltaAngle(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    DeltaAngle(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"objectRadius"`
     /// -   type: `hkReal`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "objectRadius")]
-    ObjectRadius(f64),
-    /// # Information on fields in the original C++ class
+    ObjectRadius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"linearDamping"`
     /// -   type: `hkHalf`
     /// - offset: 164
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "linearDamping")]
-    LinearDamping(f32),
-    /// # Information on fields in the original C++ class
+    LinearDamping(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"angularDamping"`
     /// -   type: `hkHalf`
     /// - offset: 166
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angularDamping")]
-    AngularDamping(f32),
-    /// # Information on fields in the original C++ class
+    AngularDamping(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeFactor"`
     /// -   type: `hkHalf`
     /// - offset: 168
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timeFactor")]
-    TimeFactor(f32),
-    /// # Information on fields in the original C++ class
+    TimeFactor(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxLinearVelocity"`
     /// -   type: `hkUint8`
     /// - offset: 170
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxLinearVelocity")]
-    MaxLinearVelocity(u8),
-    /// # Information on fields in the original C++ class
+    MaxLinearVelocity(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxAngularVelocity"`
     /// -   type: `hkUint8`
     /// - offset: 171
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxAngularVelocity")]
-    MaxAngularVelocity(u8),
-    /// # Information on fields in the original C++ class
+    MaxAngularVelocity(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"deactivationClass"`
     /// -   type: `hkUint8`
     /// - offset: 172
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "deactivationClass")]
-    DeactivationClass(u8),
+    DeactivationClass(Primitive<u8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMotionStateHkParam<'de>, "@name",
-    ("transform" => Transform(cgmath::Matrix4<f32>)),
+    ("transform" => Transform(Transform<f32>)),
     ("sweptTransform" => SweptTransform(HkSweptTransform)),
-    ("deltaAngle" => DeltaAngle(cgmath::Vector4<f32>)),
-    ("objectRadius" => ObjectRadius(f64)),
-    ("linearDamping" => LinearDamping(f32)),
-    ("angularDamping" => AngularDamping(f32)),
-    ("timeFactor" => TimeFactor(f32)),
-    ("maxLinearVelocity" => MaxLinearVelocity(u8)),
-    ("maxAngularVelocity" => MaxAngularVelocity(u8)),
-    ("deactivationClass" => DeactivationClass(u8)),
+    ("deltaAngle" => DeltaAngle(Vector4<f32>)),
+    ("objectRadius" => ObjectRadius(Primitive<f32>)),
+    ("linearDamping" => LinearDamping(Primitive<f32>)),
+    ("angularDamping" => AngularDamping(Primitive<f32>)),
+    ("timeFactor" => TimeFactor(Primitive<f32>)),
+    ("maxLinearVelocity" => MaxLinearVelocity(Primitive<u8>)),
+    ("maxAngularVelocity" => MaxAngularVelocity(Primitive<u8>)),
+    ("deactivationClass" => DeactivationClass(Primitive<u8>)),
 }

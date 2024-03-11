@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsPassByTargetTriggerModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSPassByTargetTriggerModifier"`: Name of this class.
+    /// `"BSPassByTargetTriggerModifier"`: The original C++ class name.
     #[serde(default = "BsPassByTargetTriggerModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsPassByTargetTriggerModifier<'a> {
 }
 
 impl BsPassByTargetTriggerModifier<'_> {
-    /// Return `"BSPassByTargetTriggerModifier"`, which is the name of this class.
+    /// Return `"BSPassByTargetTriggerModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsPassByTargetTriggerModifier".into()
+        "BSPassByTargetTriggerModifier".into()
     }
 
     /// Return `"0x703d7b66"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl BsPassByTargetTriggerModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsPassByTargetTriggerModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"targetPosition"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "targetPosition")]
-    TargetPosition(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    TargetPosition(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"radius"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "radius")]
-    Radius(f64),
-    /// # Information on fields in the original C++ class
+    Radius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"movementDirection"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "movementDirection")]
-    MovementDirection(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    MovementDirection(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"triggerEvent"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "triggerEvent")]
     TriggerEvent(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"targetPassed"`
     /// -   type: `hkBool`
     /// - offset: 104
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "targetPassed", skip_serializing)]
-    TargetPassed(bool),
+    TargetPassed(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsPassByTargetTriggerModifierHkParam<'de>, "@name",
-    ("targetPosition" => TargetPosition(cgmath::Vector4<f32>)),
-    ("radius" => Radius(f64)),
-    ("movementDirection" => MovementDirection(cgmath::Vector4<f32>)),
+    ("targetPosition" => TargetPosition(Vector4<f32>)),
+    ("radius" => Radius(Primitive<f32>)),
+    ("movementDirection" => MovementDirection(Vector4<f32>)),
     ("triggerEvent" => TriggerEvent(HkbEventProperty)),
-    ("targetPassed" => TargetPassed(bool)),
+    ("targetPassed" => TargetPassed(Primitive<bool>)),
 }

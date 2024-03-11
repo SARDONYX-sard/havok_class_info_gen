@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbStateMachineStateInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbStateMachineStateInfo"`: Name of this class.
+    /// `"hkbStateMachineStateInfo"`: The original C++ class name.
     #[serde(default = "HkbStateMachineStateInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbStateMachineStateInfo<'a> {
 }
 
 impl HkbStateMachineStateInfo<'_> {
-    /// Return `"hkbStateMachineStateInfo"`, which is the name of this class.
+    /// Return `"hkbStateMachineStateInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbStateMachineStateInfo".into()
+        "hkbStateMachineStateInfo".into()
     }
 
     /// Return `"0xed7f9d0"`, which is the signature of this class.
@@ -63,82 +64,82 @@ impl HkbStateMachineStateInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbStateMachineStateInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"listeners"`
     /// -   type: `hkArray&lt;hkbStateListener*&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "listeners")]
-    Listeners(Vec<Box<HkbStateListener>>),
-    /// # Information on fields in the original C++ class
+    Listeners(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"enterNotifyEvents"`
     /// -   type: `struct hkbStateMachineEventPropertyArray*`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enterNotifyEvents")]
-    EnterNotifyEvents(Box<HkbStateMachineEventPropertyArray>),
-    /// # Information on fields in the original C++ class
+    EnterNotifyEvents(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"exitNotifyEvents"`
     /// -   type: `struct hkbStateMachineEventPropertyArray*`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "exitNotifyEvents")]
-    ExitNotifyEvents(Box<HkbStateMachineEventPropertyArray>),
-    /// # Information on fields in the original C++ class
+    ExitNotifyEvents(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"transitions"`
     /// -   type: `struct hkbStateMachineTransitionInfoArray*`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transitions")]
-    Transitions(Box<HkbStateMachineTransitionInfoArray>),
-    /// # Information on fields in the original C++ class
+    Transitions(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"generator"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "generator")]
-    Generator(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    Generator(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"stateId"`
     /// -   type: `hkInt32`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stateId")]
-    StateId(i32),
-    /// # Information on fields in the original C++ class
+    StateId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"probability"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "probability")]
-    Probability(f64),
-    /// # Information on fields in the original C++ class
+    Probability(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"enable"`
     /// -   type: `hkBool`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "enable")]
-    Enable(bool),
+    Enable(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbStateMachineStateInfoHkParam<'de>, "@name",
-    ("listeners" => Listeners(Vec<Box<HkbStateListener>>)),
-    ("enterNotifyEvents" => EnterNotifyEvents(Box<HkbStateMachineEventPropertyArray>)),
-    ("exitNotifyEvents" => ExitNotifyEvents(Box<HkbStateMachineEventPropertyArray>)),
-    ("transitions" => Transitions(Box<HkbStateMachineTransitionInfoArray>)),
-    ("generator" => Generator(Box<HkbGenerator>)),
-    ("name" => Name(String)),
-    ("stateId" => StateId(i32)),
-    ("probability" => Probability(f64)),
-    ("enable" => Enable(bool)),
+    ("listeners" => Listeners(Vec<Cow<'a, str>>)),
+    ("enterNotifyEvents" => EnterNotifyEvents(Cow<'a, str>)),
+    ("exitNotifyEvents" => ExitNotifyEvents(Cow<'a, str>)),
+    ("transitions" => Transitions(Cow<'a, str>)),
+    ("generator" => Generator(Cow<'a, str>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("stateId" => StateId(Primitive<i32>)),
+    ("probability" => Probability(Primitive<f32>)),
+    ("enable" => Enable(Primitive<bool>)),
 }

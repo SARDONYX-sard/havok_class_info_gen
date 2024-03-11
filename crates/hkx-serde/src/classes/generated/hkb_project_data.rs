@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbProjectData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbProjectData"`: Name of this class.
+    /// `"hkbProjectData"`: The original C++ class name.
     #[serde(default = "HkbProjectData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbProjectData<'a> {
 }
 
 impl HkbProjectData<'_> {
-    /// Return `"hkbProjectData"`, which is the name of this class.
+    /// Return `"hkbProjectData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbProjectData".into()
+        "hkbProjectData".into()
     }
 
     /// Return `"0x13a39ba7"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl HkbProjectData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbProjectDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"worldUpWS"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "worldUpWS")]
-    WorldUpWs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    WorldUpWs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"stringData"`
     /// -   type: `struct hkbProjectStringData*`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stringData")]
-    StringData(Box<HkbProjectStringData>),
-    /// # Information on fields in the original C++ class
+    StringData(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"defaultEventMode"`
     /// -   type: `enum EventMode`
     /// - offset: 36
@@ -90,7 +91,7 @@ pub enum HkbProjectDataHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbProjectDataHkParam<'de>, "@name",
-    ("worldUpWS" => WorldUpWs(cgmath::Vector4<f32>)),
-    ("stringData" => StringData(Box<HkbProjectStringData>)),
+    ("worldUpWS" => WorldUpWs(Vector4<f32>)),
+    ("stringData" => StringData(Cow<'a, str>)),
     ("defaultEventMode" => DefaultEventMode(EventMode)),
 }

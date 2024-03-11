@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxMaterialShader<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxMaterialShader"`: Name of this class.
+    /// `"hkxMaterialShader"`: The original C++ class name.
     #[serde(default = "HkxMaterialShader::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxMaterialShader<'a> {
 }
 
 impl HkxMaterialShader<'_> {
-    /// Return `"hkxMaterialShader"`, which is the name of this class.
+    /// Return `"hkxMaterialShader"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxMaterialShader".into()
+        "hkxMaterialShader".into()
     }
 
     /// Return `"0x28515eff"`, which is the signature of this class.
@@ -63,60 +64,60 @@ impl HkxMaterialShader<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxMaterialShaderHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum ShaderType`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(ShaderType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexEntryName"`
     /// -   type: `hkStringPtr`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexEntryName")]
-    VertexEntryName(String),
-    /// # Information on fields in the original C++ class
+    VertexEntryName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"geomEntryName"`
     /// -   type: `hkStringPtr`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "geomEntryName")]
-    GeomEntryName(String),
-    /// # Information on fields in the original C++ class
+    GeomEntryName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"pixelEntryName"`
     /// -   type: `hkStringPtr`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pixelEntryName")]
-    PixelEntryName(String),
-    /// # Information on fields in the original C++ class
+    PixelEntryName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(Vec<u8>),
+    Data(Vec<Primitive<u8>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxMaterialShaderHkParam<'de>, "@name",
-    ("name" => Name(String)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
     ("type" => Type(ShaderType)),
-    ("vertexEntryName" => VertexEntryName(String)),
-    ("geomEntryName" => GeomEntryName(String)),
-    ("pixelEntryName" => PixelEntryName(String)),
-    ("data" => Data(Vec<u8>)),
+    ("vertexEntryName" => VertexEntryName(Primitive<Cow<'a, str>>)),
+    ("geomEntryName" => GeomEntryName(Primitive<Cow<'a, str>>)),
+    ("pixelEntryName" => PixelEntryName(Primitive<Cow<'a, str>>)),
+    ("data" => Data(Vec<Primitive<u8>>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsModifyOnceModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSModifyOnceModifier"`: Name of this class.
+    /// `"BSModifyOnceModifier"`: The original C++ class name.
     #[serde(default = "BsModifyOnceModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsModifyOnceModifier<'a> {
 }
 
 impl BsModifyOnceModifier<'_> {
-    /// Return `"BSModifyOnceModifier"`, which is the name of this class.
+    /// Return `"BSModifyOnceModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsModifyOnceModifier".into()
+        "BSModifyOnceModifier".into()
     }
 
     /// Return `"0x1e20a97a"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl BsModifyOnceModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsModifyOnceModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pOnActivateModifier"`
     /// -   type: `struct hkbModifier*`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "pOnActivateModifier")]
-    POnActivateModifier(Box<HkbModifier>),
-    /// # Information on fields in the original C++ class
+    POnActivateModifier(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"pOnDeactivateModifier"`
     /// -   type: `struct hkbModifier*`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "pOnDeactivateModifier")]
-    POnDeactivateModifier(Box<HkbModifier>),
+    POnDeactivateModifier(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsModifyOnceModifierHkParam<'de>, "@name",
-    ("pOnActivateModifier" => POnActivateModifier(Box<HkbModifier>)),
-    ("pOnDeactivateModifier" => POnDeactivateModifier(Box<HkbModifier>)),
+    ("pOnActivateModifier" => POnActivateModifier(Cow<'a, str>)),
+    ("pOnDeactivateModifier" => POnDeactivateModifier(Cow<'a, str>)),
 }

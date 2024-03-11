@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsRagdollContactListenerModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSRagdollContactListenerModifier"`: Name of this class.
+    /// `"BSRagdollContactListenerModifier"`: The original C++ class name.
     #[serde(default = "BsRagdollContactListenerModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsRagdollContactListenerModifier<'a> {
 }
 
 impl BsRagdollContactListenerModifier<'_> {
-    /// Return `"BSRagdollContactListenerModifier"`, which is the name of this class.
+    /// Return `"BSRagdollContactListenerModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsRagdollContactListenerModifier".into()
+        "BSRagdollContactListenerModifier".into()
     }
 
     /// Return `"0x8003d8ce"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl BsRagdollContactListenerModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsRagdollContactListenerModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"contactEvent"`
     /// -   type: `struct hkbEventProperty`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "contactEvent")]
     ContactEvent(HkbEventProperty),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bones"`
     /// -   type: `struct hkbBoneIndexArray*`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bones")]
-    Bones(Box<HkbBoneIndexArray>),
-    /// # Information on fields in the original C++ class
+    Bones(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"throwEvent"`
     /// -   type: `hkBool`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "throwEvent", skip_serializing)]
-    ThrowEvent(bool),
-    /// # Information on fields in the original C++ class
+    ThrowEvent(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"ragdollRigidBodies"`
     /// -   type: `hkArray&lt;void*&gt;`
     /// - offset: 64
@@ -98,7 +99,7 @@ pub enum BsRagdollContactListenerModifierHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     BsRagdollContactListenerModifierHkParam<'de>, "@name",
     ("contactEvent" => ContactEvent(HkbEventProperty)),
-    ("bones" => Bones(Box<HkbBoneIndexArray>)),
-    ("throwEvent" => ThrowEvent(bool)),
+    ("bones" => Bones(Cow<'a, str>)),
+    ("throwEvent" => ThrowEvent(Primitive<bool>)),
     ("ragdollRigidBodies" => RagdollRigidBodies(Vec<()>)),
 }

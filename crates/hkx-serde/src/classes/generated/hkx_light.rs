@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxLight<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxLight"`: Name of this class.
+    /// `"hkxLight"`: The original C++ class name.
     #[serde(default = "HkxLight::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxLight<'a> {
 }
 
 impl HkxLight<'_> {
-    /// Return `"hkxLight"`, which is the name of this class.
+    /// Return `"hkxLight"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxLight".into()
+        "hkxLight".into()
     }
 
     /// Return `"0x81c86d42"`, which is the signature of this class.
@@ -63,41 +64,41 @@ impl HkxLight<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxLightHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum LightType`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(LightType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"position"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "position")]
-    Position(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Position(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"direction"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "direction")]
-    Direction(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Direction(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"color"`
     /// -   type: `hkUint32`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "color")]
-    Color(u32),
-    /// # Information on fields in the original C++ class
+    Color(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"angle"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angle")]
-    Angle(f64),
+    Angle(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -105,10 +106,10 @@ pub enum HkxLightHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkxLightHkParam<'de>, "@name",
     ("type" => Type(LightType)),
-    ("position" => Position(cgmath::Vector4<f32>)),
-    ("direction" => Direction(cgmath::Vector4<f32>)),
-    ("color" => Color(u32)),
-    ("angle" => Angle(f64)),
+    ("position" => Position(Vector4<f32>)),
+    ("direction" => Direction(Vector4<f32>)),
+    ("color" => Color(Primitive<u32>)),
+    ("angle" => Angle(Primitive<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

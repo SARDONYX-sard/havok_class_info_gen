@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaMeshBinding<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaMeshBinding"`: Name of this class.
+    /// `"hkaMeshBinding"`: The original C++ class name.
     #[serde(default = "HkaMeshBinding::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaMeshBinding<'a> {
 }
 
 impl HkaMeshBinding<'_> {
-    /// Return `"hkaMeshBinding"`, which is the name of this class.
+    /// Return `"hkaMeshBinding"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaMeshBinding".into()
+        "hkaMeshBinding".into()
     }
 
     /// Return `"0x81d9950b"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkaMeshBinding<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaMeshBindingHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"mesh"`
     /// -   type: `struct hkxMesh*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mesh")]
-    Mesh(Box<HkxMesh>),
-    /// # Information on fields in the original C++ class
+    Mesh(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"originalSkeletonName"`
     /// -   type: `hkStringPtr`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "originalSkeletonName")]
-    OriginalSkeletonName(String),
-    /// # Information on fields in the original C++ class
+    OriginalSkeletonName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"skeleton"`
     /// -   type: `struct hkaSkeleton*`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "skeleton")]
-    Skeleton(Box<HkaSkeleton>),
-    /// # Information on fields in the original C++ class
+    Skeleton(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"mappings"`
     /// -   type: `hkArray&lt;struct hkaMeshBindingMapping&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mappings")]
     Mappings(Vec<HkaMeshBindingMapping>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"boneFromSkinMeshTransforms"`
     /// -   type: `hkArray&lt;hkTransform&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneFromSkinMeshTransforms")]
-    BoneFromSkinMeshTransforms(Vec<cgmath::Matrix4<f32>>),
+    BoneFromSkinMeshTransforms(Vec<Transform<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaMeshBindingHkParam<'de>, "@name",
-    ("mesh" => Mesh(Box<HkxMesh>)),
-    ("originalSkeletonName" => OriginalSkeletonName(String)),
-    ("skeleton" => Skeleton(Box<HkaSkeleton>)),
+    ("mesh" => Mesh(Cow<'a, str>)),
+    ("originalSkeletonName" => OriginalSkeletonName(Primitive<Cow<'a, str>>)),
+    ("skeleton" => Skeleton(Cow<'a, str>)),
     ("mappings" => Mappings(Vec<HkaMeshBindingMapping>)),
-    ("boneFromSkinMeshTransforms" => BoneFromSkinMeshTransforms(Vec<cgmath::Matrix4<f32>>)),
+    ("boneFromSkinMeshTransforms" => BoneFromSkinMeshTransforms(Vec<Transform<f32>>)),
 }

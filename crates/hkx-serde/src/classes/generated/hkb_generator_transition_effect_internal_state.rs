@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbGeneratorTransitionEffectInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbGeneratorTransitionEffectInternalState"`: Name of this class.
+    /// `"hkbGeneratorTransitionEffectInternalState"`: The original C++ class name.
     #[serde(default = "HkbGeneratorTransitionEffectInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbGeneratorTransitionEffectInternalState<'a> {
 }
 
 impl HkbGeneratorTransitionEffectInternalState<'_> {
-    /// Return `"hkbGeneratorTransitionEffectInternalState"`, which is the name of this class.
+    /// Return `"hkbGeneratorTransitionEffectInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbGeneratorTransitionEffectInternalState".into()
+        "hkbGeneratorTransitionEffectInternalState".into()
     }
 
     /// Return `"0xd6692b5d"`, which is the signature of this class.
@@ -63,70 +64,70 @@ impl HkbGeneratorTransitionEffectInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbGeneratorTransitionEffectInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"timeInTransition"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timeInTransition")]
-    TimeInTransition(f64),
-    /// # Information on fields in the original C++ class
+    TimeInTransition(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"duration"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "duration")]
-    Duration(f64),
-    /// # Information on fields in the original C++ class
+    Duration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"effectiveBlendInDuration"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "effectiveBlendInDuration")]
-    EffectiveBlendInDuration(f64),
-    /// # Information on fields in the original C++ class
+    EffectiveBlendInDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"effectiveBlendOutDuration"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "effectiveBlendOutDuration")]
-    EffectiveBlendOutDuration(f64),
-    /// # Information on fields in the original C++ class
+    EffectiveBlendOutDuration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"toGeneratorState"`
     /// -   type: `enum ToGeneratorState`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "toGeneratorState")]
     ToGeneratorState(ToGeneratorState),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"echoTransitionGenerator"`
     /// -   type: `hkBool`
     /// - offset: 25
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "echoTransitionGenerator")]
-    EchoTransitionGenerator(bool),
-    /// # Information on fields in the original C++ class
+    EchoTransitionGenerator(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"echoToGenerator"`
     /// -   type: `hkBool`
     /// - offset: 26
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "echoToGenerator")]
-    EchoToGenerator(bool),
-    /// # Information on fields in the original C++ class
+    EchoToGenerator(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"justActivated"`
     /// -   type: `hkBool`
     /// - offset: 27
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "justActivated")]
-    JustActivated(bool),
-    /// # Information on fields in the original C++ class
+    JustActivated(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"updateActiveNodes"`
     /// -   type: `hkBool`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "updateActiveNodes")]
-    UpdateActiveNodes(bool),
-    /// # Information on fields in the original C++ class
+    UpdateActiveNodes(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"stage"`
     /// -   type: `enum Stage`
     /// - offset: 29
@@ -139,14 +140,14 @@ pub enum HkbGeneratorTransitionEffectInternalStateHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbGeneratorTransitionEffectInternalStateHkParam<'de>, "@name",
-    ("timeInTransition" => TimeInTransition(f64)),
-    ("duration" => Duration(f64)),
-    ("effectiveBlendInDuration" => EffectiveBlendInDuration(f64)),
-    ("effectiveBlendOutDuration" => EffectiveBlendOutDuration(f64)),
+    ("timeInTransition" => TimeInTransition(Primitive<f32>)),
+    ("duration" => Duration(Primitive<f32>)),
+    ("effectiveBlendInDuration" => EffectiveBlendInDuration(Primitive<f32>)),
+    ("effectiveBlendOutDuration" => EffectiveBlendOutDuration(Primitive<f32>)),
     ("toGeneratorState" => ToGeneratorState(ToGeneratorState)),
-    ("echoTransitionGenerator" => EchoTransitionGenerator(bool)),
-    ("echoToGenerator" => EchoToGenerator(bool)),
-    ("justActivated" => JustActivated(bool)),
-    ("updateActiveNodes" => UpdateActiveNodes(bool)),
+    ("echoTransitionGenerator" => EchoTransitionGenerator(Primitive<bool>)),
+    ("echoToGenerator" => EchoToGenerator(Primitive<bool>)),
+    ("justActivated" => JustActivated(Primitive<bool>)),
+    ("updateActiveNodes" => UpdateActiveNodes(Primitive<bool>)),
     ("stage" => Stage(Stage)),
 }

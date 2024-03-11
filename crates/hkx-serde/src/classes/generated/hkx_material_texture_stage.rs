@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxMaterialTextureStage<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxMaterialTextureStage"`: Name of this class.
+    /// `"hkxMaterialTextureStage"`: The original C++ class name.
     #[serde(default = "HkxMaterialTextureStage::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxMaterialTextureStage<'a> {
 }
 
 impl HkxMaterialTextureStage<'_> {
-    /// Return `"hkxMaterialTextureStage"`, which is the name of this class.
+    /// Return `"hkxMaterialTextureStage"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxMaterialTextureStage".into()
+        "hkxMaterialTextureStage".into()
     }
 
     /// Return `"0xfa6facb2"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkxMaterialTextureStage<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxMaterialTextureStageHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"texture"`
     /// -   type: `struct hkReferencedObject*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "texture")]
-    Texture(Box<HkReferencedObject>),
-    /// # Information on fields in the original C++ class
+    Texture(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"usageHint"`
     /// -   type: `enum TextureType`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "usageHint")]
     UsageHint(TextureType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"tcoordChannel"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "tcoordChannel")]
-    TcoordChannel(i32),
+    TcoordChannel(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxMaterialTextureStageHkParam<'de>, "@name",
-    ("texture" => Texture(Box<HkReferencedObject>)),
+    ("texture" => Texture(Cow<'a, str>)),
     ("usageHint" => UsageHint(TextureType)),
-    ("tcoordChannel" => TcoordChannel(i32)),
+    ("tcoordChannel" => TcoordChannel(Primitive<i32>)),
 }

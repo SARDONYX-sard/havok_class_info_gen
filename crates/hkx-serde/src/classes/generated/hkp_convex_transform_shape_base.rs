@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConvexTransformShapeBase<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConvexTransformShapeBase"`: Name of this class.
+    /// `"hkpConvexTransformShapeBase"`: The original C++ class name.
     #[serde(default = "HkpConvexTransformShapeBase::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConvexTransformShapeBase<'a> {
 }
 
 impl HkpConvexTransformShapeBase<'_> {
-    /// Return `"hkpConvexTransformShapeBase"`, which is the name of this class.
+    /// Return `"hkpConvexTransformShapeBase"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConvexTransformShapeBase".into()
+        "hkpConvexTransformShapeBase".into()
     }
 
     /// Return `"0xfbd72f9"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkpConvexTransformShapeBase<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConvexTransformShapeBaseHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childShape"`
     /// -   type: `struct hkpSingleShapeContainer`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childShape")]
     ChildShape(HkpSingleShapeContainer),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childShapeSize"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "childShapeSize", skip_serializing)]
-    ChildShapeSize(i32),
+    ChildShapeSize(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkpConvexTransformShapeBaseHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpConvexTransformShapeBaseHkParam<'de>, "@name",
     ("childShape" => ChildShape(HkpSingleShapeContainer)),
-    ("childShapeSize" => ChildShapeSize(i32)),
+    ("childShapeSize" => ChildShapeSize(Primitive<i32>)),
 }

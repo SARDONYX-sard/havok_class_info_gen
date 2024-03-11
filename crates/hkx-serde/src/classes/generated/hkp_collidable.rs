@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCollidable<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCollidable"`: Name of this class.
+    /// `"hkpCollidable"`: The original C++ class name.
     #[serde(default = "HkpCollidable::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCollidable<'a> {
 }
 
 impl HkpCollidable<'_> {
-    /// Return `"hkpCollidable"`, which is the name of this class.
+    /// Return `"hkpCollidable"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCollidable".into()
+        "hkpCollidable".into()
     }
 
     /// Return `"0x9a0e42a5"`, which is the signature of this class.
@@ -63,60 +64,60 @@ impl HkpCollidable<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCollidableHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ownerOffset"`
     /// -   type: `hkInt8`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "ownerOffset", skip_serializing)]
-    OwnerOffset(i8),
-    /// # Information on fields in the original C++ class
+    OwnerOffset(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"forceCollideOntoPpu"`
     /// -   type: `hkUint8`
     /// - offset: 17
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forceCollideOntoPpu")]
-    ForceCollideOntoPpu(u8),
-    /// # Information on fields in the original C++ class
+    ForceCollideOntoPpu(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"shapeSizeOnSpu"`
     /// -   type: `hkUint16`
     /// - offset: 18
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "shapeSizeOnSpu", skip_serializing)]
-    ShapeSizeOnSpu(u16),
-    /// # Information on fields in the original C++ class
+    ShapeSizeOnSpu(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"broadPhaseHandle"`
     /// -   type: `struct hkpTypedBroadPhaseHandle`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "broadPhaseHandle")]
     BroadPhaseHandle(HkpTypedBroadPhaseHandle),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"boundingVolumeData"`
     /// -   type: `struct hkpCollidableBoundingVolumeData`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "boundingVolumeData", skip_serializing)]
     BoundingVolumeData(HkpCollidableBoundingVolumeData),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"allowedPenetrationDepth"`
     /// -   type: `hkReal`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "allowedPenetrationDepth")]
-    AllowedPenetrationDepth(f64),
+    AllowedPenetrationDepth(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCollidableHkParam<'de>, "@name",
-    ("ownerOffset" => OwnerOffset(i8)),
-    ("forceCollideOntoPpu" => ForceCollideOntoPpu(u8)),
-    ("shapeSizeOnSpu" => ShapeSizeOnSpu(u16)),
+    ("ownerOffset" => OwnerOffset(Primitive<i8>)),
+    ("forceCollideOntoPpu" => ForceCollideOntoPpu(Primitive<u8>)),
+    ("shapeSizeOnSpu" => ShapeSizeOnSpu(Primitive<u16>)),
     ("broadPhaseHandle" => BroadPhaseHandle(HkpTypedBroadPhaseHandle)),
     ("boundingVolumeData" => BoundingVolumeData(HkpCollidableBoundingVolumeData)),
-    ("allowedPenetrationDepth" => AllowedPenetrationDepth(f64)),
+    ("allowedPenetrationDepth" => AllowedPenetrationDepth(Primitive<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBlenderGeneratorInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBlenderGeneratorInternalState"`: Name of this class.
+    /// `"hkbBlenderGeneratorInternalState"`: The original C++ class name.
     #[serde(default = "HkbBlenderGeneratorInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBlenderGeneratorInternalState<'a> {
 }
 
 impl HkbBlenderGeneratorInternalState<'_> {
-    /// Return `"hkbBlenderGeneratorInternalState"`, which is the name of this class.
+    /// Return `"hkbBlenderGeneratorInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBlenderGeneratorInternalState".into()
+        "hkbBlenderGeneratorInternalState".into()
     }
 
     /// Return `"0x84717488"`, which is the signature of this class.
@@ -63,62 +64,62 @@ impl HkbBlenderGeneratorInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBlenderGeneratorInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"childrenInternalStates"`
     /// -   type: `hkArray&lt;struct hkbBlenderGeneratorChildInternalState&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childrenInternalStates")]
     ChildrenInternalStates(Vec<HkbBlenderGeneratorChildInternalState>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sortedChildren"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sortedChildren")]
-    SortedChildren(Vec<i16>),
-    /// # Information on fields in the original C++ class
+    SortedChildren(Vec<Primitive<i16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"endIntervalWeight"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endIntervalWeight")]
-    EndIntervalWeight(f64),
-    /// # Information on fields in the original C++ class
+    EndIntervalWeight(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numActiveChildren"`
     /// -   type: `hkInt32`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numActiveChildren")]
-    NumActiveChildren(i32),
-    /// # Information on fields in the original C++ class
+    NumActiveChildren(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"beginIntervalIndex"`
     /// -   type: `hkInt16`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "beginIntervalIndex")]
-    BeginIntervalIndex(i16),
-    /// # Information on fields in the original C++ class
+    BeginIntervalIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"endIntervalIndex"`
     /// -   type: `hkInt16`
     /// - offset: 42
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "endIntervalIndex")]
-    EndIntervalIndex(i16),
-    /// # Information on fields in the original C++ class
+    EndIntervalIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"initSync"`
     /// -   type: `hkBool`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initSync")]
-    InitSync(bool),
-    /// # Information on fields in the original C++ class
+    InitSync(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"doSubtractiveBlend"`
     /// -   type: `hkBool`
     /// - offset: 45
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "doSubtractiveBlend")]
-    DoSubtractiveBlend(bool),
+    DoSubtractiveBlend(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -126,11 +127,11 @@ pub enum HkbBlenderGeneratorInternalStateHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbBlenderGeneratorInternalStateHkParam<'de>, "@name",
     ("childrenInternalStates" => ChildrenInternalStates(Vec<HkbBlenderGeneratorChildInternalState>)),
-    ("sortedChildren" => SortedChildren(Vec<i16>)),
-    ("endIntervalWeight" => EndIntervalWeight(f64)),
-    ("numActiveChildren" => NumActiveChildren(i32)),
-    ("beginIntervalIndex" => BeginIntervalIndex(i16)),
-    ("endIntervalIndex" => EndIntervalIndex(i16)),
-    ("initSync" => InitSync(bool)),
-    ("doSubtractiveBlend" => DoSubtractiveBlend(bool)),
+    ("sortedChildren" => SortedChildren(Vec<Primitive<i16>>)),
+    ("endIntervalWeight" => EndIntervalWeight(Primitive<f32>)),
+    ("numActiveChildren" => NumActiveChildren(Primitive<i32>)),
+    ("beginIntervalIndex" => BeginIntervalIndex(Primitive<i16>)),
+    ("endIntervalIndex" => EndIntervalIndex(Primitive<i16>)),
+    ("initSync" => InitSync(Primitive<bool>)),
+    ("doSubtractiveBlend" => DoSubtractiveBlend(Primitive<bool>)),
 }

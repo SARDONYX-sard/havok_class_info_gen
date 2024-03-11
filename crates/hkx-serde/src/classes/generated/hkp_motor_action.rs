@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMotorAction<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMotorAction"`: Name of this class.
+    /// `"hkpMotorAction"`: The original C++ class name.
     #[serde(default = "HkpMotorAction::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMotorAction<'a> {
 }
 
 impl HkpMotorAction<'_> {
-    /// Return `"hkpMotorAction"`, which is the name of this class.
+    /// Return `"hkpMotorAction"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMotorAction".into()
+        "hkpMotorAction".into()
     }
 
     /// Return `"0x8ff131d9"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpMotorAction<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMotorActionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"axis"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "axis")]
-    Axis(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Axis(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"spinRate"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "spinRate")]
-    SpinRate(f64),
-    /// # Information on fields in the original C++ class
+    SpinRate(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"gain"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "gain")]
-    Gain(f64),
-    /// # Information on fields in the original C++ class
+    Gain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"active"`
     /// -   type: `hkBool`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "active")]
-    Active(bool),
+    Active(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpMotorActionHkParam<'de>, "@name",
-    ("axis" => Axis(cgmath::Vector4<f32>)),
-    ("spinRate" => SpinRate(f64)),
-    ("gain" => Gain(f64)),
-    ("active" => Active(bool)),
+    ("axis" => Axis(Vector4<f32>)),
+    ("spinRate" => SpinRate(Primitive<f32>)),
+    ("gain" => Gain(Primitive<f32>)),
+    ("active" => Active(Primitive<bool>)),
 }

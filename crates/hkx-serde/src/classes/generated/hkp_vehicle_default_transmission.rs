@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleDefaultTransmission<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleDefaultTransmission"`: Name of this class.
+    /// `"hkpVehicleDefaultTransmission"`: The original C++ class name.
     #[serde(default = "HkpVehicleDefaultTransmission::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleDefaultTransmission<'a> {
 }
 
 impl HkpVehicleDefaultTransmission<'_> {
-    /// Return `"hkpVehicleDefaultTransmission"`, which is the name of this class.
+    /// Return `"hkpVehicleDefaultTransmission"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleDefaultTransmission".into()
+        "hkpVehicleDefaultTransmission".into()
     }
 
     /// Return `"0x235d5d6b"`, which is the signature of this class.
@@ -63,66 +64,66 @@ impl HkpVehicleDefaultTransmission<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDefaultTransmissionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"downshiftRPM"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "downshiftRPM")]
-    DownshiftRpm(f64),
-    /// # Information on fields in the original C++ class
+    DownshiftRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"upshiftRPM"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "upshiftRPM")]
-    UpshiftRpm(f64),
-    /// # Information on fields in the original C++ class
+    UpshiftRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"primaryTransmissionRatio"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "primaryTransmissionRatio")]
-    PrimaryTransmissionRatio(f64),
-    /// # Information on fields in the original C++ class
+    PrimaryTransmissionRatio(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"clutchDelayTime"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "clutchDelayTime")]
-    ClutchDelayTime(f64),
-    /// # Information on fields in the original C++ class
+    ClutchDelayTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"reverseGearRatio"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "reverseGearRatio")]
-    ReverseGearRatio(f64),
-    /// # Information on fields in the original C++ class
+    ReverseGearRatio(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"gearsRatio"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "gearsRatio")]
-    GearsRatio(Vec<f64>),
-    /// # Information on fields in the original C++ class
+    GearsRatio(Vec<Primitive<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelsTorqueRatio"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelsTorqueRatio")]
-    WheelsTorqueRatio(Vec<f64>),
+    WheelsTorqueRatio(Vec<Primitive<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleDefaultTransmissionHkParam<'de>, "@name",
-    ("downshiftRPM" => DownshiftRpm(f64)),
-    ("upshiftRPM" => UpshiftRpm(f64)),
-    ("primaryTransmissionRatio" => PrimaryTransmissionRatio(f64)),
-    ("clutchDelayTime" => ClutchDelayTime(f64)),
-    ("reverseGearRatio" => ReverseGearRatio(f64)),
-    ("gearsRatio" => GearsRatio(Vec<f64>)),
-    ("wheelsTorqueRatio" => WheelsTorqueRatio(Vec<f64>)),
+    ("downshiftRPM" => DownshiftRpm(Primitive<f32>)),
+    ("upshiftRPM" => UpshiftRpm(Primitive<f32>)),
+    ("primaryTransmissionRatio" => PrimaryTransmissionRatio(Primitive<f32>)),
+    ("clutchDelayTime" => ClutchDelayTime(Primitive<f32>)),
+    ("reverseGearRatio" => ReverseGearRatio(Primitive<f32>)),
+    ("gearsRatio" => GearsRatio(Vec<Primitive<f32>>)),
+    ("wheelsTorqueRatio" => WheelsTorqueRatio(Vec<Primitive<f32>>)),
 }

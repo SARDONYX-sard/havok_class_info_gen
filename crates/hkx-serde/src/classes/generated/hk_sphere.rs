@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkSphere<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkSphere"`: Name of this class.
+    /// `"hkSphere"`: The original C++ class name.
     #[serde(default = "HkSphere::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkSphere<'a> {
 }
 
 impl HkSphere<'_> {
-    /// Return `"hkSphere"`, which is the name of this class.
+    /// Return `"hkSphere"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkSphere".into()
+        "hkSphere".into()
     }
 
     /// Return `"0x143dff99"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkSphere<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkSphereHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pos"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pos")]
-    Pos(cgmath::Vector4<f32>),
+    Pos(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkSphereHkParam<'de>, "@name",
-    ("pos" => Pos(cgmath::Vector4<f32>)),
+    ("pos" => Pos(Vector4<f32>)),
 }

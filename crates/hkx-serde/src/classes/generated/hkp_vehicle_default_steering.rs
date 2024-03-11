@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleDefaultSteering<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleDefaultSteering"`: Name of this class.
+    /// `"hkpVehicleDefaultSteering"`: The original C++ class name.
     #[serde(default = "HkpVehicleDefaultSteering::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleDefaultSteering<'a> {
 }
 
 impl HkpVehicleDefaultSteering<'_> {
-    /// Return `"hkpVehicleDefaultSteering"`, which is the name of this class.
+    /// Return `"hkpVehicleDefaultSteering"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleDefaultSteering".into()
+        "hkpVehicleDefaultSteering".into()
     }
 
     /// Return `"0x8f0411c8"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpVehicleDefaultSteering<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDefaultSteeringHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"maxSteeringAngle"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxSteeringAngle")]
-    MaxSteeringAngle(f64),
-    /// # Information on fields in the original C++ class
+    MaxSteeringAngle(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxSpeedFullSteeringAngle"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxSpeedFullSteeringAngle")]
-    MaxSpeedFullSteeringAngle(f64),
-    /// # Information on fields in the original C++ class
+    MaxSpeedFullSteeringAngle(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"doesWheelSteer"`
     /// -   type: `hkArray&lt;hkBool&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "doesWheelSteer")]
-    DoesWheelSteer(Vec<bool>),
+    DoesWheelSteer(Vec<Primitive<bool>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleDefaultSteeringHkParam<'de>, "@name",
-    ("maxSteeringAngle" => MaxSteeringAngle(f64)),
-    ("maxSpeedFullSteeringAngle" => MaxSpeedFullSteeringAngle(f64)),
-    ("doesWheelSteer" => DoesWheelSteer(Vec<bool>)),
+    ("maxSteeringAngle" => MaxSteeringAngle(Primitive<f32>)),
+    ("maxSpeedFullSteeringAngle" => MaxSpeedFullSteeringAngle(Primitive<f32>)),
+    ("doesWheelSteer" => DoesWheelSteer(Vec<Primitive<bool>>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSimulation<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSimulation"`: Name of this class.
+    /// `"hkpSimulation"`: The original C++ class name.
     #[serde(default = "HkpSimulation::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSimulation<'a> {
 }
 
 impl HkpSimulation<'_> {
-    /// Return `"hkpSimulation"`, which is the name of this class.
+    /// Return `"hkpSimulation"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSimulation".into()
+        "hkpSimulation".into()
     }
 
     /// Return `"0x97aba922"`, which is the signature of this class.
@@ -63,84 +64,84 @@ impl HkpSimulation<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSimulationHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"determinismCheckFrameCounter"`
     /// -   type: `hkUint32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "determinismCheckFrameCounter")]
-    DeterminismCheckFrameCounter(u32),
-    /// # Information on fields in the original C++ class
+    DeterminismCheckFrameCounter(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"world"`
     /// -   type: `struct hkpWorld*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "world")]
-    World(Box<HkpWorld>),
-    /// # Information on fields in the original C++ class
+    World(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"lastProcessingStep"`
     /// -   type: `enum LastProcessingStep`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lastProcessingStep")]
     LastProcessingStep(LastProcessingStep),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"currentTime"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "currentTime")]
-    CurrentTime(f64),
-    /// # Information on fields in the original C++ class
+    CurrentTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"currentPsiTime"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "currentPsiTime")]
-    CurrentPsiTime(f64),
-    /// # Information on fields in the original C++ class
+    CurrentPsiTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"physicsDeltaTime"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "physicsDeltaTime")]
-    PhysicsDeltaTime(f64),
-    /// # Information on fields in the original C++ class
+    PhysicsDeltaTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"simulateUntilTime"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "simulateUntilTime")]
-    SimulateUntilTime(f64),
-    /// # Information on fields in the original C++ class
+    SimulateUntilTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"frameMarkerPsiSnap"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "frameMarkerPsiSnap")]
-    FrameMarkerPsiSnap(f64),
-    /// # Information on fields in the original C++ class
+    FrameMarkerPsiSnap(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"previousStepResult"`
     /// -   type: `hkUint32`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "previousStepResult")]
-    PreviousStepResult(u32),
+    PreviousStepResult(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSimulationHkParam<'de>, "@name",
-    ("determinismCheckFrameCounter" => DeterminismCheckFrameCounter(u32)),
-    ("world" => World(Box<HkpWorld>)),
+    ("determinismCheckFrameCounter" => DeterminismCheckFrameCounter(Primitive<u32>)),
+    ("world" => World(Cow<'a, str>)),
     ("lastProcessingStep" => LastProcessingStep(LastProcessingStep)),
-    ("currentTime" => CurrentTime(f64)),
-    ("currentPsiTime" => CurrentPsiTime(f64)),
-    ("physicsDeltaTime" => PhysicsDeltaTime(f64)),
-    ("simulateUntilTime" => SimulateUntilTime(f64)),
-    ("frameMarkerPsiSnap" => FrameMarkerPsiSnap(f64)),
-    ("previousStepResult" => PreviousStepResult(u32)),
+    ("currentTime" => CurrentTime(Primitive<f32>)),
+    ("currentPsiTime" => CurrentPsiTime(Primitive<f32>)),
+    ("physicsDeltaTime" => PhysicsDeltaTime(Primitive<f32>)),
+    ("simulateUntilTime" => SimulateUntilTime(Primitive<f32>)),
+    ("frameMarkerPsiSnap" => FrameMarkerPsiSnap(Primitive<f32>)),
+    ("previousStepResult" => PreviousStepResult(Primitive<u32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaKeyFrameHierarchyUtilityControlData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaKeyFrameHierarchyUtilityControlData"`: Name of this class.
+    /// `"hkaKeyFrameHierarchyUtilityControlData"`: The original C++ class name.
     #[serde(default = "HkaKeyFrameHierarchyUtilityControlData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaKeyFrameHierarchyUtilityControlData<'a> {
 }
 
 impl HkaKeyFrameHierarchyUtilityControlData<'_> {
-    /// Return `"hkaKeyFrameHierarchyUtilityControlData"`, which is the name of this class.
+    /// Return `"hkaKeyFrameHierarchyUtilityControlData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaKeyFrameHierarchyUtilityControlData".into()
+        "hkaKeyFrameHierarchyUtilityControlData".into()
     }
 
     /// Return `"0xa3d0ac71"`, which is the signature of this class.
@@ -63,106 +64,106 @@ impl HkaKeyFrameHierarchyUtilityControlData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaKeyFrameHierarchyUtilityControlDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"hierarchyGain"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hierarchyGain")]
-    HierarchyGain(f64),
-    /// # Information on fields in the original C++ class
+    HierarchyGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"velocityDamping"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "velocityDamping")]
-    VelocityDamping(f64),
-    /// # Information on fields in the original C++ class
+    VelocityDamping(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"accelerationGain"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "accelerationGain")]
-    AccelerationGain(f64),
-    /// # Information on fields in the original C++ class
+    AccelerationGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"velocityGain"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "velocityGain")]
-    VelocityGain(f64),
-    /// # Information on fields in the original C++ class
+    VelocityGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"positionGain"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "positionGain")]
-    PositionGain(f64),
-    /// # Information on fields in the original C++ class
+    PositionGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"positionMaxLinearVelocity"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "positionMaxLinearVelocity")]
-    PositionMaxLinearVelocity(f64),
-    /// # Information on fields in the original C++ class
+    PositionMaxLinearVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"positionMaxAngularVelocity"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "positionMaxAngularVelocity")]
-    PositionMaxAngularVelocity(f64),
-    /// # Information on fields in the original C++ class
+    PositionMaxAngularVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"snapGain"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "snapGain")]
-    SnapGain(f64),
-    /// # Information on fields in the original C++ class
+    SnapGain(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"snapMaxLinearVelocity"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "snapMaxLinearVelocity")]
-    SnapMaxLinearVelocity(f64),
-    /// # Information on fields in the original C++ class
+    SnapMaxLinearVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"snapMaxAngularVelocity"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "snapMaxAngularVelocity")]
-    SnapMaxAngularVelocity(f64),
-    /// # Information on fields in the original C++ class
+    SnapMaxAngularVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"snapMaxLinearDistance"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "snapMaxLinearDistance")]
-    SnapMaxLinearDistance(f64),
-    /// # Information on fields in the original C++ class
+    SnapMaxLinearDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"snapMaxAngularDistance"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "snapMaxAngularDistance")]
-    SnapMaxAngularDistance(f64),
+    SnapMaxAngularDistance(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaKeyFrameHierarchyUtilityControlDataHkParam<'de>, "@name",
-    ("hierarchyGain" => HierarchyGain(f64)),
-    ("velocityDamping" => VelocityDamping(f64)),
-    ("accelerationGain" => AccelerationGain(f64)),
-    ("velocityGain" => VelocityGain(f64)),
-    ("positionGain" => PositionGain(f64)),
-    ("positionMaxLinearVelocity" => PositionMaxLinearVelocity(f64)),
-    ("positionMaxAngularVelocity" => PositionMaxAngularVelocity(f64)),
-    ("snapGain" => SnapGain(f64)),
-    ("snapMaxLinearVelocity" => SnapMaxLinearVelocity(f64)),
-    ("snapMaxAngularVelocity" => SnapMaxAngularVelocity(f64)),
-    ("snapMaxLinearDistance" => SnapMaxLinearDistance(f64)),
-    ("snapMaxAngularDistance" => SnapMaxAngularDistance(f64)),
+    ("hierarchyGain" => HierarchyGain(Primitive<f32>)),
+    ("velocityDamping" => VelocityDamping(Primitive<f32>)),
+    ("accelerationGain" => AccelerationGain(Primitive<f32>)),
+    ("velocityGain" => VelocityGain(Primitive<f32>)),
+    ("positionGain" => PositionGain(Primitive<f32>)),
+    ("positionMaxLinearVelocity" => PositionMaxLinearVelocity(Primitive<f32>)),
+    ("positionMaxAngularVelocity" => PositionMaxAngularVelocity(Primitive<f32>)),
+    ("snapGain" => SnapGain(Primitive<f32>)),
+    ("snapMaxLinearVelocity" => SnapMaxLinearVelocity(Primitive<f32>)),
+    ("snapMaxAngularVelocity" => SnapMaxAngularVelocity(Primitive<f32>)),
+    ("snapMaxLinearDistance" => SnapMaxLinearDistance(Primitive<f32>)),
+    ("snapMaxAngularDistance" => SnapMaxAngularDistance(Primitive<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleCastBatchingManager<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleCastBatchingManager"`: Name of this class.
+    /// `"hkpVehicleCastBatchingManager"`: The original C++ class name.
     #[serde(default = "HkpVehicleCastBatchingManager::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleCastBatchingManager<'a> {
 }
 
 impl HkpVehicleCastBatchingManager<'_> {
-    /// Return `"hkpVehicleCastBatchingManager"`, which is the name of this class.
+    /// Return `"hkpVehicleCastBatchingManager"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleCastBatchingManager".into()
+        "hkpVehicleCastBatchingManager".into()
     }
 
     /// Return `"0x53340a9"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkpVehicleCastBatchingManager<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleCastBatchingManagerHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"totalNumWheels"`
     /// -   type: `hkUint16`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "totalNumWheels")]
-    TotalNumWheels(u16),
+    TotalNumWheels(Primitive<u16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleCastBatchingManagerHkParam<'de>, "@name",
-    ("totalNumWheels" => TotalNumWheels(u16)),
+    ("totalNumWheels" => TotalNumWheels(Primitive<u16>)),
 }

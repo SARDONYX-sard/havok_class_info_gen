@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSpringAction<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSpringAction"`: Name of this class.
+    /// `"hkpSpringAction"`: The original C++ class name.
     #[serde(default = "HkpSpringAction::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSpringAction<'a> {
 }
 
 impl HkpSpringAction<'_> {
-    /// Return `"hkpSpringAction"`, which is the name of this class.
+    /// Return `"hkpSpringAction"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSpringAction".into()
+        "hkpSpringAction".into()
     }
 
     /// Return `"0x88fc09fa"`, which is the signature of this class.
@@ -63,74 +64,74 @@ impl HkpSpringAction<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSpringActionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lastForce"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lastForce")]
-    LastForce(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    LastForce(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"positionAinA"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "positionAinA")]
-    PositionAinA(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PositionAinA(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"positionBinB"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "positionBinB")]
-    PositionBinB(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    PositionBinB(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"restLength"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "restLength")]
-    RestLength(f64),
-    /// # Information on fields in the original C++ class
+    RestLength(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"strength"`
     /// -   type: `hkReal`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "strength")]
-    Strength(f64),
-    /// # Information on fields in the original C++ class
+    Strength(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"damping"`
     /// -   type: `hkReal`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "damping")]
-    Damping(f64),
-    /// # Information on fields in the original C++ class
+    Damping(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"onCompression"`
     /// -   type: `hkBool`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "onCompression")]
-    OnCompression(bool),
-    /// # Information on fields in the original C++ class
+    OnCompression(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"onExtension"`
     /// -   type: `hkBool`
     /// - offset: 93
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "onExtension")]
-    OnExtension(bool),
+    OnExtension(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSpringActionHkParam<'de>, "@name",
-    ("lastForce" => LastForce(cgmath::Vector4<f32>)),
-    ("positionAinA" => PositionAinA(cgmath::Vector4<f32>)),
-    ("positionBinB" => PositionBinB(cgmath::Vector4<f32>)),
-    ("restLength" => RestLength(f64)),
-    ("strength" => Strength(f64)),
-    ("damping" => Damping(f64)),
-    ("onCompression" => OnCompression(bool)),
-    ("onExtension" => OnExtension(bool)),
+    ("lastForce" => LastForce(Vector4<f32>)),
+    ("positionAinA" => PositionAinA(Vector4<f32>)),
+    ("positionBinB" => PositionBinB(Vector4<f32>)),
+    ("restLength" => RestLength(Primitive<f32>)),
+    ("strength" => Strength(Primitive<f32>)),
+    ("damping" => Damping(Primitive<f32>)),
+    ("onCompression" => OnCompression(Primitive<bool>)),
+    ("onExtension" => OnExtension(Primitive<bool>)),
 }

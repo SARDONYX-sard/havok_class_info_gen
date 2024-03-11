@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleDefaultBrake<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleDefaultBrake"`: Name of this class.
+    /// `"hkpVehicleDefaultBrake"`: The original C++ class name.
     #[serde(default = "HkpVehicleDefaultBrake::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleDefaultBrake<'a> {
 }
 
 impl HkpVehicleDefaultBrake<'_> {
-    /// Return `"hkpVehicleDefaultBrake"`, which is the name of this class.
+    /// Return `"hkpVehicleDefaultBrake"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleDefaultBrake".into()
+        "hkpVehicleDefaultBrake".into()
     }
 
     /// Return `"0x4b4f8816"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkpVehicleDefaultBrake<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDefaultBrakeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wheelBrakingProperties"`
     /// -   type: `hkArray&lt;struct hkpVehicleDefaultBrakeWheelBrakingProperties&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelBrakingProperties")]
     WheelBrakingProperties(Vec<HkpVehicleDefaultBrakeWheelBrakingProperties>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wheelsMinTimeToBlock"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelsMinTimeToBlock")]
-    WheelsMinTimeToBlock(f64),
+    WheelsMinTimeToBlock(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkpVehicleDefaultBrakeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleDefaultBrakeHkParam<'de>, "@name",
     ("wheelBrakingProperties" => WheelBrakingProperties(Vec<HkpVehicleDefaultBrakeWheelBrakingProperties>)),
-    ("wheelsMinTimeToBlock" => WheelsMinTimeToBlock(f64)),
+    ("wheelsMinTimeToBlock" => WheelsMinTimeToBlock(Primitive<f32>)),
 }

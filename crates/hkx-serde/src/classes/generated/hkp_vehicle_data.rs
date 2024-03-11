@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleData"`: Name of this class.
+    /// `"hkpVehicleData"`: The original C++ class name.
     #[serde(default = "HkpVehicleData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleData<'a> {
 }
 
 impl HkpVehicleData<'_> {
-    /// Return `"hkpVehicleData"`, which is the name of this class.
+    /// Return `"hkpVehicleData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleData".into()
+        "hkpVehicleData".into()
     }
 
     /// Return `"0x173feb43"`, which is the signature of this class.
@@ -63,162 +64,162 @@ impl HkpVehicleData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"gravity"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "gravity")]
-    Gravity(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Gravity(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numWheels"`
     /// -   type: `hkInt8`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numWheels")]
-    NumWheels(i8),
-    /// # Information on fields in the original C++ class
+    NumWheels(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"chassisOrientation"`
     /// -   type: `hkRotation`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chassisOrientation")]
-    ChassisOrientation(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    ChassisOrientation(Rotation<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"torqueRollFactor"`
     /// -   type: `hkReal`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "torqueRollFactor")]
-    TorqueRollFactor(f64),
-    /// # Information on fields in the original C++ class
+    TorqueRollFactor(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"torquePitchFactor"`
     /// -   type: `hkReal`
     /// - offset: 100
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "torquePitchFactor")]
-    TorquePitchFactor(f64),
-    /// # Information on fields in the original C++ class
+    TorquePitchFactor(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"torqueYawFactor"`
     /// -   type: `hkReal`
     /// - offset: 104
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "torqueYawFactor")]
-    TorqueYawFactor(f64),
-    /// # Information on fields in the original C++ class
+    TorqueYawFactor(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"extraTorqueFactor"`
     /// -   type: `hkReal`
     /// - offset: 108
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extraTorqueFactor")]
-    ExtraTorqueFactor(f64),
-    /// # Information on fields in the original C++ class
+    ExtraTorqueFactor(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxVelocityForPositionalFriction"`
     /// -   type: `hkReal`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxVelocityForPositionalFriction")]
-    MaxVelocityForPositionalFriction(f64),
-    /// # Information on fields in the original C++ class
+    MaxVelocityForPositionalFriction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"chassisUnitInertiaYaw"`
     /// -   type: `hkReal`
     /// - offset: 116
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chassisUnitInertiaYaw")]
-    ChassisUnitInertiaYaw(f64),
-    /// # Information on fields in the original C++ class
+    ChassisUnitInertiaYaw(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"chassisUnitInertiaRoll"`
     /// -   type: `hkReal`
     /// - offset: 120
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chassisUnitInertiaRoll")]
-    ChassisUnitInertiaRoll(f64),
-    /// # Information on fields in the original C++ class
+    ChassisUnitInertiaRoll(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"chassisUnitInertiaPitch"`
     /// -   type: `hkReal`
     /// - offset: 124
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chassisUnitInertiaPitch")]
-    ChassisUnitInertiaPitch(f64),
-    /// # Information on fields in the original C++ class
+    ChassisUnitInertiaPitch(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"frictionEqualizer"`
     /// -   type: `hkReal`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "frictionEqualizer")]
-    FrictionEqualizer(f64),
-    /// # Information on fields in the original C++ class
+    FrictionEqualizer(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"normalClippingAngleCos"`
     /// -   type: `hkReal`
     /// - offset: 132
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "normalClippingAngleCos")]
-    NormalClippingAngleCos(f64),
-    /// # Information on fields in the original C++ class
+    NormalClippingAngleCos(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxFrictionSolverMassRatio"`
     /// -   type: `hkReal`
     /// - offset: 136
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxFrictionSolverMassRatio")]
-    MaxFrictionSolverMassRatio(f64),
-    /// # Information on fields in the original C++ class
+    MaxFrictionSolverMassRatio(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelParams"`
     /// -   type: `hkArray&lt;struct hkpVehicleDataWheelComponentParams&gt;`
     /// - offset: 140
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelParams")]
     WheelParams(Vec<HkpVehicleDataWheelComponentParams>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numWheelsPerAxle"`
     /// -   type: `hkArray&lt;hkInt8&gt;`
     /// - offset: 152
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numWheelsPerAxle")]
-    NumWheelsPerAxle(Vec<i8>),
-    /// # Information on fields in the original C++ class
+    NumWheelsPerAxle(Vec<Primitive<i8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"frictionDescription"`
     /// -   type: `struct hkpVehicleFrictionDescription`
     /// - offset: 164
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "frictionDescription")]
     FrictionDescription(HkpVehicleFrictionDescription),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"chassisFrictionInertiaInvDiag"`
     /// -   type: `hkVector4`
     /// - offset: 384
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chassisFrictionInertiaInvDiag")]
-    ChassisFrictionInertiaInvDiag(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    ChassisFrictionInertiaInvDiag(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"alreadyInitialised"`
     /// -   type: `hkBool`
     /// - offset: 400
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "alreadyInitialised")]
-    AlreadyInitialised(bool),
+    AlreadyInitialised(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleDataHkParam<'de>, "@name",
-    ("gravity" => Gravity(cgmath::Vector4<f32>)),
-    ("numWheels" => NumWheels(i8)),
-    ("chassisOrientation" => ChassisOrientation(cgmath::Matrix4<f32>)),
-    ("torqueRollFactor" => TorqueRollFactor(f64)),
-    ("torquePitchFactor" => TorquePitchFactor(f64)),
-    ("torqueYawFactor" => TorqueYawFactor(f64)),
-    ("extraTorqueFactor" => ExtraTorqueFactor(f64)),
-    ("maxVelocityForPositionalFriction" => MaxVelocityForPositionalFriction(f64)),
-    ("chassisUnitInertiaYaw" => ChassisUnitInertiaYaw(f64)),
-    ("chassisUnitInertiaRoll" => ChassisUnitInertiaRoll(f64)),
-    ("chassisUnitInertiaPitch" => ChassisUnitInertiaPitch(f64)),
-    ("frictionEqualizer" => FrictionEqualizer(f64)),
-    ("normalClippingAngleCos" => NormalClippingAngleCos(f64)),
-    ("maxFrictionSolverMassRatio" => MaxFrictionSolverMassRatio(f64)),
+    ("gravity" => Gravity(Vector4<f32>)),
+    ("numWheels" => NumWheels(Primitive<i8>)),
+    ("chassisOrientation" => ChassisOrientation(Rotation<f32>)),
+    ("torqueRollFactor" => TorqueRollFactor(Primitive<f32>)),
+    ("torquePitchFactor" => TorquePitchFactor(Primitive<f32>)),
+    ("torqueYawFactor" => TorqueYawFactor(Primitive<f32>)),
+    ("extraTorqueFactor" => ExtraTorqueFactor(Primitive<f32>)),
+    ("maxVelocityForPositionalFriction" => MaxVelocityForPositionalFriction(Primitive<f32>)),
+    ("chassisUnitInertiaYaw" => ChassisUnitInertiaYaw(Primitive<f32>)),
+    ("chassisUnitInertiaRoll" => ChassisUnitInertiaRoll(Primitive<f32>)),
+    ("chassisUnitInertiaPitch" => ChassisUnitInertiaPitch(Primitive<f32>)),
+    ("frictionEqualizer" => FrictionEqualizer(Primitive<f32>)),
+    ("normalClippingAngleCos" => NormalClippingAngleCos(Primitive<f32>)),
+    ("maxFrictionSolverMassRatio" => MaxFrictionSolverMassRatio(Primitive<f32>)),
     ("wheelParams" => WheelParams(Vec<HkpVehicleDataWheelComponentParams>)),
-    ("numWheelsPerAxle" => NumWheelsPerAxle(Vec<i8>)),
+    ("numWheelsPerAxle" => NumWheelsPerAxle(Vec<Primitive<i8>>)),
     ("frictionDescription" => FrictionDescription(HkpVehicleFrictionDescription)),
-    ("chassisFrictionInertiaInvDiag" => ChassisFrictionInertiaInvDiag(cgmath::Vector4<f32>)),
-    ("alreadyInitialised" => AlreadyInitialised(bool)),
+    ("chassisFrictionInertiaInvDiag" => ChassisFrictionInertiaInvDiag(Vector4<f32>)),
+    ("alreadyInitialised" => AlreadyInitialised(Primitive<bool>)),
 }

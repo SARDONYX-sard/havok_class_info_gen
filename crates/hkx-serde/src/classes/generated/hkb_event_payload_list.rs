@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbEventPayloadList<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbEventPayloadList"`: Name of this class.
+    /// `"hkbEventPayloadList"`: The original C++ class name.
     #[serde(default = "HkbEventPayloadList::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbEventPayloadList<'a> {
 }
 
 impl HkbEventPayloadList<'_> {
-    /// Return `"hkbEventPayloadList"`, which is the name of this class.
+    /// Return `"hkbEventPayloadList"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbEventPayloadList".into()
+        "hkbEventPayloadList".into()
     }
 
     /// Return `"0x3d2dbd34"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkbEventPayloadList<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbEventPayloadListHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"payloads"`
     /// -   type: `hkArray&lt;hkbEventPayload*&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "payloads")]
-    Payloads(Vec<Box<HkbEventPayload>>),
+    Payloads(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbEventPayloadListHkParam<'de>, "@name",
-    ("payloads" => Payloads(Vec<Box<HkbEventPayload>>)),
+    ("payloads" => Payloads(Vec<Cow<'a, str>>)),
 }

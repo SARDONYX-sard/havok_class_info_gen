@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCompressedMeshShapeChunk<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCompressedMeshShapeChunk"`: Name of this class.
+    /// `"hkpCompressedMeshShapeChunk"`: The original C++ class name.
     #[serde(default = "HkpCompressedMeshShapeChunk::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCompressedMeshShapeChunk<'a> {
 }
 
 impl HkpCompressedMeshShapeChunk<'_> {
-    /// Return `"hkpCompressedMeshShapeChunk"`, which is the name of this class.
+    /// Return `"hkpCompressedMeshShapeChunk"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCompressedMeshShapeChunk".into()
+        "hkpCompressedMeshShapeChunk".into()
     }
 
     /// Return `"0x5d0d67bd"`, which is the signature of this class.
@@ -63,74 +64,74 @@ impl HkpCompressedMeshShapeChunk<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCompressedMeshShapeChunkHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"offset"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "offset")]
-    Offset(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Offset(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertices"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertices")]
-    Vertices(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Vertices(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"indices"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indices")]
-    Indices(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Indices(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"stripLengths"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stripLengths")]
-    StripLengths(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    StripLengths(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"weldingInfo"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingInfo")]
-    WeldingInfo(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    WeldingInfo(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"materialInfo"`
     /// -   type: `hkUint32`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialInfo")]
-    MaterialInfo(u32),
-    /// # Information on fields in the original C++ class
+    MaterialInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"reference"`
     /// -   type: `hkUint16`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "reference")]
-    Reference(u16),
-    /// # Information on fields in the original C++ class
+    Reference(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformIndex"`
     /// -   type: `hkUint16`
     /// - offset: 70
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformIndex")]
-    TransformIndex(u16),
+    TransformIndex(Primitive<u16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCompressedMeshShapeChunkHkParam<'de>, "@name",
-    ("offset" => Offset(cgmath::Vector4<f32>)),
-    ("vertices" => Vertices(Vec<u16>)),
-    ("indices" => Indices(Vec<u16>)),
-    ("stripLengths" => StripLengths(Vec<u16>)),
-    ("weldingInfo" => WeldingInfo(Vec<u16>)),
-    ("materialInfo" => MaterialInfo(u32)),
-    ("reference" => Reference(u16)),
-    ("transformIndex" => TransformIndex(u16)),
+    ("offset" => Offset(Vector4<f32>)),
+    ("vertices" => Vertices(Vec<Primitive<u16>>)),
+    ("indices" => Indices(Vec<Primitive<u16>>)),
+    ("stripLengths" => StripLengths(Vec<Primitive<u16>>)),
+    ("weldingInfo" => WeldingInfo(Vec<Primitive<u16>>)),
+    ("materialInfo" => MaterialInfo(Primitive<u32>)),
+    ("reference" => Reference(Primitive<u16>)),
+    ("transformIndex" => TransformIndex(Primitive<u16>)),
 }

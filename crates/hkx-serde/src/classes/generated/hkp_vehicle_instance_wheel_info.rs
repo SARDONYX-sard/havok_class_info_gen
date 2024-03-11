@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleInstanceWheelInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleInstanceWheelInfo"`: Name of this class.
+    /// `"hkpVehicleInstanceWheelInfo"`: The original C++ class name.
     #[serde(default = "HkpVehicleInstanceWheelInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleInstanceWheelInfo<'a> {
 }
 
 impl HkpVehicleInstanceWheelInfo<'_> {
-    /// Return `"hkpVehicleInstanceWheelInfo"`, which is the name of this class.
+    /// Return `"hkpVehicleInstanceWheelInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleInstanceWheelInfo".into()
+        "hkpVehicleInstanceWheelInfo".into()
     }
 
     /// Return `"0x99f693f0"`, which is the signature of this class.
@@ -63,125 +64,125 @@ impl HkpVehicleInstanceWheelInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleInstanceWheelInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"contactPoint"`
     /// -   type: `struct hkContactPoint`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "contactPoint")]
     ContactPoint(HkContactPoint),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"contactFriction"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "contactFriction")]
-    ContactFriction(f64),
-    /// # Information on fields in the original C++ class
+    ContactFriction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"contactBody"`
     /// -   type: `void*`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "contactBody", skip_serializing)]
     ContactBody(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"contactShapeKey"`
     /// -   type: `hkUint32[8]`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "contactShapeKey")]
-    ContactShapeKey([u32; 8]),
-    /// # Information on fields in the original C++ class
+    ContactShapeKey([Primitive<u32>; 8]),
+    /// # Field information in the original C++ class
     /// -   name:`"hardPointWs"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hardPointWs")]
-    HardPointWs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    HardPointWs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rayEndPointWs"`
     /// -   type: `hkVector4`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rayEndPointWs")]
-    RayEndPointWs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    RayEndPointWs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"currentSuspensionLength"`
     /// -   type: `hkReal`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "currentSuspensionLength")]
-    CurrentSuspensionLength(f64),
-    /// # Information on fields in the original C++ class
+    CurrentSuspensionLength(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"suspensionDirectionWs"`
     /// -   type: `hkVector4`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "suspensionDirectionWs")]
-    SuspensionDirectionWs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    SuspensionDirectionWs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"spinAxisChassisSpace"`
     /// -   type: `hkVector4`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "spinAxisChassisSpace")]
-    SpinAxisChassisSpace(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    SpinAxisChassisSpace(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"spinAxisWs"`
     /// -   type: `hkVector4`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "spinAxisWs")]
-    SpinAxisWs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    SpinAxisWs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"steeringOrientationChassisSpace"`
     /// -   type: `hkQuaternion`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "steeringOrientationChassisSpace")]
-    SteeringOrientationChassisSpace(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    SteeringOrientationChassisSpace(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"spinVelocity"`
     /// -   type: `hkReal`
     /// - offset: 192
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "spinVelocity")]
-    SpinVelocity(f64),
-    /// # Information on fields in the original C++ class
+    SpinVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"spinAngle"`
     /// -   type: `hkReal`
     /// - offset: 196
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "spinAngle")]
-    SpinAngle(f64),
-    /// # Information on fields in the original C++ class
+    SpinAngle(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"skidEnergyDensity"`
     /// -   type: `hkReal`
     /// - offset: 200
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "skidEnergyDensity")]
-    SkidEnergyDensity(f64),
-    /// # Information on fields in the original C++ class
+    SkidEnergyDensity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sideForce"`
     /// -   type: `hkReal`
     /// - offset: 204
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sideForce")]
-    SideForce(f64),
-    /// # Information on fields in the original C++ class
+    SideForce(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"forwardSlipVelocity"`
     /// -   type: `hkReal`
     /// - offset: 208
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forwardSlipVelocity")]
-    ForwardSlipVelocity(f64),
-    /// # Information on fields in the original C++ class
+    ForwardSlipVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sideSlipVelocity"`
     /// -   type: `hkReal`
     /// - offset: 212
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sideSlipVelocity")]
-    SideSlipVelocity(f64),
+    SideSlipVelocity(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -189,20 +190,20 @@ pub enum HkpVehicleInstanceWheelInfoHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleInstanceWheelInfoHkParam<'de>, "@name",
     ("contactPoint" => ContactPoint(HkContactPoint)),
-    ("contactFriction" => ContactFriction(f64)),
+    ("contactFriction" => ContactFriction(Primitive<f32>)),
     ("contactBody" => ContactBody(())),
-    ("contactShapeKey" => ContactShapeKey([u32; 8])),
-    ("hardPointWs" => HardPointWs(cgmath::Vector4<f32>)),
-    ("rayEndPointWs" => RayEndPointWs(cgmath::Vector4<f32>)),
-    ("currentSuspensionLength" => CurrentSuspensionLength(f64)),
-    ("suspensionDirectionWs" => SuspensionDirectionWs(cgmath::Vector4<f32>)),
-    ("spinAxisChassisSpace" => SpinAxisChassisSpace(cgmath::Vector4<f32>)),
-    ("spinAxisWs" => SpinAxisWs(cgmath::Vector4<f32>)),
-    ("steeringOrientationChassisSpace" => SteeringOrientationChassisSpace(cgmath::Quaternion<f32>)),
-    ("spinVelocity" => SpinVelocity(f64)),
-    ("spinAngle" => SpinAngle(f64)),
-    ("skidEnergyDensity" => SkidEnergyDensity(f64)),
-    ("sideForce" => SideForce(f64)),
-    ("forwardSlipVelocity" => ForwardSlipVelocity(f64)),
-    ("sideSlipVelocity" => SideSlipVelocity(f64)),
+    ("contactShapeKey" => ContactShapeKey([Primitive<u32>; 8])),
+    ("hardPointWs" => HardPointWs(Vector4<f32>)),
+    ("rayEndPointWs" => RayEndPointWs(Vector4<f32>)),
+    ("currentSuspensionLength" => CurrentSuspensionLength(Primitive<f32>)),
+    ("suspensionDirectionWs" => SuspensionDirectionWs(Vector4<f32>)),
+    ("spinAxisChassisSpace" => SpinAxisChassisSpace(Vector4<f32>)),
+    ("spinAxisWs" => SpinAxisWs(Vector4<f32>)),
+    ("steeringOrientationChassisSpace" => SteeringOrientationChassisSpace(Quaternion<f32>)),
+    ("spinVelocity" => SpinVelocity(Primitive<f32>)),
+    ("spinAngle" => SpinAngle(Primitive<f32>)),
+    ("skidEnergyDensity" => SkidEnergyDensity(Primitive<f32>)),
+    ("sideForce" => SideForce(Primitive<f32>)),
+    ("forwardSlipVelocity" => ForwardSlipVelocity(Primitive<f32>)),
+    ("sideSlipVelocity" => SideSlipVelocity(Primitive<f32>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BSiStateTaggingGenerator<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSiStateTaggingGenerator"`: Name of this class.
+    /// `"BSiStateTaggingGenerator"`: The original C++ class name.
     #[serde(default = "BSiStateTaggingGenerator::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,10 +42,10 @@ pub struct BSiStateTaggingGenerator<'a> {
 }
 
 impl BSiStateTaggingGenerator<'_> {
-    /// Return `"BSiStateTaggingGenerator"`, which is the name of this class.
+    /// Return `"BSiStateTaggingGenerator"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
         "BSiStateTaggingGenerator".into()
@@ -63,34 +64,34 @@ impl BSiStateTaggingGenerator<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BSiStateTaggingGeneratorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pDefaultGenerator"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "pDefaultGenerator")]
-    PDefaultGenerator(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    PDefaultGenerator(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"iStateToSetAs"`
     /// -   type: `hkInt32`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "iStateToSetAs")]
-    IStateToSetAs(i32),
-    /// # Information on fields in the original C++ class
+    IStateToSetAs(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"iPriority"`
     /// -   type: `hkInt32`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "iPriority")]
-    IPriority(i32),
+    IPriority(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BSiStateTaggingGeneratorHkParam<'de>, "@name",
-    ("pDefaultGenerator" => PDefaultGenerator(Box<HkbGenerator>)),
-    ("iStateToSetAs" => IStateToSetAs(i32)),
-    ("iPriority" => IPriority(i32)),
+    ("pDefaultGenerator" => PDefaultGenerator(Cow<'a, str>)),
+    ("iStateToSetAs" => IStateToSetAs(Primitive<i32>)),
+    ("iPriority" => IPriority(Primitive<i32>)),
 }

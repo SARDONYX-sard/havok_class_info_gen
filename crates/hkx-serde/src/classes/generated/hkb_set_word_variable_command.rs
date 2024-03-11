@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbSetWordVariableCommand<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbSetWordVariableCommand"`: Name of this class.
+    /// `"hkbSetWordVariableCommand"`: The original C++ class name.
     #[serde(default = "HkbSetWordVariableCommand::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbSetWordVariableCommand<'a> {
 }
 
 impl HkbSetWordVariableCommand<'_> {
-    /// Return `"hkbSetWordVariableCommand"`, which is the name of this class.
+    /// Return `"hkbSetWordVariableCommand"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbSetWordVariableCommand".into()
+        "hkbSetWordVariableCommand".into()
     }
 
     /// Return `"0xf3ae5fca"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkbSetWordVariableCommand<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbSetWordVariableCommandHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"quadValue"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "quadValue")]
-    QuadValue(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    QuadValue(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"characterId"`
     /// -   type: `hkUint64`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterId")]
-    CharacterId(u64),
-    /// # Information on fields in the original C++ class
+    CharacterId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"variableId"`
     /// -   type: `hkInt32`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variableId")]
-    VariableId(i32),
-    /// # Information on fields in the original C++ class
+    VariableId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"value"`
     /// -   type: `struct hkbVariableValue`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "value")]
     Value(HkbVariableValue),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum VariableType`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "type")]
     Type(VariableType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"global"`
     /// -   type: `hkBool`
     /// - offset: 49
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "global")]
-    Global(bool),
+    Global(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbSetWordVariableCommandHkParam<'de>, "@name",
-    ("quadValue" => QuadValue(cgmath::Vector4<f32>)),
-    ("characterId" => CharacterId(u64)),
-    ("variableId" => VariableId(i32)),
+    ("quadValue" => QuadValue(Vector4<f32>)),
+    ("characterId" => CharacterId(Primitive<u64>)),
+    ("variableId" => VariableId(Primitive<i32>)),
     ("value" => Value(HkbVariableValue)),
     ("type" => Type(VariableType)),
-    ("global" => Global(bool)),
+    ("global" => Global(Primitive<bool>)),
 }

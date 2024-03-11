@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbStateMachineDelayedTransitionInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbStateMachineDelayedTransitionInfo"`: Name of this class.
+    /// `"hkbStateMachineDelayedTransitionInfo"`: The original C++ class name.
     #[serde(default = "HkbStateMachineDelayedTransitionInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbStateMachineDelayedTransitionInfo<'a> {
 }
 
 impl HkbStateMachineDelayedTransitionInfo<'_> {
-    /// Return `"hkbStateMachineDelayedTransitionInfo"`, which is the name of this class.
+    /// Return `"hkbStateMachineDelayedTransitionInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbStateMachineDelayedTransitionInfo".into()
+        "hkbStateMachineDelayedTransitionInfo".into()
     }
 
     /// Return `"0x26d5499"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbStateMachineDelayedTransitionInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbStateMachineDelayedTransitionInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"delayedTransition"`
     /// -   type: `struct hkbStateMachineProspectiveTransitionInfo`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "delayedTransition")]
     DelayedTransition(HkbStateMachineProspectiveTransitionInfo),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"timeDelayed"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timeDelayed")]
-    TimeDelayed(f64),
-    /// # Information on fields in the original C++ class
+    TimeDelayed(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isDelayedTransitionReturnToPreviousState"`
     /// -   type: `hkBool`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isDelayedTransitionReturnToPreviousState")]
-    IsDelayedTransitionReturnToPreviousState(bool),
-    /// # Information on fields in the original C++ class
+    IsDelayedTransitionReturnToPreviousState(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"wasInAbutRangeLastFrame"`
     /// -   type: `hkBool`
     /// - offset: 21
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wasInAbutRangeLastFrame")]
-    WasInAbutRangeLastFrame(bool),
+    WasInAbutRangeLastFrame(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -98,7 +99,7 @@ pub enum HkbStateMachineDelayedTransitionInfoHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbStateMachineDelayedTransitionInfoHkParam<'de>, "@name",
     ("delayedTransition" => DelayedTransition(HkbStateMachineProspectiveTransitionInfo)),
-    ("timeDelayed" => TimeDelayed(f64)),
-    ("isDelayedTransitionReturnToPreviousState" => IsDelayedTransitionReturnToPreviousState(bool)),
-    ("wasInAbutRangeLastFrame" => WasInAbutRangeLastFrame(bool)),
+    ("timeDelayed" => TimeDelayed(Primitive<f32>)),
+    ("isDelayedTransitionReturnToPreviousState" => IsDelayedTransitionReturnToPreviousState(Primitive<bool>)),
+    ("wasInAbutRangeLastFrame" => WasInAbutRangeLastFrame(Primitive<bool>)),
 }

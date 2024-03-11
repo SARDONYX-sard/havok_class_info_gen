@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBehaviorEventsInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBehaviorEventsInfo"`: Name of this class.
+    /// `"hkbBehaviorEventsInfo"`: The original C++ class name.
     #[serde(default = "HkbBehaviorEventsInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBehaviorEventsInfo<'a> {
 }
 
 impl HkbBehaviorEventsInfo<'_> {
-    /// Return `"hkbBehaviorEventsInfo"`, which is the name of this class.
+    /// Return `"hkbBehaviorEventsInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBehaviorEventsInfo".into()
+        "hkbBehaviorEventsInfo".into()
     }
 
     /// Return `"0x66840004"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbBehaviorEventsInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBehaviorEventsInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterId"`
     /// -   type: `hkUint64`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterId")]
-    CharacterId(u64),
-    /// # Information on fields in the original C++ class
+    CharacterId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"externalEventIds"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "externalEventIds")]
-    ExternalEventIds(Vec<i16>),
-    /// # Information on fields in the original C++ class
+    ExternalEventIds(Vec<Primitive<i16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"padding"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "padding")]
-    Padding(i32),
+    Padding(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbBehaviorEventsInfoHkParam<'de>, "@name",
-    ("characterId" => CharacterId(u64)),
-    ("externalEventIds" => ExternalEventIds(Vec<i16>)),
-    ("padding" => Padding(i32)),
+    ("characterId" => CharacterId(Primitive<u64>)),
+    ("externalEventIds" => ExternalEventIds(Vec<Primitive<i16>>)),
+    ("padding" => Padding(Primitive<i32>)),
 }

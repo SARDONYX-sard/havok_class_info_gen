@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPairCollisionFilterMapPairFilterKeyOverrideType<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPairCollisionFilterMapPairFilterKeyOverrideType"`: Name of this class.
+    /// `"hkpPairCollisionFilterMapPairFilterKeyOverrideType"`: The original C++ class name.
     #[serde(default = "HkpPairCollisionFilterMapPairFilterKeyOverrideType::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPairCollisionFilterMapPairFilterKeyOverrideType<'a> {
 }
 
 impl HkpPairCollisionFilterMapPairFilterKeyOverrideType<'_> {
-    /// Return `"hkpPairCollisionFilterMapPairFilterKeyOverrideType"`, which is the name of this class.
+    /// Return `"hkpPairCollisionFilterMapPairFilterKeyOverrideType"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPairCollisionFilterMapPairFilterKeyOverrideType".into()
+        "hkpPairCollisionFilterMapPairFilterKeyOverrideType".into()
     }
 
     /// Return `"0x36195969"`, which is the signature of this class.
@@ -63,27 +64,27 @@ impl HkpPairCollisionFilterMapPairFilterKeyOverrideType<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPairCollisionFilterMapPairFilterKeyOverrideTypeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"elem"`
     /// -   type: `void*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "elem", skip_serializing)]
     Elem(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numElems"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numElems")]
-    NumElems(i32),
-    /// # Information on fields in the original C++ class
+    NumElems(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"hashMod"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hashMod")]
-    HashMod(i32),
+    HashMod(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -91,6 +92,6 @@ pub enum HkpPairCollisionFilterMapPairFilterKeyOverrideTypeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpPairCollisionFilterMapPairFilterKeyOverrideTypeHkParam<'de>, "@name",
     ("elem" => Elem(())),
-    ("numElems" => NumElems(i32)),
-    ("hashMod" => HashMod(i32)),
+    ("numElems" => NumElems(Primitive<i32>)),
+    ("hashMod" => HashMod(Primitive<i32>)),
 }

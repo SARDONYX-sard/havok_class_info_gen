@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCompressedSampledHeightFieldShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCompressedSampledHeightFieldShape"`: Name of this class.
+    /// `"hkpCompressedSampledHeightFieldShape"`: The original C++ class name.
     #[serde(default = "HkpCompressedSampledHeightFieldShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCompressedSampledHeightFieldShape<'a> {
 }
 
 impl HkpCompressedSampledHeightFieldShape<'_> {
-    /// Return `"hkpCompressedSampledHeightFieldShape"`, which is the name of this class.
+    /// Return `"hkpCompressedSampledHeightFieldShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCompressedSampledHeightFieldShape".into()
+        "hkpCompressedSampledHeightFieldShape".into()
     }
 
     /// Return `"0x97b6e143"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpCompressedSampledHeightFieldShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCompressedSampledHeightFieldShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"storage"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "storage")]
-    Storage(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Storage(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"triangleFlip"`
     /// -   type: `hkBool`
     /// - offset: 108
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "triangleFlip")]
-    TriangleFlip(bool),
-    /// # Information on fields in the original C++ class
+    TriangleFlip(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"offset"`
     /// -   type: `hkReal`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "offset")]
-    Offset(f64),
-    /// # Information on fields in the original C++ class
+    Offset(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"scale"`
     /// -   type: `hkReal`
     /// - offset: 116
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "scale")]
-    Scale(f64),
+    Scale(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCompressedSampledHeightFieldShapeHkParam<'de>, "@name",
-    ("storage" => Storage(Vec<u16>)),
-    ("triangleFlip" => TriangleFlip(bool)),
-    ("offset" => Offset(f64)),
-    ("scale" => Scale(f64)),
+    ("storage" => Storage(Vec<Primitive<u16>>)),
+    ("triangleFlip" => TriangleFlip(Primitive<bool>)),
+    ("offset" => Offset(Primitive<f32>)),
+    ("scale" => Scale(Primitive<f32>)),
 }

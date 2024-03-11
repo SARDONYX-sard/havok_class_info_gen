@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxScene<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxScene"`: Name of this class.
+    /// `"hkxScene"`: The original C++ class name.
     #[serde(default = "HkxScene::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -37,17 +38,17 @@ pub struct HkxScene<'a> {
     /// The `"hkparam"` tag (C++ field) vector
     #[serde(bound(deserialize = "Vec<HkxSceneHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<HkxSceneHkParam<'a>>,
+    pub hkparams: Vec<HkxSceneHkParam<'a>>
 }
 
 impl HkxScene<'_> {
-    /// Return `"hkxScene"`, which is the name of this class.
+    /// Return `"hkxScene"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxScene".into()
+        "hkxScene".into()
     }
 
     /// Return `"0x5f673ddd"`, which is the signature of this class.
@@ -63,114 +64,114 @@ impl HkxScene<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxSceneHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"modeller"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "modeller")]
-    Modeller(String),
-    /// # Information on fields in the original C++ class
+    Modeller(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"asset"`
     /// -   type: `hkStringPtr`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "asset")]
-    Asset(String),
-    /// # Information on fields in the original C++ class
+    Asset(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"sceneLength"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sceneLength")]
-    SceneLength(f64),
-    /// # Information on fields in the original C++ class
+    SceneLength(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rootNode"`
     /// -   type: `struct hkxNode*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rootNode")]
-    RootNode(Box<HkxNode<'a>>),
-    /// # Information on fields in the original C++ class
+    RootNode(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"selectionSets"`
     /// -   type: `hkArray&lt;hkxNodeSelectionSet*&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "selectionSets")]
-    SelectionSets(Vec<Box<HkxNodeSelectionSet<'a>>>),
-    /// # Information on fields in the original C++ class
+    SelectionSets(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"cameras"`
     /// -   type: `hkArray&lt;hkxCamera*&gt;`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cameras")]
-    Cameras(Vec<Box<HkxCamera<'a>>>),
-    /// # Information on fields in the original C++ class
+    Cameras(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"lights"`
     /// -   type: `hkArray&lt;hkxLight*&gt;`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lights")]
-    Lights(Vec<Box<HkxLight<'a>>>),
-    /// # Information on fields in the original C++ class
+    Lights(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"meshes"`
     /// -   type: `hkArray&lt;hkxMesh*&gt;`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "meshes")]
-    Meshes(Vec<Box<HkxMesh<'a>>>),
-    /// # Information on fields in the original C++ class
+    Meshes(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"materials"`
     /// -   type: `hkArray&lt;hkxMaterial*&gt;`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materials")]
-    Materials(Vec<Box<HkxMaterial<'a>>>),
-    /// # Information on fields in the original C++ class
+    Materials(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"inplaceTextures"`
     /// -   type: `hkArray&lt;hkxTextureInplace*&gt;`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "inplaceTextures")]
-    InplaceTextures(Vec<Box<HkxTextureInplace<'a>>>),
-    /// # Information on fields in the original C++ class
+    InplaceTextures(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"externalTextures"`
     /// -   type: `hkArray&lt;hkxTextureFile*&gt;`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "externalTextures")]
-    ExternalTextures(Vec<Box<HkxTextureFile<'a>>>),
-    /// # Information on fields in the original C++ class
+    ExternalTextures(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"skinBindings"`
     /// -   type: `hkArray&lt;hkxSkinBinding*&gt;`
     /// - offset: 108
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "skinBindings")]
-    SkinBindings(Vec<Box<HkxSkinBinding<'a>>>),
-    /// # Information on fields in the original C++ class
+    SkinBindings(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"appliedTransform"`
     /// -   type: `hkMatrix3`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "appliedTransform")]
-    AppliedTransform(cgmath::Matrix3<f32>),
+    AppliedTransform(Matrix3<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxSceneHkParam<'de>, "@name",
-    ("modeller" => Modeller(String)),
-    ("asset" => Asset(String)),
-    ("sceneLength" => SceneLength(f64)),
-    ("rootNode" => RootNode(Box<HkxNode>)),
-    ("selectionSets" => SelectionSets(Vec<Box<HkxNodeSelectionSet>>)),
-    ("cameras" => Cameras(Vec<Box<HkxCamera>>)),
-    ("lights" => Lights(Vec<Box<HkxLight>>)),
-    ("meshes" => Meshes(Vec<Box<HkxMesh>>)),
-    ("materials" => Materials(Vec<Box<HkxMaterial>>)),
-    ("inplaceTextures" => InplaceTextures(Vec<Box<HkxTextureInplace>>)),
-    ("externalTextures" => ExternalTextures(Vec<Box<HkxTextureFile>>)),
-    ("skinBindings" => SkinBindings(Vec<Box<HkxSkinBinding>>)),
-    ("appliedTransform" => AppliedTransform(cgmath::Matrix3<f32>)),
+    ("modeller" => Modeller(Primitive<Cow<'a, str>>)),
+    ("asset" => Asset(Primitive<Cow<'a, str>>)),
+    ("sceneLength" => SceneLength(Primitive<f32>)),
+    ("rootNode" => RootNode(Cow<'a, str>)),
+    ("selectionSets" => SelectionSets(Vec<Cow<'a, str>>)),
+    ("cameras" => Cameras(Vec<Cow<'a, str>>)),
+    ("lights" => Lights(Vec<Cow<'a, str>>)),
+    ("meshes" => Meshes(Vec<Cow<'a, str>>)),
+    ("materials" => Materials(Vec<Cow<'a, str>>)),
+    ("inplaceTextures" => InplaceTextures(Vec<Cow<'a, str>>)),
+    ("externalTextures" => ExternalTextures(Vec<Cow<'a, str>>)),
+    ("skinBindings" => SkinBindings(Vec<Cow<'a, str>>)),
+    ("appliedTransform" => AppliedTransform(Matrix3<f32>)),
 }

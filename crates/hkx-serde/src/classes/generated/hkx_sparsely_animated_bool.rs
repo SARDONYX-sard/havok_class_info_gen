@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxSparselyAnimatedBool<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxSparselyAnimatedBool"`: Name of this class.
+    /// `"hkxSparselyAnimatedBool"`: The original C++ class name.
     #[serde(default = "HkxSparselyAnimatedBool::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxSparselyAnimatedBool<'a> {
 }
 
 impl HkxSparselyAnimatedBool<'_> {
-    /// Return `"hkxSparselyAnimatedBool"`, which is the name of this class.
+    /// Return `"hkxSparselyAnimatedBool"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxSparselyAnimatedBool".into()
+        "hkxSparselyAnimatedBool".into()
     }
 
     /// Return `"0x7a894596"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkxSparselyAnimatedBool<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxSparselyAnimatedBoolHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bools"`
     /// -   type: `hkArray&lt;hkBool&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bools")]
-    Bools(Vec<bool>),
-    /// # Information on fields in the original C++ class
+    Bools(Vec<Primitive<bool>>),
+    /// # Field information in the original C++ class
     /// -   name:`"times"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "times")]
-    Times(Vec<f64>),
+    Times(Vec<Primitive<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxSparselyAnimatedBoolHkParam<'de>, "@name",
-    ("bools" => Bools(Vec<bool>)),
-    ("times" => Times(Vec<f64>)),
+    ("bools" => Bools(Vec<Primitive<bool>>)),
+    ("times" => Times(Vec<Primitive<f32>>)),
 }

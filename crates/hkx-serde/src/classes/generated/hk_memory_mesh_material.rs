@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMemoryMeshMaterial<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMemoryMeshMaterial"`: Name of this class.
+    /// `"hkMemoryMeshMaterial"`: The original C++ class name.
     #[serde(default = "HkMemoryMeshMaterial::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMemoryMeshMaterial<'a> {
 }
 
 impl HkMemoryMeshMaterial<'_> {
-    /// Return `"hkMemoryMeshMaterial"`, which is the name of this class.
+    /// Return `"hkMemoryMeshMaterial"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMemoryMeshMaterial".into()
+        "hkMemoryMeshMaterial".into()
     }
 
     /// Return `"0x12156ee3"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkMemoryMeshMaterial<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMemoryMeshMaterialHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialName"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialName")]
-    MaterialName(String),
-    /// # Information on fields in the original C++ class
+    MaterialName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"textures"`
     /// -   type: `hkArray&lt;hkMeshTexture*&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "textures")]
-    Textures(Vec<Box<HkMeshTexture>>),
+    Textures(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMemoryMeshMaterialHkParam<'de>, "@name",
-    ("materialName" => MaterialName(String)),
-    ("textures" => Textures(Vec<Box<HkMeshTexture>>)),
+    ("materialName" => MaterialName(Primitive<Cow<'a, str>>)),
+    ("textures" => Textures(Vec<Cow<'a, str>>)),
 }

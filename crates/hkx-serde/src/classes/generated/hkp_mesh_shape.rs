@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMeshShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMeshShape"`: Name of this class.
+    /// `"hkpMeshShape"`: The original C++ class name.
     #[serde(default = "HkpMeshShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMeshShape<'a> {
 }
 
 impl HkpMeshShape<'_> {
-    /// Return `"hkpMeshShape"`, which is the name of this class.
+    /// Return `"hkpMeshShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMeshShape".into()
+        "hkpMeshShape".into()
     }
 
     /// Return `"0x3bf12c0f"`, which is the signature of this class.
@@ -63,68 +64,68 @@ impl HkpMeshShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMeshShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"scaling"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "scaling")]
-    Scaling(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Scaling(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numBitsForSubpartIndex"`
     /// -   type: `hkInt32`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numBitsForSubpartIndex")]
-    NumBitsForSubpartIndex(i32),
-    /// # Information on fields in the original C++ class
+    NumBitsForSubpartIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"subparts"`
     /// -   type: `hkArray&lt;struct hkpMeshShapeSubpart&gt;`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "subparts")]
     Subparts(Vec<HkpMeshShapeSubpart>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"weldingInfo"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingInfo")]
-    WeldingInfo(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    WeldingInfo(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"weldingType"`
     /// -   type: `enum WeldingType`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingType")]
     WeldingType(WeldingType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"radius"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "radius")]
-    Radius(f64),
-    /// # Information on fields in the original C++ class
+    Radius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"pad"`
     /// -   type: `hkInt32[3]`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pad")]
-    Pad([i32; 3]),
+    Pad([Primitive<i32>; 3]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpMeshShapeHkParam<'de>, "@name",
-    ("scaling" => Scaling(cgmath::Vector4<f32>)),
-    ("numBitsForSubpartIndex" => NumBitsForSubpartIndex(i32)),
+    ("scaling" => Scaling(Vector4<f32>)),
+    ("numBitsForSubpartIndex" => NumBitsForSubpartIndex(Primitive<i32>)),
     ("subparts" => Subparts(Vec<HkpMeshShapeSubpart>)),
-    ("weldingInfo" => WeldingInfo(Vec<u16>)),
+    ("weldingInfo" => WeldingInfo(Vec<Primitive<u16>>)),
     ("weldingType" => WeldingType(WeldingType)),
-    ("radius" => Radius(f64)),
-    ("pad" => Pad([i32; 3])),
+    ("radius" => Radius(Primitive<f32>)),
+    ("pad" => Pad([Primitive<i32>; 3])),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

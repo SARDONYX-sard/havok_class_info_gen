@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkTrackerSerializableScanSnapshot<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkTrackerSerializableScanSnapshot"`: Name of this class.
+    /// `"hkTrackerSerializableScanSnapshot"`: The original C++ class name.
     #[serde(default = "HkTrackerSerializableScanSnapshot::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkTrackerSerializableScanSnapshot<'a> {
 }
 
 impl HkTrackerSerializableScanSnapshot<'_> {
-    /// Return `"hkTrackerSerializableScanSnapshot"`, which is the name of this class.
+    /// Return `"hkTrackerSerializableScanSnapshot"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkTrackerSerializableScanSnapshot".into()
+        "hkTrackerSerializableScanSnapshot".into()
     }
 
     /// Return `"0x875af1d9"`, which is the signature of this class.
@@ -63,55 +64,55 @@ impl HkTrackerSerializableScanSnapshot<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkTrackerSerializableScanSnapshotHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"allocations"`
     /// -   type: `hkArray&lt;struct hkTrackerSerializableScanSnapshotAllocation&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "allocations")]
     Allocations(Vec<HkTrackerSerializableScanSnapshotAllocation>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"blocks"`
     /// -   type: `hkArray&lt;struct hkTrackerSerializableScanSnapshotBlock&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "blocks")]
     Blocks(Vec<HkTrackerSerializableScanSnapshotBlock>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"refs"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "refs")]
-    Refs(Vec<i32>),
-    /// # Information on fields in the original C++ class
+    Refs(Vec<Primitive<i32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"typeNames"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "typeNames")]
-    TypeNames(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    TypeNames(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"traceText"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "traceText")]
-    TraceText(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    TraceText(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"traceAddrs"`
     /// -   type: `hkArray&lt;hkUint64&gt;`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "traceAddrs")]
-    TraceAddrs(Vec<u64>),
-    /// # Information on fields in the original C++ class
+    TraceAddrs(Vec<Primitive<u64>>),
+    /// # Field information in the original C++ class
     /// -   name:`"traceParents"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "traceParents")]
-    TraceParents(Vec<i32>),
+    TraceParents(Vec<Primitive<i32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -120,9 +121,9 @@ impl_deserialize_for_internally_tagged_enum! {
     HkTrackerSerializableScanSnapshotHkParam<'de>, "@name",
     ("allocations" => Allocations(Vec<HkTrackerSerializableScanSnapshotAllocation>)),
     ("blocks" => Blocks(Vec<HkTrackerSerializableScanSnapshotBlock>)),
-    ("refs" => Refs(Vec<i32>)),
-    ("typeNames" => TypeNames(Vec<u8>)),
-    ("traceText" => TraceText(Vec<u8>)),
-    ("traceAddrs" => TraceAddrs(Vec<u64>)),
-    ("traceParents" => TraceParents(Vec<i32>)),
+    ("refs" => Refs(Vec<Primitive<i32>>)),
+    ("typeNames" => TypeNames(Vec<Primitive<u8>>)),
+    ("traceText" => TraceText(Vec<Primitive<u8>>)),
+    ("traceAddrs" => TraceAddrs(Vec<Primitive<u64>>)),
+    ("traceParents" => TraceParents(Vec<Primitive<i32>>)),
 }

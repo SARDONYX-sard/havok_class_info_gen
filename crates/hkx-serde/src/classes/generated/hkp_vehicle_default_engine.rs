@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleDefaultEngine<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleDefaultEngine"`: Name of this class.
+    /// `"hkpVehicleDefaultEngine"`: The original C++ class name.
     #[serde(default = "HkpVehicleDefaultEngine::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleDefaultEngine<'a> {
 }
 
 impl HkpVehicleDefaultEngine<'_> {
-    /// Return `"hkpVehicleDefaultEngine"`, which is the name of this class.
+    /// Return `"hkpVehicleDefaultEngine"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleDefaultEngine".into()
+        "hkpVehicleDefaultEngine".into()
     }
 
     /// Return `"0x56f8ca24"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkpVehicleDefaultEngine<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDefaultEngineHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"minRPM"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "minRPM")]
-    MinRpm(f64),
-    /// # Information on fields in the original C++ class
+    MinRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"optRPM"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "optRPM")]
-    OptRpm(f64),
-    /// # Information on fields in the original C++ class
+    OptRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxRPM"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxRPM")]
-    MaxRpm(f64),
-    /// # Information on fields in the original C++ class
+    MaxRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxTorque"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxTorque")]
-    MaxTorque(f64),
-    /// # Information on fields in the original C++ class
+    MaxTorque(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"torqueFactorAtMinRPM"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "torqueFactorAtMinRPM")]
-    TorqueFactorAtMinRpm(f64),
-    /// # Information on fields in the original C++ class
+    TorqueFactorAtMinRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"torqueFactorAtMaxRPM"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "torqueFactorAtMaxRPM")]
-    TorqueFactorAtMaxRpm(f64),
-    /// # Information on fields in the original C++ class
+    TorqueFactorAtMaxRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"resistanceFactorAtMinRPM"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "resistanceFactorAtMinRPM")]
-    ResistanceFactorAtMinRpm(f64),
-    /// # Information on fields in the original C++ class
+    ResistanceFactorAtMinRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"resistanceFactorAtOptRPM"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "resistanceFactorAtOptRPM")]
-    ResistanceFactorAtOptRpm(f64),
-    /// # Information on fields in the original C++ class
+    ResistanceFactorAtOptRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"resistanceFactorAtMaxRPM"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "resistanceFactorAtMaxRPM")]
-    ResistanceFactorAtMaxRpm(f64),
-    /// # Information on fields in the original C++ class
+    ResistanceFactorAtMaxRpm(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"clutchSlipRPM"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "clutchSlipRPM")]
-    ClutchSlipRpm(f64),
+    ClutchSlipRpm(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleDefaultEngineHkParam<'de>, "@name",
-    ("minRPM" => MinRpm(f64)),
-    ("optRPM" => OptRpm(f64)),
-    ("maxRPM" => MaxRpm(f64)),
-    ("maxTorque" => MaxTorque(f64)),
-    ("torqueFactorAtMinRPM" => TorqueFactorAtMinRpm(f64)),
-    ("torqueFactorAtMaxRPM" => TorqueFactorAtMaxRpm(f64)),
-    ("resistanceFactorAtMinRPM" => ResistanceFactorAtMinRpm(f64)),
-    ("resistanceFactorAtOptRPM" => ResistanceFactorAtOptRpm(f64)),
-    ("resistanceFactorAtMaxRPM" => ResistanceFactorAtMaxRpm(f64)),
-    ("clutchSlipRPM" => ClutchSlipRpm(f64)),
+    ("minRPM" => MinRpm(Primitive<f32>)),
+    ("optRPM" => OptRpm(Primitive<f32>)),
+    ("maxRPM" => MaxRpm(Primitive<f32>)),
+    ("maxTorque" => MaxTorque(Primitive<f32>)),
+    ("torqueFactorAtMinRPM" => TorqueFactorAtMinRpm(Primitive<f32>)),
+    ("torqueFactorAtMaxRPM" => TorqueFactorAtMaxRpm(Primitive<f32>)),
+    ("resistanceFactorAtMinRPM" => ResistanceFactorAtMinRpm(Primitive<f32>)),
+    ("resistanceFactorAtOptRPM" => ResistanceFactorAtOptRpm(Primitive<f32>)),
+    ("resistanceFactorAtMaxRPM" => ResistanceFactorAtMaxRpm(Primitive<f32>)),
+    ("clutchSlipRPM" => ClutchSlipRpm(Primitive<f32>)),
 }

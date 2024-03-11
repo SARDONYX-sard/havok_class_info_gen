@@ -12,7 +12,6 @@ build
 # misc
 .DS_Store
 *.pem
-test/
 *.log
 
 # Rust build cache
@@ -20,3 +19,5 @@ test/
 
 crates/hkx-serde/assets/*
 !crates/hkx-serde/assets/readme.md
+
+/tests/**/

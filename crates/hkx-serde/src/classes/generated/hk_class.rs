@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkClass<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkClass"`: Name of this class.
+    /// `"hkClass"`: The original C++ class name.
     #[serde(default = "HkClass::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkClass<'a> {
 }
 
 impl HkClass<'_> {
-    /// Return `"hkClass"`, which is the name of this class.
+    /// Return `"hkClass"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkClass".into()
+        "hkClass".into()
     }
 
     /// Return `"0x75585ef6"`, which is the signature of this class.
@@ -63,92 +64,92 @@ impl HkClass<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkClassHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `char*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"parent"`
     /// -   type: `struct hkClass*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "parent")]
-    Parent(Box<HkClass>),
-    /// # Information on fields in the original C++ class
+    Parent(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"objectSize"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "objectSize")]
-    ObjectSize(i32),
-    /// # Information on fields in the original C++ class
+    ObjectSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numImplementedInterfaces"`
     /// -   type: `hkInt32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numImplementedInterfaces")]
-    NumImplementedInterfaces(i32),
-    /// # Information on fields in the original C++ class
+    NumImplementedInterfaces(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"declaredEnums"`
     /// -   type: `hkSimpleArray&lt;struct hkClassEnum&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "declaredEnums")]
     DeclaredEnums(Vec<HkClassEnum>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"declaredMembers"`
     /// -   type: `hkSimpleArray&lt;struct hkClassMember&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "declaredMembers")]
     DeclaredMembers(Vec<HkClassMember>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"defaults"`
     /// -   type: `void*`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "defaults", skip_serializing)]
     Defaults(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"attributes"`
     /// -   type: `struct hkCustomAttributes*`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "attributes", skip_serializing)]
-    Attributes(Box<HkCustomAttributes>),
-    /// # Information on fields in the original C++ class
+    Attributes(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"flags"`
     /// -   type: `flags FlagValues`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "flags")]
     Flags(FlagValues),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"describedVersion"`
     /// -   type: `hkInt32`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "describedVersion")]
-    DescribedVersion(i32),
+    DescribedVersion(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkClassHkParam<'de>, "@name",
-    ("name" => Name(String)),
-    ("parent" => Parent(Box<HkClass>)),
-    ("objectSize" => ObjectSize(i32)),
-    ("numImplementedInterfaces" => NumImplementedInterfaces(i32)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("parent" => Parent(Cow<'a, str>)),
+    ("objectSize" => ObjectSize(Primitive<i32>)),
+    ("numImplementedInterfaces" => NumImplementedInterfaces(Primitive<i32>)),
     ("declaredEnums" => DeclaredEnums(Vec<HkClassEnum>)),
     ("declaredMembers" => DeclaredMembers(Vec<HkClassMember>)),
     ("defaults" => Defaults(())),
-    ("attributes" => Attributes(Box<HkCustomAttributes>)),
+    ("attributes" => Attributes(Cow<'a, str>)),
     ("flags" => Flags(FlagValues)),
-    ("describedVersion" => DescribedVersion(i32)),
+    ("describedVersion" => DescribedVersion(Primitive<i32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpLimitedHingeConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpLimitedHingeConstraintDataAtoms"`: Name of this class.
+    /// `"hkpLimitedHingeConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpLimitedHingeConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpLimitedHingeConstraintDataAtoms<'a> {
 }
 
 impl HkpLimitedHingeConstraintDataAtoms<'_> {
-    /// Return `"hkpLimitedHingeConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpLimitedHingeConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpLimitedHingeConstraintDataAtoms".into()
+        "hkpLimitedHingeConstraintDataAtoms".into()
     }
 
     /// Return `"0x54c7715b"`, which is the signature of this class.
@@ -63,49 +64,49 @@ impl HkpLimitedHingeConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpLimitedHingeConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transforms"`
     /// -   type: `struct hkpSetLocalTransformsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transforms")]
     Transforms(HkpSetLocalTransformsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"setupStabilization"`
     /// -   type: `struct hkpSetupStabilizationAtom`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "setupStabilization")]
     SetupStabilization(HkpSetupStabilizationAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"angMotor"`
     /// -   type: `struct hkpAngMotorConstraintAtom`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angMotor")]
     AngMotor(HkpAngMotorConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"angFriction"`
     /// -   type: `struct hkpAngFrictionConstraintAtom`
     /// - offset: 180
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angFriction")]
     AngFriction(HkpAngFrictionConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"angLimit"`
     /// -   type: `struct hkpAngLimitConstraintAtom`
     /// - offset: 192
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angLimit")]
     AngLimit(HkpAngLimitConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"2dAng"`
     /// -   type: `struct hkp2dAngConstraintAtom`
     /// - offset: 208
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "2dAng")]
     2DAng(Hkp2DAngConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ballSocket"`
     /// -   type: `struct hkpBallSocketConstraintAtom`
     /// - offset: 212

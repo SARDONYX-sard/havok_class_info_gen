@@ -2,6 +2,8 @@
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
+use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -23,7 +25,7 @@ pub struct BsComputeAddBoneAnimModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSComputeAddBoneAnimModifier"`: Name of this class.
+    /// `"BSComputeAddBoneAnimModifier"`: The original C++ class name.
     #[serde(default = "BsComputeAddBoneAnimModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -34,19 +36,19 @@ pub struct BsComputeAddBoneAnimModifier<'a> {
     pub signature: Cow<'a, str>,
 
     /// The `"hkparam"` tag (C++ field) vector
-    #[serde(bound(deserialize = "Vec<BsComputeAddBoneAnimModifierHkParam>: Deserialize<'de>"))]
+    #[serde(bound(deserialize = "Vec<BsComputeAddBoneAnimModifierHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<BsComputeAddBoneAnimModifierHkParam>,
+    pub hkparams: Vec<BsComputeAddBoneAnimModifierHkParam<'a>>
 }
 
 impl BsComputeAddBoneAnimModifier<'_> {
-    /// Return `"BSComputeAddBoneAnimModifier"`, which is the name of this class.
+    /// Return `"BSComputeAddBoneAnimModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsComputeAddBoneAnimModifier".into()
+        "BSComputeAddBoneAnimModifier".into()
     }
 
     /// Return `"0xa67f8c46"`, which is the signature of this class.
@@ -61,36 +63,36 @@ impl BsComputeAddBoneAnimModifier<'_> {
 /// In C++, it represents the name of one field in the class.
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
-pub enum BsComputeAddBoneAnimModifierHkParam {
-    /// # Information on fields in the original C++ class
+pub enum BsComputeAddBoneAnimModifierHkParam<'a> {
+    /// # Field information in the original C++ class
     /// -   name:`"boneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneIndex")]
-    BoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    BoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"translationLSOut"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "translationLSOut")]
-    TranslationLsOut(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    TranslationLsOut(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotationLSOut"`
     /// -   type: `hkQuaternion`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotationLSOut")]
-    RotationLsOut(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    RotationLsOut(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"scaleLSOut"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "scaleLSOut")]
-    ScaleLsOut(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    ScaleLsOut(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"pSkeletonMemory"`
     /// -   type: `void*`
     /// - offset: 96
@@ -102,10 +104,10 @@ pub enum BsComputeAddBoneAnimModifierHkParam {
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
-    BsComputeAddBoneAnimModifierHkParam, "@name",
-    ("boneIndex" => BoneIndex(i16)),
-    ("translationLSOut" => TranslationLsOut(cgmath::Vector4<f32>)),
-    ("rotationLSOut" => RotationLsOut(cgmath::Quaternion<f32>)),
-    ("scaleLSOut" => ScaleLsOut(cgmath::Vector4<f32>)),
+    BsComputeAddBoneAnimModifierHkParam<'de>, "@name",
+    ("boneIndex" => BoneIndex(Primitive<i16>)),
+    ("translationLSOut" => TranslationLsOut(Vector4<f32>)),
+    ("rotationLSOut" => RotationLsOut(Quaternion<f32>)),
+    ("scaleLSOut" => ScaleLsOut(Vector4<f32>)),
     ("pSkeletonMemory" => PSkeletonMemory(())),
 }

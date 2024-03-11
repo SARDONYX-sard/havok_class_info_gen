@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbAttributeModifierAssignment<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbAttributeModifierAssignment"`: Name of this class.
+    /// `"hkbAttributeModifierAssignment"`: The original C++ class name.
     #[serde(default = "HkbAttributeModifierAssignment::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbAttributeModifierAssignment<'a> {
 }
 
 impl HkbAttributeModifierAssignment<'_> {
-    /// Return `"hkbAttributeModifierAssignment"`, which is the name of this class.
+    /// Return `"hkbAttributeModifierAssignment"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbAttributeModifierAssignment".into()
+        "hkbAttributeModifierAssignment".into()
     }
 
     /// Return `"0x48b8ad52"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkbAttributeModifierAssignment<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbAttributeModifierAssignmentHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"attributeIndex"`
     /// -   type: `hkInt32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "attributeIndex")]
-    AttributeIndex(i32),
-    /// # Information on fields in the original C++ class
+    AttributeIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"attributeValue"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "attributeValue")]
-    AttributeValue(f64),
+    AttributeValue(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbAttributeModifierAssignmentHkParam<'de>, "@name",
-    ("attributeIndex" => AttributeIndex(i32)),
-    ("attributeValue" => AttributeValue(f64)),
+    ("attributeIndex" => AttributeIndex(Primitive<i32>)),
+    ("attributeValue" => AttributeValue(Primitive<f32>)),
 }

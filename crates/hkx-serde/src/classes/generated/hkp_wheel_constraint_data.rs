@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpWheelConstraintData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpWheelConstraintData"`: Name of this class.
+    /// `"hkpWheelConstraintData"`: The original C++ class name.
     #[serde(default = "HkpWheelConstraintData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpWheelConstraintData<'a> {
 }
 
 impl HkpWheelConstraintData<'_> {
-    /// Return `"hkpWheelConstraintData"`, which is the name of this class.
+    /// Return `"hkpWheelConstraintData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpWheelConstraintData".into()
+        "hkpWheelConstraintData".into()
     }
 
     /// Return `"0xb4c46671"`, which is the signature of this class.
@@ -63,27 +64,27 @@ impl HkpWheelConstraintData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpWheelConstraintDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"atoms"`
     /// -   type: `struct hkpWheelConstraintDataAtoms`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "atoms")]
     Atoms(HkpWheelConstraintDataAtoms),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"initialAxleInB"`
     /// -   type: `hkVector4`
     /// - offset: 320
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initialAxleInB")]
-    InitialAxleInB(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    InitialAxleInB(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"initialSteeringAxisInB"`
     /// -   type: `hkVector4`
     /// - offset: 336
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initialSteeringAxisInB")]
-    InitialSteeringAxisInB(cgmath::Vector4<f32>),
+    InitialSteeringAxisInB(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -91,6 +92,6 @@ pub enum HkpWheelConstraintDataHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpWheelConstraintDataHkParam<'de>, "@name",
     ("atoms" => Atoms(HkpWheelConstraintDataAtoms)),
-    ("initialAxleInB" => InitialAxleInB(cgmath::Vector4<f32>)),
-    ("initialSteeringAxisInB" => InitialSteeringAxisInB(cgmath::Vector4<f32>)),
+    ("initialAxleInB" => InitialAxleInB(Vector4<f32>)),
+    ("initialSteeringAxisInB" => InitialSteeringAxisInB(Vector4<f32>)),
 }

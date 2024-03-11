@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkGeometryTriangle<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkGeometryTriangle"`: Name of this class.
+    /// `"hkGeometryTriangle"`: The original C++ class name.
     #[serde(default = "HkGeometryTriangle::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkGeometryTriangle<'a> {
 }
 
 impl HkGeometryTriangle<'_> {
-    /// Return `"hkGeometryTriangle"`, which is the name of this class.
+    /// Return `"hkGeometryTriangle"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkGeometryTriangle".into()
+        "hkGeometryTriangle".into()
     }
 
     /// Return `"0x9687513b"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkGeometryTriangle<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkGeometryTriangleHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"a"`
     /// -   type: `hkInt32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "a")]
-    A(i32),
-    /// # Information on fields in the original C++ class
+    A(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"b"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "b")]
-    B(i32),
-    /// # Information on fields in the original C++ class
+    B(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"c"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "c")]
-    C(i32),
-    /// # Information on fields in the original C++ class
+    C(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"material"`
     /// -   type: `hkInt32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "material")]
-    Material(i32),
+    Material(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkGeometryTriangleHkParam<'de>, "@name",
-    ("a" => A(i32)),
-    ("b" => B(i32)),
-    ("c" => C(i32)),
-    ("material" => Material(i32)),
+    ("a" => A(Primitive<i32>)),
+    ("b" => B(Primitive<i32>)),
+    ("c" => C(Primitive<i32>)),
+    ("material" => Material(Primitive<i32>)),
 }

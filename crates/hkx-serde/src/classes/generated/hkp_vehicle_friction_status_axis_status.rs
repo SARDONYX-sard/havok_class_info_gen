@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleFrictionStatusAxisStatus<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleFrictionStatusAxisStatus"`: Name of this class.
+    /// `"hkpVehicleFrictionStatusAxisStatus"`: The original C++ class name.
     #[serde(default = "HkpVehicleFrictionStatusAxisStatus::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleFrictionStatusAxisStatus<'a> {
 }
 
 impl HkpVehicleFrictionStatusAxisStatus<'_> {
-    /// Return `"hkpVehicleFrictionStatusAxisStatus"`, which is the name of this class.
+    /// Return `"hkpVehicleFrictionStatusAxisStatus"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleFrictionStatusAxisStatus".into()
+        "hkpVehicleFrictionStatusAxisStatus".into()
     }
 
     /// Return `"0xe70e2bb4"`, which is the signature of this class.
@@ -63,82 +64,82 @@ impl HkpVehicleFrictionStatusAxisStatus<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleFrictionStatusAxisStatusHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"forward_slip_velocity"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forward_slip_velocity")]
-    ForwardSlipVelocity(f64),
-    /// # Information on fields in the original C++ class
+    ForwardSlipVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"side_slip_velocity"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "side_slip_velocity")]
-    SideSlipVelocity(f64),
-    /// # Information on fields in the original C++ class
+    SideSlipVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"skid_energy_density"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "skid_energy_density")]
-    SkidEnergyDensity(f64),
-    /// # Information on fields in the original C++ class
+    SkidEnergyDensity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"side_force"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "side_force")]
-    SideForce(f64),
-    /// # Information on fields in the original C++ class
+    SideForce(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"delayed_forward_impulse"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "delayed_forward_impulse")]
-    DelayedForwardImpulse(f64),
-    /// # Information on fields in the original C++ class
+    DelayedForwardImpulse(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sideRhs"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sideRhs")]
-    SideRhs(f64),
-    /// # Information on fields in the original C++ class
+    SideRhs(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"forwardRhs"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forwardRhs")]
-    ForwardRhs(f64),
-    /// # Information on fields in the original C++ class
+    ForwardRhs(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"relativeSideForce"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "relativeSideForce")]
-    RelativeSideForce(f64),
-    /// # Information on fields in the original C++ class
+    RelativeSideForce(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"relativeForwardForce"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "relativeForwardForce")]
-    RelativeForwardForce(f64),
+    RelativeForwardForce(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleFrictionStatusAxisStatusHkParam<'de>, "@name",
-    ("forward_slip_velocity" => ForwardSlipVelocity(f64)),
-    ("side_slip_velocity" => SideSlipVelocity(f64)),
-    ("skid_energy_density" => SkidEnergyDensity(f64)),
-    ("side_force" => SideForce(f64)),
-    ("delayed_forward_impulse" => DelayedForwardImpulse(f64)),
-    ("sideRhs" => SideRhs(f64)),
-    ("forwardRhs" => ForwardRhs(f64)),
-    ("relativeSideForce" => RelativeSideForce(f64)),
-    ("relativeForwardForce" => RelativeForwardForce(f64)),
+    ("forward_slip_velocity" => ForwardSlipVelocity(Primitive<f32>)),
+    ("side_slip_velocity" => SideSlipVelocity(Primitive<f32>)),
+    ("skid_energy_density" => SkidEnergyDensity(Primitive<f32>)),
+    ("side_force" => SideForce(Primitive<f32>)),
+    ("delayed_forward_impulse" => DelayedForwardImpulse(Primitive<f32>)),
+    ("sideRhs" => SideRhs(Primitive<f32>)),
+    ("forwardRhs" => ForwardRhs(Primitive<f32>)),
+    ("relativeSideForce" => RelativeSideForce(Primitive<f32>)),
+    ("relativeForwardForce" => RelativeForwardForce(Primitive<f32>)),
 }

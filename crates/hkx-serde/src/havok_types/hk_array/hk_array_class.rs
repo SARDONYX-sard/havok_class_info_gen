@@ -1,8 +1,12 @@
 use serde::{Deserialize, Serialize};
 
-/// A type to hold another class of `hkparam` as an array within `hkparam` in XML.
+/// In C++, this is the case when the type of the in-class field is a class.
+///
+/// In XML, A type to hold another class of `hkparam` as an array within `hkparam`.
 ///
 /// e.g. `wordVariableValues` field of `hkbVariableValueSet` class
+///
+/// # XML Example
 ///
 /// ```xml
 /// <hkparam name="variantVariableValues" numelements="2">

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSerializedTrack1NInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSerializedTrack1nInfo"`: Name of this class.
+    /// `"hkpSerializedTrack1nInfo"`: The original C++ class name.
     #[serde(default = "HkpSerializedTrack1NInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSerializedTrack1NInfo<'a> {
 }
 
 impl HkpSerializedTrack1NInfo<'_> {
-    /// Return `"hkpSerializedTrack1nInfo"`, which is the name of this class.
+    /// Return `"hkpSerializedTrack1nInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSerializedTrack1NInfo".into()
+        "hkpSerializedTrack1nInfo".into()
     }
 
     /// Return `"0xf12d48d9"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpSerializedTrack1NInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSerializedTrack1NInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sectors"`
     /// -   type: `hkArray&lt;hkpAgent1nSector*&gt;`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sectors")]
-    Sectors(Vec<Box<HkpAgent1NSector>>),
-    /// # Information on fields in the original C++ class
+    Sectors(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"subTracks"`
     /// -   type: `hkArray&lt;hkpSerializedSubTrack1nInfo*&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "subTracks")]
-    SubTracks(Vec<Box<HkpSerializedSubTrack1NInfo>>),
+    SubTracks(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSerializedTrack1NInfoHkParam<'de>, "@name",
-    ("sectors" => Sectors(Vec<Box<HkpAgent1NSector>>)),
-    ("subTracks" => SubTracks(Vec<Box<HkpSerializedSubTrack1NInfo>>)),
+    ("sectors" => Sectors(Vec<Cow<'a, str>>)),
+    ("subTracks" => SubTracks(Vec<Cow<'a, str>>)),
 }

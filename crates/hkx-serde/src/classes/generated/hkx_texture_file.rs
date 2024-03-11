@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxTextureFile<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxTextureFile"`: Name of this class.
+    /// `"hkxTextureFile"`: The original C++ class name.
     #[serde(default = "HkxTextureFile::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxTextureFile<'a> {
 }
 
 impl HkxTextureFile<'_> {
-    /// Return `"hkxTextureFile"`, which is the name of this class.
+    /// Return `"hkxTextureFile"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxTextureFile".into()
+        "hkxTextureFile".into()
     }
 
     /// Return `"0x1e289259"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkxTextureFile<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxTextureFileHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"filename"`
     /// -   type: `hkStringPtr`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "filename")]
-    Filename(String),
-    /// # Information on fields in the original C++ class
+    Filename(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"originalFilename"`
     /// -   type: `hkStringPtr`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "originalFilename")]
-    OriginalFilename(String),
+    OriginalFilename(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxTextureFileHkParam<'de>, "@name",
-    ("filename" => Filename(String)),
-    ("name" => Name(String)),
-    ("originalFilename" => OriginalFilename(String)),
+    ("filename" => Filename(Primitive<Cow<'a, str>>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("originalFilename" => OriginalFilename(Primitive<Cow<'a, str>>)),
 }

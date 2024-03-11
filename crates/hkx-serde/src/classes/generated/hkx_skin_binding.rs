@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxSkinBinding<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxSkinBinding"`: Name of this class.
+    /// `"hkxSkinBinding"`: The original C++ class name.
     #[serde(default = "HkxSkinBinding::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxSkinBinding<'a> {
 }
 
 impl HkxSkinBinding<'_> {
-    /// Return `"hkxSkinBinding"`, which is the name of this class.
+    /// Return `"hkxSkinBinding"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxSkinBinding".into()
+        "hkxSkinBinding".into()
     }
 
     /// Return `"0x5a93f338"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkxSkinBinding<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxSkinBindingHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"mesh"`
     /// -   type: `struct hkxMesh*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mesh")]
-    Mesh(Box<HkxMesh>),
-    /// # Information on fields in the original C++ class
+    Mesh(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"nodeNames"`
     /// -   type: `hkArray&lt;hkStringPtr&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nodeNames")]
-    NodeNames(Vec<String>),
-    /// # Information on fields in the original C++ class
+    NodeNames(Vec<Primitive<Cow<'a, str>>>),
+    /// # Field information in the original C++ class
     /// -   name:`"bindPose"`
     /// -   type: `hkArray&lt;hkMatrix4&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bindPose")]
-    BindPose(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    BindPose(Vec<Matrix4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"initSkinTransform"`
     /// -   type: `hkMatrix4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initSkinTransform")]
-    InitSkinTransform(cgmath::Matrix4<f32>),
+    InitSkinTransform(Matrix4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxSkinBindingHkParam<'de>, "@name",
-    ("mesh" => Mesh(Box<HkxMesh>)),
-    ("nodeNames" => NodeNames(Vec<String>)),
-    ("bindPose" => BindPose(Vec<cgmath::Matrix4<f32>>)),
-    ("initSkinTransform" => InitSkinTransform(cgmath::Matrix4<f32>)),
+    ("mesh" => Mesh(Cow<'a, str>)),
+    ("nodeNames" => NodeNames(Vec<Primitive<Cow<'a, str>>>)),
+    ("bindPose" => BindPose(Vec<Matrix4<f32>>)),
+    ("initSkinTransform" => InitSkinTransform(Matrix4<f32>)),
 }

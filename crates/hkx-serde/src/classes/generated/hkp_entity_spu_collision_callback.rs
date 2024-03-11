@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpEntitySpuCollisionCallback<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpEntitySpuCollisionCallback"`: Name of this class.
+    /// `"hkpEntitySpuCollisionCallback"`: The original C++ class name.
     #[serde(default = "HkpEntitySpuCollisionCallback::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpEntitySpuCollisionCallback<'a> {
 }
 
 impl HkpEntitySpuCollisionCallback<'_> {
-    /// Return `"hkpEntitySpuCollisionCallback"`, which is the name of this class.
+    /// Return `"hkpEntitySpuCollisionCallback"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpEntitySpuCollisionCallback".into()
+        "hkpEntitySpuCollisionCallback".into()
     }
 
     /// Return `"0x81147f05"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpEntitySpuCollisionCallback<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpEntitySpuCollisionCallbackHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"util"`
     /// -   type: `void*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "util", skip_serializing)]
     Util(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"capacity"`
     /// -   type: `hkUint16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "capacity", skip_serializing)]
-    Capacity(u16),
-    /// # Information on fields in the original C++ class
+    Capacity(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"eventFilter"`
     /// -   type: `hkUint8`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventFilter")]
-    EventFilter(u8),
-    /// # Information on fields in the original C++ class
+    EventFilter(Primitive<u8>),
+    /// # Field information in the original C++ class
     /// -   name:`"userFilter"`
     /// -   type: `hkUint8`
     /// - offset: 7
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userFilter")]
-    UserFilter(u8),
+    UserFilter(Primitive<u8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -98,7 +99,7 @@ pub enum HkpEntitySpuCollisionCallbackHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpEntitySpuCollisionCallbackHkParam<'de>, "@name",
     ("util" => Util(())),
-    ("capacity" => Capacity(u16)),
-    ("eventFilter" => EventFilter(u8)),
-    ("userFilter" => UserFilter(u8)),
+    ("capacity" => Capacity(Primitive<u16>)),
+    ("eventFilter" => EventFilter(Primitive<u8>)),
+    ("userFilter" => UserFilter(Primitive<u8>)),
 }

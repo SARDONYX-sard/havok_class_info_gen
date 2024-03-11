@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpGroupCollisionFilter<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpGroupCollisionFilter"`: Name of this class.
+    /// `"hkpGroupCollisionFilter"`: The original C++ class name.
     #[serde(default = "HkpGroupCollisionFilter::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpGroupCollisionFilter<'a> {
 }
 
 impl HkpGroupCollisionFilter<'_> {
-    /// Return `"hkpGroupCollisionFilter"`, which is the name of this class.
+    /// Return `"hkpGroupCollisionFilter"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpGroupCollisionFilter".into()
+        "hkpGroupCollisionFilter".into()
     }
 
     /// Return `"0x5cc01561"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpGroupCollisionFilter<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpGroupCollisionFilterHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"noGroupCollisionEnabled"`
     /// -   type: `hkBool`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "noGroupCollisionEnabled")]
-    NoGroupCollisionEnabled(bool),
-    /// # Information on fields in the original C++ class
+    NoGroupCollisionEnabled(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionGroups"`
     /// -   type: `hkUint32[32]`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionGroups")]
-    CollisionGroups([u32; 32]),
+    CollisionGroups([Primitive<u32>; 32]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpGroupCollisionFilterHkParam<'de>, "@name",
-    ("noGroupCollisionEnabled" => NoGroupCollisionEnabled(bool)),
-    ("collisionGroups" => CollisionGroups([u32; 32])),
+    ("noGroupCollisionEnabled" => NoGroupCollisionEnabled(Primitive<bool>)),
+    ("collisionGroups" => CollisionGroups([Primitive<u32>; 32])),
 }

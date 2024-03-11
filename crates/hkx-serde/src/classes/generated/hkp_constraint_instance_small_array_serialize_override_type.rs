@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConstraintInstanceSmallArraySerializeOverrideType<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConstraintInstanceSmallArraySerializeOverrideType"`: Name of this class.
+    /// `"hkpConstraintInstanceSmallArraySerializeOverrideType"`: The original C++ class name.
     #[serde(default = "HkpConstraintInstanceSmallArraySerializeOverrideType::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConstraintInstanceSmallArraySerializeOverrideType<'a> {
 }
 
 impl HkpConstraintInstanceSmallArraySerializeOverrideType<'_> {
-    /// Return `"hkpConstraintInstanceSmallArraySerializeOverrideType"`, which is the name of this class.
+    /// Return `"hkpConstraintInstanceSmallArraySerializeOverrideType"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConstraintInstanceSmallArraySerializeOverrideType".into()
+        "hkpConstraintInstanceSmallArraySerializeOverrideType".into()
     }
 
     /// Return `"0xee3c2aec"`, which is the signature of this class.
@@ -63,27 +64,27 @@ impl HkpConstraintInstanceSmallArraySerializeOverrideType<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConstraintInstanceSmallArraySerializeOverrideTypeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `void*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "data", skip_serializing)]
     Data(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"size"`
     /// -   type: `hkUint16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "size")]
-    Size(u16),
-    /// # Information on fields in the original C++ class
+    Size(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"capacityAndFlags"`
     /// -   type: `hkUint16`
     /// - offset: 6
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "capacityAndFlags")]
-    CapacityAndFlags(u16),
+    CapacityAndFlags(Primitive<u16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -91,6 +92,6 @@ pub enum HkpConstraintInstanceSmallArraySerializeOverrideTypeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpConstraintInstanceSmallArraySerializeOverrideTypeHkParam<'de>, "@name",
     ("data" => Data(())),
-    ("size" => Size(u16)),
-    ("capacityAndFlags" => CapacityAndFlags(u16)),
+    ("size" => Size(Primitive<u16>)),
+    ("capacityAndFlags" => CapacityAndFlags(Primitive<u16>)),
 }

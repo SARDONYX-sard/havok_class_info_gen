@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMultiSphereShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMultiSphereShape"`: Name of this class.
+    /// `"hkpMultiSphereShape"`: The original C++ class name.
     #[serde(default = "HkpMultiSphereShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMultiSphereShape<'a> {
 }
 
 impl HkpMultiSphereShape<'_> {
-    /// Return `"hkpMultiSphereShape"`, which is the name of this class.
+    /// Return `"hkpMultiSphereShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMultiSphereShape".into()
+        "hkpMultiSphereShape".into()
     }
 
     /// Return `"0x61a590fc"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkpMultiSphereShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMultiSphereShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numSpheres"`
     /// -   type: `hkInt32`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numSpheres")]
-    NumSpheres(i32),
-    /// # Information on fields in the original C++ class
+    NumSpheres(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"spheres"`
     /// -   type: `hkVector4[8]`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "spheres")]
-    Spheres([cgmath::Vector4<f32>; 8]),
+    Spheres(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpMultiSphereShapeHkParam<'de>, "@name",
-    ("numSpheres" => NumSpheres(i32)),
-    ("spheres" => Spheres([cgmath::Vector4<f32>; 8])),
+    ("numSpheres" => NumSpheres(Primitive<i32>)),
+    ("spheres" => Spheres(Vector4<f32>)),
 }

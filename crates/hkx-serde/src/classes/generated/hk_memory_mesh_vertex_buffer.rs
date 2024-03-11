@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMemoryMeshVertexBuffer<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMemoryMeshVertexBuffer"`: Name of this class.
+    /// `"hkMemoryMeshVertexBuffer"`: The original C++ class name.
     #[serde(default = "HkMemoryMeshVertexBuffer::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMemoryMeshVertexBuffer<'a> {
 }
 
 impl HkMemoryMeshVertexBuffer<'_> {
-    /// Return `"hkMemoryMeshVertexBuffer"`, which is the name of this class.
+    /// Return `"hkMemoryMeshVertexBuffer"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMemoryMeshVertexBuffer".into()
+        "hkMemoryMeshVertexBuffer".into()
     }
 
     /// Return `"0xa2e50753"`, which is the signature of this class.
@@ -63,62 +64,62 @@ impl HkMemoryMeshVertexBuffer<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMemoryMeshVertexBufferHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"format"`
     /// -   type: `struct hkVertexFormat`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "format")]
     Format(HkVertexFormat),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"elementOffsets"`
     /// -   type: `hkInt32[32]`
     /// - offset: 268
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "elementOffsets")]
-    ElementOffsets([i32; 32]),
-    /// # Information on fields in the original C++ class
+    ElementOffsets([Primitive<i32>; 32]),
+    /// # Field information in the original C++ class
     /// -   name:`"memory"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 396
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memory")]
-    Memory(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    Memory(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertexStride"`
     /// -   type: `hkInt32`
     /// - offset: 408
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexStride")]
-    VertexStride(i32),
-    /// # Information on fields in the original C++ class
+    VertexStride(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"locked"`
     /// -   type: `hkBool`
     /// - offset: 412
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "locked")]
-    Locked(bool),
-    /// # Information on fields in the original C++ class
+    Locked(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"numVertices"`
     /// -   type: `hkInt32`
     /// - offset: 416
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numVertices")]
-    NumVertices(i32),
-    /// # Information on fields in the original C++ class
+    NumVertices(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isBigEndian"`
     /// -   type: `hkBool`
     /// - offset: 420
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isBigEndian")]
-    IsBigEndian(bool),
-    /// # Information on fields in the original C++ class
+    IsBigEndian(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isSharable"`
     /// -   type: `hkBool`
     /// - offset: 421
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isSharable")]
-    IsSharable(bool),
+    IsSharable(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -126,11 +127,11 @@ pub enum HkMemoryMeshVertexBufferHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkMemoryMeshVertexBufferHkParam<'de>, "@name",
     ("format" => Format(HkVertexFormat)),
-    ("elementOffsets" => ElementOffsets([i32; 32])),
-    ("memory" => Memory(Vec<u8>)),
-    ("vertexStride" => VertexStride(i32)),
-    ("locked" => Locked(bool)),
-    ("numVertices" => NumVertices(i32)),
-    ("isBigEndian" => IsBigEndian(bool)),
-    ("isSharable" => IsSharable(bool)),
+    ("elementOffsets" => ElementOffsets([Primitive<i32>; 32])),
+    ("memory" => Memory(Vec<Primitive<u8>>)),
+    ("vertexStride" => VertexStride(Primitive<i32>)),
+    ("locked" => Locked(Primitive<bool>)),
+    ("numVertices" => NumVertices(Primitive<i32>)),
+    ("isBigEndian" => IsBigEndian(Primitive<bool>)),
+    ("isSharable" => IsSharable(Primitive<bool>)),
 }

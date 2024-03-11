@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMemoryResourceHandleExternalLink<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMemoryResourceHandleExternalLink"`: Name of this class.
+    /// `"hkMemoryResourceHandleExternalLink"`: The original C++ class name.
     #[serde(default = "HkMemoryResourceHandleExternalLink::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMemoryResourceHandleExternalLink<'a> {
 }
 
 impl HkMemoryResourceHandleExternalLink<'_> {
-    /// Return `"hkMemoryResourceHandleExternalLink"`, which is the name of this class.
+    /// Return `"hkMemoryResourceHandleExternalLink"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMemoryResourceHandleExternalLink".into()
+        "hkMemoryResourceHandleExternalLink".into()
     }
 
     /// Return `"0x3144d17c"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkMemoryResourceHandleExternalLink<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMemoryResourceHandleExternalLinkHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"memberName"`
     /// -   type: `hkStringPtr`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memberName")]
-    MemberName(String),
-    /// # Information on fields in the original C++ class
+    MemberName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"externalId"`
     /// -   type: `hkStringPtr`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "externalId")]
-    ExternalId(String),
+    ExternalId(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMemoryResourceHandleExternalLinkHkParam<'de>, "@name",
-    ("memberName" => MemberName(String)),
-    ("externalId" => ExternalId(String)),
+    ("memberName" => MemberName(Primitive<Cow<'a, str>>)),
+    ("externalId" => ExternalId(Primitive<Cow<'a, str>>)),
 }

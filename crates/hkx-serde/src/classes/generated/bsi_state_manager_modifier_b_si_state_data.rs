@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct BsiStateManagerModifierBSiStateData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"BSIStateManagerModifierBSiStateData"`: Name of this class.
+    /// `"BSIStateManagerModifierBSiStateData"`: The original C++ class name.
     #[serde(default = "BsiStateManagerModifierBSiStateData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct BsiStateManagerModifierBSiStateData<'a> {
 }
 
 impl BsiStateManagerModifierBSiStateData<'_> {
-    /// Return `"BSIStateManagerModifierBSiStateData"`, which is the name of this class.
+    /// Return `"BSIStateManagerModifierBSiStateData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "BsiStateManagerModifierBSiStateData".into()
+        "BSIStateManagerModifierBSiStateData".into()
     }
 
     /// Return `"0x6b8a15fc"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl BsiStateManagerModifierBSiStateData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum BsiStateManagerModifierBSiStateDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"pStateMachine"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "pStateMachine")]
-    PStateMachine(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    PStateMachine(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"StateID"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "StateID")]
-    StateId(i32),
-    /// # Information on fields in the original C++ class
+    StateId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"iStateToSetAs"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "iStateToSetAs")]
-    IStateToSetAs(i32),
+    IStateToSetAs(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     BsiStateManagerModifierBSiStateDataHkParam<'de>, "@name",
-    ("pStateMachine" => PStateMachine(Box<HkbGenerator>)),
-    ("StateID" => StateId(i32)),
-    ("iStateToSetAs" => IStateToSetAs(i32)),
+    ("pStateMachine" => PStateMachine(Cow<'a, str>)),
+    ("StateID" => StateId(Primitive<i32>)),
+    ("iStateToSetAs" => IStateToSetAs(Primitive<i32>)),
 }

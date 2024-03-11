@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCallbackConstraintMotor<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCallbackConstraintMotor"`: Name of this class.
+    /// `"hkpCallbackConstraintMotor"`: The original C++ class name.
     #[serde(default = "HkpCallbackConstraintMotor::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCallbackConstraintMotor<'a> {
 }
 
 impl HkpCallbackConstraintMotor<'_> {
-    /// Return `"hkpCallbackConstraintMotor"`, which is the name of this class.
+    /// Return `"hkpCallbackConstraintMotor"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCallbackConstraintMotor".into()
+        "hkpCallbackConstraintMotor".into()
     }
 
     /// Return `"0xafcd79ad"`, which is the signature of this class.
@@ -63,41 +64,41 @@ impl HkpCallbackConstraintMotor<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCallbackConstraintMotorHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"callbackFunc"`
     /// -   type: `void*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "callbackFunc", skip_serializing)]
     CallbackFunc(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"callbackType"`
     /// -   type: `enum CallbackType`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "callbackType")]
     CallbackType(CallbackType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"userData0"`
     /// -   type: `hkUlong`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData0")]
-    UserData0(u64),
-    /// # Information on fields in the original C++ class
+    UserData0(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"userData1"`
     /// -   type: `hkUlong`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData1")]
-    UserData1(u64),
-    /// # Information on fields in the original C++ class
+    UserData1(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"userData2"`
     /// -   type: `hkUlong`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData2")]
-    UserData2(u64),
+    UserData2(Primitive<u64>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -106,9 +107,9 @@ impl_deserialize_for_internally_tagged_enum! {
     HkpCallbackConstraintMotorHkParam<'de>, "@name",
     ("callbackFunc" => CallbackFunc(())),
     ("callbackType" => CallbackType(CallbackType)),
-    ("userData0" => UserData0(u64)),
-    ("userData1" => UserData1(u64)),
-    ("userData2" => UserData2(u64)),
+    ("userData0" => UserData0(Primitive<u64>)),
+    ("userData1" => UserData1(Primitive<u64>)),
+    ("userData2" => UserData2(Primitive<u64>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

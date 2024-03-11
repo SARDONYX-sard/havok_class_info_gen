@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbFootIkModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbFootIkModifier"`: Name of this class.
+    /// `"hkbFootIkModifier"`: The original C++ class name.
     #[serde(default = "HkbFootIkModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbFootIkModifier<'a> {
 }
 
 impl HkbFootIkModifier<'_> {
-    /// Return `"hkbFootIkModifier"`, which is the name of this class.
+    /// Return `"hkbFootIkModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbFootIkModifier".into()
+        "hkbFootIkModifier".into()
     }
 
     /// Return `"0xed8966c0"`, which is the signature of this class.
@@ -63,160 +64,160 @@ impl HkbFootIkModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbFootIkModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"gains"`
     /// -   type: `struct hkbFootIkGains`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "gains")]
     Gains(HkbFootIkGains),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"legs"`
     /// -   type: `hkArray&lt;struct hkbFootIkModifierLeg&gt;`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "legs")]
     Legs(Vec<HkbFootIkModifierLeg>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"raycastDistanceUp"`
     /// -   type: `hkReal`
     /// - offset: 104
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "raycastDistanceUp")]
-    RaycastDistanceUp(f64),
-    /// # Information on fields in the original C++ class
+    RaycastDistanceUp(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"raycastDistanceDown"`
     /// -   type: `hkReal`
     /// - offset: 108
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "raycastDistanceDown")]
-    RaycastDistanceDown(f64),
-    /// # Information on fields in the original C++ class
+    RaycastDistanceDown(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"originalGroundHeightMS"`
     /// -   type: `hkReal`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "originalGroundHeightMS")]
-    OriginalGroundHeightMs(f64),
-    /// # Information on fields in the original C++ class
+    OriginalGroundHeightMs(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"errorOut"`
     /// -   type: `hkReal`
     /// - offset: 116
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "errorOut")]
-    ErrorOut(f64),
-    /// # Information on fields in the original C++ class
+    ErrorOut(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"errorOutTranslation"`
     /// -   type: `hkVector4`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "errorOutTranslation")]
-    ErrorOutTranslation(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    ErrorOutTranslation(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"alignWithGroundRotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "alignWithGroundRotation")]
-    AlignWithGroundRotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    AlignWithGroundRotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"verticalOffset"`
     /// -   type: `hkReal`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "verticalOffset")]
-    VerticalOffset(f64),
-    /// # Information on fields in the original C++ class
+    VerticalOffset(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 164
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionFilterInfo")]
-    CollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    CollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"forwardAlignFraction"`
     /// -   type: `hkReal`
     /// - offset: 168
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forwardAlignFraction")]
-    ForwardAlignFraction(f64),
-    /// # Information on fields in the original C++ class
+    ForwardAlignFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sidewaysAlignFraction"`
     /// -   type: `hkReal`
     /// - offset: 172
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sidewaysAlignFraction")]
-    SidewaysAlignFraction(f64),
-    /// # Information on fields in the original C++ class
+    SidewaysAlignFraction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sidewaysSampleWidth"`
     /// -   type: `hkReal`
     /// - offset: 176
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sidewaysSampleWidth")]
-    SidewaysSampleWidth(f64),
-    /// # Information on fields in the original C++ class
+    SidewaysSampleWidth(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"useTrackData"`
     /// -   type: `hkBool`
     /// - offset: 180
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "useTrackData")]
-    UseTrackData(bool),
-    /// # Information on fields in the original C++ class
+    UseTrackData(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"lockFeetWhenPlanted"`
     /// -   type: `hkBool`
     /// - offset: 181
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lockFeetWhenPlanted")]
-    LockFeetWhenPlanted(bool),
-    /// # Information on fields in the original C++ class
+    LockFeetWhenPlanted(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"useCharacterUpVector"`
     /// -   type: `hkBool`
     /// - offset: 182
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "useCharacterUpVector")]
-    UseCharacterUpVector(bool),
-    /// # Information on fields in the original C++ class
+    UseCharacterUpVector(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"alignMode"`
     /// -   type: `enum AlignMode`
     /// - offset: 183
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "alignMode")]
     AlignMode(AlignMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"internalLegData"`
     /// -   type: `hkArray&lt;struct hkbFootIkModifierInternalLegData&gt;`
     /// - offset: 184
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "internalLegData", skip_serializing)]
     InternalLegData(Vec<HkbFootIkModifierInternalLegData>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"prevIsFootIkEnabled"`
     /// -   type: `hkReal`
     /// - offset: 196
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "prevIsFootIkEnabled", skip_serializing)]
-    PrevIsFootIkEnabled(f64),
-    /// # Information on fields in the original C++ class
+    PrevIsFootIkEnabled(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isSetUp"`
     /// -   type: `hkBool`
     /// - offset: 200
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "isSetUp", skip_serializing)]
-    IsSetUp(bool),
-    /// # Information on fields in the original C++ class
+    IsSetUp(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isGroundPositionValid"`
     /// -   type: `hkBool`
     /// - offset: 201
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "isGroundPositionValid", skip_serializing)]
-    IsGroundPositionValid(bool),
-    /// # Information on fields in the original C++ class
+    IsGroundPositionValid(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeStep"`
     /// -   type: `hkReal`
     /// - offset: 204
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeStep", skip_serializing)]
-    TimeStep(f64),
+    TimeStep(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -225,26 +226,26 @@ impl_deserialize_for_internally_tagged_enum! {
     HkbFootIkModifierHkParam<'de>, "@name",
     ("gains" => Gains(HkbFootIkGains)),
     ("legs" => Legs(Vec<HkbFootIkModifierLeg>)),
-    ("raycastDistanceUp" => RaycastDistanceUp(f64)),
-    ("raycastDistanceDown" => RaycastDistanceDown(f64)),
-    ("originalGroundHeightMS" => OriginalGroundHeightMs(f64)),
-    ("errorOut" => ErrorOut(f64)),
-    ("errorOutTranslation" => ErrorOutTranslation(cgmath::Vector4<f32>)),
-    ("alignWithGroundRotation" => AlignWithGroundRotation(cgmath::Quaternion<f32>)),
-    ("verticalOffset" => VerticalOffset(f64)),
-    ("collisionFilterInfo" => CollisionFilterInfo(u32)),
-    ("forwardAlignFraction" => ForwardAlignFraction(f64)),
-    ("sidewaysAlignFraction" => SidewaysAlignFraction(f64)),
-    ("sidewaysSampleWidth" => SidewaysSampleWidth(f64)),
-    ("useTrackData" => UseTrackData(bool)),
-    ("lockFeetWhenPlanted" => LockFeetWhenPlanted(bool)),
-    ("useCharacterUpVector" => UseCharacterUpVector(bool)),
+    ("raycastDistanceUp" => RaycastDistanceUp(Primitive<f32>)),
+    ("raycastDistanceDown" => RaycastDistanceDown(Primitive<f32>)),
+    ("originalGroundHeightMS" => OriginalGroundHeightMs(Primitive<f32>)),
+    ("errorOut" => ErrorOut(Primitive<f32>)),
+    ("errorOutTranslation" => ErrorOutTranslation(Vector4<f32>)),
+    ("alignWithGroundRotation" => AlignWithGroundRotation(Quaternion<f32>)),
+    ("verticalOffset" => VerticalOffset(Primitive<f32>)),
+    ("collisionFilterInfo" => CollisionFilterInfo(Primitive<u32>)),
+    ("forwardAlignFraction" => ForwardAlignFraction(Primitive<f32>)),
+    ("sidewaysAlignFraction" => SidewaysAlignFraction(Primitive<f32>)),
+    ("sidewaysSampleWidth" => SidewaysSampleWidth(Primitive<f32>)),
+    ("useTrackData" => UseTrackData(Primitive<bool>)),
+    ("lockFeetWhenPlanted" => LockFeetWhenPlanted(Primitive<bool>)),
+    ("useCharacterUpVector" => UseCharacterUpVector(Primitive<bool>)),
     ("alignMode" => AlignMode(AlignMode)),
     ("internalLegData" => InternalLegData(Vec<HkbFootIkModifierInternalLegData>)),
-    ("prevIsFootIkEnabled" => PrevIsFootIkEnabled(f64)),
-    ("isSetUp" => IsSetUp(bool)),
-    ("isGroundPositionValid" => IsGroundPositionValid(bool)),
-    ("timeStep" => TimeStep(f64)),
+    ("prevIsFootIkEnabled" => PrevIsFootIkEnabled(Primitive<f32>)),
+    ("isSetUp" => IsSetUp(Primitive<bool>)),
+    ("isGroundPositionValid" => IsGroundPositionValid(Primitive<bool>)),
+    ("timeStep" => TimeStep(Primitive<f32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

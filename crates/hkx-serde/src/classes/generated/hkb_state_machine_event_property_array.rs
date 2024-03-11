@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbStateMachineEventPropertyArray<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbStateMachineEventPropertyArray"`: Name of this class.
+    /// `"hkbStateMachineEventPropertyArray"`: The original C++ class name.
     #[serde(default = "HkbStateMachineEventPropertyArray::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbStateMachineEventPropertyArray<'a> {
 }
 
 impl HkbStateMachineEventPropertyArray<'_> {
-    /// Return `"hkbStateMachineEventPropertyArray"`, which is the name of this class.
+    /// Return `"hkbStateMachineEventPropertyArray"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbStateMachineEventPropertyArray".into()
+        "hkbStateMachineEventPropertyArray".into()
     }
 
     /// Return `"0xb07b4388"`, which is the signature of this class.
@@ -63,7 +64,7 @@ impl HkbStateMachineEventPropertyArray<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbStateMachineEventPropertyArrayHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"events"`
     /// -   type: `hkArray&lt;struct hkbEventProperty&gt;`
     /// - offset: 8

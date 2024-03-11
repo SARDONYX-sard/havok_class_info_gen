@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCombineTransformsModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCombineTransformsModifier"`: Name of this class.
+    /// `"hkbCombineTransformsModifier"`: The original C++ class name.
     #[serde(default = "HkbCombineTransformsModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCombineTransformsModifier<'a> {
 }
 
 impl HkbCombineTransformsModifier<'_> {
-    /// Return `"hkbCombineTransformsModifier"`, which is the name of this class.
+    /// Return `"hkbCombineTransformsModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCombineTransformsModifier".into()
+        "hkbCombineTransformsModifier".into()
     }
 
     /// Return `"0xfd1f0b79"`, which is the signature of this class.
@@ -63,82 +64,82 @@ impl HkbCombineTransformsModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCombineTransformsModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"translationOut"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "translationOut")]
-    TranslationOut(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    TranslationOut(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotationOut"`
     /// -   type: `hkQuaternion`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotationOut")]
-    RotationOut(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    RotationOut(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"leftTranslation"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "leftTranslation")]
-    LeftTranslation(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    LeftTranslation(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"leftRotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "leftRotation")]
-    LeftRotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    LeftRotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rightTranslation"`
     /// -   type: `hkVector4`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rightTranslation")]
-    RightTranslation(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    RightTranslation(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rightRotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rightRotation")]
-    RightRotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    RightRotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"invertLeftTransform"`
     /// -   type: `hkBool`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "invertLeftTransform")]
-    InvertLeftTransform(bool),
-    /// # Information on fields in the original C++ class
+    InvertLeftTransform(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"invertRightTransform"`
     /// -   type: `hkBool`
     /// - offset: 145
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "invertRightTransform")]
-    InvertRightTransform(bool),
-    /// # Information on fields in the original C++ class
+    InvertRightTransform(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"invertResult"`
     /// -   type: `hkBool`
     /// - offset: 146
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "invertResult")]
-    InvertResult(bool),
+    InvertResult(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbCombineTransformsModifierHkParam<'de>, "@name",
-    ("translationOut" => TranslationOut(cgmath::Vector4<f32>)),
-    ("rotationOut" => RotationOut(cgmath::Quaternion<f32>)),
-    ("leftTranslation" => LeftTranslation(cgmath::Vector4<f32>)),
-    ("leftRotation" => LeftRotation(cgmath::Quaternion<f32>)),
-    ("rightTranslation" => RightTranslation(cgmath::Vector4<f32>)),
-    ("rightRotation" => RightRotation(cgmath::Quaternion<f32>)),
-    ("invertLeftTransform" => InvertLeftTransform(bool)),
-    ("invertRightTransform" => InvertRightTransform(bool)),
-    ("invertResult" => InvertResult(bool)),
+    ("translationOut" => TranslationOut(Vector4<f32>)),
+    ("rotationOut" => RotationOut(Quaternion<f32>)),
+    ("leftTranslation" => LeftTranslation(Vector4<f32>)),
+    ("leftRotation" => LeftRotation(Quaternion<f32>)),
+    ("rightTranslation" => RightTranslation(Vector4<f32>)),
+    ("rightRotation" => RightRotation(Quaternion<f32>)),
+    ("invertLeftTransform" => InvertLeftTransform(Primitive<bool>)),
+    ("invertRightTransform" => InvertRightTransform(Primitive<bool>)),
+    ("invertResult" => InvertResult(Primitive<bool>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConvexPieceStreamData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConvexPieceStreamData"`: Name of this class.
+    /// `"hkpConvexPieceStreamData"`: The original C++ class name.
     #[serde(default = "HkpConvexPieceStreamData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConvexPieceStreamData<'a> {
 }
 
 impl HkpConvexPieceStreamData<'_> {
-    /// Return `"hkpConvexPieceStreamData"`, which is the name of this class.
+    /// Return `"hkpConvexPieceStreamData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConvexPieceStreamData".into()
+        "hkpConvexPieceStreamData".into()
     }
 
     /// Return `"0xa5bd1d6e"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkpConvexPieceStreamData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConvexPieceStreamDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"convexPieceStream"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "convexPieceStream")]
-    ConvexPieceStream(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    ConvexPieceStream(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"convexPieceOffsets"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "convexPieceOffsets")]
-    ConvexPieceOffsets(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    ConvexPieceOffsets(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"convexPieceSingleTriangles"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "convexPieceSingleTriangles")]
-    ConvexPieceSingleTriangles(Vec<u32>),
+    ConvexPieceSingleTriangles(Vec<Primitive<u32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpConvexPieceStreamDataHkParam<'de>, "@name",
-    ("convexPieceStream" => ConvexPieceStream(Vec<u32>)),
-    ("convexPieceOffsets" => ConvexPieceOffsets(Vec<u32>)),
-    ("convexPieceSingleTriangles" => ConvexPieceSingleTriangles(Vec<u32>)),
+    ("convexPieceStream" => ConvexPieceStream(Vec<Primitive<u32>>)),
+    ("convexPieceOffsets" => ConvexPieceOffsets(Vec<Primitive<u32>>)),
+    ("convexPieceSingleTriangles" => ConvexPieceSingleTriangles(Vec<Primitive<u32>>)),
 }

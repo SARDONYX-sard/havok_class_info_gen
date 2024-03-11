@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMonitorStreamColorTable<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMonitorStreamColorTable"`: Name of this class.
+    /// `"hkMonitorStreamColorTable"`: The original C++ class name.
     #[serde(default = "HkMonitorStreamColorTable::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -37,17 +38,17 @@ pub struct HkMonitorStreamColorTable<'a> {
     /// The `"hkparam"` tag (C++ field) vector
     #[serde(bound(deserialize = "Vec<HkMonitorStreamColorTableHkParam<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkparam")]
-    pub hkparams: Vec<HkMonitorStreamColorTableHkParam<'a>>,
+    pub hkparams: Vec<HkMonitorStreamColorTableHkParam<'a>>
 }
 
 impl HkMonitorStreamColorTable<'_> {
-    /// Return `"hkMonitorStreamColorTable"`, which is the name of this class.
+    /// Return `"hkMonitorStreamColorTable"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMonitorStreamColorTable".into()
+        "hkMonitorStreamColorTable".into()
     }
 
     /// Return `"0x79e53e85"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkMonitorStreamColorTable<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMonitorStreamColorTableHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"colorPairs"`
     /// -   type: `hkArray&lt;struct hkMonitorStreamColorTableColorPair&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "colorPairs")]
-    ColorPairs(Vec<HkMonitorStreamColorTableColorPair<'a>>),
-    /// # Information on fields in the original C++ class
+    ColorPairs(Vec<HkMonitorStreamColorTableColorPair>),
+    /// # Field information in the original C++ class
     /// -   name:`"defaultColor"`
     /// -   type: `hkUint32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "defaultColor")]
-    DefaultColor(u32),
+    DefaultColor(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkMonitorStreamColorTableHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkMonitorStreamColorTableHkParam<'de>, "@name",
     ("colorPairs" => ColorPairs(Vec<HkMonitorStreamColorTableColorPair>)),
-    ("defaultColor" => DefaultColor(u32)),
+    ("defaultColor" => DefaultColor(Primitive<u32>)),
 }

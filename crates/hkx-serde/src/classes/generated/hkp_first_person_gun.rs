@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpFirstPersonGun<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpFirstPersonGun"`: Name of this class.
+    /// `"hkpFirstPersonGun"`: The original C++ class name.
     #[serde(default = "HkpFirstPersonGun::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpFirstPersonGun<'a> {
 }
 
 impl HkpFirstPersonGun<'_> {
-    /// Return `"hkpFirstPersonGun"`, which is the name of this class.
+    /// Return `"hkpFirstPersonGun"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpFirstPersonGun".into()
+        "hkpFirstPersonGun".into()
     }
 
     /// Return `"0x852ab70b"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl HkpFirstPersonGun<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpFirstPersonGunHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"type"`
     /// -   type: `enum unknown`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "type", skip_serializing)]
     Type(Unknown),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"keyboardKey"`
     /// -   type: `enum KeyboardKey`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keyboardKey")]
     KeyboardKey(KeyboardKey),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"listeners"`
     /// -   type: `hkArray&lt;void*&gt;`
     /// - offset: 20
@@ -98,7 +99,7 @@ pub enum HkpFirstPersonGunHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpFirstPersonGunHkParam<'de>, "@name",
     ("type" => Type(Unknown)),
-    ("name" => Name(String)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
     ("keyboardKey" => KeyboardKey(KeyboardKey)),
     ("listeners" => Listeners(Vec<()>)),
 }

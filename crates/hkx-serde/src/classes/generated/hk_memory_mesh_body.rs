@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMemoryMeshBody<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMemoryMeshBody"`: Name of this class.
+    /// `"hkMemoryMeshBody"`: The original C++ class name.
     #[serde(default = "HkMemoryMeshBody::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMemoryMeshBody<'a> {
 }
 
 impl HkMemoryMeshBody<'_> {
-    /// Return `"hkMemoryMeshBody"`, which is the name of this class.
+    /// Return `"hkMemoryMeshBody"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMemoryMeshBody".into()
+        "hkMemoryMeshBody".into()
     }
 
     /// Return `"0x94a620a8"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkMemoryMeshBody<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMemoryMeshBodyHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transform"`
     /// -   type: `hkMatrix4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transform")]
-    Transform(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    Transform(Matrix4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformSet"`
     /// -   type: `struct hkIndexedTransformSet*`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformSet")]
-    TransformSet(Box<HkIndexedTransformSet>),
-    /// # Information on fields in the original C++ class
+    TransformSet(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"shape"`
     /// -   type: `struct hkMeshShape*`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shape")]
-    Shape(Box<HkMeshShape>),
-    /// # Information on fields in the original C++ class
+    Shape(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"vertexBuffers"`
     /// -   type: `hkArray&lt;hkMeshVertexBuffer*&gt;`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexBuffers")]
-    VertexBuffers(Vec<Box<HkMeshVertexBuffer>>),
-    /// # Information on fields in the original C++ class
+    VertexBuffers(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 100
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
+    Name(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMemoryMeshBodyHkParam<'de>, "@name",
-    ("transform" => Transform(cgmath::Matrix4<f32>)),
-    ("transformSet" => TransformSet(Box<HkIndexedTransformSet>)),
-    ("shape" => Shape(Box<HkMeshShape>)),
-    ("vertexBuffers" => VertexBuffers(Vec<Box<HkMeshVertexBuffer>>)),
-    ("name" => Name(String)),
+    ("transform" => Transform(Matrix4<f32>)),
+    ("transformSet" => TransformSet(Cow<'a, str>)),
+    ("shape" => Shape(Cow<'a, str>)),
+    ("vertexBuffers" => VertexBuffers(Vec<Cow<'a, str>>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
 }

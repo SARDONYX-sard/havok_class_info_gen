@@ -39,7 +39,7 @@ tracing = "0.1" # Logger
 xml-doc = { version = "0.2" }
 
 [dev-dependencies]
-anyhow = "1.0"
+anyhow = { version = "1.0", features = ["backtrace"] }
 pretty_assertions = "1.4"
 temp-dir = "0.1"
 tracing-appender = "0.2"

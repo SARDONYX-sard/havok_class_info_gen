@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCompressedMeshShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCompressedMeshShape"`: Name of this class.
+    /// `"hkpCompressedMeshShape"`: The original C++ class name.
     #[serde(default = "HkpCompressedMeshShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCompressedMeshShape<'a> {
 }
 
 impl HkpCompressedMeshShape<'_> {
-    /// Return `"hkpCompressedMeshShape"`, which is the name of this class.
+    /// Return `"hkpCompressedMeshShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCompressedMeshShape".into()
+        "hkpCompressedMeshShape".into()
     }
 
     /// Return `"0xa62d5e6e"`, which is the signature of this class.
@@ -63,154 +64,154 @@ impl HkpCompressedMeshShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCompressedMeshShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bitsPerIndex"`
     /// -   type: `hkInt32`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bitsPerIndex")]
-    BitsPerIndex(i32),
-    /// # Information on fields in the original C++ class
+    BitsPerIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bitsPerWIndex"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bitsPerWIndex")]
-    BitsPerWIndex(i32),
-    /// # Information on fields in the original C++ class
+    BitsPerWIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wIndexMask"`
     /// -   type: `hkInt32`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wIndexMask")]
-    WIndexMask(i32),
-    /// # Information on fields in the original C++ class
+    WIndexMask(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"indexMask"`
     /// -   type: `hkInt32`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexMask")]
-    IndexMask(i32),
-    /// # Information on fields in the original C++ class
+    IndexMask(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"radius"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "radius")]
-    Radius(f64),
-    /// # Information on fields in the original C++ class
+    Radius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"weldingType"`
     /// -   type: `enum WeldingType`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "weldingType")]
     WeldingType(WeldingType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialType"`
     /// -   type: `enum MaterialType`
     /// - offset: 45
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialType")]
     MaterialType(MaterialType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materials"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materials")]
-    Materials(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    Materials(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"materials16"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materials16")]
-    Materials16(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Materials16(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"materials8"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materials8")]
-    Materials8(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    Materials8(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"transforms"`
     /// -   type: `hkArray&lt;hkQsTransform&gt;`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transforms")]
-    Transforms(Vec<cgmath::Matrix4<f32>>),
-    /// # Information on fields in the original C++ class
+    Transforms(Vec<QsTransform<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"bigVertices"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bigVertices")]
-    BigVertices(Vec<cgmath::Vector4<f32>>),
-    /// # Information on fields in the original C++ class
+    BigVertices(Vec<Vector4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"bigTriangles"`
     /// -   type: `hkArray&lt;struct hkpCompressedMeshShapeBigTriangle&gt;`
     /// - offset: 108
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bigTriangles")]
     BigTriangles(Vec<HkpCompressedMeshShapeBigTriangle>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"chunks"`
     /// -   type: `hkArray&lt;struct hkpCompressedMeshShapeChunk&gt;`
     /// - offset: 120
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chunks")]
     Chunks(Vec<HkpCompressedMeshShapeChunk>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"convexPieces"`
     /// -   type: `hkArray&lt;struct hkpCompressedMeshShapeConvexPiece&gt;`
     /// - offset: 132
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "convexPieces")]
     ConvexPieces(Vec<HkpCompressedMeshShapeConvexPiece>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"error"`
     /// -   type: `hkReal`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "error")]
-    Error(f64),
-    /// # Information on fields in the original C++ class
+    Error(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"bounds"`
     /// -   type: `struct hkAabb`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bounds")]
     Bounds(HkAabb),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"defaultCollisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 192
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "defaultCollisionFilterInfo")]
-    DefaultCollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    DefaultCollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"meshMaterials"`
     /// -   type: `void*`
     /// - offset: 196
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "meshMaterials", skip_serializing)]
     MeshMaterials(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialStriding"`
     /// -   type: `hkUint16`
     /// - offset: 200
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialStriding")]
-    MaterialStriding(u16),
-    /// # Information on fields in the original C++ class
+    MaterialStriding(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"numMaterials"`
     /// -   type: `hkUint16`
     /// - offset: 202
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numMaterials")]
-    NumMaterials(u16),
-    /// # Information on fields in the original C++ class
+    NumMaterials(Primitive<u16>),
+    /// # Field information in the original C++ class
     /// -   name:`"namedMaterials"`
     /// -   type: `hkArray&lt;struct hkpNamedMeshMaterial&gt;`
     /// - offset: 204
@@ -223,27 +224,27 @@ pub enum HkpCompressedMeshShapeHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCompressedMeshShapeHkParam<'de>, "@name",
-    ("bitsPerIndex" => BitsPerIndex(i32)),
-    ("bitsPerWIndex" => BitsPerWIndex(i32)),
-    ("wIndexMask" => WIndexMask(i32)),
-    ("indexMask" => IndexMask(i32)),
-    ("radius" => Radius(f64)),
+    ("bitsPerIndex" => BitsPerIndex(Primitive<i32>)),
+    ("bitsPerWIndex" => BitsPerWIndex(Primitive<i32>)),
+    ("wIndexMask" => WIndexMask(Primitive<i32>)),
+    ("indexMask" => IndexMask(Primitive<i32>)),
+    ("radius" => Radius(Primitive<f32>)),
     ("weldingType" => WeldingType(WeldingType)),
     ("materialType" => MaterialType(MaterialType)),
-    ("materials" => Materials(Vec<u32>)),
-    ("materials16" => Materials16(Vec<u16>)),
-    ("materials8" => Materials8(Vec<u8>)),
-    ("transforms" => Transforms(Vec<cgmath::Matrix4<f32>>)),
-    ("bigVertices" => BigVertices(Vec<cgmath::Vector4<f32>>)),
+    ("materials" => Materials(Vec<Primitive<u32>>)),
+    ("materials16" => Materials16(Vec<Primitive<u16>>)),
+    ("materials8" => Materials8(Vec<Primitive<u8>>)),
+    ("transforms" => Transforms(Vec<QsTransform<f32>>)),
+    ("bigVertices" => BigVertices(Vec<Vector4<f32>>)),
     ("bigTriangles" => BigTriangles(Vec<HkpCompressedMeshShapeBigTriangle>)),
     ("chunks" => Chunks(Vec<HkpCompressedMeshShapeChunk>)),
     ("convexPieces" => ConvexPieces(Vec<HkpCompressedMeshShapeConvexPiece>)),
-    ("error" => Error(f64)),
+    ("error" => Error(Primitive<f32>)),
     ("bounds" => Bounds(HkAabb)),
-    ("defaultCollisionFilterInfo" => DefaultCollisionFilterInfo(u32)),
+    ("defaultCollisionFilterInfo" => DefaultCollisionFilterInfo(Primitive<u32>)),
     ("meshMaterials" => MeshMaterials(())),
-    ("materialStriding" => MaterialStriding(u16)),
-    ("numMaterials" => NumMaterials(u16)),
+    ("materialStriding" => MaterialStriding(Primitive<u16>)),
+    ("numMaterials" => NumMaterials(Primitive<u16>)),
     ("namedMaterials" => NamedMaterials(Vec<HkpNamedMeshMaterial>)),
 }
 

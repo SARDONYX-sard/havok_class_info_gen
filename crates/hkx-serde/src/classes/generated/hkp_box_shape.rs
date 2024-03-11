@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpBoxShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpBoxShape"`: Name of this class.
+    /// `"hkpBoxShape"`: The original C++ class name.
     #[serde(default = "HkpBoxShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpBoxShape<'a> {
 }
 
 impl HkpBoxShape<'_> {
-    /// Return `"hkpBoxShape"`, which is the name of this class.
+    /// Return `"hkpBoxShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpBoxShape".into()
+        "hkpBoxShape".into()
     }
 
     /// Return `"0x3444d2d5"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkpBoxShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpBoxShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"halfExtents"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "halfExtents")]
-    HalfExtents(cgmath::Vector4<f32>),
+    HalfExtents(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpBoxShapeHkParam<'de>, "@name",
-    ("halfExtents" => HalfExtents(cgmath::Vector4<f32>)),
+    ("halfExtents" => HalfExtents(Vector4<f32>)),
 }

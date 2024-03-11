@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleDataWheelComponentParams<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleDataWheelComponentParams"`: Name of this class.
+    /// `"hkpVehicleDataWheelComponentParams"`: The original C++ class name.
     #[serde(default = "HkpVehicleDataWheelComponentParams::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleDataWheelComponentParams<'a> {
 }
 
 impl HkpVehicleDataWheelComponentParams<'_> {
-    /// Return `"hkpVehicleDataWheelComponentParams"`, which is the name of this class.
+    /// Return `"hkpVehicleDataWheelComponentParams"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleDataWheelComponentParams".into()
+        "hkpVehicleDataWheelComponentParams".into()
     }
 
     /// Return `"0x82fe40e0"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkpVehicleDataWheelComponentParams<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDataWheelComponentParamsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"radius"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "radius")]
-    Radius(f64),
-    /// # Information on fields in the original C++ class
+    Radius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"mass"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mass")]
-    Mass(f64),
-    /// # Information on fields in the original C++ class
+    Mass(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"width"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "width")]
-    Width(f64),
-    /// # Information on fields in the original C++ class
+    Width(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"friction"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "friction")]
-    Friction(f64),
-    /// # Information on fields in the original C++ class
+    Friction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"viscosityFriction"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "viscosityFriction")]
-    ViscosityFriction(f64),
-    /// # Information on fields in the original C++ class
+    ViscosityFriction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxFriction"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxFriction")]
-    MaxFriction(f64),
-    /// # Information on fields in the original C++ class
+    MaxFriction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"slipAngle"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "slipAngle")]
-    SlipAngle(f64),
-    /// # Information on fields in the original C++ class
+    SlipAngle(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"forceFeedbackMultiplier"`
     /// -   type: `hkReal`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "forceFeedbackMultiplier")]
-    ForceFeedbackMultiplier(f64),
-    /// # Information on fields in the original C++ class
+    ForceFeedbackMultiplier(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxContactBodyAcceleration"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxContactBodyAcceleration")]
-    MaxContactBodyAcceleration(f64),
-    /// # Information on fields in the original C++ class
+    MaxContactBodyAcceleration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"axle"`
     /// -   type: `hkInt8`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "axle")]
-    Axle(i8),
+    Axle(Primitive<i8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleDataWheelComponentParamsHkParam<'de>, "@name",
-    ("radius" => Radius(f64)),
-    ("mass" => Mass(f64)),
-    ("width" => Width(f64)),
-    ("friction" => Friction(f64)),
-    ("viscosityFriction" => ViscosityFriction(f64)),
-    ("maxFriction" => MaxFriction(f64)),
-    ("slipAngle" => SlipAngle(f64)),
-    ("forceFeedbackMultiplier" => ForceFeedbackMultiplier(f64)),
-    ("maxContactBodyAcceleration" => MaxContactBodyAcceleration(f64)),
-    ("axle" => Axle(i8)),
+    ("radius" => Radius(Primitive<f32>)),
+    ("mass" => Mass(Primitive<f32>)),
+    ("width" => Width(Primitive<f32>)),
+    ("friction" => Friction(Primitive<f32>)),
+    ("viscosityFriction" => ViscosityFriction(Primitive<f32>)),
+    ("maxFriction" => MaxFriction(Primitive<f32>)),
+    ("slipAngle" => SlipAngle(Primitive<f32>)),
+    ("forceFeedbackMultiplier" => ForceFeedbackMultiplier(Primitive<f32>)),
+    ("maxContactBodyAcceleration" => MaxContactBodyAcceleration(Primitive<f32>)),
+    ("axle" => Axle(Primitive<i8>)),
 }

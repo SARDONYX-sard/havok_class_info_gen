@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpListShapeChildInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpListShapeChildInfo"`: Name of this class.
+    /// `"hkpListShapeChildInfo"`: The original C++ class name.
     #[serde(default = "HkpListShapeChildInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpListShapeChildInfo<'a> {
 }
 
 impl HkpListShapeChildInfo<'_> {
-    /// Return `"hkpListShapeChildInfo"`, which is the name of this class.
+    /// Return `"hkpListShapeChildInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpListShapeChildInfo".into()
+        "hkpListShapeChildInfo".into()
     }
 
     /// Return `"0x80df0f90"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpListShapeChildInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpListShapeChildInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"shape"`
     /// -   type: `struct hkpShape*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "shape")]
-    Shape(Box<HkpShape>),
-    /// # Information on fields in the original C++ class
+    Shape(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionFilterInfo")]
-    CollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    CollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"shapeSize"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "shapeSize", skip_serializing)]
-    ShapeSize(i32),
-    /// # Information on fields in the original C++ class
+    ShapeSize(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numChildShapes"`
     /// -   type: `hkInt32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "numChildShapes", skip_serializing)]
-    NumChildShapes(i32),
+    NumChildShapes(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpListShapeChildInfoHkParam<'de>, "@name",
-    ("shape" => Shape(Box<HkpShape>)),
-    ("collisionFilterInfo" => CollisionFilterInfo(u32)),
-    ("shapeSize" => ShapeSize(i32)),
-    ("numChildShapes" => NumChildShapes(i32)),
+    ("shape" => Shape(Cow<'a, str>)),
+    ("collisionFilterInfo" => CollisionFilterInfo(Primitive<u32>)),
+    ("shapeSize" => ShapeSize(Primitive<i32>)),
+    ("numChildShapes" => NumChildShapes(Primitive<i32>)),
 }

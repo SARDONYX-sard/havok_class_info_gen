@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMeshShapeSubpart<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMeshShapeSubpart"`: Name of this class.
+    /// `"hkpMeshShapeSubpart"`: The original C++ class name.
     #[serde(default = "HkpMeshShapeSubpart::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMeshShapeSubpart<'a> {
 }
 
 impl HkpMeshShapeSubpart<'_> {
-    /// Return `"hkpMeshShapeSubpart"`, which is the name of this class.
+    /// Return `"hkpMeshShapeSubpart"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMeshShapeSubpart".into()
+        "hkpMeshShapeSubpart".into()
     }
 
     /// Return `"0x27336e5d"`, which is the signature of this class.
@@ -63,111 +64,111 @@ impl HkpMeshShapeSubpart<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMeshShapeSubpartHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexBase"`
     /// -   type: `void*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "vertexBase", skip_serializing)]
     VertexBase(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexStriding"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexStriding")]
-    VertexStriding(i32),
-    /// # Information on fields in the original C++ class
+    VertexStriding(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numVertices"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numVertices")]
-    NumVertices(i32),
-    /// # Information on fields in the original C++ class
+    NumVertices(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"indexBase"`
     /// -   type: `void*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "indexBase", skip_serializing)]
     IndexBase(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"stridingType"`
     /// -   type: `enum MeshShapeIndexStridingType`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stridingType")]
     StridingType(MeshShapeIndexStridingType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndexStridingType"`
     /// -   type: `enum MeshShapeMaterialIndexStridingType`
     /// - offset: 17
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialIndexStridingType")]
     MaterialIndexStridingType(MeshShapeMaterialIndexStridingType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"indexStriding"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexStriding")]
-    IndexStriding(i32),
-    /// # Information on fields in the original C++ class
+    IndexStriding(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"flipAlternateTriangles"`
     /// -   type: `hkInt32`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "flipAlternateTriangles")]
-    FlipAlternateTriangles(i32),
-    /// # Information on fields in the original C++ class
+    FlipAlternateTriangles(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numTriangles"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numTriangles")]
-    NumTriangles(i32),
-    /// # Information on fields in the original C++ class
+    NumTriangles(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndexBase"`
     /// -   type: `void*`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "materialIndexBase", skip_serializing)]
     MaterialIndexBase(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndexStriding"`
     /// -   type: `hkInt32`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialIndexStriding")]
-    MaterialIndexStriding(i32),
-    /// # Information on fields in the original C++ class
+    MaterialIndexStriding(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"materialBase"`
     /// -   type: `void*`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "materialBase", skip_serializing)]
     MaterialBase(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialStriding"`
     /// -   type: `hkInt32`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialStriding")]
-    MaterialStriding(i32),
-    /// # Information on fields in the original C++ class
+    MaterialStriding(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numMaterials"`
     /// -   type: `hkInt32`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numMaterials")]
-    NumMaterials(i32),
-    /// # Information on fields in the original C++ class
+    NumMaterials(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"triangleOffset"`
     /// -   type: `hkInt32`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "triangleOffset")]
-    TriangleOffset(i32),
+    TriangleOffset(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -175,18 +176,18 @@ pub enum HkpMeshShapeSubpartHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpMeshShapeSubpartHkParam<'de>, "@name",
     ("vertexBase" => VertexBase(())),
-    ("vertexStriding" => VertexStriding(i32)),
-    ("numVertices" => NumVertices(i32)),
+    ("vertexStriding" => VertexStriding(Primitive<i32>)),
+    ("numVertices" => NumVertices(Primitive<i32>)),
     ("indexBase" => IndexBase(())),
     ("stridingType" => StridingType(MeshShapeIndexStridingType)),
     ("materialIndexStridingType" => MaterialIndexStridingType(MeshShapeMaterialIndexStridingType)),
-    ("indexStriding" => IndexStriding(i32)),
-    ("flipAlternateTriangles" => FlipAlternateTriangles(i32)),
-    ("numTriangles" => NumTriangles(i32)),
+    ("indexStriding" => IndexStriding(Primitive<i32>)),
+    ("flipAlternateTriangles" => FlipAlternateTriangles(Primitive<i32>)),
+    ("numTriangles" => NumTriangles(Primitive<i32>)),
     ("materialIndexBase" => MaterialIndexBase(())),
-    ("materialIndexStriding" => MaterialIndexStriding(i32)),
+    ("materialIndexStriding" => MaterialIndexStriding(Primitive<i32>)),
     ("materialBase" => MaterialBase(())),
-    ("materialStriding" => MaterialStriding(i32)),
-    ("numMaterials" => NumMaterials(i32)),
-    ("triangleOffset" => TriangleOffset(i32)),
+    ("materialStriding" => MaterialStriding(Primitive<i32>)),
+    ("numMaterials" => NumMaterials(Primitive<i32>)),
+    ("triangleOffset" => TriangleOffset(Primitive<i32>)),
 }

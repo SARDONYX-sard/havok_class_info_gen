@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkPackedVector3<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkPackedVector3"`: Name of this class.
+    /// `"hkPackedVector3"`: The original C++ class name.
     #[serde(default = "HkPackedVector3::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkPackedVector3<'a> {
 }
 
 impl HkPackedVector3<'_> {
-    /// Return `"hkPackedVector3"`, which is the name of this class.
+    /// Return `"hkPackedVector3"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkPackedVector3".into()
+        "hkPackedVector3".into()
     }
 
     /// Return `"0x9c16df5b"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkPackedVector3<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkPackedVector3HkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"values"`
     /// -   type: `hkInt16[4]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "values")]
-    Values([i16; 4]),
+    Values([Primitive<i16>; 4]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkPackedVector3HkParam<'de>, "@name",
-    ("values" => Values([i16; 4])),
+    ("values" => Values([Primitive<i16>; 4])),
 }

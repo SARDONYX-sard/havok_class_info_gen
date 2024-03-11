@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMonitorStreamFrameInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMonitorStreamFrameInfo"`: Name of this class.
+    /// `"hkMonitorStreamFrameInfo"`: The original C++ class name.
     #[serde(default = "HkMonitorStreamFrameInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMonitorStreamFrameInfo<'a> {
 }
 
 impl HkMonitorStreamFrameInfo<'_> {
-    /// Return `"hkMonitorStreamFrameInfo"`, which is the name of this class.
+    /// Return `"hkMonitorStreamFrameInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMonitorStreamFrameInfo".into()
+        "hkMonitorStreamFrameInfo".into()
     }
 
     /// Return `"0x7798b7db"`, which is the signature of this class.
@@ -63,84 +64,84 @@ impl HkMonitorStreamFrameInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMonitorStreamFrameInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"heading"`
     /// -   type: `hkStringPtr`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "heading")]
-    Heading(String),
-    /// # Information on fields in the original C++ class
+    Heading(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"indexOfTimer0"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexOfTimer0")]
-    IndexOfTimer0(i32),
-    /// # Information on fields in the original C++ class
+    IndexOfTimer0(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"indexOfTimer1"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexOfTimer1")]
-    IndexOfTimer1(i32),
-    /// # Information on fields in the original C++ class
+    IndexOfTimer1(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"absoluteTimeCounter"`
     /// -   type: `enum AbsoluteTimeCounter`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "absoluteTimeCounter")]
     AbsoluteTimeCounter(AbsoluteTimeCounter),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"timerFactor0"`
     /// -   type: `hkReal`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timerFactor0")]
-    TimerFactor0(f64),
-    /// # Information on fields in the original C++ class
+    TimerFactor0(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timerFactor1"`
     /// -   type: `hkReal`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timerFactor1")]
-    TimerFactor1(f64),
-    /// # Information on fields in the original C++ class
+    TimerFactor1(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"threadId"`
     /// -   type: `hkInt32`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "threadId")]
-    ThreadId(i32),
-    /// # Information on fields in the original C++ class
+    ThreadId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"frameStreamStart"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "frameStreamStart")]
-    FrameStreamStart(i32),
-    /// # Information on fields in the original C++ class
+    FrameStreamStart(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"frameStreamEnd"`
     /// -   type: `hkInt32`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "frameStreamEnd")]
-    FrameStreamEnd(i32),
+    FrameStreamEnd(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMonitorStreamFrameInfoHkParam<'de>, "@name",
-    ("heading" => Heading(String)),
-    ("indexOfTimer0" => IndexOfTimer0(i32)),
-    ("indexOfTimer1" => IndexOfTimer1(i32)),
+    ("heading" => Heading(Primitive<Cow<'a, str>>)),
+    ("indexOfTimer0" => IndexOfTimer0(Primitive<i32>)),
+    ("indexOfTimer1" => IndexOfTimer1(Primitive<i32>)),
     ("absoluteTimeCounter" => AbsoluteTimeCounter(AbsoluteTimeCounter)),
-    ("timerFactor0" => TimerFactor0(f64)),
-    ("timerFactor1" => TimerFactor1(f64)),
-    ("threadId" => ThreadId(i32)),
-    ("frameStreamStart" => FrameStreamStart(i32)),
-    ("frameStreamEnd" => FrameStreamEnd(i32)),
+    ("timerFactor0" => TimerFactor0(Primitive<f32>)),
+    ("timerFactor1" => TimerFactor1(Primitive<f32>)),
+    ("threadId" => ThreadId(Primitive<i32>)),
+    ("frameStreamStart" => FrameStreamStart(Primitive<i32>)),
+    ("frameStreamEnd" => FrameStreamEnd(Primitive<i32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

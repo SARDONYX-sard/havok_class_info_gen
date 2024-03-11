@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCharacterRigidBodyCinfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCharacterRigidBodyCinfo"`: Name of this class.
+    /// `"hkpCharacterRigidBodyCinfo"`: The original C++ class name.
     #[serde(default = "HkpCharacterRigidBodyCinfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCharacterRigidBodyCinfo<'a> {
 }
 
 impl HkpCharacterRigidBodyCinfo<'_> {
-    /// Return `"hkpCharacterRigidBodyCinfo"`, which is the name of this class.
+    /// Return `"hkpCharacterRigidBodyCinfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCharacterRigidBodyCinfo".into()
+        "hkpCharacterRigidBodyCinfo".into()
     }
 
     /// Return `"0x892f441"`, which is the signature of this class.
@@ -63,138 +64,138 @@ impl HkpCharacterRigidBodyCinfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCharacterRigidBodyCinfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"collisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionFilterInfo")]
-    CollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    CollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"shape"`
     /// -   type: `struct hkpShape*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shape")]
-    Shape(Box<HkpShape>),
-    /// # Information on fields in the original C++ class
+    Shape(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"position"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "position")]
-    Position(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Position(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotation")]
-    Rotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    Rotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"mass"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mass")]
-    Mass(f64),
-    /// # Information on fields in the original C++ class
+    Mass(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"friction"`
     /// -   type: `hkReal`
     /// - offset: 52
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "friction")]
-    Friction(f64),
-    /// # Information on fields in the original C++ class
+    Friction(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxLinearVelocity"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxLinearVelocity")]
-    MaxLinearVelocity(f64),
-    /// # Information on fields in the original C++ class
+    MaxLinearVelocity(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"allowedPenetrationDepth"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "allowedPenetrationDepth")]
-    AllowedPenetrationDepth(f64),
-    /// # Information on fields in the original C++ class
+    AllowedPenetrationDepth(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"up"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "up")]
-    Up(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    Up(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxSlope"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxSlope")]
-    MaxSlope(f64),
-    /// # Information on fields in the original C++ class
+    MaxSlope(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxForce"`
     /// -   type: `hkReal`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxForce")]
-    MaxForce(f64),
-    /// # Information on fields in the original C++ class
+    MaxForce(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"unweldingHeightOffsetFactor"`
     /// -   type: `hkReal`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "unweldingHeightOffsetFactor")]
-    UnweldingHeightOffsetFactor(f64),
-    /// # Information on fields in the original C++ class
+    UnweldingHeightOffsetFactor(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxSpeedForSimplexSolver"`
     /// -   type: `hkReal`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxSpeedForSimplexSolver")]
-    MaxSpeedForSimplexSolver(f64),
-    /// # Information on fields in the original C++ class
+    MaxSpeedForSimplexSolver(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"supportDistance"`
     /// -   type: `hkReal`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "supportDistance")]
-    SupportDistance(f64),
-    /// # Information on fields in the original C++ class
+    SupportDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"hardSupportDistance"`
     /// -   type: `hkReal`
     /// - offset: 100
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hardSupportDistance")]
-    HardSupportDistance(f64),
-    /// # Information on fields in the original C++ class
+    HardSupportDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vdbColor"`
     /// -   type: `hkInt32`
     /// - offset: 104
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vdbColor")]
-    VdbColor(i32),
+    VdbColor(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCharacterRigidBodyCinfoHkParam<'de>, "@name",
-    ("collisionFilterInfo" => CollisionFilterInfo(u32)),
-    ("shape" => Shape(Box<HkpShape>)),
-    ("position" => Position(cgmath::Vector4<f32>)),
-    ("rotation" => Rotation(cgmath::Quaternion<f32>)),
-    ("mass" => Mass(f64)),
-    ("friction" => Friction(f64)),
-    ("maxLinearVelocity" => MaxLinearVelocity(f64)),
-    ("allowedPenetrationDepth" => AllowedPenetrationDepth(f64)),
-    ("up" => Up(cgmath::Vector4<f32>)),
-    ("maxSlope" => MaxSlope(f64)),
-    ("maxForce" => MaxForce(f64)),
-    ("unweldingHeightOffsetFactor" => UnweldingHeightOffsetFactor(f64)),
-    ("maxSpeedForSimplexSolver" => MaxSpeedForSimplexSolver(f64)),
-    ("supportDistance" => SupportDistance(f64)),
-    ("hardSupportDistance" => HardSupportDistance(f64)),
-    ("vdbColor" => VdbColor(i32)),
+    ("collisionFilterInfo" => CollisionFilterInfo(Primitive<u32>)),
+    ("shape" => Shape(Cow<'a, str>)),
+    ("position" => Position(Vector4<f32>)),
+    ("rotation" => Rotation(Quaternion<f32>)),
+    ("mass" => Mass(Primitive<f32>)),
+    ("friction" => Friction(Primitive<f32>)),
+    ("maxLinearVelocity" => MaxLinearVelocity(Primitive<f32>)),
+    ("allowedPenetrationDepth" => AllowedPenetrationDepth(Primitive<f32>)),
+    ("up" => Up(Vector4<f32>)),
+    ("maxSlope" => MaxSlope(Primitive<f32>)),
+    ("maxForce" => MaxForce(Primitive<f32>)),
+    ("unweldingHeightOffsetFactor" => UnweldingHeightOffsetFactor(Primitive<f32>)),
+    ("maxSpeedForSimplexSolver" => MaxSpeedForSimplexSolver(Primitive<f32>)),
+    ("supportDistance" => SupportDistance(Primitive<f32>)),
+    ("hardSupportDistance" => HardSupportDistance(Primitive<f32>)),
+    ("vdbColor" => VdbColor(Primitive<i32>)),
 }

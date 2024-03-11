@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleLinearCastWheelCollide<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleLinearCastWheelCollide"`: Name of this class.
+    /// `"hkpVehicleLinearCastWheelCollide"`: The original C++ class name.
     #[serde(default = "HkpVehicleLinearCastWheelCollide::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleLinearCastWheelCollide<'a> {
 }
 
 impl HkpVehicleLinearCastWheelCollide<'_> {
-    /// Return `"hkpVehicleLinearCastWheelCollide"`, which is the name of this class.
+    /// Return `"hkpVehicleLinearCastWheelCollide"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleLinearCastWheelCollide".into()
+        "hkpVehicleLinearCastWheelCollide".into()
     }
 
     /// Return `"0xc59399d0"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkpVehicleLinearCastWheelCollide<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleLinearCastWheelCollideHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wheelCollisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelCollisionFilterInfo")]
-    WheelCollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    WheelCollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelStates"`
     /// -   type: `hkArray&lt;struct hkpVehicleLinearCastWheelCollideWheelState&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelStates")]
     WheelStates(Vec<HkpVehicleLinearCastWheelCollideWheelState>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rejectChassisListener"`
     /// -   type: `struct hkpRejectChassisListener`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rejectChassisListener")]
     RejectChassisListener(HkpRejectChassisListener),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"maxExtraPenetration"`
     /// -   type: `hkReal`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxExtraPenetration")]
-    MaxExtraPenetration(f64),
-    /// # Information on fields in the original C++ class
+    MaxExtraPenetration(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"startPointTolerance"`
     /// -   type: `hkReal`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startPointTolerance")]
-    StartPointTolerance(f64),
+    StartPointTolerance(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleLinearCastWheelCollideHkParam<'de>, "@name",
-    ("wheelCollisionFilterInfo" => WheelCollisionFilterInfo(u32)),
+    ("wheelCollisionFilterInfo" => WheelCollisionFilterInfo(Primitive<u32>)),
     ("wheelStates" => WheelStates(Vec<HkpVehicleLinearCastWheelCollideWheelState>)),
     ("rejectChassisListener" => RejectChassisListener(HkpRejectChassisListener)),
-    ("maxExtraPenetration" => MaxExtraPenetration(f64)),
-    ("startPointTolerance" => StartPointTolerance(f64)),
+    ("maxExtraPenetration" => MaxExtraPenetration(Primitive<f32>)),
+    ("startPointTolerance" => StartPointTolerance(Primitive<f32>)),
 }

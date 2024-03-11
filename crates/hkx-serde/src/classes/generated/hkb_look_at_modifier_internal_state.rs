@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbLookAtModifierInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbLookAtModifierInternalState"`: Name of this class.
+    /// `"hkbLookAtModifierInternalState"`: The original C++ class name.
     #[serde(default = "HkbLookAtModifierInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbLookAtModifierInternalState<'a> {
 }
 
 impl HkbLookAtModifierInternalState<'_> {
-    /// Return `"hkbLookAtModifierInternalState"`, which is the name of this class.
+    /// Return `"hkbLookAtModifierInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbLookAtModifierInternalState".into()
+        "hkbLookAtModifierInternalState".into()
     }
 
     /// Return `"0xa14caba6"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbLookAtModifierInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbLookAtModifierInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lookAtLastTargetWS"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lookAtLastTargetWS")]
-    LookAtLastTargetWs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    LookAtLastTargetWs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"lookAtWeight"`
     /// -   type: `hkReal`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lookAtWeight")]
-    LookAtWeight(f64),
-    /// # Information on fields in the original C++ class
+    LookAtWeight(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isTargetInsideLimitCone"`
     /// -   type: `hkBool`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isTargetInsideLimitCone")]
-    IsTargetInsideLimitCone(bool),
+    IsTargetInsideLimitCone(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbLookAtModifierInternalStateHkParam<'de>, "@name",
-    ("lookAtLastTargetWS" => LookAtLastTargetWs(cgmath::Vector4<f32>)),
-    ("lookAtWeight" => LookAtWeight(f64)),
-    ("isTargetInsideLimitCone" => IsTargetInsideLimitCone(bool)),
+    ("lookAtLastTargetWS" => LookAtLastTargetWs(Vector4<f32>)),
+    ("lookAtWeight" => LookAtWeight(Primitive<f32>)),
+    ("isTargetInsideLimitCone" => IsTargetInsideLimitCone(Primitive<bool>)),
 }

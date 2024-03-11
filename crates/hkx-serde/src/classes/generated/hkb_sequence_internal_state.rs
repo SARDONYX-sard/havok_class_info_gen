@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbSequenceInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbSequenceInternalState"`: Name of this class.
+    /// `"hkbSequenceInternalState"`: The original C++ class name.
     #[serde(default = "HkbSequenceInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbSequenceInternalState<'a> {
 }
 
 impl HkbSequenceInternalState<'_> {
-    /// Return `"hkbSequenceInternalState"`, which is the name of this class.
+    /// Return `"hkbSequenceInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbSequenceInternalState".into()
+        "hkbSequenceInternalState".into()
     }
 
     /// Return `"0x419b9a05"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkbSequenceInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbSequenceInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"nextSampleEvents"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nextSampleEvents")]
-    NextSampleEvents(Vec<i32>),
-    /// # Information on fields in the original C++ class
+    NextSampleEvents(Vec<Primitive<i32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"nextSampleReals"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nextSampleReals")]
-    NextSampleReals(Vec<i32>),
-    /// # Information on fields in the original C++ class
+    NextSampleReals(Vec<Primitive<i32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"nextSampleBools"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nextSampleBools")]
-    NextSampleBools(Vec<i32>),
-    /// # Information on fields in the original C++ class
+    NextSampleBools(Vec<Primitive<i32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"nextSampleInts"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "nextSampleInts")]
-    NextSampleInts(Vec<i32>),
-    /// # Information on fields in the original C++ class
+    NextSampleInts(Vec<Primitive<i32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"time"`
     /// -   type: `hkReal`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "time")]
-    Time(f64),
-    /// # Information on fields in the original C++ class
+    Time(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isEnabled"`
     /// -   type: `hkBool`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isEnabled")]
-    IsEnabled(bool),
+    IsEnabled(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbSequenceInternalStateHkParam<'de>, "@name",
-    ("nextSampleEvents" => NextSampleEvents(Vec<i32>)),
-    ("nextSampleReals" => NextSampleReals(Vec<i32>)),
-    ("nextSampleBools" => NextSampleBools(Vec<i32>)),
-    ("nextSampleInts" => NextSampleInts(Vec<i32>)),
-    ("time" => Time(f64)),
-    ("isEnabled" => IsEnabled(bool)),
+    ("nextSampleEvents" => NextSampleEvents(Vec<Primitive<i32>>)),
+    ("nextSampleReals" => NextSampleReals(Vec<Primitive<i32>>)),
+    ("nextSampleBools" => NextSampleBools(Vec<Primitive<i32>>)),
+    ("nextSampleInts" => NextSampleInts(Vec<Primitive<i32>>)),
+    ("time" => Time(Primitive<f32>)),
+    ("isEnabled" => IsEnabled(Primitive<bool>)),
 }

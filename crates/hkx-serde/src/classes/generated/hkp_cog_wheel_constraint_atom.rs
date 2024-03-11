@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpCogWheelConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpCogWheelConstraintAtom"`: Name of this class.
+    /// `"hkpCogWheelConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpCogWheelConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpCogWheelConstraintAtom<'a> {
 }
 
 impl HkpCogWheelConstraintAtom<'_> {
-    /// Return `"hkpCogWheelConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpCogWheelConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpCogWheelConstraintAtom".into()
+        "hkpCogWheelConstraintAtom".into()
     }
 
     /// Return `"0xf2b1f399"`, which is the signature of this class.
@@ -63,58 +64,58 @@ impl HkpCogWheelConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpCogWheelConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"cogWheelRadiusA"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cogWheelRadiusA")]
-    CogWheelRadiusA(f64),
-    /// # Information on fields in the original C++ class
+    CogWheelRadiusA(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"cogWheelRadiusB"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "cogWheelRadiusB")]
-    CogWheelRadiusB(f64),
-    /// # Information on fields in the original C++ class
+    CogWheelRadiusB(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isScrew"`
     /// -   type: `hkBool`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isScrew")]
-    IsScrew(bool),
-    /// # Information on fields in the original C++ class
+    IsScrew(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"memOffsetToInitialAngleOffset"`
     /// -   type: `hkInt8`
     /// - offset: 13
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memOffsetToInitialAngleOffset")]
-    MemOffsetToInitialAngleOffset(i8),
-    /// # Information on fields in the original C++ class
+    MemOffsetToInitialAngleOffset(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"memOffsetToPrevAngle"`
     /// -   type: `hkInt8`
     /// - offset: 14
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memOffsetToPrevAngle")]
-    MemOffsetToPrevAngle(i8),
-    /// # Information on fields in the original C++ class
+    MemOffsetToPrevAngle(Primitive<i8>),
+    /// # Field information in the original C++ class
     /// -   name:`"memOffsetToRevolutionCounter"`
     /// -   type: `hkInt8`
     /// - offset: 15
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "memOffsetToRevolutionCounter")]
-    MemOffsetToRevolutionCounter(i8),
+    MemOffsetToRevolutionCounter(Primitive<i8>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpCogWheelConstraintAtomHkParam<'de>, "@name",
-    ("cogWheelRadiusA" => CogWheelRadiusA(f64)),
-    ("cogWheelRadiusB" => CogWheelRadiusB(f64)),
-    ("isScrew" => IsScrew(bool)),
-    ("memOffsetToInitialAngleOffset" => MemOffsetToInitialAngleOffset(i8)),
-    ("memOffsetToPrevAngle" => MemOffsetToPrevAngle(i8)),
-    ("memOffsetToRevolutionCounter" => MemOffsetToRevolutionCounter(i8)),
+    ("cogWheelRadiusA" => CogWheelRadiusA(Primitive<f32>)),
+    ("cogWheelRadiusB" => CogWheelRadiusB(Primitive<f32>)),
+    ("isScrew" => IsScrew(Primitive<bool>)),
+    ("memOffsetToInitialAngleOffset" => MemOffsetToInitialAngleOffset(Primitive<i8>)),
+    ("memOffsetToPrevAngle" => MemOffsetToPrevAngle(Primitive<i8>)),
+    ("memOffsetToRevolutionCounter" => MemOffsetToRevolutionCounter(Primitive<i8>)),
 }

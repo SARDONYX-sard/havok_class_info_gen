@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ascii"?>
+<hkpackfile classversion="8" contentsversion="hk_2010.2.0-r1" toplevelobject="#0056">
+  <hksection name="__data__">
+    <hkobject signature="0x27812d8d" name="#0058" class="hkbVariableValueSet">
+      <hkparam name="wordVariableValues" numelements="16">
+        <hkobject>
+          <hkparam name="value">1045220557</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+        <hkobject>
+          <hkparam name="value">0</hkparam>
+        </hkobject>
+      </hkparam>
+      <hkparam name="quadVariableValues" numelements="0"></hkparam>
+      <hkparam name="variantVariableValues" numelements="0"></hkparam>
+    </hkobject>
+  </hksection>
+</hkpackfile>

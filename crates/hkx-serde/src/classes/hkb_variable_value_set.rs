@@ -23,6 +23,7 @@ pub struct HkbVariableValueSet<'a> {
     ///
     /// These names are referenced (in C++ implementations) by vectors that store pointers to a structure and a class.
     #[serde(rename = "@name", borrow)]
+    #[serde(default)]
     pub name: Cow<'a, str>,
 
     /// `"hkbVariableValueSet"`: Name of this C++ class.

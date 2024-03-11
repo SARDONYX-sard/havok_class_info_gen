@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpSimpleMeshShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpSimpleMeshShape"`: Name of this class.
+    /// `"hkpSimpleMeshShape"`: The original C++ class name.
     #[serde(default = "HkpSimpleMeshShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpSimpleMeshShape<'a> {
 }
 
 impl HkpSimpleMeshShape<'_> {
-    /// Return `"hkpSimpleMeshShape"`, which is the name of this class.
+    /// Return `"hkpSimpleMeshShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpSimpleMeshShape".into()
+        "hkpSimpleMeshShape".into()
     }
 
     /// Return `"0x16b3c811"`, which is the signature of this class.
@@ -63,35 +64,35 @@ impl HkpSimpleMeshShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpSimpleMeshShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertices"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertices")]
-    Vertices(Vec<cgmath::Vector4<f32>>),
-    /// # Information on fields in the original C++ class
+    Vertices(Vec<Vector4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"triangles"`
     /// -   type: `hkArray&lt;struct hkpSimpleMeshShapeTriangle&gt;`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "triangles")]
     Triangles(Vec<HkpSimpleMeshShapeTriangle>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"materialIndices"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "materialIndices")]
-    MaterialIndices(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    MaterialIndices(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"radius"`
     /// -   type: `hkReal`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "radius")]
-    Radius(f64),
-    /// # Information on fields in the original C++ class
+    Radius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"weldingType"`
     /// -   type: `enum WeldingType`
     /// - offset: 64
@@ -104,9 +105,9 @@ pub enum HkpSimpleMeshShapeHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpSimpleMeshShapeHkParam<'de>, "@name",
-    ("vertices" => Vertices(Vec<cgmath::Vector4<f32>>)),
+    ("vertices" => Vertices(Vec<Vector4<f32>>)),
     ("triangles" => Triangles(Vec<HkpSimpleMeshShapeTriangle>)),
-    ("materialIndices" => MaterialIndices(Vec<u8>)),
-    ("radius" => Radius(f64)),
+    ("materialIndices" => MaterialIndices(Vec<Primitive<u8>>)),
+    ("radius" => Radius(Primitive<f32>)),
     ("weldingType" => WeldingType(WeldingType)),
 }

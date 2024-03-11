@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxVertexBufferVertexData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxVertexBufferVertexData"`: Name of this class.
+    /// `"hkxVertexBufferVertexData"`: The original C++ class name.
     #[serde(default = "HkxVertexBufferVertexData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxVertexBufferVertexData<'a> {
 }
 
 impl HkxVertexBufferVertexData<'_> {
-    /// Return `"hkxVertexBufferVertexData"`, which is the name of this class.
+    /// Return `"hkxVertexBufferVertexData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxVertexBufferVertexData".into()
+        "hkxVertexBufferVertexData".into()
     }
 
     /// Return `"0xd72b6fd0"`, which is the signature of this class.
@@ -63,98 +64,98 @@ impl HkxVertexBufferVertexData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxVertexBufferVertexDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vectorData"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vectorData")]
-    VectorData(Vec<cgmath::Vector4<f32>>),
-    /// # Information on fields in the original C++ class
+    VectorData(Vec<Vector4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"floatData"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "floatData")]
-    FloatData(Vec<f64>),
-    /// # Information on fields in the original C++ class
+    FloatData(Vec<Primitive<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"uint32Data"`
     /// -   type: `hkArray&lt;hkUint32&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "uint32Data")]
-    Uint32Data(Vec<u32>),
-    /// # Information on fields in the original C++ class
+    Uint32Data(Vec<Primitive<u32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"uint16Data"`
     /// -   type: `hkArray&lt;hkUint16&gt;`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "uint16Data")]
-    Uint16Data(Vec<u16>),
-    /// # Information on fields in the original C++ class
+    Uint16Data(Vec<Primitive<u16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"uint8Data"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "uint8Data")]
-    Uint8Data(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    Uint8Data(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"numVerts"`
     /// -   type: `hkUint32`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numVerts")]
-    NumVerts(u32),
-    /// # Information on fields in the original C++ class
+    NumVerts(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"vectorStride"`
     /// -   type: `hkUint32`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vectorStride")]
-    VectorStride(u32),
-    /// # Information on fields in the original C++ class
+    VectorStride(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"floatStride"`
     /// -   type: `hkUint32`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "floatStride")]
-    FloatStride(u32),
-    /// # Information on fields in the original C++ class
+    FloatStride(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"uint32Stride"`
     /// -   type: `hkUint32`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "uint32Stride")]
-    Uint32Stride(u32),
-    /// # Information on fields in the original C++ class
+    Uint32Stride(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"uint16Stride"`
     /// -   type: `hkUint32`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "uint16Stride")]
-    Uint16Stride(u32),
-    /// # Information on fields in the original C++ class
+    Uint16Stride(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"uint8Stride"`
     /// -   type: `hkUint32`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "uint8Stride")]
-    Uint8Stride(u32),
+    Uint8Stride(Primitive<u32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxVertexBufferVertexDataHkParam<'de>, "@name",
-    ("vectorData" => VectorData(Vec<cgmath::Vector4<f32>>)),
-    ("floatData" => FloatData(Vec<f64>)),
-    ("uint32Data" => Uint32Data(Vec<u32>)),
-    ("uint16Data" => Uint16Data(Vec<u16>)),
-    ("uint8Data" => Uint8Data(Vec<u8>)),
-    ("numVerts" => NumVerts(u32)),
-    ("vectorStride" => VectorStride(u32)),
-    ("floatStride" => FloatStride(u32)),
-    ("uint32Stride" => Uint32Stride(u32)),
-    ("uint16Stride" => Uint16Stride(u32)),
-    ("uint8Stride" => Uint8Stride(u32)),
+    ("vectorData" => VectorData(Vec<Vector4<f32>>)),
+    ("floatData" => FloatData(Vec<Primitive<f32>>)),
+    ("uint32Data" => Uint32Data(Vec<Primitive<u32>>)),
+    ("uint16Data" => Uint16Data(Vec<Primitive<u16>>)),
+    ("uint8Data" => Uint8Data(Vec<Primitive<u8>>)),
+    ("numVerts" => NumVerts(Primitive<u32>)),
+    ("vectorStride" => VectorStride(Primitive<u32>)),
+    ("floatStride" => FloatStride(Primitive<u32>)),
+    ("uint32Stride" => Uint32Stride(Primitive<u32>)),
+    ("uint16Stride" => Uint16Stride(Primitive<u32>)),
+    ("uint8Stride" => Uint8Stride(Primitive<u32>)),
 }

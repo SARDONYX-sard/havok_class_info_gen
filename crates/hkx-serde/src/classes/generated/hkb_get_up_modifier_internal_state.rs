@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbGetUpModifierInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbGetUpModifierInternalState"`: Name of this class.
+    /// `"hkbGetUpModifierInternalState"`: The original C++ class name.
     #[serde(default = "HkbGetUpModifierInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbGetUpModifierInternalState<'a> {
 }
 
 impl HkbGetUpModifierInternalState<'_> {
-    /// Return `"hkbGetUpModifierInternalState"`, which is the name of this class.
+    /// Return `"hkbGetUpModifierInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbGetUpModifierInternalState".into()
+        "hkbGetUpModifierInternalState".into()
     }
 
     /// Return `"0xd84cad4a"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbGetUpModifierInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbGetUpModifierInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"timeSinceBegin"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timeSinceBegin")]
-    TimeSinceBegin(f64),
-    /// # Information on fields in the original C++ class
+    TimeSinceBegin(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeStep"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "timeStep")]
-    TimeStep(f64),
-    /// # Information on fields in the original C++ class
+    TimeStep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"initNextModify"`
     /// -   type: `hkBool`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "initNextModify")]
-    InitNextModify(bool),
+    InitNextModify(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbGetUpModifierInternalStateHkParam<'de>, "@name",
-    ("timeSinceBegin" => TimeSinceBegin(f64)),
-    ("timeStep" => TimeStep(f64)),
-    ("initNextModify" => InitNextModify(bool)),
+    ("timeSinceBegin" => TimeSinceBegin(Primitive<f32>)),
+    ("timeStep" => TimeStep(Primitive<f32>)),
+    ("initNextModify" => InitNextModify(Primitive<bool>)),
 }

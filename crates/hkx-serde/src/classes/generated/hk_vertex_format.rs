@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkVertexFormat<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkVertexFormat"`: Name of this class.
+    /// `"hkVertexFormat"`: The original C++ class name.
     #[serde(default = "HkVertexFormat::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkVertexFormat<'a> {
 }
 
 impl HkVertexFormat<'_> {
-    /// Return `"hkVertexFormat"`, which is the name of this class.
+    /// Return `"hkVertexFormat"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkVertexFormat".into()
+        "hkVertexFormat".into()
     }
 
     /// Return `"0xf11e3ff7"`, which is the signature of this class.
@@ -63,28 +64,28 @@ impl HkVertexFormat<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkVertexFormatHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"elements"`
     /// -   type: `struct hkVertexFormatElement[32]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "elements")]
-    Elements(HkVertexFormatElement[32]),
-    /// # Information on fields in the original C++ class
+    Elements([HkVertexFormatElement; 32]),
+    /// # Field information in the original C++ class
     /// -   name:`"numElements"`
     /// -   type: `hkInt32`
     /// - offset: 256
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numElements")]
-    NumElements(i32),
+    NumElements(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkVertexFormatHkParam<'de>, "@name",
-    ("elements" => Elements(HkVertexFormatElement[32])),
-    ("numElements" => NumElements(i32)),
+    ("elements" => Elements([HkVertexFormatElement; 32])),
+    ("numElements" => NumElements(Primitive<i32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

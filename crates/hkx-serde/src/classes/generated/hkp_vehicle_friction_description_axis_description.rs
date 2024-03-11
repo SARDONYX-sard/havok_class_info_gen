@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleFrictionDescriptionAxisDescription<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleFrictionDescriptionAxisDescription"`: Name of this class.
+    /// `"hkpVehicleFrictionDescriptionAxisDescription"`: The original C++ class name.
     #[serde(default = "HkpVehicleFrictionDescriptionAxisDescription::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleFrictionDescriptionAxisDescription<'a> {
 }
 
 impl HkpVehicleFrictionDescriptionAxisDescription<'_> {
-    /// Return `"hkpVehicleFrictionDescriptionAxisDescription"`, which is the name of this class.
+    /// Return `"hkpVehicleFrictionDescriptionAxisDescription"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleFrictionDescriptionAxisDescription".into()
+        "hkpVehicleFrictionDescriptionAxisDescription".into()
     }
 
     /// Return `"0x59ce153f"`, which is the signature of this class.
@@ -63,90 +64,90 @@ impl HkpVehicleFrictionDescriptionAxisDescription<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleFrictionDescriptionAxisDescriptionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"frictionCircleYtab"`
     /// -   type: `hkReal[16]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "frictionCircleYtab")]
-    FrictionCircleYtab([f64; 16]),
-    /// # Information on fields in the original C++ class
+    FrictionCircleYtab([Primitive<f32>; 16]),
+    /// # Field information in the original C++ class
     /// -   name:`"xStep"`
     /// -   type: `hkReal`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "xStep")]
-    XStep(f64),
-    /// # Information on fields in the original C++ class
+    XStep(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"xStart"`
     /// -   type: `hkReal`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "xStart")]
-    XStart(f64),
-    /// # Information on fields in the original C++ class
+    XStart(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelSurfaceInertia"`
     /// -   type: `hkReal`
     /// - offset: 72
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelSurfaceInertia")]
-    WheelSurfaceInertia(f64),
-    /// # Information on fields in the original C++ class
+    WheelSurfaceInertia(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelSurfaceInertiaInv"`
     /// -   type: `hkReal`
     /// - offset: 76
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelSurfaceInertiaInv")]
-    WheelSurfaceInertiaInv(f64),
-    /// # Information on fields in the original C++ class
+    WheelSurfaceInertiaInv(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelChassisMassRatio"`
     /// -   type: `hkReal`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelChassisMassRatio")]
-    WheelChassisMassRatio(f64),
-    /// # Information on fields in the original C++ class
+    WheelChassisMassRatio(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelRadius"`
     /// -   type: `hkReal`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelRadius")]
-    WheelRadius(f64),
-    /// # Information on fields in the original C++ class
+    WheelRadius(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelRadiusInv"`
     /// -   type: `hkReal`
     /// - offset: 88
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelRadiusInv")]
-    WheelRadiusInv(f64),
-    /// # Information on fields in the original C++ class
+    WheelRadiusInv(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelDownForceFactor"`
     /// -   type: `hkReal`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelDownForceFactor")]
-    WheelDownForceFactor(f64),
-    /// # Information on fields in the original C++ class
+    WheelDownForceFactor(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"wheelDownForceSumFactor"`
     /// -   type: `hkReal`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wheelDownForceSumFactor")]
-    WheelDownForceSumFactor(f64),
+    WheelDownForceSumFactor(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleFrictionDescriptionAxisDescriptionHkParam<'de>, "@name",
-    ("frictionCircleYtab" => FrictionCircleYtab([f64; 16])),
-    ("xStep" => XStep(f64)),
-    ("xStart" => XStart(f64)),
-    ("wheelSurfaceInertia" => WheelSurfaceInertia(f64)),
-    ("wheelSurfaceInertiaInv" => WheelSurfaceInertiaInv(f64)),
-    ("wheelChassisMassRatio" => WheelChassisMassRatio(f64)),
-    ("wheelRadius" => WheelRadius(f64)),
-    ("wheelRadiusInv" => WheelRadiusInv(f64)),
-    ("wheelDownForceFactor" => WheelDownForceFactor(f64)),
-    ("wheelDownForceSumFactor" => WheelDownForceSumFactor(f64)),
+    ("frictionCircleYtab" => FrictionCircleYtab([Primitive<f32>; 16])),
+    ("xStep" => XStep(Primitive<f32>)),
+    ("xStart" => XStart(Primitive<f32>)),
+    ("wheelSurfaceInertia" => WheelSurfaceInertia(Primitive<f32>)),
+    ("wheelSurfaceInertiaInv" => WheelSurfaceInertiaInv(Primitive<f32>)),
+    ("wheelChassisMassRatio" => WheelChassisMassRatio(Primitive<f32>)),
+    ("wheelRadius" => WheelRadius(Primitive<f32>)),
+    ("wheelRadiusInv" => WheelRadiusInv(Primitive<f32>)),
+    ("wheelDownForceFactor" => WheelDownForceFactor(Primitive<f32>)),
+    ("wheelDownForceSumFactor" => WheelDownForceSumFactor(Primitive<f32>)),
 }

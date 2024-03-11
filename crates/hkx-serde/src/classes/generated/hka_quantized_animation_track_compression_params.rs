@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaQuantizedAnimationTrackCompressionParams<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaQuantizedAnimationTrackCompressionParams"`: Name of this class.
+    /// `"hkaQuantizedAnimationTrackCompressionParams"`: The original C++ class name.
     #[serde(default = "HkaQuantizedAnimationTrackCompressionParams::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaQuantizedAnimationTrackCompressionParams<'a> {
 }
 
 impl HkaQuantizedAnimationTrackCompressionParams<'_> {
-    /// Return `"hkaQuantizedAnimationTrackCompressionParams"`, which is the name of this class.
+    /// Return `"hkaQuantizedAnimationTrackCompressionParams"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaQuantizedAnimationTrackCompressionParams".into()
+        "hkaQuantizedAnimationTrackCompressionParams".into()
     }
 
     /// Return `"0xf7d64649"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkaQuantizedAnimationTrackCompressionParams<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaQuantizedAnimationTrackCompressionParamsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rotationTolerance"`
     /// -   type: `hkReal`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotationTolerance")]
-    RotationTolerance(f64),
-    /// # Information on fields in the original C++ class
+    RotationTolerance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"translationTolerance"`
     /// -   type: `hkReal`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "translationTolerance")]
-    TranslationTolerance(f64),
-    /// # Information on fields in the original C++ class
+    TranslationTolerance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"scaleTolerance"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "scaleTolerance")]
-    ScaleTolerance(f64),
-    /// # Information on fields in the original C++ class
+    ScaleTolerance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"floatingTolerance"`
     /// -   type: `hkReal`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "floatingTolerance")]
-    FloatingTolerance(f64),
+    FloatingTolerance(Primitive<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaQuantizedAnimationTrackCompressionParamsHkParam<'de>, "@name",
-    ("rotationTolerance" => RotationTolerance(f64)),
-    ("translationTolerance" => TranslationTolerance(f64)),
-    ("scaleTolerance" => ScaleTolerance(f64)),
-    ("floatingTolerance" => FloatingTolerance(f64)),
+    ("rotationTolerance" => RotationTolerance(Primitive<f32>)),
+    ("translationTolerance" => TranslationTolerance(Primitive<f32>)),
+    ("scaleTolerance" => ScaleTolerance(Primitive<f32>)),
+    ("floatingTolerance" => FloatingTolerance(Primitive<f32>)),
 }

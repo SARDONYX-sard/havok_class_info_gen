@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbNamedStringEventPayload<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbNamedStringEventPayload"`: Name of this class.
+    /// `"hkbNamedStringEventPayload"`: The original C++ class name.
     #[serde(default = "HkbNamedStringEventPayload::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbNamedStringEventPayload<'a> {
 }
 
 impl HkbNamedStringEventPayload<'_> {
-    /// Return `"hkbNamedStringEventPayload"`, which is the name of this class.
+    /// Return `"hkbNamedStringEventPayload"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbNamedStringEventPayload".into()
+        "hkbNamedStringEventPayload".into()
     }
 
     /// Return `"0x6caa9113"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkbNamedStringEventPayload<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbNamedStringEventPayloadHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `hkStringPtr`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(String),
+    Data(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbNamedStringEventPayloadHkParam<'de>, "@name",
-    ("data" => Data(String)),
+    ("data" => Data(Primitive<Cow<'a, str>>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkaSkeletonMapperData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkaSkeletonMapperData"`: Name of this class.
+    /// `"hkaSkeletonMapperData"`: The original C++ class name.
     #[serde(default = "HkaSkeletonMapperData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkaSkeletonMapperData<'a> {
 }
 
 impl HkaSkeletonMapperData<'_> {
-    /// Return `"hkaSkeletonMapperData"`, which is the name of this class.
+    /// Return `"hkaSkeletonMapperData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkaSkeletonMapperData".into()
+        "hkaSkeletonMapperData".into()
     }
 
     /// Return `"0x95687ea0"`, which is the signature of this class.
@@ -63,56 +64,56 @@ impl HkaSkeletonMapperData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkaSkeletonMapperDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"skeletonA"`
     /// -   type: `struct hkaSkeleton*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "skeletonA")]
-    SkeletonA(Box<HkaSkeleton>),
-    /// # Information on fields in the original C++ class
+    SkeletonA(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"skeletonB"`
     /// -   type: `struct hkaSkeleton*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "skeletonB")]
-    SkeletonB(Box<HkaSkeleton>),
-    /// # Information on fields in the original C++ class
+    SkeletonB(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"simpleMappings"`
     /// -   type: `hkArray&lt;struct hkaSkeletonMapperDataSimpleMapping&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "simpleMappings")]
     SimpleMappings(Vec<HkaSkeletonMapperDataSimpleMapping>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"chainMappings"`
     /// -   type: `hkArray&lt;struct hkaSkeletonMapperDataChainMapping&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "chainMappings")]
     ChainMappings(Vec<HkaSkeletonMapperDataChainMapping>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"unmappedBones"`
     /// -   type: `hkArray&lt;hkInt16&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "unmappedBones")]
-    UnmappedBones(Vec<i16>),
-    /// # Information on fields in the original C++ class
+    UnmappedBones(Vec<Primitive<i16>>),
+    /// # Field information in the original C++ class
     /// -   name:`"extractedMotionMapping"`
     /// -   type: `hkQsTransform`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extractedMotionMapping")]
-    ExtractedMotionMapping(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    ExtractedMotionMapping(QsTransform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"keepUnmappedLocal"`
     /// -   type: `hkBool`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keepUnmappedLocal")]
-    KeepUnmappedLocal(bool),
-    /// # Information on fields in the original C++ class
+    KeepUnmappedLocal(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"mappingType"`
     /// -   type: `enum MappingType`
     /// - offset: 100
@@ -125,13 +126,13 @@ pub enum HkaSkeletonMapperDataHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkaSkeletonMapperDataHkParam<'de>, "@name",
-    ("skeletonA" => SkeletonA(Box<HkaSkeleton>)),
-    ("skeletonB" => SkeletonB(Box<HkaSkeleton>)),
+    ("skeletonA" => SkeletonA(Cow<'a, str>)),
+    ("skeletonB" => SkeletonB(Cow<'a, str>)),
     ("simpleMappings" => SimpleMappings(Vec<HkaSkeletonMapperDataSimpleMapping>)),
     ("chainMappings" => ChainMappings(Vec<HkaSkeletonMapperDataChainMapping>)),
-    ("unmappedBones" => UnmappedBones(Vec<i16>)),
-    ("extractedMotionMapping" => ExtractedMotionMapping(cgmath::Matrix4<f32>)),
-    ("keepUnmappedLocal" => KeepUnmappedLocal(bool)),
+    ("unmappedBones" => UnmappedBones(Vec<Primitive<i16>>)),
+    ("extractedMotionMapping" => ExtractedMotionMapping(QsTransform<f32>)),
+    ("keepUnmappedLocal" => KeepUnmappedLocal(Primitive<bool>)),
     ("mappingType" => MappingType(MappingType)),
 }
 

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPointToPlaneConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPointToPlaneConstraintDataAtoms"`: Name of this class.
+    /// `"hkpPointToPlaneConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpPointToPlaneConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPointToPlaneConstraintDataAtoms<'a> {
 }
 
 impl HkpPointToPlaneConstraintDataAtoms<'_> {
-    /// Return `"hkpPointToPlaneConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpPointToPlaneConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPointToPlaneConstraintDataAtoms".into()
+        "hkpPointToPlaneConstraintDataAtoms".into()
     }
 
     /// Return `"0x749bc260"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkpPointToPlaneConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPointToPlaneConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transforms"`
     /// -   type: `struct hkpSetLocalTransformsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transforms")]
     Transforms(HkpSetLocalTransformsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lin"`
     /// -   type: `struct hkpLinConstraintAtom`
     /// - offset: 144

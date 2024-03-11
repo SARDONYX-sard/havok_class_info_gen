@@ -33,8 +33,8 @@ pub fn generate_code(class: &ClassInfo) -> String {
 //!
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
-use crate::hk_types::*;
 use super::*;
+use crate::havok_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{{Deserialize, Serialize}};
 use std::borrow::Cow;

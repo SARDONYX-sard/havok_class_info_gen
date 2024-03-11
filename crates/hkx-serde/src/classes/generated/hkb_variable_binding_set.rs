@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbVariableBindingSet<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbVariableBindingSet"`: Name of this class.
+    /// `"hkbVariableBindingSet"`: The original C++ class name.
     #[serde(default = "HkbVariableBindingSet::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbVariableBindingSet<'a> {
 }
 
 impl HkbVariableBindingSet<'_> {
-    /// Return `"hkbVariableBindingSet"`, which is the name of this class.
+    /// Return `"hkbVariableBindingSet"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbVariableBindingSet".into()
+        "hkbVariableBindingSet".into()
     }
 
     /// Return `"0x338ad4ff"`, which is the signature of this class.
@@ -63,27 +64,27 @@ impl HkbVariableBindingSet<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbVariableBindingSetHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"bindings"`
     /// -   type: `hkArray&lt;struct hkbVariableBindingSetBinding&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "bindings")]
     Bindings(Vec<HkbVariableBindingSetBinding>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"indexOfBindingToEnable"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexOfBindingToEnable")]
-    IndexOfBindingToEnable(i32),
-    /// # Information on fields in the original C++ class
+    IndexOfBindingToEnable(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"hasOutputBinding"`
     /// -   type: `hkBool`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "hasOutputBinding", skip_serializing)]
-    HasOutputBinding(bool),
+    HasOutputBinding(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -91,6 +92,6 @@ pub enum HkbVariableBindingSetHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbVariableBindingSetHkParam<'de>, "@name",
     ("bindings" => Bindings(Vec<HkbVariableBindingSetBinding>)),
-    ("indexOfBindingToEnable" => IndexOfBindingToEnable(i32)),
-    ("hasOutputBinding" => HasOutputBinding(bool)),
+    ("indexOfBindingToEnable" => IndexOfBindingToEnable(Primitive<i32>)),
+    ("hasOutputBinding" => HasOutputBinding(Primitive<bool>)),
 }

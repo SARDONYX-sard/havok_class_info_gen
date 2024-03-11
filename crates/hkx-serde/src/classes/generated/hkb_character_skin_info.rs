@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCharacterSkinInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCharacterSkinInfo"`: Name of this class.
+    /// `"hkbCharacterSkinInfo"`: The original C++ class name.
     #[serde(default = "HkbCharacterSkinInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCharacterSkinInfo<'a> {
 }
 
 impl HkbCharacterSkinInfo<'_> {
-    /// Return `"hkbCharacterSkinInfo"`, which is the name of this class.
+    /// Return `"hkbCharacterSkinInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCharacterSkinInfo".into()
+        "hkbCharacterSkinInfo".into()
     }
 
     /// Return `"0x180d900d"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbCharacterSkinInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCharacterSkinInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterId"`
     /// -   type: `hkUint64`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterId")]
-    CharacterId(u64),
-    /// # Information on fields in the original C++ class
+    CharacterId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"deformableSkins"`
     /// -   type: `hkArray&lt;hkUint64&gt;`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "deformableSkins")]
-    DeformableSkins(Vec<u64>),
-    /// # Information on fields in the original C++ class
+    DeformableSkins(Vec<Primitive<u64>>),
+    /// # Field information in the original C++ class
     /// -   name:`"rigidSkins"`
     /// -   type: `hkArray&lt;hkUint64&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rigidSkins")]
-    RigidSkins(Vec<u64>),
+    RigidSkins(Vec<Primitive<u64>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbCharacterSkinInfoHkParam<'de>, "@name",
-    ("characterId" => CharacterId(u64)),
-    ("deformableSkins" => DeformableSkins(Vec<u64>)),
-    ("rigidSkins" => RigidSkins(Vec<u64>)),
+    ("characterId" => CharacterId(Primitive<u64>)),
+    ("deformableSkins" => DeformableSkins(Vec<Primitive<u64>>)),
+    ("rigidSkins" => RigidSkins(Vec<Primitive<u64>>)),
 }

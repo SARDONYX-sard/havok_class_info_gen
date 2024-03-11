@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleDefaultSuspension<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleDefaultSuspension"`: Name of this class.
+    /// `"hkpVehicleDefaultSuspension"`: The original C++ class name.
     #[serde(default = "HkpVehicleDefaultSuspension::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleDefaultSuspension<'a> {
 }
 
 impl HkpVehicleDefaultSuspension<'_> {
-    /// Return `"hkpVehicleDefaultSuspension"`, which is the name of this class.
+    /// Return `"hkpVehicleDefaultSuspension"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleDefaultSuspension".into()
+        "hkpVehicleDefaultSuspension".into()
     }
 
     /// Return `"0x21735a24"`, which is the signature of this class.
@@ -63,7 +64,7 @@ impl HkpVehicleDefaultSuspension<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleDefaultSuspensionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wheelSpringParams"`
     /// -   type: `hkArray&lt;struct hkpVehicleDefaultSuspensionWheelSpringSuspensionParameters&gt;`
     /// - offset: 20

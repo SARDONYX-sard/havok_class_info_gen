@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbStateMachineActiveTransitionInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbStateMachineActiveTransitionInfo"`: Name of this class.
+    /// `"hkbStateMachineActiveTransitionInfo"`: The original C++ class name.
     #[serde(default = "HkbStateMachineActiveTransitionInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbStateMachineActiveTransitionInfo<'a> {
 }
 
 impl HkbStateMachineActiveTransitionInfo<'_> {
-    /// Return `"hkbStateMachineActiveTransitionInfo"`, which is the name of this class.
+    /// Return `"hkbStateMachineActiveTransitionInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbStateMachineActiveTransitionInfo".into()
+        "hkbStateMachineActiveTransitionInfo".into()
     }
 
     /// Return `"0xbb90d54f"`, which is the signature of this class.
@@ -63,55 +64,55 @@ impl HkbStateMachineActiveTransitionInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbStateMachineActiveTransitionInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transitionEffect"`
     /// -   type: `void*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "transitionEffect", skip_serializing)]
     TransitionEffect(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transitionEffectInternalStateInfo"`
     /// -   type: `struct hkbNodeInternalStateInfo*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transitionEffectInternalStateInfo")]
-    TransitionEffectInternalStateInfo(Box<HkbNodeInternalStateInfo>),
-    /// # Information on fields in the original C++ class
+    TransitionEffectInternalStateInfo(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"transitionInfoReference"`
     /// -   type: `struct hkbStateMachineTransitionInfoReference`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transitionInfoReference")]
     TransitionInfoReference(HkbStateMachineTransitionInfoReference),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transitionInfoReferenceForTE"`
     /// -   type: `struct hkbStateMachineTransitionInfoReference`
     /// - offset: 14
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transitionInfoReferenceForTE")]
     TransitionInfoReferenceForTe(HkbStateMachineTransitionInfoReference),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"fromStateId"`
     /// -   type: `hkInt32`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fromStateId")]
-    FromStateId(i32),
-    /// # Information on fields in the original C++ class
+    FromStateId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"toStateId"`
     /// -   type: `hkInt32`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "toStateId")]
-    ToStateId(i32),
-    /// # Information on fields in the original C++ class
+    ToStateId(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isReturnToPreviousState"`
     /// -   type: `hkBool`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isReturnToPreviousState")]
-    IsReturnToPreviousState(bool),
+    IsReturnToPreviousState(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -119,10 +120,10 @@ pub enum HkbStateMachineActiveTransitionInfoHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbStateMachineActiveTransitionInfoHkParam<'de>, "@name",
     ("transitionEffect" => TransitionEffect(())),
-    ("transitionEffectInternalStateInfo" => TransitionEffectInternalStateInfo(Box<HkbNodeInternalStateInfo>)),
+    ("transitionEffectInternalStateInfo" => TransitionEffectInternalStateInfo(Cow<'a, str>)),
     ("transitionInfoReference" => TransitionInfoReference(HkbStateMachineTransitionInfoReference)),
     ("transitionInfoReferenceForTE" => TransitionInfoReferenceForTe(HkbStateMachineTransitionInfoReference)),
-    ("fromStateId" => FromStateId(i32)),
-    ("toStateId" => ToStateId(i32)),
-    ("isReturnToPreviousState" => IsReturnToPreviousState(bool)),
+    ("fromStateId" => FromStateId(Primitive<i32>)),
+    ("toStateId" => ToStateId(Primitive<i32>)),
+    ("isReturnToPreviousState" => IsReturnToPreviousState(Primitive<bool>)),
 }

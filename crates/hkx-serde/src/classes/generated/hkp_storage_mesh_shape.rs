@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpStorageMeshShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpStorageMeshShape"`: Name of this class.
+    /// `"hkpStorageMeshShape"`: The original C++ class name.
     #[serde(default = "HkpStorageMeshShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpStorageMeshShape<'a> {
 }
 
 impl HkpStorageMeshShape<'_> {
-    /// Return `"hkpStorageMeshShape"`, which is the name of this class.
+    /// Return `"hkpStorageMeshShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpStorageMeshShape".into()
+        "hkpStorageMeshShape".into()
     }
 
     /// Return `"0xbefd8b39"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkpStorageMeshShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpStorageMeshShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"storage"`
     /// -   type: `hkArray&lt;hkpStorageMeshShapeSubpartStorage*&gt;`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "storage")]
-    Storage(Vec<Box<HkpStorageMeshShapeSubpartStorage>>),
+    Storage(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpStorageMeshShapeHkParam<'de>, "@name",
-    ("storage" => Storage(Vec<Box<HkpStorageMeshShapeSubpartStorage>>)),
+    ("storage" => Storage(Vec<Cow<'a, str>>)),
 }

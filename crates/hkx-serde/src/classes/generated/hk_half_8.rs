@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkHalf8<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkHalf8"`: Name of this class.
+    /// `"hkHalf8"`: The original C++ class name.
     #[serde(default = "HkHalf8::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkHalf8<'a> {
 }
 
 impl HkHalf8<'_> {
-    /// Return `"hkHalf8"`, which is the name of this class.
+    /// Return `"hkHalf8"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkHalf8".into()
+        "hkHalf8".into()
     }
 
     /// Return `"0x7684dc80"`, which is the signature of this class.
@@ -63,18 +64,18 @@ impl HkHalf8<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkHalf8HkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"quad"`
     /// -   type: `hkHalf[8]`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | ALIGN16`
     #[serde(rename = "quad")]
-    Quad([f32; 8]),
+    Quad([Primitive<f32>; 8]),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkHalf8HkParam<'de>, "@name",
-    ("quad" => Quad([f32; 8])),
+    ("quad" => Quad([Primitive<f32>; 8])),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMultipleVertexBuffer<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMultipleVertexBuffer"`: Name of this class.
+    /// `"hkMultipleVertexBuffer"`: The original C++ class name.
     #[serde(default = "HkMultipleVertexBuffer::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMultipleVertexBuffer<'a> {
 }
 
 impl HkMultipleVertexBuffer<'_> {
-    /// Return `"hkMultipleVertexBuffer"`, which is the name of this class.
+    /// Return `"hkMultipleVertexBuffer"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMultipleVertexBuffer".into()
+        "hkMultipleVertexBuffer".into()
     }
 
     /// Return `"0xde3ab602"`, which is the signature of this class.
@@ -63,83 +64,83 @@ impl HkMultipleVertexBuffer<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMultipleVertexBufferHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexFormat"`
     /// -   type: `struct hkVertexFormat`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexFormat")]
     VertexFormat(HkVertexFormat),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lockedElements"`
     /// -   type: `hkArray&lt;struct hkMultipleVertexBufferLockedElement&gt;`
     /// - offset: 268
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lockedElements")]
     LockedElements(Vec<HkMultipleVertexBufferLockedElement>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"lockedBuffer"`
     /// -   type: `struct hkMemoryMeshVertexBuffer*`
     /// - offset: 280
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "lockedBuffer")]
-    LockedBuffer(Box<HkMemoryMeshVertexBuffer>),
-    /// # Information on fields in the original C++ class
+    LockedBuffer(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"elementInfos"`
     /// -   type: `hkArray&lt;struct hkMultipleVertexBufferElementInfo&gt;`
     /// - offset: 284
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "elementInfos")]
     ElementInfos(Vec<HkMultipleVertexBufferElementInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexBufferInfos"`
     /// -   type: `hkArray&lt;struct hkMultipleVertexBufferVertexBufferInfo&gt;`
     /// - offset: 296
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexBufferInfos")]
     VertexBufferInfos(Vec<HkMultipleVertexBufferVertexBufferInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numVertices"`
     /// -   type: `hkInt32`
     /// - offset: 308
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numVertices")]
-    NumVertices(i32),
-    /// # Information on fields in the original C++ class
+    NumVertices(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"isLocked"`
     /// -   type: `hkBool`
     /// - offset: 312
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isLocked")]
-    IsLocked(bool),
-    /// # Information on fields in the original C++ class
+    IsLocked(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"updateCount"`
     /// -   type: `hkUint32`
     /// - offset: 316
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "updateCount")]
-    UpdateCount(u32),
-    /// # Information on fields in the original C++ class
+    UpdateCount(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"writeLock"`
     /// -   type: `hkBool`
     /// - offset: 320
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "writeLock")]
-    WriteLock(bool),
-    /// # Information on fields in the original C++ class
+    WriteLock(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"isSharable"`
     /// -   type: `hkBool`
     /// - offset: 321
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isSharable")]
-    IsSharable(bool),
-    /// # Information on fields in the original C++ class
+    IsSharable(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"constructionComplete"`
     /// -   type: `hkBool`
     /// - offset: 322
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "constructionComplete")]
-    ConstructionComplete(bool),
+    ConstructionComplete(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -148,13 +149,13 @@ impl_deserialize_for_internally_tagged_enum! {
     HkMultipleVertexBufferHkParam<'de>, "@name",
     ("vertexFormat" => VertexFormat(HkVertexFormat)),
     ("lockedElements" => LockedElements(Vec<HkMultipleVertexBufferLockedElement>)),
-    ("lockedBuffer" => LockedBuffer(Box<HkMemoryMeshVertexBuffer>)),
+    ("lockedBuffer" => LockedBuffer(Cow<'a, str>)),
     ("elementInfos" => ElementInfos(Vec<HkMultipleVertexBufferElementInfo>)),
     ("vertexBufferInfos" => VertexBufferInfos(Vec<HkMultipleVertexBufferVertexBufferInfo>)),
-    ("numVertices" => NumVertices(i32)),
-    ("isLocked" => IsLocked(bool)),
-    ("updateCount" => UpdateCount(u32)),
-    ("writeLock" => WriteLock(bool)),
-    ("isSharable" => IsSharable(bool)),
-    ("constructionComplete" => ConstructionComplete(bool)),
+    ("numVertices" => NumVertices(Primitive<i32>)),
+    ("isLocked" => IsLocked(Primitive<bool>)),
+    ("updateCount" => UpdateCount(Primitive<u32>)),
+    ("writeLock" => WriteLock(Primitive<bool>)),
+    ("isSharable" => IsSharable(Primitive<bool>)),
+    ("constructionComplete" => ConstructionComplete(Primitive<bool>)),
 }

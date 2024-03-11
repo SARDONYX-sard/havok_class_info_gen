@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMonitorStreamColorTableColorPair<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMonitorStreamColorTableColorPair"`: Name of this class.
+    /// `"hkMonitorStreamColorTableColorPair"`: The original C++ class name.
     #[serde(default = "HkMonitorStreamColorTableColorPair::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMonitorStreamColorTableColorPair<'a> {
 }
 
 impl HkMonitorStreamColorTableColorPair<'_> {
-    /// Return `"hkMonitorStreamColorTableColorPair"`, which is the name of this class.
+    /// Return `"hkMonitorStreamColorTableColorPair"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMonitorStreamColorTableColorPair".into()
+        "hkMonitorStreamColorTableColorPair".into()
     }
 
     /// Return `"0x738fca05"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkMonitorStreamColorTableColorPair<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMonitorStreamColorTableColorPairHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"colorName"`
     /// -   type: `hkStringPtr`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "colorName")]
-    ColorName(String),
-    /// # Information on fields in the original C++ class
+    ColorName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"color"`
     /// -   type: `enum ExtendedColors`
     /// - offset: 4
@@ -83,6 +84,6 @@ pub enum HkMonitorStreamColorTableColorPairHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMonitorStreamColorTableColorPairHkParam<'de>, "@name",
-    ("colorName" => ColorName(String)),
+    ("colorName" => ColorName(Primitive<Cow<'a, str>>)),
     ("color" => Color(ExtendedColors)),
 }

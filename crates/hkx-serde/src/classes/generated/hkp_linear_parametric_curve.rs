@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpLinearParametricCurve<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpLinearParametricCurve"`: Name of this class.
+    /// `"hkpLinearParametricCurve"`: The original C++ class name.
     #[serde(default = "HkpLinearParametricCurve::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpLinearParametricCurve<'a> {
 }
 
 impl HkpLinearParametricCurve<'_> {
-    /// Return `"hkpLinearParametricCurve"`, which is the name of this class.
+    /// Return `"hkpLinearParametricCurve"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpLinearParametricCurve".into()
+        "hkpLinearParametricCurve".into()
     }
 
     /// Return `"0xd7b3be03"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkpLinearParametricCurve<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpLinearParametricCurveHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"smoothingFactor"`
     /// -   type: `hkReal`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "smoothingFactor")]
-    SmoothingFactor(f64),
-    /// # Information on fields in the original C++ class
+    SmoothingFactor(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"closedLoop"`
     /// -   type: `hkBool`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "closedLoop")]
-    ClosedLoop(bool),
-    /// # Information on fields in the original C++ class
+    ClosedLoop(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"dirNotParallelToTangentAlongWholePath"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "dirNotParallelToTangentAlongWholePath")]
-    DirNotParallelToTangentAlongWholePath(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    DirNotParallelToTangentAlongWholePath(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"points"`
     /// -   type: `hkArray&lt;hkVector4&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "points")]
-    Points(Vec<cgmath::Vector4<f32>>),
-    /// # Information on fields in the original C++ class
+    Points(Vec<Vector4<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"distance"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "distance")]
-    Distance(Vec<f64>),
+    Distance(Vec<Primitive<f32>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpLinearParametricCurveHkParam<'de>, "@name",
-    ("smoothingFactor" => SmoothingFactor(f64)),
-    ("closedLoop" => ClosedLoop(bool)),
-    ("dirNotParallelToTangentAlongWholePath" => DirNotParallelToTangentAlongWholePath(cgmath::Vector4<f32>)),
-    ("points" => Points(Vec<cgmath::Vector4<f32>>)),
-    ("distance" => Distance(Vec<f64>)),
+    ("smoothingFactor" => SmoothingFactor(Primitive<f32>)),
+    ("closedLoop" => ClosedLoop(Primitive<bool>)),
+    ("dirNotParallelToTangentAlongWholePath" => DirNotParallelToTangentAlongWholePath(Vector4<f32>)),
+    ("points" => Points(Vec<Vector4<f32>>)),
+    ("distance" => Distance(Vec<Primitive<f32>>)),
 }

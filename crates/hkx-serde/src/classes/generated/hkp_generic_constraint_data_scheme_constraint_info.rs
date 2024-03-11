@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpGenericConstraintDataSchemeConstraintInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpGenericConstraintDataSchemeConstraintInfo"`: Name of this class.
+    /// `"hkpGenericConstraintDataSchemeConstraintInfo"`: The original C++ class name.
     #[serde(default = "HkpGenericConstraintDataSchemeConstraintInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpGenericConstraintDataSchemeConstraintInfo<'a> {
 }
 
 impl HkpGenericConstraintDataSchemeConstraintInfo<'_> {
-    /// Return `"hkpGenericConstraintDataSchemeConstraintInfo"`, which is the name of this class.
+    /// Return `"hkpGenericConstraintDataSchemeConstraintInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpGenericConstraintDataSchemeConstraintInfo".into()
+        "hkpGenericConstraintDataSchemeConstraintInfo".into()
     }
 
     /// Return `"0xd6421f19"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpGenericConstraintDataSchemeConstraintInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpGenericConstraintDataSchemeConstraintInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"maxSizeOfSchema"`
     /// -   type: `hkInt32`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxSizeOfSchema")]
-    MaxSizeOfSchema(i32),
-    /// # Information on fields in the original C++ class
+    MaxSizeOfSchema(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sizeOfSchemas"`
     /// -   type: `hkInt32`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sizeOfSchemas")]
-    SizeOfSchemas(i32),
-    /// # Information on fields in the original C++ class
+    SizeOfSchemas(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numSolverResults"`
     /// -   type: `hkInt32`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numSolverResults")]
-    NumSolverResults(i32),
-    /// # Information on fields in the original C++ class
+    NumSolverResults(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numSolverElemTemps"`
     /// -   type: `hkInt32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numSolverElemTemps")]
-    NumSolverElemTemps(i32),
+    NumSolverElemTemps(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpGenericConstraintDataSchemeConstraintInfoHkParam<'de>, "@name",
-    ("maxSizeOfSchema" => MaxSizeOfSchema(i32)),
-    ("sizeOfSchemas" => SizeOfSchemas(i32)),
-    ("numSolverResults" => NumSolverResults(i32)),
-    ("numSolverElemTemps" => NumSolverElemTemps(i32)),
+    ("maxSizeOfSchema" => MaxSizeOfSchema(Primitive<i32>)),
+    ("sizeOfSchemas" => SizeOfSchemas(Primitive<i32>)),
+    ("numSolverResults" => NumSolverResults(Primitive<i32>)),
+    ("numSolverElemTemps" => NumSolverElemTemps(Primitive<i32>)),
 }

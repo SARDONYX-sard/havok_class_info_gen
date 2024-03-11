@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxEnvironmentVariable<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxEnvironmentVariable"`: Name of this class.
+    /// `"hkxEnvironmentVariable"`: The original C++ class name.
     #[serde(default = "HkxEnvironmentVariable::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxEnvironmentVariable<'a> {
 }
 
 impl HkxEnvironmentVariable<'_> {
-    /// Return `"hkxEnvironmentVariable"`, which is the name of this class.
+    /// Return `"hkxEnvironmentVariable"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxEnvironmentVariable".into()
+        "hkxEnvironmentVariable".into()
     }
 
     /// Return `"0xa6815115"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkxEnvironmentVariable<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxEnvironmentVariableHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"value"`
     /// -   type: `hkStringPtr`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "value")]
-    Value(String),
+    Value(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxEnvironmentVariableHkParam<'de>, "@name",
-    ("name" => Name(String)),
-    ("value" => Value(String)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("value" => Value(Primitive<Cow<'a, str>>)),
 }

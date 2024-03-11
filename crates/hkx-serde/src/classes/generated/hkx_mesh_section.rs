@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkxMeshSection<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkxMeshSection"`: Name of this class.
+    /// `"hkxMeshSection"`: The original C++ class name.
     #[serde(default = "HkxMeshSection::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkxMeshSection<'a> {
 }
 
 impl HkxMeshSection<'_> {
-    /// Return `"hkxMeshSection"`, which is the name of this class.
+    /// Return `"hkxMeshSection"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkxMeshSection".into()
+        "hkxMeshSection".into()
     }
 
     /// Return `"0xe2286cf8"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkxMeshSection<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkxMeshSectionHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexBuffer"`
     /// -   type: `struct hkxVertexBuffer*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexBuffer")]
-    VertexBuffer(Box<HkxVertexBuffer>),
-    /// # Information on fields in the original C++ class
+    VertexBuffer(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"indexBuffers"`
     /// -   type: `hkArray&lt;hkxIndexBuffer*&gt;`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexBuffers")]
-    IndexBuffers(Vec<Box<HkxIndexBuffer>>),
-    /// # Information on fields in the original C++ class
+    IndexBuffers(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"material"`
     /// -   type: `struct hkxMaterial*`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "material")]
-    Material(Box<HkxMaterial>),
-    /// # Information on fields in the original C++ class
+    Material(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"userChannels"`
     /// -   type: `hkArray&lt;hkReferencedObject*&gt;`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userChannels")]
-    UserChannels(Vec<Box<HkReferencedObject>>),
+    UserChannels(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkxMeshSectionHkParam<'de>, "@name",
-    ("vertexBuffer" => VertexBuffer(Box<HkxVertexBuffer>)),
-    ("indexBuffers" => IndexBuffers(Vec<Box<HkxIndexBuffer>>)),
-    ("material" => Material(Box<HkxMaterial>)),
-    ("userChannels" => UserChannels(Vec<Box<HkReferencedObject>>)),
+    ("vertexBuffer" => VertexBuffer(Cow<'a, str>)),
+    ("indexBuffers" => IndexBuffers(Vec<Cow<'a, str>>)),
+    ("material" => Material(Cow<'a, str>)),
+    ("userChannels" => UserChannels(Vec<Cow<'a, str>>)),
 }

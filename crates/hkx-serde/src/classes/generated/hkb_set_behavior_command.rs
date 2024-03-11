@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbSetBehaviorCommand<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbSetBehaviorCommand"`: Name of this class.
+    /// `"hkbSetBehaviorCommand"`: The original C++ class name.
     #[serde(default = "HkbSetBehaviorCommand::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbSetBehaviorCommand<'a> {
 }
 
 impl HkbSetBehaviorCommand<'_> {
-    /// Return `"hkbSetBehaviorCommand"`, which is the name of this class.
+    /// Return `"hkbSetBehaviorCommand"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbSetBehaviorCommand".into()
+        "hkbSetBehaviorCommand".into()
     }
 
     /// Return `"0xe18b74b9"`, which is the signature of this class.
@@ -63,66 +64,66 @@ impl HkbSetBehaviorCommand<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbSetBehaviorCommandHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterId"`
     /// -   type: `hkUint64`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterId")]
-    CharacterId(u64),
-    /// # Information on fields in the original C++ class
+    CharacterId(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"behavior"`
     /// -   type: `struct hkbBehaviorGraph*`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "behavior")]
-    Behavior(Box<HkbBehaviorGraph>),
-    /// # Information on fields in the original C++ class
+    Behavior(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"rootGenerator"`
     /// -   type: `struct hkbGenerator*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rootGenerator")]
-    RootGenerator(Box<HkbGenerator>),
-    /// # Information on fields in the original C++ class
+    RootGenerator(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"referencedBehaviors"`
     /// -   type: `hkArray&lt;hkbBehaviorGraph*&gt;`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "referencedBehaviors")]
-    ReferencedBehaviors(Vec<Box<HkbBehaviorGraph>>),
-    /// # Information on fields in the original C++ class
+    ReferencedBehaviors(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"startStateIndex"`
     /// -   type: `hkInt32`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "startStateIndex")]
-    StartStateIndex(i32),
-    /// # Information on fields in the original C++ class
+    StartStateIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"randomizeSimulation"`
     /// -   type: `hkBool`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "randomizeSimulation")]
-    RandomizeSimulation(bool),
-    /// # Information on fields in the original C++ class
+    RandomizeSimulation(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"padding"`
     /// -   type: `hkInt32`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "padding")]
-    Padding(i32),
+    Padding(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbSetBehaviorCommandHkParam<'de>, "@name",
-    ("characterId" => CharacterId(u64)),
-    ("behavior" => Behavior(Box<HkbBehaviorGraph>)),
-    ("rootGenerator" => RootGenerator(Box<HkbGenerator>)),
-    ("referencedBehaviors" => ReferencedBehaviors(Vec<Box<HkbBehaviorGraph>>)),
-    ("startStateIndex" => StartStateIndex(i32)),
-    ("randomizeSimulation" => RandomizeSimulation(bool)),
-    ("padding" => Padding(i32)),
+    ("characterId" => CharacterId(Primitive<u64>)),
+    ("behavior" => Behavior(Cow<'a, str>)),
+    ("rootGenerator" => RootGenerator(Cow<'a, str>)),
+    ("referencedBehaviors" => ReferencedBehaviors(Vec<Cow<'a, str>>)),
+    ("startStateIndex" => StartStateIndex(Primitive<i32>)),
+    ("randomizeSimulation" => RandomizeSimulation(Primitive<bool>)),
+    ("padding" => Padding(Primitive<i32>)),
 }

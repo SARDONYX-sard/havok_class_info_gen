@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbStateMachineTransitionInfoReference<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbStateMachineTransitionInfoReference"`: Name of this class.
+    /// `"hkbStateMachineTransitionInfoReference"`: The original C++ class name.
     #[serde(default = "HkbStateMachineTransitionInfoReference::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbStateMachineTransitionInfoReference<'a> {
 }
 
 impl HkbStateMachineTransitionInfoReference<'_> {
-    /// Return `"hkbStateMachineTransitionInfoReference"`, which is the name of this class.
+    /// Return `"hkbStateMachineTransitionInfoReference"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbStateMachineTransitionInfoReference".into()
+        "hkbStateMachineTransitionInfoReference".into()
     }
 
     /// Return `"0x9810c2d0"`, which is the signature of this class.
@@ -63,34 +64,34 @@ impl HkbStateMachineTransitionInfoReference<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbStateMachineTransitionInfoReferenceHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"fromStateIndex"`
     /// -   type: `hkInt16`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "fromStateIndex")]
-    FromStateIndex(i16),
-    /// # Information on fields in the original C++ class
+    FromStateIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"transitionIndex"`
     /// -   type: `hkInt16`
     /// - offset: 2
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transitionIndex")]
-    TransitionIndex(i16),
-    /// # Information on fields in the original C++ class
+    TransitionIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"stateMachineId"`
     /// -   type: `hkInt16`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stateMachineId")]
-    StateMachineId(i16),
+    StateMachineId(Primitive<i16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbStateMachineTransitionInfoReferenceHkParam<'de>, "@name",
-    ("fromStateIndex" => FromStateIndex(i16)),
-    ("transitionIndex" => TransitionIndex(i16)),
-    ("stateMachineId" => StateMachineId(i16)),
+    ("fromStateIndex" => FromStateIndex(Primitive<i16>)),
+    ("transitionIndex" => TransitionIndex(Primitive<i16>)),
+    ("stateMachineId" => StateMachineId(Primitive<i16>)),
 }

@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbHandIkDriverInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbHandIkDriverInfo"`: Name of this class.
+    /// `"hkbHandIkDriverInfo"`: The original C++ class name.
     #[serde(default = "HkbHandIkDriverInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbHandIkDriverInfo<'a> {
 }
 
 impl HkbHandIkDriverInfo<'_> {
-    /// Return `"hkbHandIkDriverInfo"`, which is the name of this class.
+    /// Return `"hkbHandIkDriverInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbHandIkDriverInfo".into()
+        "hkbHandIkDriverInfo".into()
     }
 
     /// Return `"0xc299090a"`, which is the signature of this class.
@@ -63,14 +64,14 @@ impl HkbHandIkDriverInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbHandIkDriverInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"hands"`
     /// -   type: `hkArray&lt;struct hkbHandIkDriverInfoHand&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "hands")]
     Hands(Vec<HkbHandIkDriverInfoHand>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"fadeInOutCurve"`
     /// -   type: `enum BlendCurve`
     /// - offset: 20

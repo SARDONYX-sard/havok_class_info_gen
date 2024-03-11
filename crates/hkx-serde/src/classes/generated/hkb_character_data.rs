@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCharacterData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCharacterData"`: Name of this class.
+    /// `"hkbCharacterData"`: The original C++ class name.
     #[serde(default = "HkbCharacterData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCharacterData<'a> {
 }
 
 impl HkbCharacterData<'_> {
-    /// Return `"hkbCharacterData"`, which is the name of this class.
+    /// Return `"hkbCharacterData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCharacterData".into()
+        "hkbCharacterData".into()
     }
 
     /// Return `"0x300d6808"`, which is the signature of this class.
@@ -63,104 +64,104 @@ impl HkbCharacterData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCharacterDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterControllerInfo"`
     /// -   type: `struct hkbCharacterDataCharacterControllerInfo`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterControllerInfo")]
     CharacterControllerInfo(HkbCharacterDataCharacterControllerInfo),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"modelUpMS"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "modelUpMS")]
-    ModelUpMs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    ModelUpMs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"modelForwardMS"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "modelForwardMS")]
-    ModelForwardMs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    ModelForwardMs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"modelRightMS"`
     /// -   type: `hkVector4`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "modelRightMS")]
-    ModelRightMs(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    ModelRightMs(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"characterPropertyInfos"`
     /// -   type: `hkArray&lt;struct hkbVariableInfo&gt;`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterPropertyInfos")]
     CharacterPropertyInfos(Vec<HkbVariableInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numBonesPerLod"`
     /// -   type: `hkArray&lt;hkInt32&gt;`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numBonesPerLod")]
-    NumBonesPerLod(Vec<i32>),
-    /// # Information on fields in the original C++ class
+    NumBonesPerLod(Vec<Primitive<i32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"characterPropertyValues"`
     /// -   type: `struct hkbVariableValueSet*`
     /// - offset: 104
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterPropertyValues")]
-    CharacterPropertyValues(Box<HkbVariableValueSet>),
-    /// # Information on fields in the original C++ class
+    CharacterPropertyValues(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"footIkDriverInfo"`
     /// -   type: `struct hkbFootIkDriverInfo*`
     /// - offset: 108
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "footIkDriverInfo")]
-    FootIkDriverInfo(Box<HkbFootIkDriverInfo>),
-    /// # Information on fields in the original C++ class
+    FootIkDriverInfo(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"handIkDriverInfo"`
     /// -   type: `struct hkbHandIkDriverInfo*`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handIkDriverInfo")]
-    HandIkDriverInfo(Box<HkbHandIkDriverInfo>),
-    /// # Information on fields in the original C++ class
+    HandIkDriverInfo(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"stringData"`
     /// -   type: `struct hkbCharacterStringData*`
     /// - offset: 116
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stringData")]
-    StringData(Box<HkbCharacterStringData>),
-    /// # Information on fields in the original C++ class
+    StringData(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"mirroredSkeletonInfo"`
     /// -   type: `struct hkbMirroredSkeletonInfo*`
     /// - offset: 120
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "mirroredSkeletonInfo")]
-    MirroredSkeletonInfo(Box<HkbMirroredSkeletonInfo>),
-    /// # Information on fields in the original C++ class
+    MirroredSkeletonInfo(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"scale"`
     /// -   type: `hkReal`
     /// - offset: 124
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "scale")]
-    Scale(f64),
-    /// # Information on fields in the original C++ class
+    Scale(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"numHands"`
     /// -   type: `hkInt16`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "numHands", skip_serializing)]
-    NumHands(i16),
-    /// # Information on fields in the original C++ class
+    NumHands(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"numFloatSlots"`
     /// -   type: `hkInt16`
     /// - offset: 130
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "numFloatSlots", skip_serializing)]
-    NumFloatSlots(i16),
+    NumFloatSlots(Primitive<i16>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -168,17 +169,17 @@ pub enum HkbCharacterDataHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbCharacterDataHkParam<'de>, "@name",
     ("characterControllerInfo" => CharacterControllerInfo(HkbCharacterDataCharacterControllerInfo)),
-    ("modelUpMS" => ModelUpMs(cgmath::Vector4<f32>)),
-    ("modelForwardMS" => ModelForwardMs(cgmath::Vector4<f32>)),
-    ("modelRightMS" => ModelRightMs(cgmath::Vector4<f32>)),
+    ("modelUpMS" => ModelUpMs(Vector4<f32>)),
+    ("modelForwardMS" => ModelForwardMs(Vector4<f32>)),
+    ("modelRightMS" => ModelRightMs(Vector4<f32>)),
     ("characterPropertyInfos" => CharacterPropertyInfos(Vec<HkbVariableInfo>)),
-    ("numBonesPerLod" => NumBonesPerLod(Vec<i32>)),
-    ("characterPropertyValues" => CharacterPropertyValues(Box<HkbVariableValueSet>)),
-    ("footIkDriverInfo" => FootIkDriverInfo(Box<HkbFootIkDriverInfo>)),
-    ("handIkDriverInfo" => HandIkDriverInfo(Box<HkbHandIkDriverInfo>)),
-    ("stringData" => StringData(Box<HkbCharacterStringData>)),
-    ("mirroredSkeletonInfo" => MirroredSkeletonInfo(Box<HkbMirroredSkeletonInfo>)),
-    ("scale" => Scale(f64)),
-    ("numHands" => NumHands(i16)),
-    ("numFloatSlots" => NumFloatSlots(i16)),
+    ("numBonesPerLod" => NumBonesPerLod(Vec<Primitive<i32>>)),
+    ("characterPropertyValues" => CharacterPropertyValues(Cow<'a, str>)),
+    ("footIkDriverInfo" => FootIkDriverInfo(Cow<'a, str>)),
+    ("handIkDriverInfo" => HandIkDriverInfo(Cow<'a, str>)),
+    ("stringData" => StringData(Cow<'a, str>)),
+    ("mirroredSkeletonInfo" => MirroredSkeletonInfo(Cow<'a, str>)),
+    ("scale" => Scale(Primitive<f32>)),
+    ("numHands" => NumHands(Primitive<i16>)),
+    ("numFloatSlots" => NumFloatSlots(Primitive<i16>)),
 }

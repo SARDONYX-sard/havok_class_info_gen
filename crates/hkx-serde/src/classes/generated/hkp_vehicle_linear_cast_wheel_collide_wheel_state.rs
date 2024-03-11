@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpVehicleLinearCastWheelCollideWheelState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpVehicleLinearCastWheelCollideWheelState"`: Name of this class.
+    /// `"hkpVehicleLinearCastWheelCollideWheelState"`: The original C++ class name.
     #[serde(default = "HkpVehicleLinearCastWheelCollideWheelState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpVehicleLinearCastWheelCollideWheelState<'a> {
 }
 
 impl HkpVehicleLinearCastWheelCollideWheelState<'_> {
-    /// Return `"hkpVehicleLinearCastWheelCollideWheelState"`, which is the name of this class.
+    /// Return `"hkpVehicleLinearCastWheelCollideWheelState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpVehicleLinearCastWheelCollideWheelState".into()
+        "hkpVehicleLinearCastWheelCollideWheelState".into()
     }
 
     /// Return `"0x2a9acf98"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpVehicleLinearCastWheelCollideWheelState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpVehicleLinearCastWheelCollideWheelStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"phantom"`
     /// -   type: `struct hkpAabbPhantom*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "phantom")]
-    Phantom(Box<HkpAabbPhantom>),
-    /// # Information on fields in the original C++ class
+    Phantom(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"shape"`
     /// -   type: `struct hkpShape*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "shape")]
-    Shape(Box<HkpShape>),
-    /// # Information on fields in the original C++ class
+    Shape(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"transform"`
     /// -   type: `hkTransform`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transform")]
-    Transform(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    Transform(Transform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"to"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "to")]
-    To(cgmath::Vector4<f32>),
+    To(Vector4<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpVehicleLinearCastWheelCollideWheelStateHkParam<'de>, "@name",
-    ("phantom" => Phantom(Box<HkpAabbPhantom>)),
-    ("shape" => Shape(Box<HkpShape>)),
-    ("transform" => Transform(cgmath::Matrix4<f32>)),
-    ("to" => To(cgmath::Vector4<f32>)),
+    ("phantom" => Phantom(Cow<'a, str>)),
+    ("shape" => Shape(Cow<'a, str>)),
+    ("transform" => Transform(Transform<f32>)),
+    ("to" => To(Vector4<f32>)),
 }

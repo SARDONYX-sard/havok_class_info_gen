@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbCombineTransformsModifierInternalState<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbCombineTransformsModifierInternalState"`: Name of this class.
+    /// `"hkbCombineTransformsModifierInternalState"`: The original C++ class name.
     #[serde(default = "HkbCombineTransformsModifierInternalState::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbCombineTransformsModifierInternalState<'a> {
 }
 
 impl HkbCombineTransformsModifierInternalState<'_> {
-    /// Return `"hkbCombineTransformsModifierInternalState"`, which is the name of this class.
+    /// Return `"hkbCombineTransformsModifierInternalState"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbCombineTransformsModifierInternalState".into()
+        "hkbCombineTransformsModifierInternalState".into()
     }
 
     /// Return `"0xa92ed39f"`, which is the signature of this class.
@@ -63,26 +64,26 @@ impl HkbCombineTransformsModifierInternalState<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbCombineTransformsModifierInternalStateHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"translationOut"`
     /// -   type: `hkVector4`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "translationOut")]
-    TranslationOut(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    TranslationOut(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rotationOut"`
     /// -   type: `hkQuaternion`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rotationOut")]
-    RotationOut(cgmath::Quaternion<f32>),
+    RotationOut(Quaternion<f32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbCombineTransformsModifierInternalStateHkParam<'de>, "@name",
-    ("translationOut" => TranslationOut(cgmath::Vector4<f32>)),
-    ("rotationOut" => RotationOut(cgmath::Quaternion<f32>)),
+    ("translationOut" => TranslationOut(Vector4<f32>)),
+    ("rotationOut" => RotationOut(Quaternion<f32>)),
 }

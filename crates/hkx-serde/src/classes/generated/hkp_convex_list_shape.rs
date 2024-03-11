@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpConvexListShape<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpConvexListShape"`: Name of this class.
+    /// `"hkpConvexListShape"`: The original C++ class name.
     #[serde(default = "HkpConvexListShape::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpConvexListShape<'a> {
 }
 
 impl HkpConvexListShape<'_> {
-    /// Return `"hkpConvexListShape"`, which is the name of this class.
+    /// Return `"hkpConvexListShape"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpConvexListShape".into()
+        "hkpConvexListShape".into()
     }
 
     /// Return `"0x450b26e8"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkpConvexListShape<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpConvexListShapeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"minDistanceToUseConvexHullForGetClosestPoints"`
     /// -   type: `hkReal`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "minDistanceToUseConvexHullForGetClosestPoints")]
-    MinDistanceToUseConvexHullForGetClosestPoints(f64),
-    /// # Information on fields in the original C++ class
+    MinDistanceToUseConvexHullForGetClosestPoints(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"aabbHalfExtents"`
     /// -   type: `hkVector4`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabbHalfExtents")]
-    AabbHalfExtents(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AabbHalfExtents(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"aabbCenter"`
     /// -   type: `hkVector4`
     /// - offset: 48
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "aabbCenter")]
-    AabbCenter(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    AabbCenter(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"useCachedAabb"`
     /// -   type: `hkBool`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "useCachedAabb")]
-    UseCachedAabb(bool),
-    /// # Information on fields in the original C++ class
+    UseCachedAabb(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"childShapes"`
     /// -   type: `hkArray&lt;hkpConvexShape*&gt;`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "childShapes")]
-    ChildShapes(Vec<Box<HkpConvexShape>>),
+    ChildShapes(Vec<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpConvexListShapeHkParam<'de>, "@name",
-    ("minDistanceToUseConvexHullForGetClosestPoints" => MinDistanceToUseConvexHullForGetClosestPoints(f64)),
-    ("aabbHalfExtents" => AabbHalfExtents(cgmath::Vector4<f32>)),
-    ("aabbCenter" => AabbCenter(cgmath::Vector4<f32>)),
-    ("useCachedAabb" => UseCachedAabb(bool)),
-    ("childShapes" => ChildShapes(Vec<Box<HkpConvexShape>>)),
+    ("minDistanceToUseConvexHullForGetClosestPoints" => MinDistanceToUseConvexHullForGetClosestPoints(Primitive<f32>)),
+    ("aabbHalfExtents" => AabbHalfExtents(Vector4<f32>)),
+    ("aabbCenter" => AabbCenter(Vector4<f32>)),
+    ("useCachedAabb" => UseCachedAabb(Primitive<bool>)),
+    ("childShapes" => ChildShapes(Vec<Cow<'a, str>>)),
 }

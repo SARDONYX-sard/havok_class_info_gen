@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpRagdollConstraintDataAtoms<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpRagdollConstraintDataAtoms"`: Name of this class.
+    /// `"hkpRagdollConstraintDataAtoms"`: The original C++ class name.
     #[serde(default = "HkpRagdollConstraintDataAtoms::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpRagdollConstraintDataAtoms<'a> {
 }
 
 impl HkpRagdollConstraintDataAtoms<'_> {
-    /// Return `"hkpRagdollConstraintDataAtoms"`, which is the name of this class.
+    /// Return `"hkpRagdollConstraintDataAtoms"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpRagdollConstraintDataAtoms".into()
+        "hkpRagdollConstraintDataAtoms".into()
     }
 
     /// Return `"0xeed76b00"`, which is the signature of this class.
@@ -63,56 +64,56 @@ impl HkpRagdollConstraintDataAtoms<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpRagdollConstraintDataAtomsHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transforms"`
     /// -   type: `struct hkpSetLocalTransformsConstraintAtom`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transforms")]
     Transforms(HkpSetLocalTransformsConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"setupStabilization"`
     /// -   type: `struct hkpSetupStabilizationAtom`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "setupStabilization")]
     SetupStabilization(HkpSetupStabilizationAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ragdollMotors"`
     /// -   type: `struct hkpRagdollMotorConstraintAtom`
     /// - offset: 160
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ragdollMotors")]
     RagdollMotors(HkpRagdollMotorConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"angFriction"`
     /// -   type: `struct hkpAngFrictionConstraintAtom`
     /// - offset: 240
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "angFriction")]
     AngFriction(HkpAngFrictionConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"twistLimit"`
     /// -   type: `struct hkpTwistLimitConstraintAtom`
     /// - offset: 252
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "twistLimit")]
     TwistLimit(HkpTwistLimitConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"coneLimit"`
     /// -   type: `struct hkpConeLimitConstraintAtom`
     /// - offset: 272
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "coneLimit")]
     ConeLimit(HkpConeLimitConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"planesLimit"`
     /// -   type: `struct hkpConeLimitConstraintAtom`
     /// - offset: 292
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "planesLimit")]
     PlanesLimit(HkpConeLimitConstraintAtom),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"ballSocket"`
     /// -   type: `struct hkpBallSocketConstraintAtom`
     /// - offset: 312

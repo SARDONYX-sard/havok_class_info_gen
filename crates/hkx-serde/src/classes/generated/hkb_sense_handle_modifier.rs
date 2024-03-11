@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbSenseHandleModifier<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbSenseHandleModifier"`: Name of this class.
+    /// `"hkbSenseHandleModifier"`: The original C++ class name.
     #[serde(default = "HkbSenseHandleModifier::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbSenseHandleModifier<'a> {
 }
 
 impl HkbSenseHandleModifier<'_> {
-    /// Return `"hkbSenseHandleModifier"`, which is the name of this class.
+    /// Return `"hkbSenseHandleModifier"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbSenseHandleModifier".into()
+        "hkbSenseHandleModifier".into()
     }
 
     /// Return `"0x2a064d99"`, which is the signature of this class.
@@ -63,139 +64,139 @@ impl HkbSenseHandleModifier<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbSenseHandleModifierHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"handle"`
     /// -   type: `struct hkbHandle`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "handle", skip_serializing)]
     Handle(HkbHandle),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sensorLocalOffset"`
     /// -   type: `hkVector4`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sensorLocalOffset")]
-    SensorLocalOffset(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    SensorLocalOffset(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"ranges"`
     /// -   type: `hkArray&lt;struct hkbSenseHandleModifierRange&gt;`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "ranges")]
     Ranges(Vec<HkbSenseHandleModifierRange>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"handleOut"`
     /// -   type: `struct hkbHandle*`
     /// - offset: 108
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handleOut")]
-    HandleOut(Box<HkbHandle>),
-    /// # Information on fields in the original C++ class
+    HandleOut(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"handleIn"`
     /// -   type: `struct hkbHandle*`
     /// - offset: 112
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "handleIn")]
-    HandleIn(Box<HkbHandle>),
-    /// # Information on fields in the original C++ class
+    HandleIn(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"localFrameName"`
     /// -   type: `hkStringPtr`
     /// - offset: 116
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "localFrameName")]
-    LocalFrameName(String),
-    /// # Information on fields in the original C++ class
+    LocalFrameName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"sensorLocalFrameName"`
     /// -   type: `hkStringPtr`
     /// - offset: 120
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sensorLocalFrameName")]
-    SensorLocalFrameName(String),
-    /// # Information on fields in the original C++ class
+    SensorLocalFrameName(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"minDistance"`
     /// -   type: `hkReal`
     /// - offset: 124
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "minDistance")]
-    MinDistance(f64),
-    /// # Information on fields in the original C++ class
+    MinDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"maxDistance"`
     /// -   type: `hkReal`
     /// - offset: 128
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxDistance")]
-    MaxDistance(f64),
-    /// # Information on fields in the original C++ class
+    MaxDistance(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"distanceOut"`
     /// -   type: `hkReal`
     /// - offset: 132
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "distanceOut")]
-    DistanceOut(f64),
-    /// # Information on fields in the original C++ class
+    DistanceOut(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"collisionFilterInfo"`
     /// -   type: `hkUint32`
     /// - offset: 136
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "collisionFilterInfo")]
-    CollisionFilterInfo(u32),
-    /// # Information on fields in the original C++ class
+    CollisionFilterInfo(Primitive<u32>),
+    /// # Field information in the original C++ class
     /// -   name:`"sensorRagdollBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 140
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sensorRagdollBoneIndex")]
-    SensorRagdollBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    SensorRagdollBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"sensorAnimationBoneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 142
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sensorAnimationBoneIndex")]
-    SensorAnimationBoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    SensorAnimationBoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"sensingMode"`
     /// -   type: `enum SensingMode`
     /// - offset: 144
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "sensingMode")]
     SensingMode(SensingMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"extrapolateSensorPosition"`
     /// -   type: `hkBool`
     /// - offset: 145
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "extrapolateSensorPosition")]
-    ExtrapolateSensorPosition(bool),
-    /// # Information on fields in the original C++ class
+    ExtrapolateSensorPosition(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"keepFirstSensedHandle"`
     /// -   type: `hkBool`
     /// - offset: 146
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keepFirstSensedHandle")]
-    KeepFirstSensedHandle(bool),
-    /// # Information on fields in the original C++ class
+    KeepFirstSensedHandle(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"foundHandleOut"`
     /// -   type: `hkBool`
     /// - offset: 147
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "foundHandleOut")]
-    FoundHandleOut(bool),
-    /// # Information on fields in the original C++ class
+    FoundHandleOut(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"timeSinceLastModify"`
     /// -   type: `hkReal`
     /// - offset: 148
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "timeSinceLastModify", skip_serializing)]
-    TimeSinceLastModify(f64),
-    /// # Information on fields in the original C++ class
+    TimeSinceLastModify(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"rangeIndexForEventToSendNextUpdate"`
     /// -   type: `hkInt32`
     /// - offset: 152
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "rangeIndexForEventToSendNextUpdate", skip_serializing)]
-    RangeIndexForEventToSendNextUpdate(i32),
+    RangeIndexForEventToSendNextUpdate(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -203,24 +204,24 @@ pub enum HkbSenseHandleModifierHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkbSenseHandleModifierHkParam<'de>, "@name",
     ("handle" => Handle(HkbHandle)),
-    ("sensorLocalOffset" => SensorLocalOffset(cgmath::Vector4<f32>)),
+    ("sensorLocalOffset" => SensorLocalOffset(Vector4<f32>)),
     ("ranges" => Ranges(Vec<HkbSenseHandleModifierRange>)),
-    ("handleOut" => HandleOut(Box<HkbHandle>)),
-    ("handleIn" => HandleIn(Box<HkbHandle>)),
-    ("localFrameName" => LocalFrameName(String)),
-    ("sensorLocalFrameName" => SensorLocalFrameName(String)),
-    ("minDistance" => MinDistance(f64)),
-    ("maxDistance" => MaxDistance(f64)),
-    ("distanceOut" => DistanceOut(f64)),
-    ("collisionFilterInfo" => CollisionFilterInfo(u32)),
-    ("sensorRagdollBoneIndex" => SensorRagdollBoneIndex(i16)),
-    ("sensorAnimationBoneIndex" => SensorAnimationBoneIndex(i16)),
+    ("handleOut" => HandleOut(Cow<'a, str>)),
+    ("handleIn" => HandleIn(Cow<'a, str>)),
+    ("localFrameName" => LocalFrameName(Primitive<Cow<'a, str>>)),
+    ("sensorLocalFrameName" => SensorLocalFrameName(Primitive<Cow<'a, str>>)),
+    ("minDistance" => MinDistance(Primitive<f32>)),
+    ("maxDistance" => MaxDistance(Primitive<f32>)),
+    ("distanceOut" => DistanceOut(Primitive<f32>)),
+    ("collisionFilterInfo" => CollisionFilterInfo(Primitive<u32>)),
+    ("sensorRagdollBoneIndex" => SensorRagdollBoneIndex(Primitive<i16>)),
+    ("sensorAnimationBoneIndex" => SensorAnimationBoneIndex(Primitive<i16>)),
     ("sensingMode" => SensingMode(SensingMode)),
-    ("extrapolateSensorPosition" => ExtrapolateSensorPosition(bool)),
-    ("keepFirstSensedHandle" => KeepFirstSensedHandle(bool)),
-    ("foundHandleOut" => FoundHandleOut(bool)),
-    ("timeSinceLastModify" => TimeSinceLastModify(f64)),
-    ("rangeIndexForEventToSendNextUpdate" => RangeIndexForEventToSendNextUpdate(i32)),
+    ("extrapolateSensorPosition" => ExtrapolateSensorPosition(Primitive<bool>)),
+    ("keepFirstSensedHandle" => KeepFirstSensedHandle(Primitive<bool>)),
+    ("foundHandleOut" => FoundHandleOut(Primitive<bool>)),
+    ("timeSinceLastModify" => TimeSinceLastModify(Primitive<f32>)),
+    ("rangeIndexForEventToSendNextUpdate" => RangeIndexForEventToSendNextUpdate(Primitive<i32>)),
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]

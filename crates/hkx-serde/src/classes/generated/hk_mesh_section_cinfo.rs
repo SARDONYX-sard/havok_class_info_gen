@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkMeshSectionCinfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkMeshSectionCinfo"`: Name of this class.
+    /// `"hkMeshSectionCinfo"`: The original C++ class name.
     #[serde(default = "HkMeshSectionCinfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkMeshSectionCinfo<'a> {
 }
 
 impl HkMeshSectionCinfo<'_> {
-    /// Return `"hkMeshSectionCinfo"`, which is the name of this class.
+    /// Return `"hkMeshSectionCinfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkMeshSectionCinfo".into()
+        "hkMeshSectionCinfo".into()
     }
 
     /// Return `"0x6075f3ff"`, which is the signature of this class.
@@ -63,74 +64,74 @@ impl HkMeshSectionCinfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkMeshSectionCinfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexBuffer"`
     /// -   type: `struct hkMeshVertexBuffer*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexBuffer")]
-    VertexBuffer(Box<HkMeshVertexBuffer>),
-    /// # Information on fields in the original C++ class
+    VertexBuffer(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"material"`
     /// -   type: `struct hkMeshMaterial*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "material")]
-    Material(Box<HkMeshMaterial>),
-    /// # Information on fields in the original C++ class
+    Material(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"primitiveType"`
     /// -   type: `enum PrimitiveType`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "primitiveType")]
     PrimitiveType(PrimitiveType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"numPrimitives"`
     /// -   type: `hkInt32`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "numPrimitives")]
-    NumPrimitives(i32),
-    /// # Information on fields in the original C++ class
+    NumPrimitives(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"indexType"`
     /// -   type: `enum MeshSectionIndexType`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "indexType")]
     IndexType(MeshSectionIndexType),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"indices"`
     /// -   type: `void*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "indices", skip_serializing)]
     Indices(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"vertexStartIndex"`
     /// -   type: `hkInt32`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "vertexStartIndex")]
-    VertexStartIndex(i32),
-    /// # Information on fields in the original C++ class
+    VertexStartIndex(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"transformIndex"`
     /// -   type: `hkInt32`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transformIndex")]
-    TransformIndex(i32),
+    TransformIndex(Primitive<i32>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkMeshSectionCinfoHkParam<'de>, "@name",
-    ("vertexBuffer" => VertexBuffer(Box<HkMeshVertexBuffer>)),
-    ("material" => Material(Box<HkMeshMaterial>)),
+    ("vertexBuffer" => VertexBuffer(Cow<'a, str>)),
+    ("material" => Material(Cow<'a, str>)),
     ("primitiveType" => PrimitiveType(PrimitiveType)),
-    ("numPrimitives" => NumPrimitives(i32)),
+    ("numPrimitives" => NumPrimitives(Primitive<i32>)),
     ("indexType" => IndexType(MeshSectionIndexType)),
     ("indices" => Indices(())),
-    ("vertexStartIndex" => VertexStartIndex(i32)),
-    ("transformIndex" => TransformIndex(i32)),
+    ("vertexStartIndex" => VertexStartIndex(Primitive<i32>)),
+    ("transformIndex" => TransformIndex(Primitive<i32>)),
 }

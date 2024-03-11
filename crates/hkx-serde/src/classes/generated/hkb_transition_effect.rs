@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbTransitionEffect<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbTransitionEffect"`: Name of this class.
+    /// `"hkbTransitionEffect"`: The original C++ class name.
     #[serde(default = "HkbTransitionEffect::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbTransitionEffect<'a> {
 }
 
 impl HkbTransitionEffect<'_> {
-    /// Return `"hkbTransitionEffect"`, which is the name of this class.
+    /// Return `"hkbTransitionEffect"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbTransitionEffect".into()
+        "hkbTransitionEffect".into()
     }
 
     /// Return `"0x945da157"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl HkbTransitionEffect<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbTransitionEffectHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"selfTransitionMode"`
     /// -   type: `enum SelfTransitionMode`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "selfTransitionMode")]
     SelfTransitionMode(SelfTransitionMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"eventMode"`
     /// -   type: `enum EventMode`
     /// - offset: 41
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventMode")]
     EventMode(EventMode),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"defaultEventMode"`
     /// -   type: `enum unknown`
     /// - offset: 42

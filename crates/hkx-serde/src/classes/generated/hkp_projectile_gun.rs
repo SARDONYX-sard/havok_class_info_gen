@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpProjectileGun<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpProjectileGun"`: Name of this class.
+    /// `"hkpProjectileGun"`: The original C++ class name.
     #[serde(default = "HkpProjectileGun::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpProjectileGun<'a> {
 }
 
 impl HkpProjectileGun<'_> {
-    /// Return `"hkpProjectileGun"`, which is the name of this class.
+    /// Return `"hkpProjectileGun"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpProjectileGun".into()
+        "hkpProjectileGun".into()
     }
 
     /// Return `"0xb4f30148"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkpProjectileGun<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpProjectileGunHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"maxProjectiles"`
     /// -   type: `hkInt32`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "maxProjectiles")]
-    MaxProjectiles(i32),
-    /// # Information on fields in the original C++ class
+    MaxProjectiles(Primitive<i32>),
+    /// # Field information in the original C++ class
     /// -   name:`"reloadTime"`
     /// -   type: `hkReal`
     /// - offset: 36
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "reloadTime")]
-    ReloadTime(f64),
-    /// # Information on fields in the original C++ class
+    ReloadTime(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"reload"`
     /// -   type: `hkReal`
     /// - offset: 40
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "reload", skip_serializing)]
-    Reload(f64),
-    /// # Information on fields in the original C++ class
+    Reload(Primitive<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"projectiles"`
     /// -   type: `hkArray&lt;void*&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "projectiles", skip_serializing)]
     Projectiles(Vec<()>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"world"`
     /// -   type: `void*`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "world", skip_serializing)]
     World(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"destructionWorld"`
     /// -   type: `void*`
     /// - offset: 60
@@ -111,9 +112,9 @@ pub enum HkpProjectileGunHkParam<'a> {
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpProjectileGunHkParam<'de>, "@name",
-    ("maxProjectiles" => MaxProjectiles(i32)),
-    ("reloadTime" => ReloadTime(f64)),
-    ("reload" => Reload(f64)),
+    ("maxProjectiles" => MaxProjectiles(Primitive<i32>)),
+    ("reloadTime" => ReloadTime(Primitive<f32>)),
+    ("reload" => Reload(Primitive<f32>)),
     ("projectiles" => Projectiles(Vec<()>)),
     ("world" => World(())),
     ("destructionWorld" => DestructionWorld(())),

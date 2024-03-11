@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbKeyframeBonesModifierKeyframeInfo<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbKeyframeBonesModifierKeyframeInfo"`: Name of this class.
+    /// `"hkbKeyframeBonesModifierKeyframeInfo"`: The original C++ class name.
     #[serde(default = "HkbKeyframeBonesModifierKeyframeInfo::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbKeyframeBonesModifierKeyframeInfo<'a> {
 }
 
 impl HkbKeyframeBonesModifierKeyframeInfo<'_> {
-    /// Return `"hkbKeyframeBonesModifierKeyframeInfo"`, which is the name of this class.
+    /// Return `"hkbKeyframeBonesModifierKeyframeInfo"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbKeyframeBonesModifierKeyframeInfo".into()
+        "hkbKeyframeBonesModifierKeyframeInfo".into()
     }
 
     /// Return `"0x72deb7a6"`, which is the signature of this class.
@@ -63,42 +64,42 @@ impl HkbKeyframeBonesModifierKeyframeInfo<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbKeyframeBonesModifierKeyframeInfoHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"keyframedPosition"`
     /// -   type: `hkVector4`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keyframedPosition")]
-    KeyframedPosition(cgmath::Vector4<f32>),
-    /// # Information on fields in the original C++ class
+    KeyframedPosition(Vector4<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"keyframedRotation"`
     /// -   type: `hkQuaternion`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "keyframedRotation")]
-    KeyframedRotation(cgmath::Quaternion<f32>),
-    /// # Information on fields in the original C++ class
+    KeyframedRotation(Quaternion<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"boneIndex"`
     /// -   type: `hkInt16`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "boneIndex")]
-    BoneIndex(i16),
-    /// # Information on fields in the original C++ class
+    BoneIndex(Primitive<i16>),
+    /// # Field information in the original C++ class
     /// -   name:`"isValid"`
     /// -   type: `hkBool`
     /// - offset: 34
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "isValid")]
-    IsValid(bool),
+    IsValid(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbKeyframeBonesModifierKeyframeInfoHkParam<'de>, "@name",
-    ("keyframedPosition" => KeyframedPosition(cgmath::Vector4<f32>)),
-    ("keyframedRotation" => KeyframedRotation(cgmath::Quaternion<f32>)),
-    ("boneIndex" => BoneIndex(i16)),
-    ("isValid" => IsValid(bool)),
+    ("keyframedPosition" => KeyframedPosition(Vector4<f32>)),
+    ("keyframedRotation" => KeyframedRotation(Quaternion<f32>)),
+    ("boneIndex" => BoneIndex(Primitive<i16>)),
+    ("isValid" => IsValid(Primitive<bool>)),
 }

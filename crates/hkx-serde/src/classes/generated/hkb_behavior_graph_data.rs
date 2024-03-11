@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbBehaviorGraphData<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbBehaviorGraphData"`: Name of this class.
+    /// `"hkbBehaviorGraphData"`: The original C++ class name.
     #[serde(default = "HkbBehaviorGraphData::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbBehaviorGraphData<'a> {
 }
 
 impl HkbBehaviorGraphData<'_> {
-    /// Return `"hkbBehaviorGraphData"`, which is the name of this class.
+    /// Return `"hkbBehaviorGraphData"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbBehaviorGraphData".into()
+        "hkbBehaviorGraphData".into()
     }
 
     /// Return `"0x95aca5d"`, which is the signature of this class.
@@ -63,74 +64,74 @@ impl HkbBehaviorGraphData<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbBehaviorGraphDataHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"attributeDefaults"`
     /// -   type: `hkArray&lt;hkReal&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "attributeDefaults")]
-    AttributeDefaults(Vec<f64>),
-    /// # Information on fields in the original C++ class
+    AttributeDefaults(Vec<Primitive<f32>>),
+    /// # Field information in the original C++ class
     /// -   name:`"variableInfos"`
     /// -   type: `hkArray&lt;struct hkbVariableInfo&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variableInfos")]
     VariableInfos(Vec<HkbVariableInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"characterPropertyInfos"`
     /// -   type: `hkArray&lt;struct hkbVariableInfo&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "characterPropertyInfos")]
     CharacterPropertyInfos(Vec<HkbVariableInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"eventInfos"`
     /// -   type: `hkArray&lt;struct hkbEventInfo&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "eventInfos")]
     EventInfos(Vec<HkbEventInfo>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wordMinVariableValues"`
     /// -   type: `hkArray&lt;struct hkbVariableValue&gt;`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wordMinVariableValues")]
     WordMinVariableValues(Vec<HkbVariableValue>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"wordMaxVariableValues"`
     /// -   type: `hkArray&lt;struct hkbVariableValue&gt;`
     /// - offset: 68
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "wordMaxVariableValues")]
     WordMaxVariableValues(Vec<HkbVariableValue>),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"variableInitialValues"`
     /// -   type: `struct hkbVariableValueSet*`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "variableInitialValues")]
-    VariableInitialValues(Box<HkbVariableValueSet>),
-    /// # Information on fields in the original C++ class
+    VariableInitialValues(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"stringData"`
     /// -   type: `struct hkbBehaviorGraphStringData*`
     /// - offset: 84
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "stringData")]
-    StringData(Box<HkbBehaviorGraphStringData>),
+    StringData(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkbBehaviorGraphDataHkParam<'de>, "@name",
-    ("attributeDefaults" => AttributeDefaults(Vec<f64>)),
+    ("attributeDefaults" => AttributeDefaults(Vec<Primitive<f32>>)),
     ("variableInfos" => VariableInfos(Vec<HkbVariableInfo>)),
     ("characterPropertyInfos" => CharacterPropertyInfos(Vec<HkbVariableInfo>)),
     ("eventInfos" => EventInfos(Vec<HkbEventInfo>)),
     ("wordMinVariableValues" => WordMinVariableValues(Vec<HkbVariableValue>)),
     ("wordMaxVariableValues" => WordMaxVariableValues(Vec<HkbVariableValue>)),
-    ("variableInitialValues" => VariableInitialValues(Box<HkbVariableValueSet>)),
-    ("stringData" => StringData(Box<HkbBehaviorGraphStringData>)),
+    ("variableInitialValues" => VariableInitialValues(Cow<'a, str>)),
+    ("stringData" => StringData(Cow<'a, str>)),
 }

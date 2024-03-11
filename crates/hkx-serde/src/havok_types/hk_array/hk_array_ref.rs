@@ -12,7 +12,7 @@ pub struct HkArrayRef<T> {
     /// A vector in structure for parsing XML that takes a pointer to a C++ structure.
     ///
     /// In XML, it is just an array of space-delimited class name strings.
-    #[serde(rename = "$text")]
+    #[serde(rename = "$text", default)]
     pub value: Vec<T>,
 }
 

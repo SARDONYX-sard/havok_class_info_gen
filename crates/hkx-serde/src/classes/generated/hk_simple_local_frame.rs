@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkSimpleLocalFrame<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkSimpleLocalFrame"`: Name of this class.
+    /// `"hkSimpleLocalFrame"`: The original C++ class name.
     #[serde(default = "HkSimpleLocalFrame::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkSimpleLocalFrame<'a> {
 }
 
 impl HkSimpleLocalFrame<'_> {
-    /// Return `"hkSimpleLocalFrame"`, which is the name of this class.
+    /// Return `"hkSimpleLocalFrame"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkSimpleLocalFrame".into()
+        "hkSimpleLocalFrame".into()
     }
 
     /// Return `"0xe758f63c"`, which is the signature of this class.
@@ -63,50 +64,50 @@ impl HkSimpleLocalFrame<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkSimpleLocalFrameHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"transform"`
     /// -   type: `hkTransform`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "transform")]
-    Transform(cgmath::Matrix4<f32>),
-    /// # Information on fields in the original C++ class
+    Transform(Transform<f32>),
+    /// # Field information in the original C++ class
     /// -   name:`"children"`
     /// -   type: `hkArray&lt;hkLocalFrame*&gt;`
     /// - offset: 80
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "children")]
-    Children(Vec<Box<HkLocalFrame>>),
-    /// # Information on fields in the original C++ class
+    Children(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"parentFrame"`
     /// -   type: `struct hkLocalFrame*`
     /// - offset: 92
     /// -  flags: `FLAGS_NONE | NOT_OWNED`
     #[serde(rename = "parentFrame")]
-    ParentFrame(Box<HkLocalFrame>),
-    /// # Information on fields in the original C++ class
+    ParentFrame(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"group"`
     /// -   type: `struct hkLocalFrameGroup*`
     /// - offset: 96
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "group")]
-    Group(Box<HkLocalFrameGroup>),
-    /// # Information on fields in the original C++ class
+    Group(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 100
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
+    Name(Primitive<Cow<'a, str>>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkSimpleLocalFrameHkParam<'de>, "@name",
-    ("transform" => Transform(cgmath::Matrix4<f32>)),
-    ("children" => Children(Vec<Box<HkLocalFrame>>)),
-    ("parentFrame" => ParentFrame(Box<HkLocalFrame>)),
-    ("group" => Group(Box<HkLocalFrameGroup>)),
-    ("name" => Name(String)),
+    ("transform" => Transform(Transform<f32>)),
+    ("children" => Children(Vec<Cow<'a, str>>)),
+    ("parentFrame" => ParentFrame(Cow<'a, str>)),
+    ("group" => Group(Cow<'a, str>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
 }

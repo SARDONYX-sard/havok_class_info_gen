@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpBridgeConstraintAtom<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpBridgeConstraintAtom"`: Name of this class.
+    /// `"hkpBridgeConstraintAtom"`: The original C++ class name.
     #[serde(default = "HkpBridgeConstraintAtom::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpBridgeConstraintAtom<'a> {
 }
 
 impl HkpBridgeConstraintAtom<'_> {
-    /// Return `"hkpBridgeConstraintAtom"`, which is the name of this class.
+    /// Return `"hkpBridgeConstraintAtom"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpBridgeConstraintAtom".into()
+        "hkpBridgeConstraintAtom".into()
     }
 
     /// Return `"0x87a4f31b"`, which is the signature of this class.
@@ -63,20 +64,20 @@ impl HkpBridgeConstraintAtom<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpBridgeConstraintAtomHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"buildJacobianFunc"`
     /// -   type: `void*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "buildJacobianFunc", skip_serializing)]
     BuildJacobianFunc(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"constraintData"`
     /// -   type: `struct hkpConstraintData*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | NOT_OWNED`
     #[serde(rename = "constraintData")]
-    ConstraintData(Box<HkpConstraintData>),
+    ConstraintData(Cow<'a, str>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
@@ -84,5 +85,5 @@ pub enum HkpBridgeConstraintAtomHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpBridgeConstraintAtomHkParam<'de>, "@name",
     ("buildJacobianFunc" => BuildJacobianFunc(())),
-    ("constraintData" => ConstraintData(Box<HkpConstraintData>)),
+    ("constraintData" => ConstraintData(Cow<'a, str>)),
 }

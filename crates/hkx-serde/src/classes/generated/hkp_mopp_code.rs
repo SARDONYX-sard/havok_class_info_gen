@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpMoppCode<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpMoppCode"`: Name of this class.
+    /// `"hkpMoppCode"`: The original C++ class name.
     #[serde(default = "HkpMoppCode::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpMoppCode<'a> {
 }
 
 impl HkpMoppCode<'_> {
-    /// Return `"hkpMoppCode"`, which is the name of this class.
+    /// Return `"hkpMoppCode"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpMoppCode".into()
+        "hkpMoppCode".into()
     }
 
     /// Return `"0x924c2661"`, which is the signature of this class.
@@ -63,21 +64,21 @@ impl HkpMoppCode<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpMoppCodeHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"info"`
     /// -   type: `struct hkpMoppCodeCodeInfo`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "info")]
     Info(HkpMoppCodeCodeInfo),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"data"`
     /// -   type: `hkArray&lt;hkUint8&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "data")]
-    Data(Vec<u8>),
-    /// # Information on fields in the original C++ class
+    Data(Vec<Primitive<u8>>),
+    /// # Field information in the original C++ class
     /// -   name:`"buildType"`
     /// -   type: `enum BuildType`
     /// - offset: 44
@@ -91,7 +92,7 @@ pub enum HkpMoppCodeHkParam<'a> {
 impl_deserialize_for_internally_tagged_enum! {
     HkpMoppCodeHkParam<'de>, "@name",
     ("info" => Info(HkpMoppCodeCodeInfo)),
-    ("data" => Data(Vec<u8>)),
+    ("data" => Data(Vec<Primitive<u8>>)),
     ("buildType" => BuildType(BuildType)),
 }
 

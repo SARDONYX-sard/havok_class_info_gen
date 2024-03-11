@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkpPhysicsSystem<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkpPhysicsSystem"`: Name of this class.
+    /// `"hkpPhysicsSystem"`: The original C++ class name.
     #[serde(default = "HkpPhysicsSystem::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkpPhysicsSystem<'a> {
 }
 
 impl HkpPhysicsSystem<'_> {
-    /// Return `"hkpPhysicsSystem"`, which is the name of this class.
+    /// Return `"hkpPhysicsSystem"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkpPhysicsSystem".into()
+        "hkpPhysicsSystem".into()
     }
 
     /// Return `"0xff724c17"`, which is the signature of this class.
@@ -63,66 +64,66 @@ impl HkpPhysicsSystem<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkpPhysicsSystemHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"rigidBodies"`
     /// -   type: `hkArray&lt;hkpRigidBody*&gt;`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "rigidBodies")]
-    RigidBodies(Vec<Box<HkpRigidBody>>),
-    /// # Information on fields in the original C++ class
+    RigidBodies(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"constraints"`
     /// -   type: `hkArray&lt;hkpConstraintInstance*&gt;`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "constraints")]
-    Constraints(Vec<Box<HkpConstraintInstance>>),
-    /// # Information on fields in the original C++ class
+    Constraints(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"actions"`
     /// -   type: `hkArray&lt;hkpAction*&gt;`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "actions")]
-    Actions(Vec<Box<HkpAction>>),
-    /// # Information on fields in the original C++ class
+    Actions(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"phantoms"`
     /// -   type: `hkArray&lt;hkpPhantom*&gt;`
     /// - offset: 44
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "phantoms")]
-    Phantoms(Vec<Box<HkpPhantom>>),
-    /// # Information on fields in the original C++ class
+    Phantoms(Vec<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"name"`
     /// -   type: `hkStringPtr`
     /// - offset: 56
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "name")]
-    Name(String),
-    /// # Information on fields in the original C++ class
+    Name(Primitive<Cow<'a, str>>),
+    /// # Field information in the original C++ class
     /// -   name:`"userData"`
     /// -   type: `hkUlong`
     /// - offset: 60
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "userData")]
-    UserData(u64),
-    /// # Information on fields in the original C++ class
+    UserData(Primitive<u64>),
+    /// # Field information in the original C++ class
     /// -   name:`"active"`
     /// -   type: `hkBool`
     /// - offset: 64
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "active")]
-    Active(bool),
+    Active(Primitive<bool>),
 }
 
 // Implementing a deserializer for enum manually with macros is necessary
 // because the type needs to change depending on the value of the `"name"` attribute in the XML.
 impl_deserialize_for_internally_tagged_enum! {
     HkpPhysicsSystemHkParam<'de>, "@name",
-    ("rigidBodies" => RigidBodies(Vec<Box<HkpRigidBody>>)),
-    ("constraints" => Constraints(Vec<Box<HkpConstraintInstance>>)),
-    ("actions" => Actions(Vec<Box<HkpAction>>)),
-    ("phantoms" => Phantoms(Vec<Box<HkpPhantom>>)),
-    ("name" => Name(String)),
-    ("userData" => UserData(u64)),
-    ("active" => Active(bool)),
+    ("rigidBodies" => RigidBodies(Vec<Cow<'a, str>>)),
+    ("constraints" => Constraints(Vec<Cow<'a, str>>)),
+    ("actions" => Actions(Vec<Cow<'a, str>>)),
+    ("phantoms" => Phantoms(Vec<Cow<'a, str>>)),
+    ("name" => Name(Primitive<Cow<'a, str>>)),
+    ("userData" => UserData(Primitive<u64>)),
+    ("active" => Active(Primitive<bool>)),
 }

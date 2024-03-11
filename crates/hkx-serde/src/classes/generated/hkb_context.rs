@@ -3,6 +3,7 @@
 //! # NOTE
 //! This file is generated automatically by parsing the rpt files obtained by executing the `hkxcmd Report` command.
 use super::*;
+use crate::hk_types::*;
 use quick_xml::impl_deserialize_for_internally_tagged_enum;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
@@ -24,7 +25,7 @@ pub struct HkbContext<'a> {
     #[serde(rename = "@name", borrow)]
     pub name: Cow<'a, str>,
 
-    /// `"hkbContext"`: Name of this class.
+    /// `"hkbContext"`: The original C++ class name.
     #[serde(default = "HkbContext::class_name")]
     #[serde(rename = "@class", borrow)]
     pub class: Cow<'a, str>,
@@ -41,13 +42,13 @@ pub struct HkbContext<'a> {
 }
 
 impl HkbContext<'_> {
-    /// Return `"hkbContext"`, which is the name of this class.
+    /// Return `"hkbContext"`, which is the name of this C++ class.
     ///
     /// # NOTE
-    /// It is the name of the Rust structure, not the original class name in C++.
+    /// It is not the name of the Rust structure.
     #[inline]
     pub fn class_name() -> Cow<'static, str> {
-        "HkbContext".into()
+        "hkbContext".into()
     }
 
     /// Return `"0xe0c4d4a7"`, which is the signature of this class.
@@ -63,70 +64,70 @@ impl HkbContext<'_> {
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(tag = "@name")]
 pub enum HkbContextHkParam<'a> {
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"character"`
     /// -   type: `void*`
     /// - offset: 0
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "character", skip_serializing)]
     Character(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"behavior"`
     /// -   type: `void*`
     /// - offset: 4
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "behavior", skip_serializing)]
     Behavior(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"nodeToIndexMap"`
     /// -   type: `void*`
     /// - offset: 8
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "nodeToIndexMap", skip_serializing)]
     NodeToIndexMap(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"eventQueue"`
     /// -   type: `void*`
     /// - offset: 12
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "eventQueue", skip_serializing)]
     EventQueue(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"sharedEventQueue"`
     /// -   type: `void*`
     /// - offset: 16
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "sharedEventQueue", skip_serializing)]
     SharedEventQueue(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"generatorOutputListener"`
     /// -   type: `struct hkbGeneratorOutputListener*`
     /// - offset: 20
     /// -  flags: `FLAGS_NONE`
     #[serde(rename = "generatorOutputListener")]
-    GeneratorOutputListener(Box<HkbGeneratorOutputListener>),
-    /// # Information on fields in the original C++ class
+    GeneratorOutputListener(Cow<'a, str>),
+    /// # Field information in the original C++ class
     /// -   name:`"eventTriggeredTransition"`
     /// -   type: `hkBool`
     /// - offset: 24
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "eventTriggeredTransition", skip_serializing)]
-    EventTriggeredTransition(bool),
-    /// # Information on fields in the original C++ class
+    EventTriggeredTransition(Primitive<bool>),
+    /// # Field information in the original C++ class
     /// -   name:`"world"`
     /// -   type: `void*`
     /// - offset: 28
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "world", skip_serializing)]
     World(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"attachmentManager"`
     /// -   type: `void*`
     /// - offset: 32
     /// -  flags: `FLAGS_NONE | SERIALIZE_IGNORED`
     #[serde(rename = "attachmentManager", skip_serializing)]
     AttachmentManager(()),
-    /// # Information on fields in the original C++ class
+    /// # Field information in the original C++ class
     /// -   name:`"animationCache"`
     /// -   type: `void*`
     /// - offset: 36
@@ -144,8 +145,8 @@ impl_deserialize_for_internally_tagged_enum! {
     ("nodeToIndexMap" => NodeToIndexMap(())),
     ("eventQueue" => EventQueue(())),
     ("sharedEventQueue" => SharedEventQueue(())),
-    ("generatorOutputListener" => GeneratorOutputListener(Box<HkbGeneratorOutputListener>)),
-    ("eventTriggeredTransition" => EventTriggeredTransition(bool)),
+    ("generatorOutputListener" => GeneratorOutputListener(Cow<'a, str>)),
+    ("eventTriggeredTransition" => EventTriggeredTransition(Primitive<bool>)),
     ("world" => World(())),
     ("attachmentManager" => AttachmentManager(())),
     ("animationCache" => AnimationCache(())),
