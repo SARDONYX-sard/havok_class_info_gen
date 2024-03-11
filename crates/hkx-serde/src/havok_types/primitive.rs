@@ -1,5 +1,8 @@
 use serde::{Deserialize, Serialize};
 
+// # Note
+// The fields are named because XML parsing failed in the form of `StructName(T)`.
+
 /// Wrapper for retrieving the value that resides directly under the XML tag identified by the tagged enum.
 ///
 /// Without it, it cannot be retrieved properly.
@@ -12,8 +15,7 @@ use serde::{Deserialize, Serialize};
 /// ```
 #[derive(Debug, Clone, Default, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub struct Primitive<T> {
-    /// # Note
-    /// The fields are named because XML parsing failed in the form of `StructName(T)`.
+    /// Value inner tag
     #[serde(rename = "$text")]
     value: T,
 }
@@ -32,6 +34,8 @@ impl<T> From<T> for Primitive<T> {
 
 #[cfg(test)]
 mod tests {
+    use std::borrow::Cow;
+
     use super::*;
     use pretty_assertions::assert_eq;
 
@@ -52,5 +56,29 @@ mod tests {
         let deserialized_primitive: Primitive<i32> = quick_xml::de::from_str(xml).unwrap();
 
         assert_eq!(deserialized_primitive, Primitive::<i32> { value: 42 });
+    }
+
+    #[test]
+    fn should_serialize_with_space_value() {
+        #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+        struct TestRoot<T>(T);
+
+        assert_eq!(
+            quick_xml::se::to_string(&TestRoot(Primitive { value: "text text" })).unwrap(),
+            "<TestRoot>text text</TestRoot>"
+        );
+    }
+
+    #[test]
+    fn should_deserialize_with_space_value() {
+        let xml = r#"<AnyTagName>text text</AnyTagName>"#;
+        let deserialized: Primitive<Cow<'_, str>> = quick_xml::de::from_str(xml).unwrap();
+
+        assert_eq!(
+            deserialized,
+            Primitive {
+                value: "text text".into()
+            }
+        );
     }
 }
