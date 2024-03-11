@@ -1,4 +1,4 @@
-use super::{Class, ClassParams};
+use super::Class;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
 
@@ -24,7 +24,7 @@ pub struct HkSection<'a> {
     #[serde(default = "default_section_root")]
     pub name: Cow<'a, str>,
 
-    #[serde(bound(deserialize = "Vec<ClassParams<'a>>: Deserialize<'de>"))]
+    #[serde(bound(deserialize = "Vec<Class<'a>>: Deserialize<'de>"))]
     #[serde(rename = "hkobject", borrow)]
     pub classes: Vec<Class<'a>>,
 }
@@ -36,8 +36,13 @@ fn default_section_root() -> Cow<'static, str> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::classes::hkb_behavior_graph_string_data::{
-        HkArray, HkbBehaviorGraphStringDataHkparam,
+    use crate::{
+        classes::{
+            hkb_behavior_graph_string_data::{HkArray, HkbBehaviorGraphStringDataHkparam},
+            hkb_variable_value_set::HkbVariableValueSetHkParam,
+            ClassParams,
+        },
+        havok_types::HkArrayRef,
     };
     use pretty_assertions::assert_eq;
 
@@ -50,15 +55,15 @@ mod tests {
             hk_section: HkSection {
                 name: "__data__".into(),
                 classes: vec![Class {
-                    name: "#0085".into(),
+                    name: "#0057".into(),
                     class: "hkbBehaviorGraphStringData".into(),
                     signature: "0xc713064e".into(),
-                    hkparams: vec![ClassParams::HkbBehaviorGraphStringData(
+                    hkparam: ClassParams::HkbBehaviorGraphStringData(
                         HkbBehaviorGraphStringDataHkparam::CharacterProperty(HkArray {
                             numelements: 0,
                             hkcstrings: vec![],
                         }),
-                    )],
+                    ),
                 }],
             },
         };
@@ -82,12 +87,48 @@ mod tests {
         let test_path = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
             .join("../..")
             .join("tests")
-            .join("test3.xml");
+            .join("test.xml");
 
         let xml = std::fs::read_to_string(test_path)?;
 
         let result: Hkx = quick_xml::de::from_str(&xml)?;
-        let expected = Hkx::default();
+        let expected = Hkx {
+            class_version: 8,
+            content_version: "hk_2010.2.0-r1".into(),
+            top_level_object: "#0056".into(),
+            hk_section: HkSection {
+                name: "__data__".into(),
+                classes: vec![
+                    Class {
+                        name: "#0057".into(),
+                        class: "hkbBehaviorGraphStringData".into(),
+                        signature: "0xc713064e".into(),
+                        hkparam: ClassParams::HkbBehaviorGraphStringData(
+                            HkbBehaviorGraphStringDataHkparam::CharacterProperty(HkArray {
+                                numelements: 3,
+                                hkcstrings: [
+                                    "LeftArm".into(),
+                                    "UpperBody".into(),
+                                    "RightArm".into(),
+                                ]
+                                .to_vec(),
+                            }),
+                        ),
+                    },
+                    Class {
+                        name: "#0058".into(),
+                        class: "hkbVariableValueSet".into(),
+                        signature: "0x27812d8d".into(),
+                        hkparam: ClassParams::HkbVariableValueSet(
+                            HkbVariableValueSetHkParam::Variant(HkArrayRef {
+                                numelements: 0,
+                                value: vec![],
+                            }),
+                        ),
+                    },
+                ],
+            },
+        };
         assert_eq!(result, expected);
         Ok(())
     }
