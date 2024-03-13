@@ -2,25 +2,31 @@ use convert_case::{Case, Casing};
 use nom::{
     branch::alt,
     bytes::complete::{tag, take_while},
-    character::complete::{char, space1},
-    combinator::{map, opt},
+    character::complete::{char, digit1, space1},
+    combinator::{map, map_res, opt},
 };
 use std::{borrow::Cow, path::Path};
 
+/// # Examples
+/// -   means: `IResult<Remain, ParsedStr>`
+/// - example: `IResult<&str, Cow<'_, str>>`
 type IResult<I, O, E = nom::error::VerboseError<I>> = Result<(I, O), nom::Err<E>>;
 
 /// C++ type to Rust type conversion
 pub fn parse_cpp_type(input: &str) -> IResult<&str, Cow<'_, str>> {
-    alt((
-        // Avoid recognizing un-arrayed structs and primitives by attempting to parse limit arrays first.
-        parse_array_type,
-        parse_struct_type,
-        parse_enum_type,
-        parse_flags_type,
-        parse_hk_array_type,
-        parse_primitive_type,
-        parse_vector,
-    ))(input)
+    match input {
+        input if input.starts_with("struct") => parse_struct_type(input),
+        input if input.starts_with("enum") => parse_enum_type(input),
+        input if input.starts_with("flag") => parse_flags_type(input),
+        input if input.ends_with('*') => Ok(("", "Cow<'a, str>".into())),
+        input => alt((
+            parse_array_type,
+            parse_struct_type,
+            parse_hk_array_type,
+            parse_primitive_type,
+            parse_vector,
+        ))(input),
+    }
 }
 
 fn parse_primitive_type(input: &str) -> IResult<&str, Cow<'_, str>> {
@@ -38,7 +44,7 @@ fn parse_primitive_type(input: &str) -> IResult<&str, Cow<'_, str>> {
             map(tag("hkUint32"), |_| "Primitive<u32>"),
             map(tag("hkUint64"), |_| "Primitive<u64>"),
             map(tag("hkUint8"), |_| "Primitive<u8>"),
-            map(tag("hkUlong"), |_| "Primitive<u64>"),
+            map(tag("hkUlong"), |_| "Primitive<usize>"),
             map(tag("hkStringPtr"), |_| "Primitive<Cow<'a, str>>"),
             map(tag("hkVariant"), |_| "Primitive<u64>"), // Fill in appropriate type for Variant
             map(tag("void"), |_| "()"),
@@ -68,9 +74,8 @@ fn parse_array_type(input: &str) -> IResult<&str, Cow<'_, str>> {
 
     fn parse_array_len(input: &str) -> IResult<&str, usize> {
         let (input, _) = tag("[")(input)?;
-        let (input, digits) = take_while(|c: char| c.is_ascii_digit())(input)?;
+        let (input, dimensions) = map_res(digit1, str::parse)(input)?;
         let (input, _) = tag("]")(input)?;
-        let dimensions = digits.parse::<usize>().unwrap_or(0);
         Ok((input, dimensions))
     }
     let (input, dimensions) = parse_array_len(input)?;

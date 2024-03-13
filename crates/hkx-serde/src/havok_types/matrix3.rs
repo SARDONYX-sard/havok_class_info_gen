@@ -141,23 +141,21 @@ where
                 let parts_len = parts.len();
                 if parts_len != 3 {
                     let err_msg = format!("Matrix 3 is expected 3 Vector3 str. But got len: {parts_len} & content: {parts:?}");
-                    return Err(serde::de::Error::custom(err_msg));
+                    return Err(E::custom(err_msg));
                 }
 
                 let values: Result<Vec<Vector3<T>>, E> = parts
-                    .iter()
+                    .into_iter()
                     .map(|vec3_str| Vector3::deserialize(vec3_str.into_deserializer()))
                     .collect();
 
-                values.map(|v| {
-                    let mut iter = v.into_iter();
-                    Matrix3::from_cols(
-                        //? Safety: It is safe to use `unwrap` because we confirmed above that four exist when `str::split`.
-                        iter.next().unwrap(),
-                        iter.next().unwrap(),
-                        iter.next().unwrap(),
-                    )
-                })
+                let mut iter = values?.into_iter();
+
+                Ok(Matrix3::from_cols(
+                    iter.next().ok_or_else(|| E::invalid_length(0, &self))?,
+                    iter.next().ok_or_else(|| E::invalid_length(1, &self))?,
+                    iter.next().ok_or_else(|| E::invalid_length(2, &self))?,
+                ))
             }
         }
 

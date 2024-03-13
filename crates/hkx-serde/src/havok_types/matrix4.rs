@@ -154,7 +154,7 @@ where
                 let parts_len = parts.len();
                 if parts_len != 4 {
                     let err_msg = format!("Matrix4 is expected 4 Vector4 str. But got len: {parts_len} & content: {parts:?}");
-                    return Err(serde::de::Error::custom(err_msg));
+                    return Err(E::custom(err_msg));
                 }
 
                 let values: Result<Vec<Vector4<T>>, E> = parts

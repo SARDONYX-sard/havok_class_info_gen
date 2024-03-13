@@ -120,8 +120,7 @@ where
                 let parts = normalize(s);
                 let parts_len = parts.len();
                 if parts_len != 4 {
-                    let err_msg = format!("Vector4 is expected 4 values. But got len: {parts_len} & content: {parts:?}");
-                    return Err(serde::de::Error::custom(err_msg));
+                    return Err(E::custom(format!("Vector4 is expected 4 values. But got len: {parts_len} & content: {parts:?}")));
                 }
                 let values: Result<Vec<T>, _> = parts.iter().map(|p| p.parse()).collect();
                 match values {
@@ -131,7 +130,7 @@ where
                         z: v[2].into(),
                         w: v[3].into(),
                     }),
-                    Err(_) => Err(serde::de::Error::custom("Failed to parse values")),
+                    Err(_) => Err(E::custom("Failed to parse values")),
                 }
             }
         }

@@ -110,8 +110,7 @@ where
                 E: serde::de::Error,
             {
                 let (matrix3, vec3) = s.split_at_nth(')', 3).ok_or_else(|| {
-                    let err_msg = "Transform is expected 2(Matrix3 & Vector3) str. But got None";
-                    serde::de::Error::custom(err_msg)
+                    E::custom("Transform is expected 2(Matrix3 & Vector3) str. But got None")
                 })?;
 
                 Ok(

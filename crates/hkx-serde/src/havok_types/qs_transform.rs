@@ -114,7 +114,7 @@ where
                 let parts_len = parts.len();
                 if parts_len < 3 {
                     let err_msg = format!("QsTransform is expected 3(Vector3, Quaternion, Vector3) str. But got len: {parts_len} & content: {parts:?}");
-                    return Err(serde::de::Error::custom(err_msg));
+                    return Err(E::custom(err_msg));
                 }
 
                 let mut iter = parts.into_iter();

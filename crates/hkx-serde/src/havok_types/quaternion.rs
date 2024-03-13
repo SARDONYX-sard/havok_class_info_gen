@@ -126,7 +126,7 @@ where
                 let parts_len = parts.len();
                 if parts_len != 4 {
                     let err_msg = format!("Quaternion is expected 4(Vector3 & Scale) str. But got len: {parts_len} & content: {parts:?}");
-                    return Err(serde::de::Error::custom(err_msg));
+                    return Err(E::custom(err_msg));
                 }
 
                 let values: Result<Vec<T>, _> = parts.iter().map(|p| p.parse()).collect();
@@ -135,7 +135,7 @@ where
                         v: Vector3::new(v[0], v[1], v[2]),
                         s: v[3],
                     }),
-                    Err(_) => Err(serde::de::Error::custom("Failed to parse values")),
+                    Err(_) => Err(E::custom("Failed to parse values")),
                 }
             }
         }
