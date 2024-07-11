@@ -1,0 +1,11 @@
+[workspace.package]
+authors = ["SARDONYX"]
+version = "0.1.0"
+license = "MIT or Apache-2.0"
+description = ""
+repository = "https://github.com/SARDONYX-sard/havok_class_info_gen" # Without it, the CLI CI build will error
+
+[workspace]
+members = ["crates/hkx_serde", "crates/hkx_class_generator"]
+default-members = ["crates/hkx_class_generator"]
+resolver = "2"

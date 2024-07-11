@@ -1,0 +1,26 @@
+{
+  "cSpell.spellCheckOnlyWorkspaceFiles": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.sortJSON": "never"
+  },
+  "evenBetterToml.formatter.alignComments": true,
+  // "rust-analyzer.checkOnSave": false,
+  // "editor.formatOnSave": false
+  "files.exclude": {
+    ".swc": true,
+    "**/node_modules": true // optional
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true,
+    "**/out/**": true, // Frountend build files
+    "**/target/**": true // Backend build files
+  },
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.showUnlinkedFileNotification": false,
+  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "always",
+  "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": false
+}

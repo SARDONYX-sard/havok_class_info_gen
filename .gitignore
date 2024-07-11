@@ -1,0 +1,13 @@
+# misc
+.DS_Store
+*.log
+
+# Rust build cache
+**/target
+
+/tests/
+!/tests/test*.xml
+
+**/assets/*
+!**/assets/*.py
+!**/assets/readme.md
