@@ -8,7 +8,7 @@ pub fn generate_impl_bytes_deserialize(
     let rust_class_name_with_life_time = rust_class_name_with_life_time.replace("<'a>", "<'de>");
 
     let mut rust_code = String::new();
-    let mut byte_read_code = String::new();
+    let byte_read_code = String::new();
     let mut rust_fields_struct = String::new();
 
     for (member, rust_field) in cpp_members.iter().zip(rust_fields.iter()) {

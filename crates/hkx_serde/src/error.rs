@@ -1,5 +1,5 @@
-use crate::bytes::hkx_header::HkxHeaderError;
 use crate::bytes::deserializer::BytesDeError;
+use crate::bytes::hkx_header::HkxHeaderError;
 use crate::bytes::sections::class_name_section::ClassNamesSectionError;
 use crate::bytes::sections::section_header::SectionHeaderError;
 use std::ffi::FromBytesUntilNulError;

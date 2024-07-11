@@ -2,7 +2,7 @@ use super::{
     class_params::generate_class_params,
     lifetime_manager::get_lifetime_from_fields,
     one_class::{
-        generate_all_fields, generate_one_class, enum_tagged::tagged_fields::generate_tagged_fields,
+        enum_tagged::tagged_fields::generate_tagged_fields, generate_all_fields, generate_one_class,
     },
 };
 use crate::hkxcmd_parser::parse_class;

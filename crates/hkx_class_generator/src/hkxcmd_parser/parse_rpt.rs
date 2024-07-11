@@ -638,7 +638,6 @@ fn parse_member(input: &str) -> IResult<&str, MemberInfo> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tracing::level_filters::LevelFilter;
 
     fn parse_hkx_cmd_report(input: &str) -> ClassInfo {
         match parse_class(input) {
