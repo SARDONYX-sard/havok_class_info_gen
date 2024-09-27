@@ -69,7 +69,7 @@ fn push_one_enum_map(members: &[MemberInfo], enum_map: &mut EnumMap) {
                     if member.hk_type != *hk_type && member.sub_type != *sub_type {
                         panic!("There are members of the same enum definition with different sizes. expected: {hk_type}(sub: {sub_type}), actual: {}({})", member.hk_type, member.sub_type)
                     } else {
-                        println!("Enum key already has registered: {enum_ref}");
+                        tracing::info!("Enum key already has registered: {enum_ref}");
                         continue;
                     };
                 };
@@ -86,7 +86,7 @@ fn push_one_enum_map(members: &[MemberInfo], enum_map: &mut EnumMap) {
 fn modify_enum(class_info: &mut ClassInfo, enum_map: &EnumMap) {
     for one_enum in &mut class_info.enums {
         let (hk_type, subtype) = &enum_map.get(&one_enum.name).unwrap_or_else(|| {
-            println!("Not found key so fallback. : {}", one_enum.name);
+            tracing::info!("Not found key so fallback. : {}", one_enum.name);
             &(Type::Enum, Type::Void)
         });
         one_enum.hk_type = hk_type.clone();
@@ -225,7 +225,15 @@ pub fn generate_offset_info(
                     // Correct information
                     member.offset_x86_64 = current_offset;
                     member.type_size_x86 = match member.hk_type == Type::Struct {
-                        true => class_map[member.class_ref.as_ref().unwrap()].size_x86,
+                        true => {
+                            let struct_size =
+                                class_map[member.class_ref.as_ref().unwrap()].size_x86;
+                            if member.c_style_array_size > 0 {
+                                struct_size * (member.c_style_array_size as u32)
+                            } else {
+                                struct_size
+                            }
+                        }
                         false => {
                             let type_size = member.type_size(&member.hk_type, 4);
                             if member.c_style_array_size > 0 {
@@ -235,7 +243,17 @@ pub fn generate_offset_info(
                             }
                         }
                     };
-                    member.type_size_x86_64 = current_member_size;
+                    member.type_size_x86_64 = match member.hk_type == Type::Struct {
+                        true => current_member_size,
+                        false => {
+                            let type_size = member.type_size(&member.hk_type, 8);
+                            if member.c_style_array_size > 0 {
+                                type_size * (member.c_style_array_size as u32)
+                            } else {
+                                type_size
+                            }
+                        }
+                    };
                     member.has_string = if member.hk_type == Type::Struct
                         || (matches!(member.hk_type, Type::Array | Type::SimpleArray)
                             && member.sub_type == Type::Struct)
