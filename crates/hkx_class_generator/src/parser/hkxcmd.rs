@@ -428,6 +428,7 @@ Version:    2"#;
         tracing::debug!("{:#?}", parse_hkx_cmd_report(input));
     }
 
+    #[ignore = "need hkxcmd Export files"]
     #[test]
     #[quick_tracing::init(test = "should_parse_all_class", level = "Debug")]
     fn should_parse_all_class() {

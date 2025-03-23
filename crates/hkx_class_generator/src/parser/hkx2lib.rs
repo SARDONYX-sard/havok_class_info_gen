@@ -215,6 +215,7 @@ mod tests {
         dbg!(report(input));
     }
 
+    #[ignore = "need hkx2lib rpt files"]
     #[test]
     #[quick_tracing::init(test = "should_parse_all_class", level = "Debug")]
     fn should_parse_all_class_hkx2lib() {
