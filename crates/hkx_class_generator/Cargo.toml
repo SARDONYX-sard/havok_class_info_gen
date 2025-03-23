@@ -10,25 +10,25 @@ repository.workspace = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bitflags = "2.4"
-convert_case = "0.8.0"
-indexmap = "2.2"
-jwalk = { version = "0.8" }
-nom = "7.1.3"
-num-derive = "0.4"
-num-traits = "0.2"
-parse-display = "0.10.0"
-parse_int = { version = "0.6" }
-serde = { version = "1.0", features = ["derive"] } # Implement (De)Serializer
-serde_with = { version = "3.12.0" }
-serde_json = { version = "1.0.116" }
-snafu = { version = "0.8.5" }
-topo_sort = "0.4.0"
-tracing = "0.1"                                    # Logger
+bitflags = { workspace = true }
+convert_case = { workspace = true }
+indexmap = { workspace = true }
+jwalk = { workspace = true }
+nom = { workspace = true }
+num-derive = { workspace = true }
+num-traits = { workspace = true }
+parse-display = { workspace = true }
+parse_int = { workspace = true }
+serde = { workspace = true } # Implement (De)Serializer
+serde_with = { workspace = true }
+serde_json = { workspace = true }
+snafu = { workspace = true }
+topo_sort = { workspace = true }
+tracing = { workspace = true } # Logger
 
 [dev-dependencies]
 quick_tracing = { version = "0.1.5", features = ["derive"] }
-pretty_assertions = "1.4"
+pretty_assertions = { workspace = true }
 
 [features]
 # default = ["nemesis"] # To debug

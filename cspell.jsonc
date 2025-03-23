@@ -31,6 +31,7 @@
     "INPLACEARRAY",
     "jwalk",
     "multispace",
+    "nextest",
     "numelements",
     "packfile",
     "QSTRANSFORM",
@@ -50,6 +51,7 @@
     "vsubtype",
     "vtable",
     "vtype",
+    "xtask",
     "zerocopy"
   ]
 }

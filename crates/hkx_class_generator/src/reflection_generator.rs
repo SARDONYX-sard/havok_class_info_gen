@@ -494,4 +494,20 @@ mod tests {
 
         generate_classes_json(output_dir, rpt_dir)
     }
+
+    #[ignore]
+    #[cfg(feature = "nemesis")]
+    #[test]
+    pub fn should_generate_x86_64_json2() {
+        let output_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("assets")
+            .join("nemesis")
+            .join("classes");
+        let rpt_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("assets")
+            .join("hkxcmd_help")
+            .join("rpt");
+
+        generate_classes_json(output_dir, rpt_dir)
+    }
 }
