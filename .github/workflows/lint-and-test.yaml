@@ -41,7 +41,7 @@ jobs:
         run: cargo xtask generate
 
       - name: Generate(For Nemesis)
-        run: cargo xtask generate --nemesis
+        run: cargo xtask generate --mode nemesis
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.6.2
