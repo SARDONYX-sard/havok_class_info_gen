@@ -6,6 +6,6 @@ description = ""
 repository = "https://github.com/SARDONYX-sard/havok_class_info_gen" # Without it, the CLI CI build will error
 
 [workspace]
-members = ["crates/hkx_serde", "crates/hkx_class_generator"]
+members = ["crates/*"]
 default-members = ["crates/hkx_class_generator"]
 resolver = "2"
