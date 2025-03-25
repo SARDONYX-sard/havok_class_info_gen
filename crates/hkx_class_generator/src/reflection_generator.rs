@@ -295,15 +295,21 @@ pub fn generate_offset_info(
                 // Cache class information for next class offset calculation.
                 size_map.insert(class_info.name.clone(), class_info.size_x86_64);
 
-                // class_info.has_ref = has_ref_member(cpp_class_name, class_map);
-                // if let Some(name) = &class_info.parent {
-                //     class_info.parent_has_ref = has_ref_member(name, class_map);
-                // }
+                #[cfg(not(feature = "nemesis"))]
+                {
+                    class_info.has_ref = has_ref_member(cpp_class_name, class_map);
+                    if let Some(name) = &class_info.parent {
+                        class_info.parent_has_ref = has_ref_member(name, class_map);
+                    }
+                }
 
-                // This is necessary because the type of an enum that can be obtained with one class
-                // information cannot be obtained with a reference to an enum by another class.
-                class_info.has_ref = true;
-                class_info.parent_has_ref = true;
+                #[cfg(feature = "nemesis")]
+                {
+                    // This is necessary because the type of an enum that can be obtained with one class
+                    // information cannot be obtained with a reference to an enum by another class.
+                    class_info.has_ref = true;
+                    class_info.parent_has_ref = true;
+                }
 
                 write_json(&output_dir, &class_info).unwrap();
             }
