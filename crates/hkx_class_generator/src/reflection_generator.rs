@@ -255,16 +255,18 @@ pub fn generate_offset_info(
                             }
                         }
                     };
-                    member.has_ref = if member.vtype == TypeKind::Struct
-                        || (matches!(member.vtype, TypeKind::Array | TypeKind::SimpleArray)
-                            && member.vsubtype == TypeKind::Struct)
-                    {
-                        has_ref_member(member.class_ref.as_ref().unwrap(), class_map)
-                    } else {
-                        member.vtype == TypeKind::CString
-                            || member.vsubtype == TypeKind::CString
-                            || member.vtype == TypeKind::StringPtr
-                            || member.vsubtype == TypeKind::StringPtr
+                    member.has_ref = match member.vtype {
+                        TypeKind::Struct => {
+                            has_ref_member(member.class_ref.as_ref().unwrap(), class_map)
+                        }
+                        TypeKind::Array | TypeKind::SimpleArray => match member.vsubtype {
+                            TypeKind::Struct => {
+                                has_ref_member(member.class_ref.as_ref().unwrap(), class_map)
+                            }
+                            _ => is_ref_kind(&member.vsubtype),
+                        },
+                        TypeKind::Enum | TypeKind::Flags => false,
+                        _ => is_ref_kind(&member.vtype),
                     };
 
                     prev_size = current_member_size;
@@ -350,33 +352,33 @@ fn get_first_field_size(class_name: &str, class_map: &ClassMap, ptr_size: u32) -
     }
 }
 
+fn is_ref_kind(type_kind: &TypeKind) -> bool {
+    {
+        #[cfg(not(feature = "nemesis"))]
+        {
+            matches!(type_kind, |TypeKind::CString| TypeKind::StringPtr)
+        }
+        #[cfg(feature = "nemesis")]
+        {
+            matches!(type_kind, |TypeKind::CString| TypeKind::StringPtr
+                | TypeKind::Variant
+                | TypeKind::Int8
+                | TypeKind::Int16
+                | TypeKind::Int32
+                | TypeKind::Int64
+                | TypeKind::Uint8
+                | TypeKind::Uint16
+                | TypeKind::Uint32
+                | TypeKind::Uint64
+                | TypeKind::Pointer)
+        }
+    }
+}
+
 /// Whether `CString` or `StringPtr` is contained in its own member or in a member of its parent?
 ///
 /// This information is needed for the lifetime annotation (life of the reference) calculation.
 fn has_ref_member(class_name: &str, class_map: &ClassMap) -> bool {
-    fn is_ref_kind(type_kind: &TypeKind) -> bool {
-        {
-            #[cfg(not(feature = "nemesis"))]
-            {
-                matches!(type_kind, |TypeKind::CString| TypeKind::StringPtr)
-            }
-            #[cfg(feature = "nemesis")]
-            {
-                matches!(type_kind, |TypeKind::CString| TypeKind::StringPtr
-                    | TypeKind::Variant
-                    | TypeKind::Int8
-                    | TypeKind::Int16
-                    | TypeKind::Int32
-                    | TypeKind::Int64
-                    | TypeKind::Uint8
-                    | TypeKind::Uint16
-                    | TypeKind::Uint32
-                    | TypeKind::Uint64
-                    | TypeKind::Pointer)
-            }
-        }
-    }
-
     let class_info = match class_map.get(class_name) {
         Some(class_info) => class_info,
         None => panic!("classMap get failed {class_name}"),
